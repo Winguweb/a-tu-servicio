@@ -3,7 +3,7 @@ class State  < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
   has_many :sites
-  has_many :providers, through: :sites
+  has_many :branches
 
   def proper_name
     name.split(StringConstants::SPACE).map(&:capitalize).join(StringConstants::SPACE)
