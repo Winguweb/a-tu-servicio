@@ -26,4 +26,8 @@ class HomeController < ApplicationController
   def about
     @title = 'Sobre el proyecto'
   end
+
+  def temporal
+    @providers = Provider.all
+  end
 end
