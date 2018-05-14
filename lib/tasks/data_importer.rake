@@ -46,7 +46,7 @@ namespace :importer do
   #
   def providers
     puts 'Delete providers'
-    Provider.destroy_all
+    ActiveRecord::Base.connection.execute("TRUNCATE #{Provider.table_name} RESTART IDENTITY")
 
     puts 'Creating providers'
 
@@ -71,6 +71,7 @@ namespace :importer do
   #
 
   def costs_data
+    ActiveRecord::Base.connection.execute("TRUNCATE #{Cost.table_name} RESTART IDENTITY")
     puts "Importing Costs data..."
     import_file(@year + "/precios.csv", col_sep: ';') do |row|
       provider = Provider.find_by(id: row[0].to_i)
@@ -88,6 +89,7 @@ namespace :importer do
   end
 
   def medical_assistences_data
+    ActiveRecord::Base.connection.execute("TRUNCATE #{MedicalAssistence.table_name} RESTART IDENTITY")
     puts "Importing Medical Assistences data..."
     import_file(@year + "/metas.csv", col_sep: ';') do |row|
       provider = Provider.find_by(id: row[0].to_i)
@@ -105,6 +107,7 @@ namespace :importer do
   end
 
   def satisfactions_data
+    ActiveRecord::Base.connection.execute("TRUNCATE #{Satisfaction.table_name} RESTART IDENTITY")
     puts "Importing Satisfaction data..."
     import_file(@year + "/satisfaccion_derechos.csv", col_sep: ';') do |row|
       provider = Provider.find_by(id: row[0].to_i)
@@ -122,6 +125,7 @@ namespace :importer do
   end
 
   def waiting_times_data
+    ActiveRecord::Base.connection.execute("TRUNCATE #{WaitingTime.table_name} RESTART IDENTITY")
     puts "Importing Waiting Times data..."
     import_file(@year + "/tiempos_espera.csv", col_sep: ';') do |row|
       provider = Provider.find_by(id: row[0].to_i)
@@ -139,6 +143,7 @@ namespace :importer do
   end
 
   def specialities_data
+    ActiveRecord::Base.connection.execute("TRUNCATE #{Speciality.table_name} RESTART IDENTITY")
     puts "Importing Specialities data..."
     import_file(@year + "/rrhh.csv", col_sep: ';') do |row|
       provider = Provider.find_by(id: row[0].to_i)
@@ -156,6 +161,7 @@ namespace :importer do
   end
 
   def branches_data
+    ActiveRecord::Base.connection.execute("TRUNCATE #{Branch.table_name} RESTART IDENTITY")
     puts "Importing branches data..."
     import_file(@year + "/sedes.csv", col_sep: ';') do |row|
       provider = Provider.find_by(id: row[0].to_i)
