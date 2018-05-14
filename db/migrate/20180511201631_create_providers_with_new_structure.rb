@@ -9,6 +9,7 @@ class CreateProvidersWithNewStructure < ActiveRecord::Migration[5.2]
       t.text :communication_services
       t.text :logo_url
       t.integer :logo_url
+      t.boolean :is_private
     end
     add_index :providers, :name
   end

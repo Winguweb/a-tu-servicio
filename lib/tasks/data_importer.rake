@@ -16,10 +16,15 @@ namespace :importer do
     end
 
     providers
-    provider_data
-    calculate_maximums
-    assign_search_name
-    structure
+    specialities_data
+    costs_data
+    medical_assistences_data
+    satisfactions_data
+    waiting_times_data
+    # provider_data
+    # calculate_maximums
+    # assign_search_name
+    # structure
   end
 
   #
@@ -48,16 +53,15 @@ namespace :importer do
     import_file(@year + "/estructura.csv", col_sep: ';') do |row|
       provider = Provider.new(
         id: row[0],
-        nombre_abreviado: row[1],
-        nombre_completo: row[2],
-        web: row[3],
-        afiliados_fonasa: row[4],
-        afiliados: row[6],
-        logo: assign_logo(row[0]),
-        comunicacion: row[7]
+        abbreviation: row[1],
+        name: row[2],
+        website: row[3],
+        financed_affiliations: row[4],
+        affiliations: row[6],
+        communication_services: row[7],
+        is_private: row[1].include?('Seguro Privado')
       )
       # Set private insurances
-      provider.private_insurance = true if provider.nombre_abreviado.include?('Seguro Privado')
       provider.save
     end
   end
@@ -65,6 +69,109 @@ namespace :importer do
   #
   # Import provider data
   #
+
+  def costs_data
+    puts "Importing Costs data..."
+    import_file(@year + "/precios.csv", col_sep: ';') do |row|
+      provider = Provider.find_by(id: row[0].to_i)
+      descriptions = get_description('precios')
+      values = row.fields[1..-1]
+      data = descriptions.zip(values)
+      data.each do |cost|
+        provider.costs << Cost.new(
+          name: cost[0],
+          amount: cost[1].to_i
+        )
+      end
+      provider.save
+    end
+  end
+
+  def medical_assistences_data
+    puts "Importing Medical Assistences data..."
+    import_file(@year + "/metas.csv", col_sep: ';') do |row|
+      provider = Provider.find_by(id: row[0].to_i)
+      descriptions = get_description('metas')
+      values = row.fields[1..-1]
+      data = descriptions.zip(values)
+      data.each do |medical_assistence|
+        provider.medical_assistences << MedicalAssistence.new(
+          name: medical_assistence[0],
+          percentage: medical_assistence[1].to_i/100.0
+        )
+      end
+      provider.save
+    end
+  end
+
+  def satisfactions_data
+    puts "Importing Satisfaction data..."
+    import_file(@year + "/satisfaccion_derechos.csv", col_sep: ';') do |row|
+      provider = Provider.find_by(id: row[0].to_i)
+      descriptions = get_description('satisfaccion_derechos')
+      values = row.fields[1..-1]
+      data = descriptions.zip(values)
+      data.each do |satisfaction|
+        provider.satisfactions << Satisfaction.new(
+          name: satisfaction[0],
+          percentage: satisfaction[1].to_i/100.0
+        )
+      end
+      provider.save
+    end
+  end
+
+  def waiting_times_data
+    puts "Importing Waiting Times data..."
+    import_file(@year + "/tiempos_espera.csv", col_sep: ';') do |row|
+      provider = Provider.find_by(id: row[0].to_i)
+      descriptions = get_description('tiempos_espera')
+      values = row.fields[1..-1]
+      data = descriptions.zip(values)
+      data.each do |waiting_time|
+        provider.waiting_times << WaitingTime.new(
+          name: waiting_time[0],
+          days: waiting_time[1].to_f
+        )
+      end
+      provider.save
+    end
+  end
+
+  def specialities_data
+    puts "Importing Specialities data..."
+    import_file(@year + "/rrhh.csv", col_sep: ';') do |row|
+      provider = Provider.find_by(id: row[0].to_i)
+      descriptions = get_description('rrhh')
+      values = row.fields[1..-1]
+      data = descriptions.zip(values)
+      data.each do |speciality|
+        provider.specialities << Speciality.new(
+          name: speciality[0],
+          professionals_count: speciality[1].to_i
+        )
+      end
+      provider.save
+    end
+  end
+
+  def branches_data
+    puts "Importing branches data..."
+    import_file(@year + "/sedes.csv", col_sep: ';') do |row|
+      provider = Provider.find_by(id: row[0].to_i)
+      descriptions = get_description('sedes')
+      values = row.fields[1..-1]
+      data = descriptions.zip(values)
+      data.each do |branch|
+        provider.branches << Branch.new(
+          name: branch[0],
+          professionals_count: branch[1].to_i
+        )
+      end
+      provider.save
+    end
+  end
+
   def provider_data
     [:precios, :metas, :satisfaccion_derechos, :tiempos_espera].each do |importable|
       puts "Importing #{importable}"

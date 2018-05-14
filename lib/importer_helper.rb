@@ -9,6 +9,10 @@ module ImporterHelper
     METADATA[filename.to_sym][:columns]
   end
 
+  def get_description(filename)
+    METADATA[filename.to_sym][:description]
+  end
+
   def get_parameters(headers, row)
     values = row.fields[1..-1]
     headers.zip(values).map{|p| Hash[*p]}.inject({}){|h1, h2| h1.merge(h2)}

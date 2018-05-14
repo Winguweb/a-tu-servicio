@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_05_11_205030) do
     t.integer "financed_affiliations"
     t.text "communication_services"
     t.integer "logo_url"
+    t.boolean "is_private"
     t.index ["name"], name: "index_providers_on_name"
   end
 
