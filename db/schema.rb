@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_11_205030) do
+ActiveRecord::Schema.define(version: 2018_05_15_154716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2018_05_11_205030) do
     t.string "name"
     t.text "address"
     t.geometry "georeference", limit: {:srid=>0, :type=>"geometry"}
+    t.string "town"
     t.integer "provider_id", null: false
     t.integer "state_id", null: false
     t.index ["provider_id"], name: "index_branches_on_provider_id"
@@ -40,7 +41,7 @@ ActiveRecord::Schema.define(version: 2018_05_11_205030) do
     t.index ["provider_id"], name: "index_medical_assistences_on_provider_id"
   end
 
-  create_table "provider_maximums", id: :serial, force: :cascade do |t|
+  create_table "provider_maximums", force: :cascade do |t|
     t.decimal "tickets"
     t.decimal "waiting_time"
     t.integer "affiliates"
@@ -61,7 +62,7 @@ ActiveRecord::Schema.define(version: 2018_05_11_205030) do
     t.index ["name"], name: "index_providers_on_name"
   end
 
-  create_table "providers_old", id: :serial, force: :cascade do |t|
+  create_table "providers_old", force: :cascade do |t|
     t.string "nombre_abreviado"
     t.string "nombre_completo"
     t.string "web"
@@ -180,8 +181,8 @@ ActiveRecord::Schema.define(version: 2018_05_11_205030) do
     t.index ["provider_id"], name: "index_satisfactions_on_provider_id"
   end
 
-  create_table "sites", id: :serial, force: :cascade do |t|
-    t.integer "provider_id"
+  create_table "sites", force: :cascade do |t|
+    t.bigint "provider_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "direccion"
@@ -222,8 +223,9 @@ ActiveRecord::Schema.define(version: 2018_05_11_205030) do
     t.boolean "reumatologia"
     t.boolean "traumatologia"
     t.boolean "urologia"
-    t.integer "state_id"
+    t.bigint "state_id"
     t.index ["provider_id"], name: "index_sites_on_provider_id"
+    t.index ["state_id"], name: "index_sites_on_state_id"
   end
 
   create_table "specialities", force: :cascade do |t|
@@ -233,10 +235,35 @@ ActiveRecord::Schema.define(version: 2018_05_11_205030) do
     t.index ["provider_id"], name: "index_specialities_on_provider_id"
   end
 
-  create_table "states", id: :serial, force: :cascade do |t|
+  create_table "states", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id"
+    t.string "taggable_type"
+    t.integer "taggable_id"
+    t.string "tagger_type"
+    t.integer "tagger_id"
+    t.string "context"
+    t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "waiting_times", force: :cascade do |t|

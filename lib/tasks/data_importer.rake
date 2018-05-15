@@ -16,11 +16,12 @@ namespace :importer do
     end
 
     providers
-    specialities_data
-    costs_data
-    medical_assistences_data
-    satisfactions_data
-    waiting_times_data
+    # specialities_data
+    # costs_data
+    # medical_assistences_data
+    # satisfactions_data
+    # waiting_times_data
+    branches_data
     # provider_data
     # calculate_maximums
     # assign_search_name
@@ -162,18 +163,25 @@ namespace :importer do
 
   def branches_data
     ActiveRecord::Base.connection.execute("TRUNCATE #{Branch.table_name} RESTART IDENTITY")
-    puts "Importing branches data..."
+    puts "Importing Branches data..."
     import_file(@year + "/sedes.csv", col_sep: ';') do |row|
       provider = Provider.find_by(id: row[0].to_i)
-      descriptions = get_description('sedes')
-      values = row.fields[1..-1]
+      descriptions = get_description('rrhh')[5..-1]
+      values = row.fields[5..-1]
       data = descriptions.zip(values)
-      data.each do |branch|
-        provider.branches << Branch.new(
-          name: branch[0],
-          professionals_count: branch[1].to_i
-        )
+      branch = Branch.new(
+        address: row[1],
+        town: row[3],
+      )
+      branch.level_list << row[4]
+      branch.state = State.find_or_create_by(name: row[2])
+      provider.branches << branch
+      data.each do |category|
+        if category[1]
+          branch.category_list << category[0]
+        end
       end
+      branch.save
       provider.save
     end
   end

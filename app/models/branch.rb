@@ -1,4 +1,5 @@
 class Branch < ActiveRecord::Base
-  belongs_to :provider
+  acts_as_taggable_on :levels, :categories
   belongs_to :state
+  belongs_to :provider
 end
