@@ -44,4 +44,14 @@ module HomeHelper
     end
     number_with_precision(professionals_count / @specialities[name] * 100, :precision => 2)
   end
+
+  def branches_levels_count(provider)
+    branches = provider.branches
+    levels = branches.map(&:levels)
+    levels_count = *levels.flatten.group_by(&:name).transform_values(&:count)
+  end
+
+  def get_provider_branch_states(provider)
+    provider.branches.map(&:state).map(&:name).uniq.join(', ')
+  end
 end

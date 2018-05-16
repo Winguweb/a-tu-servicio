@@ -28,6 +28,6 @@ class HomeController < ApplicationController
   end
 
   def temporal
-    @providers = Provider.all.includes(:waiting_times, :satisfactions, :costs, :medical_assistences, :specialities).order(:is_private).order(:abbreviation)
+    @providers = Provider.all.includes(:waiting_times, :satisfactions, :costs, :medical_assistences, :specialities, :branches => [:state, :levels]).order(:is_private).order(:abbreviation)
   end
 end
