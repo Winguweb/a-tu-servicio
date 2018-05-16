@@ -5,6 +5,7 @@ gem 'rails', '~> 5.2.0'
 gem 'activerecord-postgis-adapter'
 gem 'pg'
 gem 'acts-as-taggable-on'
+gem 'slim'
 gem 'uglifier'
 gem 'sass-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

@@ -230,7 +230,7 @@ ActiveRecord::Schema.define(version: 2018_05_15_154716) do
 
   create_table "specialities", force: :cascade do |t|
     t.string "name"
-    t.integer "professionals_count"
+    t.decimal "professionals_count"
     t.integer "provider_id", null: false
     t.index ["provider_id"], name: "index_specialities_on_provider_id"
   end

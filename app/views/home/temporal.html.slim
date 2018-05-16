@@ -1,0 +1,135 @@
+section#home_table
+  .block_preview
+    table.table.table-head-preview
+      thead
+        tr
+          th
+            i.demo-icon.icon-estructura
+            h3 Prestador
+            a.info data-target="#estructura_modal" data-toggle="modal" href="#"
+              i.icon-info
+          th
+            i.demo-icon.icon-calendar
+            h3 Tiempos de espera
+            a.info data-target="#tiempos_espera_modal" data-toggle="modal" href="#"
+              i.icon-info
+          th
+            i.demo-icon.icon-derechos
+            h3 Derechos de usuario
+            a.info data-target="#satisfaccion_derechos_modal" data-toggle="modal" href="#"
+              i.icon-info
+          th
+            i.demo-icon.icon-price
+            h3 Precios FONASA
+            a.info data-target="#precios_modal" data-toggle="modal" href="#"
+              i.icon-info
+          th
+            i.demo-icon.icon-metas
+            h3 Indicadores asistenciales
+            a.info data-target="#metas_modal" data-toggle="modal" href="#"
+              i.icon-info
+          th
+            i.demo-icon.icon-socios
+            h3 Cantidad de usuarios
+            a.info data-target="#affiliates_modal" data-toggle="modal" href="#"
+              i.icon-info
+          th
+            i.demo-icon.icon-rrhh
+            h3 RRHH
+            a.info data-target="#rrhh_modal" data-toggle="modal" href="#"
+              i.icon-info
+      tbody
+        /! Prestadora
+        - @providers.each do |provider|
+          tr
+            td
+              .txt-info
+                h4
+                  a href="/comparar/#{provider.id}" = provider.abbreviation
+                p = provider.name
+                a href=provider.website target="_blank"  = provider.website
+                .checkbox
+                  label
+                    input.add_compare data-id="#{provider.id}" data-name=provider.abbreviation type="checkbox"
+                    | Comparar
+                a.structure data-id="#{provider.id}" href="#"
+                  | Ver estructura y sedes
+                .structure_module.hidden id="structure_#{provider.id}"
+                  a.close href="#"
+                    i.icon-no
+                  ul
+                    li
+                      h4 Estructura:
+                    li
+                      p
+                        | Primaria
+                        span Total 1
+                    li
+                      p
+                        | Secundaria:
+                        span Total 0
+                    li
+                      p
+                        | Policlínica:
+                        span Total 15
+                    li
+                      p
+                        | Urgencia
+                        span Total 4
+                    li
+                      p
+                        | Sedes en:
+                        span
+                          | Maldonado
+            /! Tiempos de espera
+            td
+              - provider.waiting_times.each do |waiting_time|
+                .value
+                  .txt
+                    label = waiting_time.name
+                    label = "#{waiting_time.days} DIAS"
+                  .progress.icons
+                    .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow=waiting_time_percent(waiting_time.name, waiting_time.days) role="progressbar" style=("width: #{waiting_time_percent(waiting_time.name, waiting_time.days)}%;")
+                    img.progress_icons alt=("Clocks gray") src="/assets/clocks-gray-29dbe7b9434f9ed0ac49151ed1d4def1c15be43472a4a3b1528aabbda323accf.png" /
+            /! Satisfaction
+            td
+              - provider.satisfactions.each do |satisfaction|
+                .value.satisfaction
+                  .value
+                    label = satisfaction.name
+                    .progress
+                      .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow=satisfaction.percentage*100 role="progressbar" style=("width: #{satisfaction.percentage*100}%;")
+                        span.sr-only = "#{satisfaction.percentage*100}%"
+            /! Tickets
+            td
+              - provider.costs.each do |cost|
+                .value
+                  .txt
+                    label = cost.name
+                  .progress.icons
+                    .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow=cost_percent(cost.name, cost.amount) role="progressbar" style=("width: #{cost_percent(cost.name, cost.amount)}%;")
+                    img.progress_icons alt=("Coins gray") src="/assets/coins-gray-6bf7b09785b66cbe9ec3712d8dc8eed79f05421af5743079e9fe80588b5cdb90.png" /
+            /! Metas asistenciales
+            td
+              - provider.medical_assistences.each do |medical_assistence|
+                .value
+                  label = medical_assistence.name
+                  .progress
+                    .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow=medical_assistence.percentage*100 role="progressbar" style=("width: #{medical_assistence.percentage*100}%;")
+                      span.sr-only = "#{medical_assistence.percentage*100}%"
+            td
+              .socios
+                i.icon-person style="font-size:#{(affiliation_percent(provider.affiliations)).to_f+30}px"
+                h4 = provider.affiliations
+                h5 = "#{affiliation_percent(provider.affiliations)}% del total"
+            /! RRHH
+            td
+              - provider.specialities.each do |speciality_percent|
+                .value
+                  .txt
+                    label = speciality_percent.name
+                    label = "#{speciality_percent.professionals_count}/10.000"
+                  .progress.icons
+                    .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow=speciality_percent(speciality_percent.name, speciality_percent.professionals_count) role="progressbar" style=("width: #{speciality_percent(speciality_percent.name, speciality_percent.professionals_count)}%;")
+                    img.progress_icons alt=("Users gray") src="/assets/users-gray-516743a2bc9aa029e76ddca8b2920972a48ceb61999a5cd82a8599fd1af789c0.png" /
+      tbody

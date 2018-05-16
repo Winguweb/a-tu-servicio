@@ -16,12 +16,13 @@ namespace :importer do
     end
 
     providers
-    # specialities_data
-    # costs_data
-    # medical_assistences_data
-    # satisfactions_data
-    # waiting_times_data
+    specialities_data
+    costs_data
+    medical_assistences_data
+    satisfactions_data
+    waiting_times_data
     branches_data
+
     # provider_data
     # calculate_maximums
     # assign_search_name
@@ -100,7 +101,7 @@ namespace :importer do
       data.each do |medical_assistence|
         provider.medical_assistences << MedicalAssistence.new(
           name: medical_assistence[0],
-          percentage: medical_assistence[1].to_i/100.0
+          percentage: medical_assistence[1].to_f/100.0
         )
       end
       provider.save
@@ -118,7 +119,7 @@ namespace :importer do
       data.each do |satisfaction|
         provider.satisfactions << Satisfaction.new(
           name: satisfaction[0],
-          percentage: satisfaction[1].to_i/100.0
+          percentage: satisfaction[1].to_f/100.0
         )
       end
       provider.save
@@ -154,7 +155,7 @@ namespace :importer do
       data.each do |speciality|
         provider.specialities << Speciality.new(
           name: speciality[0],
-          professionals_count: speciality[1].to_i
+          professionals_count: speciality[1].to_f
         )
       end
       provider.save
