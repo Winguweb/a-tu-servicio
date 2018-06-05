@@ -3,8 +3,8 @@ class Provider < ActiveRecord::Base
   has_many :costs, dependent: :delete_all
   has_many :medical_assistences, dependent: :delete_all
   has_many :satisfactions, dependent: :delete_all
-  has_many :specialities, dependent: :delete_all
   has_many :waiting_times, dependent: :delete_all
+  belongs_to :state, optional: true
 
   def average(name)
     columns = METADATA[:precios][:averages][name][:columns]

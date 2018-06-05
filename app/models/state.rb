@@ -4,6 +4,7 @@ class State  < ActiveRecord::Base
   validates_uniqueness_of :name
   has_many :sites
   has_many :branches
+  has_many :providers
 
   def proper_name
     name.split(StringConstants::SPACE).map(&:capitalize).join(StringConstants::SPACE)

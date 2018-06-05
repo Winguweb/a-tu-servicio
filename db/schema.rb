@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2018_05_15_154716) do
     t.geometry "georeference", limit: {:srid=>0, :type=>"geometry"}
     t.string "town"
     t.integer "provider_id", null: false
-    t.integer "state_id", null: false
+    t.integer "state_id"
     t.index ["provider_id"], name: "index_branches_on_provider_id"
     t.index ["state_id"], name: "index_branches_on_state_id"
   end
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2018_05_15_154716) do
 
   create_table "providers", force: :cascade do |t|
     t.string "name"
+    t.string "address"
+    t.string "subnet"
     t.string "abbreviation"
     t.string "website"
     t.integer "affiliations"
@@ -59,7 +61,9 @@ ActiveRecord::Schema.define(version: 2018_05_15_154716) do
     t.text "communication_services"
     t.integer "logo_url"
     t.boolean "is_private"
+    t.integer "state_id"
     t.index ["name"], name: "index_providers_on_name"
+    t.index ["state_id"], name: "index_providers_on_state_id"
   end
 
   create_table "providers_old", force: :cascade do |t|
@@ -231,8 +235,8 @@ ActiveRecord::Schema.define(version: 2018_05_15_154716) do
   create_table "specialities", force: :cascade do |t|
     t.string "name"
     t.decimal "professionals_count"
-    t.integer "provider_id", null: false
-    t.index ["provider_id"], name: "index_specialities_on_provider_id"
+    t.integer "branch_id", null: false
+    t.index ["branch_id"], name: "index_specialities_on_branch_id"
   end
 
   create_table "states", force: :cascade do |t|
