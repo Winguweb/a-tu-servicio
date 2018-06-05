@@ -34,6 +34,10 @@ group :development, :test do
   gem 'capybara'
   gem 'active_record_query_trace'
   gem 'derailed'
+  gem 'google-api-client'
+  gem 'redis-rails'
+  gem 'redis-namespace'
+  gem 'sidekiq'
 end
 
 group :production do

@@ -24,8 +24,9 @@ namespace :import do
     ActiveRecord::Base.connection.execute("TRUNCATE #{Branch.table_name} RESTART IDENTITY")
     puts 'Truncate State table...'
     ActiveRecord::Base.connection.execute("TRUNCATE #{State.table_name} RESTART IDENTITY")
-
+    indice = 0
     import_file("bogota.csv", col_sep: "\t") do |row|
+      indice = indice + 1
       especialidad = row["especialidades"]
       cama = {
         :area => row["area"],
@@ -77,6 +78,9 @@ namespace :import do
           prestador_existente[:camas] << cama
         end
       end
+      if indice == 1
+        break
+      end
     end
     puts "\n"
     total = prestadores.size
@@ -118,6 +122,15 @@ namespace :import do
   end
 end
 
+namespace :import do
+  desc 'Import From Excel Data'
+  task :resolveGeolocation => [:environment] do
+    branches = Branch.all
+    branches.each do |branch|
+      GeolocationWorker.perform_async(branch.id)
+    end
+  end
+end
 
 namespace :importer do
   @year = '2016'
