@@ -38,9 +38,6 @@ namespace :import do
         :localidad => row["localidad_sede"],
         :especialidades => []
       }
-      # if ( row["localidad_sede"] == "KR 19 # 84 - 73 /65")
-      #   binding.pry
-      # end
       prestador = {
         :nombre => row["prestador"],
         :tipo => row["tipo_prestador"],
