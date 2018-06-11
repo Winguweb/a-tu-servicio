@@ -24,9 +24,8 @@ namespace :import do
     ActiveRecord::Base.connection.execute("TRUNCATE #{Branch.table_name} RESTART IDENTITY")
     puts 'Truncate State table...'
     ActiveRecord::Base.connection.execute("TRUNCATE #{State.table_name} RESTART IDENTITY")
-    indice = 0
+
     import_file("bogota.csv", col_sep: "\t") do |row|
-      indice = indice + 1
       especialidad = row["especialidades"]
       cama = {
         :area => row["area"],
@@ -46,6 +45,14 @@ namespace :import do
         :localidad => row["localidad_central"],
         :subred => row["subred"],
         :direccion => row["direccion_central"],
+        :satisfaccion => row["satisfaccion"],
+        :tiempo_espera_cirugia_general => row["tiempo_espera_cirugia_general"],
+        :tiempo_espera_ginecologia => row["tiempo_espera_ginecologia"],
+        :tiempo_espera_medicina_general => row["tiempo_espera_medicina_general"],
+        :tiempo_espera_medicina_interna => row["tiempo_espera_medicina_interna"],
+        :tiempo_espera_obstetricia => row["tiempo_espera_obstetricia"],
+        :tiempo_espera_odontologia_general => row["tiempo_espera_odontologia_general"],
+        :tiempo_espera_pediatria => row["tiempo_espera_pediatria"],
         :sedes => [],
         :camas => []
       }
@@ -75,14 +82,13 @@ namespace :import do
           prestador_existente[:camas] << cama
         end
       end
-      if indice == 1
-        break
-      end
     end
     puts "\n"
     total = prestadores.size
     prestadores.each_with_index do |prestador, actual|
       branches = []
+      satisfactions = []
+      waiting_times = []
       prestador[:sedes].each do |sede|
         specialities = []
         sede[:especialidades].each do |especialidad|
@@ -101,6 +107,54 @@ namespace :import do
         branches << branch
       end
       state = State.find_or_create_by(name: prestador[:localidad])
+      if prestador[:satisfaccion]
+        satisfactions << Satisfaction.new(
+          name: 'general',
+          percentage: prestador[:satisfaccion].to_f
+        )
+      end
+      if prestador[:tiempo_espera_cirugia_general]
+        waiting_times << WaitingTime.new(
+          name: "Cirugía General",
+          days: prestador[:tiempo_espera_cirugia_general].to_f
+        )
+      end
+      if prestador[:tiempo_espera_ginecologia]
+        waiting_times << WaitingTime.new(
+          name: "Espera Ginecología",
+          days: prestador[:tiempo_espera_ginecologia].to_f
+        )
+      end
+      if prestador[:tiempo_espera_medicina_general]
+        waiting_times << WaitingTime.new(
+          name: "Medicina General",
+          days: prestador[:tiempo_espera_medicina_general].to_f
+        )
+      end
+      if prestador[:tiempo_espera_medicina_interna]
+        waiting_times << WaitingTime.new(
+          name: "Medicina Interna",
+          days: prestador[:tiempo_espera_medicina_interna].to_f
+        )
+      end
+      if prestador[:tiempo_espera_obstetricia]
+        waiting_times << WaitingTime.new(
+          name: "Obstetricia",
+          days: prestador[:tiempo_espera_obstetricia].to_f
+        )
+      end
+      if prestador[:tiempo_espera_odontologia_general]
+        waiting_times << WaitingTime.new(
+          name: "Odontología General",
+          days: prestador[:tiempo_espera_odontologia_general].to_f
+        )
+      end
+      if prestador[:tiempo_espera_pediatria]
+        waiting_times << WaitingTime.new(
+          name: "Pediatría",
+          days: prestador[:tiempo_espera_pediatria].to_f
+        )
+      end
       provider = Provider.new(
         name: prestador[:nombre],
         address: prestador[:direccion],
@@ -109,7 +163,9 @@ namespace :import do
         is_private: prestador[:tipo].downcase().include?('privado'),
         subnet: prestador[:subred],
         branches: branches,
-        state: state
+        state: state,
+        satisfactions: satisfactions,
+        waiting_times: waiting_times
       )
       provider.save
       percentage = ((actual+1)/total.to_f * 100).round(2)
