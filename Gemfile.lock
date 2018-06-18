@@ -67,6 +67,7 @@ GEM
       xpath (~> 3.0)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.2)
     crass (1.0.4)
     derailed (0.1.0)
       derailed_benchmarks
@@ -80,6 +81,8 @@ GEM
       thor (~> 0.19)
     diff-lcs (1.3)
     erubi (1.7.1)
+    ethon (0.11.0)
+      ffi (>= 1.3.0)
     execjs (2.7.0)
     ffi (1.9.23)
     get_process_mem (0.2.2)
@@ -119,6 +122,8 @@ GEM
     puma (3.11.4)
     query_diet (0.6.2)
     rack (2.0.5)
+    rack-protection (2.0.2)
+      rack
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rails (5.2.0)
@@ -156,6 +161,25 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redis (4.0.1)
+    redis-actionpack (5.0.2)
+      actionpack (>= 4.0, < 6)
+      redis-rack (>= 1, < 3)
+      redis-store (>= 1.1.0, < 2)
+    redis-activesupport (5.0.4)
+      activesupport (>= 3, < 6)
+      redis-store (>= 1.3, < 2)
+    redis-namespace (1.6.0)
+      redis (>= 3.0.4)
+    redis-rack (2.0.4)
+      rack (>= 1.5, < 3)
+      redis-store (>= 1.2, < 2)
+    redis-rails (5.0.2)
+      redis-actionpack (>= 5.0, < 6)
+      redis-activesupport (>= 5.0, < 6)
+      redis-store (>= 1.2, < 2)
+    redis-store (1.5.0)
+      redis (>= 2.2, < 5)
     rgeo (1.0.0)
     rgeo-activerecord (6.0.0)
       activerecord (~> 5.0)
@@ -190,6 +214,11 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sidekiq (5.1.3)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     slim (3.0.9)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 1.3.3, < 2.1)
@@ -204,6 +233,8 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    typhoeus (1.3.0)
+      ethon (>= 0.9.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.10)
@@ -240,10 +271,14 @@ DEPENDENCIES
   rails (~> 5.2.0)
   rails-jquery-autocomplete
   rails_12factor
+  redis-namespace
+  redis-rails
   rollbar
   rspec-rails
   sass-rails
+  sidekiq
   slim
+  typhoeus
   uglifier
   web-console
 

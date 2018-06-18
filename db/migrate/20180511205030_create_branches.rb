@@ -7,7 +7,7 @@ class CreateBranches < ActiveRecord::Migration[5.2]
       t.geometry :georeference
       t.string :town
       t.integer :provider_id, null: false, index: true
-      t.integer :state_id, null: false, index: true
+      t.integer :state_id, index: true
     end
   end
 end

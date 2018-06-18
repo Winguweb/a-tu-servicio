@@ -3,6 +3,188 @@ require "#{Rails.root}/lib/importer_helper"
 
 include ImporterHelper
 
+namespace :import do
+  desc 'Import From Excel Data'
+  task :all => [:environment] do
+    prestadores = []
+    puts 'Importing csv from Excel data'
+    puts 'Truncate Provider table...'
+    ActiveRecord::Base.connection.execute("TRUNCATE #{Provider.table_name} RESTART IDENTITY")
+    puts 'Truncate Cost table...'
+    ActiveRecord::Base.connection.execute("TRUNCATE #{Cost.table_name} RESTART IDENTITY")
+    puts 'Truncate MedicalAssistence table...'
+    ActiveRecord::Base.connection.execute("TRUNCATE #{MedicalAssistence.table_name} RESTART IDENTITY")
+    puts 'Truncate Satisfaction table...'
+    ActiveRecord::Base.connection.execute("TRUNCATE #{Satisfaction.table_name} RESTART IDENTITY")
+    puts 'Truncate WaitingTime table...'
+    ActiveRecord::Base.connection.execute("TRUNCATE #{WaitingTime.table_name} RESTART IDENTITY")
+    puts 'Truncate Speciality table...'
+    ActiveRecord::Base.connection.execute("TRUNCATE #{Speciality.table_name} RESTART IDENTITY")
+    puts 'Truncate Branch table...'
+    ActiveRecord::Base.connection.execute("TRUNCATE #{Branch.table_name} RESTART IDENTITY")
+    puts 'Truncate State table...'
+    ActiveRecord::Base.connection.execute("TRUNCATE #{State.table_name} RESTART IDENTITY")
+
+    import_file("bogota.csv", col_sep: "\t") do |row|
+      especialidad = row["especialidades"]
+      cama = {
+        :area => row["area"],
+        :camas => row["camas"],
+      }
+      sede = {
+        :nombre => row["nombre_sede"],
+        :direccion => row["direccion_sede"],
+        :localidad => row["localidad_sede"],
+        :especialidades => []
+      }
+      prestador = {
+        :nombre => row["prestador"],
+        :tipo => row["tipo_prestador"],
+        :url_mail => row["url_mail"],
+        :comunicacion => row["comunicacion"].to_s,
+        :localidad => row["localidad_central"],
+        :subred => row["subred"],
+        :direccion => row["direccion_central"],
+        :satisfaccion => row["satisfaccion"],
+        :tiempo_espera_cirugia_general => row["tiempo_espera_cirugia_general"],
+        :tiempo_espera_ginecologia => row["tiempo_espera_ginecologia"],
+        :tiempo_espera_medicina_general => row["tiempo_espera_medicina_general"],
+        :tiempo_espera_medicina_interna => row["tiempo_espera_medicina_interna"],
+        :tiempo_espera_obstetricia => row["tiempo_espera_obstetricia"],
+        :tiempo_espera_odontologia_general => row["tiempo_espera_odontologia_general"],
+        :tiempo_espera_pediatria => row["tiempo_espera_pediatria"],
+        :sedes => [],
+        :camas => []
+      }
+      sede[:especialidades] << especialidad
+      prestador[:sedes] << sede
+      prestador[:camas] << cama
+      prestador_existente = prestadores.select do |p|
+        p[:nombre] == prestador[:nombre]
+      end.first
+
+      if prestador_existente.nil?
+        puts "New Provider: #{prestador[:nombre]}"
+        prestadores << prestador
+      else
+        sede_existente = prestador_existente[:sedes].select do |s|
+          s[:nombre] == sede[:nombre]
+        end.first
+        if sede_existente.nil?
+          prestador_existente[:sedes] << sede
+        else
+          sede_existente[:especialidades] << especialidad
+        end
+        cama_existente = prestador_existente[:camas].select do |c|
+          c[:area] == cama[:area]
+        end.first
+        if cama_existente.nil?
+          prestador_existente[:camas] << cama
+        end
+      end
+    end
+    puts "\n"
+    total = prestadores.size
+    prestadores.each_with_index do |prestador, actual|
+      branches = []
+      satisfactions = []
+      waiting_times = []
+      prestador[:sedes].each do |sede|
+        specialities = []
+        sede[:especialidades].each do |especialidad|
+          speciality = Speciality.new(
+            name: especialidad
+          )
+          specialities << speciality
+        end
+        state = State.find_or_create_by(name: sede[:localidad])
+        branch = Branch.new(
+          name: sede[:nombre],
+          address: sede[:direccion],
+          state: state,
+          specialities: specialities
+        )
+        branches << branch
+      end
+      state = State.find_or_create_by(name: prestador[:localidad])
+      if prestador[:satisfaccion]
+        satisfactions << Satisfaction.new(
+          name: 'general',
+          percentage: prestador[:satisfaccion].to_f
+        )
+      end
+      if prestador[:tiempo_espera_cirugia_general]
+        waiting_times << WaitingTime.new(
+          name: "Cirugía General",
+          days: prestador[:tiempo_espera_cirugia_general].to_f
+        )
+      end
+      if prestador[:tiempo_espera_ginecologia]
+        waiting_times << WaitingTime.new(
+          name: "Espera Ginecología",
+          days: prestador[:tiempo_espera_ginecologia].to_f
+        )
+      end
+      if prestador[:tiempo_espera_medicina_general]
+        waiting_times << WaitingTime.new(
+          name: "Medicina General",
+          days: prestador[:tiempo_espera_medicina_general].to_f
+        )
+      end
+      if prestador[:tiempo_espera_medicina_interna]
+        waiting_times << WaitingTime.new(
+          name: "Medicina Interna",
+          days: prestador[:tiempo_espera_medicina_interna].to_f
+        )
+      end
+      if prestador[:tiempo_espera_obstetricia]
+        waiting_times << WaitingTime.new(
+          name: "Obstetricia",
+          days: prestador[:tiempo_espera_obstetricia].to_f
+        )
+      end
+      if prestador[:tiempo_espera_odontologia_general]
+        waiting_times << WaitingTime.new(
+          name: "Odontología General",
+          days: prestador[:tiempo_espera_odontologia_general].to_f
+        )
+      end
+      if prestador[:tiempo_espera_pediatria]
+        waiting_times << WaitingTime.new(
+          name: "Pediatría",
+          days: prestador[:tiempo_espera_pediatria].to_f
+        )
+      end
+      provider = Provider.new(
+        name: prestador[:nombre],
+        address: prestador[:direccion],
+        website: prestador[:url_mail],
+        communication_services: prestador[:comunicacion],
+        is_private: prestador[:tipo].downcase().include?('privado'),
+        subnet: prestador[:subred],
+        branches: branches,
+        state: state,
+        satisfactions: satisfactions,
+        waiting_times: waiting_times
+      )
+      provider.save
+      percentage = ((actual+1)/total.to_f * 100).round(2)
+      printf("\rCompleted: %.2f%", percentage)
+    end
+    puts
+  end
+end
+
+namespace :import do
+  desc 'Import From Excel Data'
+  task :resolveGeolocation => [:environment] do
+    branches = Branch.all
+    branches.each do |branch|
+      GeolocationWorker.perform_async(branch.id)
+    end
+  end
+end
+
 namespace :importer do
   @year = '2016'
 
