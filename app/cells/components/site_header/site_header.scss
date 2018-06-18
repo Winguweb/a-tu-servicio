@@ -1,0 +1,15 @@
+@mixin site-header() {
+  background-color: $blue;
+  height: 70px;
+  padding: $gutter;
+  > div {
+    height: 100%;
+    > img {
+      height: 100%;
+    }
+  }
+
+}
+.site-header-cell{
+  @include site-header;
+}

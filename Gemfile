@@ -17,6 +17,8 @@ gem 'jquery-ui-rails'
 gem 'rails-jquery-autocomplete'
 gem 'puma'
 gem 'rollbar'
+gem 'cells-rails'
+gem 'cells-slim', git: "git@github.com:trailblazer/cells-slim", branch: :master
 
 # Use Unicorn as the app server
 # gem 'unicorn'

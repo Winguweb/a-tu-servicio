@@ -9,6 +9,10 @@ body {
   @include text-color($black);
 
   @if $development { @include grid-visual };
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 body > main {

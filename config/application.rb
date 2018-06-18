@@ -25,5 +25,9 @@ module AtuservicioRails
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.exceptions_app = self.routes
+
+    config.cells.with_assets = %w(
+      components/site_header_cell
+    )
   end
 end
