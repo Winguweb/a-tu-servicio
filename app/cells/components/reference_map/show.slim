@@ -1,0 +1,12 @@
+div.reference-map-cell
+  #map-container
+
+javascript:
+  $(function() {
+    new ATSB.Components['components/reference-map']({
+      el: $('.reference-map-cell'),
+      defaults: #{map_defaults},
+      token: '#{MAPBOX_TOKEN}',
+      features: #{features},
+    })
+  });

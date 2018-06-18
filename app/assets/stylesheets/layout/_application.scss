@@ -2,6 +2,7 @@ $development: false;
 
 html, body {
   font-family: $font-sans;
+  height: 100%;
 }
 
 body {
@@ -16,5 +17,15 @@ body {
 }
 
 body > main {
-  @include grid-column(16);
+  height: calc(100% - #{$header-height});
+}
+
+/* LEAFLET SETTINGS */
+.leaflet-div-icon {
+  background-color: transparent;
+  border: none;
+}
+
+.leaflet-marker-icon:hover {
+  z-index: 1001 !important;
 }

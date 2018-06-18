@@ -8,3 +8,5 @@ REDIS_DB              = redis['db'].freeze
 REDIS_HOST            = redis['host'].freeze
 REDIS_PORT            = redis['port'].freeze
 REDIS_URL             = "redis://#{REDIS_HOST}:#{REDIS_PORT}/#{REDIS_DB}".freeze
+
+MAPBOX_TOKEN    = APP_CONFIG[env]['mapbox']['token'].freeze

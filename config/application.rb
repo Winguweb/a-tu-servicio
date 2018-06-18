@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 APP_CONFIG = YAML.load_file(File.expand_path('../atsb.yml', __FILE__)).with_indifferent_access
+MAP = YAML.load_file(File.expand_path('../map.yml', __FILE__))
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -27,6 +28,7 @@ module AtuservicioRails
     config.exceptions_app = self.routes
 
     config.cells.with_assets = %w(
+      components/reference_map_cell
       components/site_header_cell
     )
   end

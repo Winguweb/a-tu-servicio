@@ -1,6 +1,6 @@
 @mixin site-header() {
   background-color: $blue;
-  height: 70px;
+  height: $header-height;
   padding: $gutter;
   > div {
     height: 100%;
@@ -8,8 +8,8 @@
       height: 100%;
     }
   }
-
 }
+
 .site-header-cell{
   @include site-header;
 }
