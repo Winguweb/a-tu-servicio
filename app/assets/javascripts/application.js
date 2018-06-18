@@ -12,9 +12,3 @@
 //
 //= require jquery
 //= require jquery-ui/widgets/autocomplete
-//= require bootstrap.min
-//= require intro
-//= require home
-//= require modals
-//= require comparar
-//= require autocomplete-rails

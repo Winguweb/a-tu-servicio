@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get '/' => 'home#temporal'
+  get '/' => 'home#index'
+
+  # ---
   match '/(departamento/:departamento)' => 'home#index', via: :get
 
   get '/comparar' => 'compare#index'

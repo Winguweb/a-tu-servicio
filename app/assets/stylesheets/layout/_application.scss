@@ -1,0 +1,16 @@
+$development: false;
+
+html, body {
+  font-family: $font-sans;
+}
+
+body {
+  @include type-setting(0);
+  @include text-color($black);
+
+  @if $development { @include grid-visual };
+}
+
+body > main {
+  @include grid-column(16);
+}
