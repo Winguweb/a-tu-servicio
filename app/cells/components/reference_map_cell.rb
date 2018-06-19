@@ -6,7 +6,7 @@ class Components::ReferenceMapCell < Cell::ViewModel
     return [] if model.blank?
     model.map do |feature|
       {
-        name: feature.name,
+        name: feature.name.titlecase,
         coordinates: feature.georeference.coordinates.reverse,
       }
     end.to_json

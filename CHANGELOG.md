@@ -41,9 +41,11 @@ All notable changes to this project will be documented in this file.
   - `app/assets/stylesheets/globals/_colors.scss`
   - `app/assets/stylesheets/globals/_variables.scss`
   - `app/assets/stylesheets/layout/_application.scss`
+  - `app/cells/components/reference_map/reference_map.js`
+  - `app/cells/components/reference_map/reference_map.scss`
+  - `app/cells/components/reference_map_cell.rb`
   - `app/cells/components/site_header/site_header.scss`
   - `app/controllers/home_controller.rb`
-  - `app/views/home/index.html.erb`
   - `app/views/layouts/public.slim`
   - `config/application.rb`
   - `config/initializers/00_config.rb`

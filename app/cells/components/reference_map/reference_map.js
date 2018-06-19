@@ -37,8 +37,8 @@ ATSB.Components['components/reference-map'] = Backbone.View.extend({
       new L.Marker(marker.coordinates, {
         icon: new L.divIcon({
           html: '<div class="reference-map--marker"><i></i><p>' + marker.name + '</p></div><!-- Icon made by [author link] from www.flaticon.com -->',
-          iconAnchor: [15, 30],
-          iconSize: [30, 30],
+          iconAnchor: [8, 15],
+          iconSize: [15, 15],
         })
       }).addTo(this.baseGeometryFeature)
     }.bind(this))

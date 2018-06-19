@@ -8,10 +8,10 @@
 
   .reference-map--marker {
     border: none;
-    height: 30px;
+    height: 15px;
     overflow: hidden;
     position: relative;
-    width: 25px;
+    width: 15px;
 
     &:hover {
       overflow: visible;
@@ -27,22 +27,24 @@
       height: 100%;
       position: absolute;
       width: 100%;
-      &:hover {
-        background-image: image-url("icons/marker-hover.svg");
-      }
+      z-index: 1002;
     }
     > p {
       @include type-setting(-2);
-      background-color: color($white, 0.8);
-      left: 50%;
+      background-color: color($white, 0.9);
+      left: -$gutter/3;
       line-height: 12px;
       opacity: 0;
-      padding: $gutter/2;
+      padding: $gutter/2 $gutter/2 $gutter/2 $gutter*1.5;
       position: absolute;
       text-align: center;
-      top: 35px;
-      transform: translateX(-50%);
-      width: 200px;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      z-index: 1001;
+    }
+    &:hover i {
+      background-image: image-url("icons/marker-hover.svg");
     }
   }
 
