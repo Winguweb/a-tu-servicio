@@ -73,3 +73,16 @@ $type-settings: (
   font-size: type-scale($level);
   line-height: line-height($level);
 }
+
+@function type-scale-golden($level) {
+  @return $base-font-size * golden-ratio($level);
+}
+
+@function line-height-golden($level) {
+  @return $base-font-size * golden-ratio($level+1);
+}
+
+@mixin type-golden($level: 0) {
+  font-size: type-scale-golden($level);
+  line-height: line-height-golden($level);
+}

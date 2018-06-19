@@ -13,11 +13,13 @@ body {
 
   * {
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
 body > main {
   height: calc(100% - #{$header-height});
+  position: relative;
 }
 
 /* LEAFLET SETTINGS */

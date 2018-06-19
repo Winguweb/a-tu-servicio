@@ -1,16 +1,9 @@
 /* CSS Helpers */
 
 @mixin ellipsis {
+  -moz-binding: url("/xml/ellipsis.xml#ellipsis");
+  overflow: hidden !important;
   padding-right: $gutter/2;
   white-space: nowrap;
-  overflow: hidden !important;
   @include prefixer(text-overflow, ellipsis, o ms spec);
-  -moz-binding: url("/xml/ellipsis.xml#ellipsis");
-}
-
-@mixin placeholder {
-  &::-webkit-input-placeholder {@content}
-  &:-moz-placeholder           {@content}
-  &::-moz-placeholder          {@content}
-  &:-ms-input-placeholder      {@content}
 }

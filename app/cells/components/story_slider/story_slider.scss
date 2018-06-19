@@ -1,0 +1,80 @@
+@mixin story-slider() {
+  > div {
+    $margin: gutter(3);
+    bottom: 0;
+    margin: 0 $margin;
+    overflow: auto;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+    padding: $margin gutter(1);
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: calc(100% / 1.61803398875 - #{$margin*2});
+    &::-webkit-scrollbar { width: 0 !important }
+    &:before {
+      border-left: gutter() solid color($white, 0.9);
+      bottom: $margin;
+      // content: '';
+      display: block;
+      left: calc(100% / 2.61803398875 + #{$margin});
+      position: fixed;
+      top: $header-height + $margin;
+    }
+    &:after {
+      border-right: gutter() solid color($white, 0.9);
+      bottom: $margin;
+      content: '';
+      display: block;
+      position: fixed;
+      right: $margin;
+      top: $header-height + $margin;
+    }
+    > article {
+      background-color: color($white, 0.9);
+      height: 100%;
+      margin-bottom: gutter(3);
+      padding: gutter(1);
+      position: relative;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+      > header {
+        > h1 {
+          @include type-golden(2);
+          @include text-color($blue);
+          font-weight: 400;
+          margin-bottom: gutter(0);
+        }
+      }
+      > main {
+        > h2 {
+          @include type-golden(1);
+          @include text-color($blue);
+          font-weight: 300;
+          margin-bottom: gutter(0);
+        }
+        > p {
+          @include type-golden(0);
+          font-weight: 300;
+          hyphens: auto;
+          margin-bottom: gutter(0);
+          text-align: justify;
+          > strong {
+            @include text-color($light-blue);
+            font-weight: 400;
+          }
+        }
+        > a.floating {
+          bottom: gutter(0);
+          position: absolute;
+          right: gutter(0);
+        }
+      }
+    }
+  }
+}
+
+.story-slider-cell{
+  @include story-slider;
+}

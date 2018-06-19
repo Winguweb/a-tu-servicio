@@ -1,6 +1,6 @@
 center:
   lat: 4.6482837
-  lng: -73.90
+  lng: -73.85
 zoom: 11
 style: 'mapbox.streets'
 geometry_styles:

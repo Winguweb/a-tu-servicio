@@ -32,10 +32,10 @@
     > p {
       @include type-setting(-2);
       background-color: color($white, 0.9);
-      left: -$gutter/3;
+      left: gutter(0.3);
       line-height: 12px;
       opacity: 0;
-      padding: $gutter/2 $gutter/2 $gutter/2 $gutter*1.5;
+      padding: gutter(0.5) gutter(0.5) gutter(0.5) gutter(1.5);
       position: absolute;
       text-align: center;
       top: 50%;

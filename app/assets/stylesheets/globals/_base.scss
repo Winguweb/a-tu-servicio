@@ -1,0 +1,9 @@
+a, a:visited {
+  @include text-color($blue);
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  @include text-color($light-blue);
+  text-decoration: underline;
+}

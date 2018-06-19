@@ -1,7 +1,7 @@
 @mixin site-header() {
   background-color: $blue;
   height: $header-height;
-  padding: $gutter;
+  padding: gutter();
   > div {
     height: 100%;
     > img {

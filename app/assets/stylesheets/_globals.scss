@@ -9,6 +9,11 @@
 @import "neat";
 
 /* ====================
+  UTILS
+==================== */
+@import 'globals/mixins/utils';
+
+/* ====================
   VARIABLES
 ==================== */
 @import 'globals/variables';
@@ -30,9 +35,15 @@
 @import 'globals/mixins/typography';
 @import 'globals/mixins/helpers';
 
+/* ===============================
+  BASE STYLES
+=============================== */
+@import 'globals/base';
+
 /* ===================
   CELLS UI
 =================== */
 // COMPONENTS
 @import "reference_map";
 @import "site_header";
+@import "story_slider";

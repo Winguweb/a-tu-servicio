@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2018-06-19
+
+### Added
+  - `app/assets/stylesheets/globals/_base.scss`
+  - `app/assets/stylesheets/globals/mixins/_utils.scss`
+  - `app/cells/components/story_slider/show.slim`
+  - `app/cells/components/story_slider/story_slider.js`
+  - `app/cells/components/story_slider/story_slider.scss`
+  - `app/cells/components/story_slider_cell.rb`
+
+### Modified
+  - `app/assets/javascripts/application.js`
+  - `app/assets/stylesheets/_globals.scss`
+  - `app/assets/stylesheets/globals/_fonts.scss`
+  - `app/assets/stylesheets/globals/_variables.scss`
+  - `app/assets/stylesheets/globals/mixins/_helpers.scss`
+  - `app/assets/stylesheets/globals/mixins/_typography.scss`
+  - `app/assets/stylesheets/layout/_application.scss`
+  - `app/cells/components/reference_map/reference_map.scss`
+  - `app/cells/components/site_header/site_header.scss`
+  - `app/views/home/index.slim`
+  - `config/application.rb`
+  - `config/map.yml`
+  - `dump.rdb`
+
 ## 2018-06-18
 
 ### Added

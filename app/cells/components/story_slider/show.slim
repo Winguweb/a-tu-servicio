@@ -1,0 +1,33 @@
+div.story-slider-cell
+  div
+    article#slide-1
+      header
+        h1 = "A Tu Servicio Bogotá"
+      main
+        h2 = "Observatorio de centros de salud"
+        p = "Actualmente en la ciudad de Bogotá existen <strong>15.000 prestadores</strong> de servicios médicos. Estos servicios se dividen en públicos y privados."
+        p = "Los prestadores de salud registran sedes de atención, que en promedio <strong>cumplen con las espectativas de 4 de cada 10 personas</strong> que asisten como pacientes."
+        p = "Hay <strong>1.034 habitantes por sede</strong> en todo el territorio de Bogotá."
+        = link_to 'Siguiente', '#slide-2', class: 'floating'
+    article#slide-2
+      header
+        h1 = "Título"
+      main
+        h2 = "Subtítulo"
+        p = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga amet quis velit a, temporibus accusantium sit. Ullam ut, perferendis mollitia saepe eveniet, hic aspernatur ipsa a, illum delectus, reiciendis deserunt?"
+        = link_to 'Siguiente', '#slide-3', class: 'floating'
+    article#slide-3
+      header
+        h1 = "Slide #3"
+      main
+        h2 = "Subtítulo"
+        p = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga amet quis velit a, temporibus accusantium sit. Ullam ut, perferendis mollitia saepe eveniet, hic aspernatur ipsa a, illum delectus, reiciendis deserunt?"
+        = link_to 'Volver', '#slide-1', class: 'floating'
+
+
+javascript:
+  $(function() {
+    new ATSB.Components['components/story-slider']({
+      el: $('.story-slider-cell'),
+    })
+  });

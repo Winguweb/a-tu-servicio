@@ -30,6 +30,7 @@ module AtuservicioRails
     config.cells.with_assets = %w(
       components/reference_map_cell
       components/site_header_cell
+      components/story_slider_cell
     )
   end
 end
