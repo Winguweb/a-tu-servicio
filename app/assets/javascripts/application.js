@@ -9,3 +9,4 @@
 // CELLS
 //= require reference_map
 //= require story_slider
+//= require people_visualization

@@ -4,17 +4,43 @@ All notable changes to this project will be documented in this file.
 
 ## 2018-06-19
 
+
+
+   app/assets/javascripts/application.js
+   app/assets/stylesheets/_globals.scss
+   app/cells/components/reference_map/reference_map.js
+   app/cells/components/story_slider/show.slim
+
+
+
+
+   app/views/home/index.slim
+   config/application.rb
+
+
 ### Added
+- `app/assets/images/icons/boy-empty.svg`
+- `app/assets/images/icons/boy.svg`
+- `app/assets/images/icons/girl-empty.svg`
+- `app/assets/images/icons/girl.svg`
+- `app/cells/visualization_components/people_visualization/people_visualization.js`
+- `app/cells/visualization_components/people_visualization/people_visualization.scss`
+- `app/cells/visualization_components/people_visualization/show.slim`
+- `app/cells/visualization_components/people_visualization_cell.rb`
 - `app/helpers/statistics_helper.rb`
 - `app/services/common_info_service.rb`
 
 ### Modified
+- `app/assets/javascripts/application.js`
+- `app/assets/stylesheets/_globals.scss`
+- `app/cells/components/reference_map/reference_map.js`
 - `app/cells/components/story_slider/show.slim`
 - `app/cells/components/story_slider_cell.rb`
 - `app/controllers/home_controller.rb`
 - `app/helpers/home_helper.rb`
 - `app/services/geocoder_service.rb`
 - `app/views/home/index.slim`
+- `config/application.rb`
 
 
 ## 2018-06-19

@@ -28,6 +28,7 @@ module AtuservicioRails
     config.exceptions_app = self.routes
 
     config.cells.with_assets = %w(
+      visualization_components/people_visualization_cell
       components/reference_map_cell
       components/site_header_cell
       components/story_slider_cell
