@@ -40,10 +40,16 @@
         margin-bottom: 0;
       }
       > header {
-        > h1 {
+        > h1.main {
           @include type-golden(2);
           @include text-color($blue);
           font-weight: 400;
+          margin-bottom: gutter(0);
+        }
+        > h1 {
+          @include type-golden(1);
+          @include text-color($blue);
+          font-weight: 300;
           margin-bottom: gutter(0);
         }
       }

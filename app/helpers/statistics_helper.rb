@@ -7,6 +7,6 @@ module StatisticsHelper
   end
 
   def as_percentage(value)
-    return (100 * value).round(2).to_f
+    return (100 * value).round(0).to_i
   end
 end

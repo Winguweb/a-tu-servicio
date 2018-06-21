@@ -4,25 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## 2018-06-19
 
-
-
-   app/assets/javascripts/application.js
-   app/assets/stylesheets/_globals.scss
-   app/cells/components/reference_map/reference_map.js
-   app/cells/components/story_slider/show.slim
-
-
-
-
-   app/views/home/index.slim
-   config/application.rb
-
-
 ### Added
 - `app/assets/images/icons/boy-empty.svg`
 - `app/assets/images/icons/boy.svg`
 - `app/assets/images/icons/girl-empty.svg`
 - `app/assets/images/icons/girl.svg`
+- `app/assets/images/icons/hospital-empty.svg`
+- `app/assets/images/icons/hospital.svg`
+- `app/cells/visualization_components/in_hundreed_visualization/in_hundreed_visualization.js`
+- `app/cells/visualization_components/in_hundreed_visualization/in_hundreed_visualization.scss`
+- `app/cells/visualization_components/in_hundreed_visualization/show.slim`
+- `app/cells/visualization_components/in_hundreed_visualization_cell.rb`
 - `app/cells/visualization_components/people_visualization/people_visualization.js`
 - `app/cells/visualization_components/people_visualization/people_visualization.scss`
 - `app/cells/visualization_components/people_visualization/show.slim`
@@ -35,9 +27,11 @@ All notable changes to this project will be documented in this file.
 - `app/assets/stylesheets/_globals.scss`
 - `app/cells/components/reference_map/reference_map.js`
 - `app/cells/components/story_slider/show.slim`
+- `app/cells/components/story_slider/story_slider.scss`
 - `app/cells/components/story_slider_cell.rb`
 - `app/controllers/home_controller.rb`
 - `app/helpers/home_helper.rb`
+- `app/helpers/statistics_helper.rb`
 - `app/services/geocoder_service.rb`
 - `app/views/home/index.slim`
 - `config/application.rb`
