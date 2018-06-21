@@ -5,9 +5,8 @@ div.story-slider-cell
         h1 = "A Tu Servicio Bogotá"
       main
         h2 = "Observatorio de centros de salud"
-        p = "Actualmente en la ciudad de Bogotá existen <strong>15.000 prestadores</strong> de servicios médicos. Estos servicios se dividen en públicos y privados."
-        p = "Los prestadores de salud registran sedes de atención, que en promedio <strong>cumplen con las espectativas de 4 de cada 10 personas</strong> que asisten como pacientes."
-        p = "Hay <strong>1.034 habitantes por sede</strong> en todo el territorio de Bogotá."
+        p = "Actualmente en la ciudad de Bogotá existen <strong>#{common_info.total_providers} prestadores</strong> de servicios médicos. Estos servicios se dividen en públicos y privados."
+        p = "Los prestadores de salud registran sedes de atención, que en promedio <strong>cumplen con las espectativas de #{as_people(common_info.total_satisfaction)} de cada 10 personas</strong> que asisten como pacientes."
         = link_to 'Siguiente', '#slide-2', class: 'floating'
     article#slide-2
       header

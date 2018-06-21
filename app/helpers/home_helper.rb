@@ -2,6 +2,7 @@
 # Helper for values we want to show in the home page
 #
 module HomeHelper
+
   def waiting_time_percent(name, days)
     unless @waiting_times
       @waiting_times = {}

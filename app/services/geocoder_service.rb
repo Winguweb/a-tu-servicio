@@ -1,4 +1,3 @@
-
 class GeocoderService
 
   def self.call(branch)

@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 ## 2018-06-19
 
 ### Added
+- `app/helpers/statistics_helper.rb`
+- `app/services/common_info_service.rb`
+
+### Modified
+- `app/cells/components/story_slider/show.slim`
+- `app/cells/components/story_slider_cell.rb`
+- `app/controllers/home_controller.rb`
+- `app/helpers/home_helper.rb`
+- `app/services/geocoder_service.rb`
+- `app/views/home/index.slim`
+
+
+## 2018-06-19
+
+### Added
   - `app/assets/stylesheets/globals/_base.scss`
   - `app/assets/stylesheets/globals/mixins/_utils.scss`
   - `app/cells/components/story_slider/show.slim`
