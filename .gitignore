@@ -16,4 +16,4 @@
 .gs
 .DS_Store
 config/atsb.yml
-ansible.yml
+ansible/
