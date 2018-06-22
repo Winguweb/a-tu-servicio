@@ -71,6 +71,16 @@
             font-weight: 400;
           }
         }
+        > ul {
+          font-weight: 300;
+          margin-bottom: gutter(2);
+          > li {
+            > strong {
+              @include text-color($light-blue);
+              font-weight: 400;
+            }
+          }
+        }
         > a.floating {
           bottom: gutter(0);
           position: absolute;

@@ -1,29 +1,32 @@
 div.story-slider-cell
   div
-    article#slide-1
-      header
-        h1.main = "A Tu Servicio Bogotá"
-      main
-        h2 = "Observatorio de centros de salud"
-        p = "Actualmente en la ciudad de Bogotá existen <strong>#{common_info.total_providers} prestadores</strong> de servicios médicos. Estos servicios se dividen en públicos y privados."
-        p = "Los prestadores de salud registran sedes de atención, que en promedio <strong>cumplen con las espectativas de #{as_people(common_info.total_satisfaction)} de cada 10 personas</strong> que asisten como pacientes."
-        == cell('visualization_components/people_visualization', as_people(common_info.total_satisfaction))
-        = link_to 'Siguiente', '#slide-2', class: 'floating'
-    article#slide-2
-      header
-        h1 = "Salud pública, salud privada"
-      main
-        p = "Los prestadores de servicios de salud se dividen en Públicos y Privados."
-        p = "Estos suman <strong>#{common_info.total_public_providers} prestadores públicos</strong>, representando el <strong>#{as_percentage(common_info.total_public_providers.to_f/common_info.total_providers)}% del total.</strong>"
-        p = "Los restantes completan con <strong>#{common_info.total_private_providers} prestadores privados</strong>, los que representan el <strong>#{as_percentage(common_info.total_private_providers.to_f/common_info.total_providers)}% del total.</strong>"
-        == cell('visualization_components/in_hundreed_visualization', as_percentage(common_info.total_public_providers.to_f/common_info.total_providers))
-        = link_to 'Siguiente', '#slide-3', class: 'floating'
+    / article#slide-1
+    /   header
+    /     h1.main = "A Tu Servicio Bogotá"
+    /   main
+    /     h2 = "Observatorio de centros de salud"
+    /     p = "Actualmente en la ciudad de Bogotá existen <strong>#{common_info.total_providers} prestadores</strong> de servicios médicos. Estos servicios se dividen en públicos y privados."
+    /     p = "Los prestadores de salud registran sedes de atención, que en promedio <strong>cumplen con las espectativas de #{as_people(common_info.total_satisfaction)} de cada 10 personas</strong> que asisten como pacientes."
+    /     == cell('visualization_components/people_visualization', as_people(common_info.total_satisfaction))
+    /     = link_to 'Siguiente', '#slide-2', class: 'floating'
+    / article#slide-2
+    /   header
+    /     h1 = "Salud pública, salud privada"
+    /   main
+    /     p = "Los prestadores de servicios de salud se dividen en Públicos y Privados."
+    /     p = "Estos suman <strong>#{common_info.total_public_providers} prestadores públicos</strong>, representando el <strong>#{as_percentage(common_info.total_public_providers.to_f/common_info.total_providers)}% del total.</strong>"
+    /     p = "Los restantes completan con <strong>#{common_info.total_private_providers} prestadores privados</strong>, los que representan el <strong>#{as_percentage(common_info.total_private_providers.to_f/common_info.total_providers)}% del total.</strong>"
+    /     == cell('visualization_components/in_hundreed_visualization', as_percentage(common_info.total_public_providers.to_f/common_info.total_providers))
+    /     = link_to 'Siguiente', '#slide-3', class: 'floating'
     article#slide-3
       header
-        h1 = "Slide #3"
+        h1 = "Especialidades médicas"
       main
-        h2 = "Subtítulo"
-        p = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga amet quis velit a, temporibus accusantium sit. Ullam ut, perferendis mollitia saepe eveniet, hic aspernatur ipsa a, illum delectus, reiciendis deserunt?"
+        p = "Dentro de las cinco especialidades médicas más demandadas encontramos:"
+        / ul
+        /   - common_info.specialities_count_by_type.each do |speciality|
+        /     li = "<strong>#{speciality[0].downcase}</strong> disponible en <strong>#{speciality[1]}</strong> sedes"
+        == cell('visualization_components/specialities_visualization', common_info)
         = link_to 'Volver', '#slide-1', class: 'floating'
 
 

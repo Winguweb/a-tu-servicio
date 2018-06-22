@@ -19,6 +19,10 @@ All notable changes to this project will be documented in this file.
 - `app/cells/visualization_components/people_visualization/people_visualization.scss`
 - `app/cells/visualization_components/people_visualization/show.slim`
 - `app/cells/visualization_components/people_visualization_cell.rb`
+- `app/cells/visualization_components/specialities_visualization/show.slim`
+- `app/cells/visualization_components/specialities_visualization/specialities_visualization.js`
+- `app/cells/visualization_components/specialities_visualization/specialities_visualization.scss`
+- `app/cells/visualization_components/specialities_visualization_cell.rb`
 - `app/helpers/statistics_helper.rb`
 - `app/services/common_info_service.rb`
 
@@ -32,8 +36,11 @@ All notable changes to this project will be documented in this file.
 - `app/controllers/home_controller.rb`
 - `app/helpers/home_helper.rb`
 - `app/helpers/statistics_helper.rb`
+- `app/models/speciality.rb`
+- `app/services/common_info_service.rb`
 - `app/services/geocoder_service.rb`
 - `app/views/home/index.slim`
+- `app/views/layouts/public.slim`
 - `config/application.rb`
 
 
