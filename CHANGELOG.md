@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2018-06-19
+## 2018-06-21
+
+### Modified
+- `app/cells/components/story_slider/show.slim`
+- `app/cells/visualization_components/specialities_visualization/show.slim`
+- `app/cells/visualization_components/specialities_visualization/specialities_visualization.js`
+
+
+## 2018-06-20
 
 ### Added
 - `app/assets/images/icons/boy-empty.svg`
