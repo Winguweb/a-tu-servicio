@@ -54,7 +54,7 @@ ATSB.Components['visualization-components/specialities-visualization'] = Backbon
   },
   initChart: function() {
     var ctx = this.$el.find("#speciality_chart")
-    var myRadarChart = new Chart(ctx, {
+    var specialityChart = new Chart(ctx, {
       type: 'bar',
       data: this.chartData,
       options: this.chartOptions
