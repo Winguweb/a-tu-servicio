@@ -1,0 +1,28 @@
+div.provider-detail-large-cell
+  article
+    header
+      h1 =  "Título"
+      h2 =  "Subtítulo"
+    main
+      section
+        header
+          div
+            h1 = "Camas"
+          div
+            div style="width: 59%;"
+              span = "%59"
+        main
+          div
+            p = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis rem repellendus quae recusandae, consequuntur autem quas numquam beatae vitae neque earum, praesentium tempora cupiditate magni porro debitis. Libero consequuntur, ea!"
+          div
+            div
+              div
+              div
+              div
+
+javascript:
+  $(function() {
+    new ATSB.Components['components/provider-detail-large']({
+      el: $('.provider-detail-large-cell'),
+    })
+  });
