@@ -3,9 +3,20 @@
   height: $header-height;
   padding: gutter();
   > div {
+    float: left;
     height: 100%;
     > img {
       height: 100%;
+    }
+  }
+  > div:nth-of-type(2) {
+    float: right;
+    height: 100%;
+    > a {
+      height: 100%;
+      > img {
+        height: 100%;
+      }
     }
   }
 }

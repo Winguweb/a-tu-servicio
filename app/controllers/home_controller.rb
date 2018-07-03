@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 
   def index
     @branches = Branch.where.not(georeference: nil)
+    @providers = Provider.all
     @common_info = CommonInfoService.call
   end
 

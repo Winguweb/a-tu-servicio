@@ -2,9 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2018-07-03
+
+### Modified
+-`app/assets/javascripts/application.js`
+-`app/assets/stylesheets/_globals.scss`
+-`app/cells/components/site_header/show.slim`
+-`app/cells/components/site_header/site_header.scss`
+-`app/controllers/home_controller.rb`
+-`app/services/common_info_service.rb`
+-`app/views/home/index.slim`
+-`config/application.rb`
+
+### Added
+- `app/assets/images/icons/magnifier.svg`
+- `app/assets/images/icons/menu.svg`
+- `app/cells/components/provider_list_large/provider_list_large.js`
+- `app/cells/components/provider_list_large/provider_list_large.scss`
+- `app/cells/components/provider_list_large/show.slim`
+- `app/cells/components/provider_list_large_cell.rb`
+
 ## 2018-06-21
-
-
 
 ### Modified
 - `app/cells/components/story_slider/show.slim`

@@ -4,7 +4,7 @@ class CommonInfoService
   def initialize
     @branches = Branch.all
     @providers = Provider.all
-    @satisfactions = Satisfaction.all
+    @satisfactions = Satisfaction.where("percentage IS NOT NULL")
     @specialities = Speciality.all
 
     @total_branches = _total_branches

@@ -7,6 +7,7 @@
 //= require globals/base
 
 // CELLS
+//= require provider_list_large
 //= require reference_map
 //= require story_slider
 
