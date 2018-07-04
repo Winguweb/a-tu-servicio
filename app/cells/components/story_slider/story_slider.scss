@@ -25,16 +25,21 @@ $margin: gutter(3);
       top: $header-height + $margin;
     }
     &:after {
-      border-right: gutter() solid color($white, 0.9);
+      background-color: $white;
+      border-radius: 3px;
       bottom: $margin;
-      content: '';
+      box-shadow: 0 1px 1px 0 color($black, 0.08), 0 1px 3px 1px color($black, 0.16);
+      // content: '';
       display: block;
       position: fixed;
       right: $margin;
       top: $header-height + $margin;
+      width: gutter();
     }
     > article {
-      background-color: color($white, 0.9);
+      background-color: $white;
+      border-radius: 3px;
+      box-shadow: 0 1px 1px 0 color($black, 0.08), 0 1px 3px 1px color($black, 0.16);
       height: 100%;
       margin-bottom: gutter(3);
       padding: gutter(1);

@@ -10,9 +10,13 @@ All notable changes to this project will be documented in this file.
   - `app/cells/components/provider_detail_large/provider_detail_large.scss`
   - `app/cells/components/provider_detail_large/show.slim`
   - `app/cells/components/provider_list_large/provider_list_large.scss`
+  - `app/cells/components/site_header/site_header.scss`
+  - `app/cells/components/story_slider/story_slider.scss`
   - `app/controllers/home_controller.rb`
   - `app/views/home/index.slim`
+  - `app/views/home/index.slim`
   - `config/application.rb`
+
 
 ### Added
   - `app/assets/images/icons/compare.svg`
