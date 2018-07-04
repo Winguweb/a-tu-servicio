@@ -7,7 +7,11 @@
 //= require globals/base
 
 // CELLS
+//= require compare_provider_button
+//= require provider_detail_half_right
+//= require provider_detail_half_left
 //= require provider_detail_large
+//= require provider_list_half_right
 //= require provider_list_large
 //= require reference_map
 //= require story_slider

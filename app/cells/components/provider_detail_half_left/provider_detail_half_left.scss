@@ -1,14 +1,16 @@
 $search-button-width: gutter(1.5);
 $search-bar-height: calc(44px + #{gutter(2)});
-@mixin provider-detail-large() {
+@mixin provider-detail-half-left() {
   background-color: $white;
+  border-right: 1px solid color($light-grey, 0.5); // for right
   bottom: 0;
+  left: 0; // for left
   overflow: auto;
-  padding: gutter(1);
+  padding: gutter(1) 0 gutter(1) gutter(1); // for left
   position: absolute;
-  right: 0;
   top: 0;
-  width: calc(100% / 1.61803398875);
+  width: 50%;
+  z-index: 1000;
   > article {
     > header {
       border-bottom: 1px solid $blue;
@@ -17,6 +19,7 @@ $search-bar-height: calc(44px + #{gutter(2)});
         @include text-color($blue, 1);
         @include type-golden(1);
         line-height: gutter(1);
+        padding-right: gutter(1); // for left
       }
       > h2 {
         @include text-color($grey, 1);
@@ -43,6 +46,8 @@ $search-bar-height: calc(44px + #{gutter(2)});
             border-bottom: 2px solid $blue;
             float: right;
             width: calc(100% / 1.61803398875);
+            &.low { border-bottom-color: $red; > div {background-color: $red;}}
+            &.high { border-bottom-color: $light-blue; > div {background-color: $light-blue;}}
             > div {
               background-color: $blue;
               float: right;
@@ -70,6 +75,8 @@ $search-bar-height: calc(44px + #{gutter(2)});
           }
           > div:last-of-type {
             @include grid-column(16, $no-gutter);
+            overflow: hidden;
+            padding-right: gutter(); // for left
             > div {
               @include grid-collapse;
               overflow: auto;
@@ -88,6 +95,6 @@ $search-bar-height: calc(44px + #{gutter(2)});
   }
 }
 
-.provider-detail-large-cell{
-  @include provider-detail-large;
+.provider-detail-half-left-cell{
+  @include provider-detail-half-left;
 }

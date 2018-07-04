@@ -44,7 +44,11 @@
   CELLS UI
 =================== */
 // COMPONENTS
+@import "compare_provider_button";
+@import "provider_detail_half_right";
+@import "provider_detail_half_left";
 @import "provider_detail_large";
+@import "provider_list_half_right";
 @import "provider_list_large";
 @import "reference_map";
 @import "site_header";

@@ -1,0 +1,22 @@
+div.provider-list-half-right-cell
+  div
+    input placeholder="Buscar prestador de servicios..."
+    = link_to '#' do
+      = image_tag image_path("icons/magnifier.svg")
+  div
+    ul
+      - providers.each do |provider|
+        li
+          = link_to '#' do
+            article
+              header
+                h1 = provider.name
+              main
+                p = provider.address
+
+javascript:
+  $(function() {
+    new ATSB.Components['components/provider-list-half-right']({
+      el: $('.provider-list-half-right-cell'),
+    })
+  });

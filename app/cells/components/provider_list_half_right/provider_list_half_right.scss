@@ -1,13 +1,13 @@
 $search-button-width: gutter(1.5);
 $search-bar-height: calc(44px + #{gutter(2)});
-@mixin provider-list-large() {
+@mixin provider-list-half-right() {
   background-color: $white;
   bottom: 0;
   padding: gutter(1) gutter(1) 0 gutter(1);
   position: absolute;
   right: 0;
   top: 0;
-  width: calc(100% / 1.61803398875);
+  width: 50%;
   > div:first-of-type {
     height: 44px;
     margin-bottom: gutter(2);
@@ -74,6 +74,6 @@ $search-bar-height: calc(44px + #{gutter(2)});
   }
 }
 
-.provider-list-large-cell{
-  @include provider-list-large;
+.provider-list-half-right-cell{
+  @include provider-list-half-right;
 }
