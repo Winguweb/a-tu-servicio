@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2018-07-05
+
+### Modified
+  - `app/cells/components/site_header/show.slim`
+  - `app/cells/components/site_header/site_header.scss`
+
+### Added
+  - `app/assets/images/logos/atsb-w.svg`
+
 ## 2018-07-04
 
 ### Modified
@@ -16,7 +25,6 @@ All notable changes to this project will be documented in this file.
   - `app/views/home/index.slim`
   - `app/views/home/index.slim`
   - `config/application.rb`
-
 
 ### Added
   - `app/assets/images/icons/compare.svg`
