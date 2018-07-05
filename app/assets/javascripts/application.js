@@ -5,6 +5,7 @@
 
 // APP SETUP
 //= require globals/base
+//= require helpers/url
 
 // CELLS
 //= require compare_provider_button

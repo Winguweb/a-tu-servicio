@@ -5,11 +5,23 @@ All notable changes to this project will be documented in this file.
 ## 2018-07-05
 
 ### Modified
+  - `app/assets/javascripts/application.js`
+  - `app/assets/javascripts/globals/atsb.js`
+  - `app/assets/javascripts/globals/base.js`
+  - `app/cells/components/provider_list_large/provider_list_large.js`
+  - `app/cells/components/provider_list_large/show.slim`
   - `app/cells/components/site_header/show.slim`
   - `app/cells/components/site_header/site_header.scss`
+  - `app/controllers/providers_controller.rb`
+  - `app/views/home/index.slim`
+  - `app/views/layouts/public.slim`
+  - `config/application.rb`
+  - `config/routes.rb`
 
 ### Added
   - `app/assets/images/logos/atsb-w.svg`
+  - `app/assets/javascripts/globals/fetch.js`
+  - `app/assets/javascripts/helpers/url.js`
 
 ## 2018-07-04
 

@@ -13,7 +13,8 @@
     mobile: root.$html.hasClass('mobile'),
     pubSub: Backbone.Events,
     Views: {},
-    Routers: {}
+    Routers: {},
+    Models: {},
   })
 
   // Send token on every ajax call that is not a GET
