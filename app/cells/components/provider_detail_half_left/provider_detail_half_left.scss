@@ -4,13 +4,20 @@ $search-bar-height: calc(44px + #{gutter(2)});
   background-color: $white;
   border-right: 1px solid color($light-grey, 0.5); // for right
   bottom: 0;
-  left: 0; // for left
   overflow: auto;
   padding: gutter(1) 0 gutter(1) gutter(1); // for left
   position: absolute;
   top: 0;
   width: 50%;
   z-index: 1000;
+  left: 0%; // for left
+  transform: translateX(-100%); // for left
+  transition: transform 300ms ease;
+  &.show {
+    transform: translateX(0); // for left
+  }
+
+
   > article {
     > header {
       border-bottom: 1px solid $blue;

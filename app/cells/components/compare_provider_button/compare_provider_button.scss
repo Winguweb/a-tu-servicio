@@ -5,6 +5,15 @@
   position: fixed;
   right: gutter();
   z-index: 1000;
+  opacity: 0;
+  transition: transform 300ms ease, opacity 300ms ease;
+  transform: scale(0.75);
+  pointer-events: none;
+  &.show {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: initial;
+  }
   > button {
     @include type-golden(0);
     @include text-color($white);

@@ -1,10 +1,11 @@
 ATSB.Components['components/provider-list-large'] = Backbone.View.extend({
   initialize: function(options) {
     el = this.el
-    _.bindAll(this, 'providersFetch', 'providersFetchSuccess')
+    _.bindAll(this, 'providersFetch', 'providersFetchSuccess', 'componentShow', 'componentHide', 'componentToggle')
 
     ATSB.pubSub.on({
       'providersFetch:fetch': this.providersFetch,
+      'provider:list:large:toggle': this.componentToggle,
     })
 
     this.component = new Vue({
@@ -30,5 +31,15 @@ ATSB.Components['components/provider-list-large'] = Backbone.View.extend({
   },
   searchQueryChanged: function(query) {
     ATSB.pubSub.trigger('providersFetch:fetch', {query: query})
-  }
+  },
+  componentShow: function() {
+    $(this.component.$el).addClass('show')
+  },
+  componentHide: function() {
+    $(this.component.$el).removeClass('show')
+  },
+  componentToggle: function() {
+    $(this.component.$el).toggleClass('show')
+  },
+
 })

@@ -9,6 +9,11 @@ $search-bar-height: calc(44px + #{gutter(2)});
   right: 0;
   top: 0;
   width: calc(100% / 1.61803398875);
+  transition: transform 300ms ease;
+  transform: translateX(100%);
+  &.show {
+    transform: translateX(0);
+  }
   > article {
     > header {
       border-bottom: 1px solid $blue;

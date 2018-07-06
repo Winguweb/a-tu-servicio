@@ -15,6 +15,7 @@
 //= require provider_list_half_right
 //= require provider_list_large
 //= require reference_map
+//= require site_header
 //= require story_slider
 
 // VISUALIZATION CELLS
