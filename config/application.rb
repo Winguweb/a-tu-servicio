@@ -2,12 +2,16 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+APP_CONFIG = YAML.load_file(File.expand_path('../atsb.yml', __FILE__)).with_indifferent_access
+MAP = YAML.load_file(File.expand_path('../map.yml', __FILE__))
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module AtuservicioRails
   class Application < Rails::Application
+    config.middleware.use Rack::Deflater
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -22,5 +26,27 @@ module AtuservicioRails
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.exceptions_app = self.routes
+
+    config.cells.with_assets = %w(
+      visualization_components/specialities_visualization_cell
+      visualization_components/in_hundreed_visualization_cell
+      visualization_components/people_visualization_cell
+      components/compare_branch_button_cell
+      components/branch_detail_half_right_cell
+      components/branch_detail_half_left_cell
+      components/branch_detail_large_cell
+      components/branch_list_half_right_cell
+      components/branch_list_large_cell
+      components/reference_map_cell
+      components/site_header_cell
+      components/story_slider_cell
+    )
+
+    api_mime_types = %W(
+      application/vnd.api+json
+      text/x-json
+      application/json
+    )
+    Mime::Type.register 'application/vnd.api+json', :json, api_mime_types
   end
 end

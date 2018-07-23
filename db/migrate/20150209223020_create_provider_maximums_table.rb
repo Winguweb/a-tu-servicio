@@ -1,4 +1,4 @@
-class CreateProviderMaximumsTable < ActiveRecord::Migration
+class CreateProviderMaximumsTable < ActiveRecord::Migration[5.2]
   def change
     create_table :provider_maximums do |t|
       t.decimal :tickets

@@ -1,0 +1,9 @@
+/* CSS Helpers */
+
+@mixin ellipsis {
+  -moz-binding: url("/xml/ellipsis.xml#ellipsis");
+  overflow: hidden !important;
+  padding-right: $gutter/2;
+  white-space: nowrap;
+  @include prefixer(text-overflow, ellipsis, o ms spec);
+}

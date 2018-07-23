@@ -4,16 +4,21 @@ ruby '2.4.1'
 gem 'rails', '~> 5.2.0'
 gem 'activerecord-postgis-adapter'
 gem 'pg'
+gem 'acts-as-taggable-on'
+gem 'slim'
 gem 'uglifier'
 gem 'sass-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
+gem 'neat' # A lightweight and flexible Sass grid
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails-jquery-autocomplete'
 gem 'puma'
 gem 'rollbar'
+gem 'cells-rails'
+gem 'cells-slim', git: "git@github.com:trailblazer/cells-slim", branch: :master
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -32,6 +37,10 @@ group :development, :test do
   gem 'capybara'
   gem 'active_record_query_trace'
   gem 'derailed'
+  gem 'typhoeus'
+  gem 'redis-rails'
+  gem 'redis-namespace'
+  gem 'sidekiq'
 end
 
 group :production do

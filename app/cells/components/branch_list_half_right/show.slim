@@ -1,0 +1,22 @@
+div.branch-list-half-right-cell
+  div
+    input placeholder="Buscar prestador de servicios..."
+    = link_to '#' do
+      = image_tag image_path("icons/magnifier.svg")
+  div
+    ul
+      - branches.each do |branch|
+        li
+          = link_to '#' do
+            article
+              header
+                h1 = branch.name
+              main
+                p = branch.address
+
+javascript:
+  $(function() {
+    new ATSB.Components['components/branch-list-half-right']({
+      el: $('.branch-list-half-right-cell'),
+    })
+  });

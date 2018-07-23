@@ -1,4 +1,4 @@
-class AddPrivateInsuranceToProviders < ActiveRecord::Migration
+class AddPrivateInsuranceToProviders < ActiveRecord::Migration[5.2]
   def change
     add_column :providers, :private_insurance, :boolean, default: false
     Provider.find_each do |p|

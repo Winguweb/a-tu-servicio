@@ -1,0 +1,13 @@
+header.site-header-cell
+  div
+    = image_tag image_path("logos/atsb-w.svg")
+  div
+    = link_to '#', class: 'site-menu-button' do
+      = image_tag image_path("icons/menu.svg")
+
+javascript:
+  $(function() {
+    new ATSB.Components['components/site-header']({
+      el: $('.site-header-cell'),
+    })
+  });

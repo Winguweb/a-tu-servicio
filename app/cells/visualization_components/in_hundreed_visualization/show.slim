@@ -1,0 +1,27 @@
+div.in-hundreed-visualization-cell
+  - icon = 'hospital'
+  - limit = 75
+  div
+    - for i in (1..limit)
+      div
+        = image_tag image_path("icons/#{icon}-empty.svg"), :class => 'in-hundreed-empty'
+    - for i in (1..count)
+      div
+        = image_tag image_path("icons/#{icon}.svg"), :class => 'in-hundreed-filled'
+    - for i in (limit+count+1..100)
+      div
+        = image_tag image_path("icons/#{icon}-empty.svg"), :class => 'in-hundreed-empty'
+  div
+    p
+      strong = "#{count} "
+      = "de cada "
+      strong = "100 "
+      = "prestadores de servicios son "
+      strong = "Públicos"
+
+javascript:
+  $(function() {
+    new ATSB.Components['visualization-components/in-hundreed-visualization']({
+      el: $('.in-hundreed-visualization-cell'),
+    })
+  });

@@ -1,4 +1,4 @@
-class AddFieldsFromRrhh < ActiveRecord::Migration
+class AddFieldsFromRrhh < ActiveRecord::Migration[5.2]
   def change
     unless column_exists? :providers, :especialidades_medicas_cantidad_cad
     	add_column :providers, :especialidades_medicas_cantidad_cad, :decimal

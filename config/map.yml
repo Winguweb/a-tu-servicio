@@ -1,0 +1,15 @@
+center:
+  lat: 4.6482837
+  lng: -73.85
+zoom: 11
+style: 'mapbox.streets'
+geometry_styles:
+  marker:
+      shapeOptions:
+      clickable: false
+      icon:
+        iconSize: [40, 40]
+        iconAnchor: [20, 30]
+        className: 'marker'
+        shadowSize: [40, 40]
+        shadowAnchor: [19, 29]
