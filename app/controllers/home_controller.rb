@@ -5,12 +5,12 @@ class HomeController < ApplicationController
 
   def index
     @branches = Branch.where.not(georeference: nil)
-    @providers = Provider.all
+    # @providers = Provider.all
     @common_info = CommonInfoService.call
 
     # dummy data
-    @provider_a = Provider.all[0]
-    @provider_b = Provider.all[1]
+    @branch_a = Branch.all[0]
+    @branch_b = Branch.all[1]
   end
 
   def about

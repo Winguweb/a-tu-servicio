@@ -8,12 +8,12 @@
 //= require helpers/url
 
 // CELLS
-//= require compare_provider_button
-//= require provider_detail_half_right
-//= require provider_detail_half_left
-//= require provider_detail_large
-//= require provider_list_half_right
-//= require provider_list_large
+//= require compare_branch_button
+//= require branch_detail_half_right
+//= require branch_detail_half_left
+//= require branch_detail_large
+//= require branch_list_half_right
+//= require branch_list_large
 //= require reference_map
 //= require site_header
 //= require story_slider

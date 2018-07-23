@@ -1,18 +1,18 @@
 $search-button-width: gutter(1.5);
 $search-bar-height: calc(44px + #{gutter(2)});
-@mixin provider-detail-half-left() {
+@mixin branch-detail-half-left() {
   background-color: $white;
   border-right: 1px solid color($light-grey, 0.5); // for right
   bottom: 0;
+  left: 0%; // for left
   overflow: auto;
   padding: gutter(1) 0 gutter(1) gutter(1); // for left
   position: absolute;
   top: 0;
-  width: 50%;
-  z-index: 1000;
-  left: 0%; // for left
   transform: translateX(-100%); // for left
   transition: transform 300ms ease;
+  width: 50%;
+  z-index: 1000;
   &.show {
     transform: translateX(0); // for left
   }
@@ -102,6 +102,6 @@ $search-bar-height: calc(44px + #{gutter(2)});
   }
 }
 
-.provider-detail-half-left-cell{
-  @include provider-detail-half-left;
+.branch-detail-half-left-cell{
+  @include branch-detail-half-left;
 }

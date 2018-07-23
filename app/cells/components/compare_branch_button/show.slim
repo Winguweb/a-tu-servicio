@@ -1,0 +1,11 @@
+div.compare-branch-button-cell
+  button
+    = image_tag image_path("icons/compare.svg")
+    span = "Comparar"
+
+javascript:
+  $(function() {
+    new ATSB.Components['components/compare-branch-button']({
+      el: $('.compare-branch-button-cell'),
+    })
+  });

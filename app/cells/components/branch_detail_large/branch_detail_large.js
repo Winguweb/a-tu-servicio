@@ -1,4 +1,4 @@
-ATSB.Components['components/provider-detail-half-left'] = Backbone.View.extend({
+ATSB.Components['components/branch-detail-large'] = Backbone.View.extend({
   initialize: function(options) {
     _.bindAll(
       this,

@@ -5,6 +5,7 @@ class Provider < ActiveRecord::Base
   has_many :satisfactions, dependent: :delete_all
   has_many :waiting_times, dependent: :delete_all
   belongs_to :state, optional: true
+  default_scope { order(name: :asc) }
 
   def average(name)
     columns = METADATA[:precios][:averages][name][:columns]

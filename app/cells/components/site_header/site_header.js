@@ -8,6 +8,6 @@ ATSB.Components['components/site-header'] = Backbone.View.extend({
     'click .site-menu-button': 'menuClicked',
   },
   menuClicked: function() {
-    ATSB.pubSub.trigger('provider:list:large:toggle')
+    ATSB.pubSub.trigger('branch:list:large:toggle')
   },
 })
