@@ -7,25 +7,31 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       actions: {show: false}
     },
     created: function() {
-      ATSB.pubSub.$on('branchesFetch:fetch', this.branchesFetch)
+      ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:list:large:open', this.componentOpen)
     },
     watch: {
-      searchQuery: _.debounce(this.searchQueryChanged, 300)
+      searchQuery: _.debounce(function(){this.searchQueryChanged()}, 300)
     },
     methods: {
       branchClicked: function() {
-        this.componentClose()
+        ATSB.pubSub.$emit('all:slides:close')
         ATSB.pubSub.$emit('branch:detail:half-right:open')
       },
-      branchesFetch: function() {
-        console.log('branchesFetch Event')
+      branchesFetchSuccess: function(response) {
+        this.branches = response.data
+      },
+      branchesFetchError: function() {
+        console.warn()
+      },
+      componentClose: function() {
+        this.actions.show = false
       },
       componentOpen: function() {
         this.actions.show = true
       },
-      componentClose: function() {
-        this.actions.show = false
+      searchQueryChanged: function() {
+        ATSB.pubSub.$emit('fetch:branch:search', this.searchQuery, this.branchesFetchSuccess, this.branchesFetchError)
       },
     }
   })
