@@ -1,18 +1,18 @@
-@mixin compare-provider-button() {
+@mixin compare-branch-button() {
   background-color: $white;
   border-radius: 55px;
   bottom: gutter();
+  opacity: 0;
+  pointer-events: none;
   position: fixed;
   right: gutter();
-  z-index: 1000;
-  opacity: 0;
-  transition: transform 300ms ease, opacity 300ms ease;
   transform: scale(0.75);
-  pointer-events: none;
+  transition: transform 300ms ease, opacity 300ms ease;
+  z-index: 1000;
   &.show {
-    transform: scale(1);
     opacity: 1;
     pointer-events: initial;
+    transform: scale(1);
   }
   > button {
     @include type-golden(0);
@@ -49,6 +49,6 @@
   }
 }
 
-.compare-provider-button-cell{
-  @include compare-provider-button;
+.compare-branch-button-cell{
+  @include compare-branch-button;
 }

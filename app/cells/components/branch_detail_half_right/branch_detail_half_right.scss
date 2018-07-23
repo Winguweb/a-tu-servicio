@@ -1,18 +1,18 @@
 $search-button-width: gutter(1.5);
 $search-bar-height: calc(44px + #{gutter(2)});
-@mixin provider-detail-half-right() {
+@mixin branch-detail-half-right() {
   background-color: $white;
   border-left: 1px solid color($light-grey, 0.5); // for right
   bottom: 0;
   overflow: auto;
   padding: gutter(1) gutter(1) gutter(1) 0; // for right
   position: absolute;
+  right: 0; // for right
   top: 0;
+  transform: translateX(100%); // for right
+  transition: transform 300ms ease;
   width: 50%;
   z-index: 1000;
-  right: 0; // for right
-  transition: transform 300ms ease;
-  transform: translateX(100%); // for right
   &.show {
     transform: translateX(0); // for right
   }
@@ -103,6 +103,6 @@ $search-bar-height: calc(44px + #{gutter(2)});
   }
 }
 
-.provider-detail-half-right-cell{
-  @include provider-detail-half-right;
+.branch-detail-half-right-cell{
+  @include branch-detail-half-right;
 }

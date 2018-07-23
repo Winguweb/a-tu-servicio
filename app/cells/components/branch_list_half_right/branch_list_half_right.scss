@@ -1,17 +1,18 @@
 $search-button-width: gutter(1.5);
 $search-bar-height: calc(44px + #{gutter(2)});
-@mixin provider-list-large() {
+@mixin branch-list-half-right() {
   background-color: $white;
   bottom: 0;
   padding: gutter(1) gutter(1) 0 gutter(1);
   position: absolute;
-  right: 0;
   top: 0;
-  width: calc(100% / 1.61803398875);
+  width: 50%;
   transition: transform 300ms ease;
-  transform: translateX(100%);
+  right: 0; // for right
+  transition: transform 300ms ease;
+  transform: translateX(100%); // for right
   &.show {
-    transform: translateX(0%);
+    transform: translateX(0); // for right
   }
   > div:first-of-type {
     height: 44px;
@@ -79,6 +80,6 @@ $search-bar-height: calc(44px + #{gutter(2)});
   }
 }
 
-.provider-list-large-cell{
-  @include provider-list-large;
+.branch-list-half-right-cell{
+  @include branch-list-half-right;
 }

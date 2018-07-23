@@ -1,16 +1,16 @@
-div.provider-detail-half-left-cell
+div.branch-detail-half-right-cell
   article
     header
-      h1 =  provider.name
-      h2 =  provider.address
+      h1 =  branch.name
+      h2 =  branch.address
     main
       section
         header
           div
             h1 = "Camas"
-          div.low
-            div style="width: 20%;"
-              span = "%20"
+          div.high
+            div style="width: 80%;"
+              span = "%80"
         main
           div
             p = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis rem repellendus quae recusandae, consequuntur autem quas numquam beatae vitae neque earum, praesentium tempora cupiditate magni porro debitis. Libero consequuntur, ea!"
@@ -23,9 +23,9 @@ div.provider-detail-half-left-cell
         header
           div
             h1 = "Camas"
-          div.high
-            div style="width: 41%;"
-              span = "%41"
+          div.low
+            div style="width: 59%;"
+              span = "%59"
         main
           div
             p = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis rem repellendus quae recusandae, consequuntur autem quas numquam beatae vitae neque earum, praesentium tempora cupiditate magni porro debitis. Libero consequuntur, ea!"
@@ -37,7 +37,7 @@ div.provider-detail-half-left-cell
 
 javascript:
   $(function() {
-    new ATSB.Components['components/provider-detail-half-left']({
-      el: $('.provider-detail-half-left-cell'),
+    new ATSB.Components['components/branch-detail-half-right']({
+      el: $('.branch-detail-half-right-cell'),
     })
   });

@@ -1,24 +1,24 @@
-div.provider-list-large-cell
+div.branch-list-large-cell
   div
     input placeholder="Buscar prestador de servicios..." v-model="searchQuery"
     = link_to '#' do
       = image_tag image_path("icons/magnifier.svg")
   div
     ul
-      li v-for="provider in providers"
+      li v-for="branch in branches"
         = link_to '#' do
           article
             header
               h1
-                | {{provider.name}}
+                | {{branch.name}}
             main
               p
-                | {{provider.address}}
+                | {{branch.address}}
 
 javascript:
   $(function() {
-    new ATSB.Components['components/provider-list-large']({
-      el: $('.provider-list-large-cell'),
-      providers: JSON.parse('#{providers.to_json.gsub("'", "\\\\'")}'),
+    new ATSB.Components['components/branch-list-large']({
+      el: $('.branch-list-large-cell'),
+      branches: JSON.parse('#{branches.to_json.gsub("'", "\\\\'")}'),
     })
   });

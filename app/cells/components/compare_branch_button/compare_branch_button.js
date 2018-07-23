@@ -1,4 +1,4 @@
-ATSB.Components['components/compare-provider-button'] = Backbone.View.extend({
+ATSB.Components['components/compare-branch-button'] = Backbone.View.extend({
   initialize: function(options) {
     _.bindAll(
       this,

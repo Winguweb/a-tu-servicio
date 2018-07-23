@@ -3,4 +3,6 @@ class Branch < ActiveRecord::Base
   acts_as_taggable_on :levels, :categories
   belongs_to :state, optional: true
   belongs_to :provider
+  default_scope { order(name: :asc) }
+
 end
