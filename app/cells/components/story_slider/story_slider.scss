@@ -10,6 +10,11 @@ $margin: gutter(3);
   right: 0;
   top: 0;
   width: calc(100% / 1.61803398875 - #{$margin*2});
+  transition: transform 300ms ease;
+  transform: translateX(calc(100% + #{$margin}));
+  &.show {
+    transform: translateX(0);
+  }
   &::-webkit-scrollbar { width: 0 !important }
   > div {
     height: 100%;

@@ -1,20 +1,45 @@
 ATSB.Components['components/provider-list-large'] = Backbone.View.extend({
   initialize: function(options) {
-    _.bindAll(
-      this,
-      'links',
-    )
-    this.links()
+    el = this.el
+    _.bindAll(this, 'providersFetch', 'providersFetchSuccess', 'componentShow', 'componentHide', 'componentToggle')
+
+    ATSB.pubSub.on({
+      'providersFetch:fetch': this.providersFetch,
+      'provider:list:large:toggle': this.componentToggle,
+    })
+
+    this.component = new Vue({
+      el: el,
+      data: {
+        providers: [],
+        searchQuery: "",
+      },
+      watch: {
+        searchQuery: _.debounce(this.searchQueryChanged, 300)
+      }
+    })
+
+    this.providersFetch()
   },
-  links: function() {
-    var $parent = $(this.$el).find('>div')
-    var $margin_bottom = parseInt($parent.find('article').css('margin-bottom'))
-    $(this.$el).on('click', 'a[href^="#"]', function (event) {
-        event.preventDefault();
-        var $article = $($(this).attr('href'))
-        $parent.animate({
-            scrollTop: $article[0].offsetTop - $margin_bottom
-        }, 500)
-    });
+  providersFetch: function(data) {
+    var providers = new ATSB.Models['models/provider'](data)
+    providers.fetch({success: this.providersFetchSuccess})
   },
+  providersFetchSuccess: function(data) {
+    var providers = data.toJSON()
+    this.component.providers = providers
+  },
+  searchQueryChanged: function(query) {
+    ATSB.pubSub.trigger('providersFetch:fetch', {query: query})
+  },
+  componentShow: function() {
+    $(this.component.$el).addClass('show')
+  },
+  componentHide: function() {
+    $(this.component.$el).removeClass('show')
+  },
+  componentToggle: function() {
+    $(this.component.$el).toggleClass('show')
+  },
+
 })

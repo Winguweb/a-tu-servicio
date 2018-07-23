@@ -5,9 +5,15 @@ $search-bar-height: calc(44px + #{gutter(2)});
   bottom: 0;
   padding: gutter(1) gutter(1) 0 gutter(1);
   position: absolute;
-  right: 0;
   top: 0;
   width: 50%;
+  transition: transform 300ms ease;
+  right: 0; // for right
+  transition: transform 300ms ease;
+  transform: translateX(100%); // for right
+  &.show {
+    transform: translateX(0); // for right
+  }
   > div:first-of-type {
     height: 44px;
     margin-bottom: gutter(2);

@@ -1,1 +1,2 @@
 //= require ./atsb
+//= require ./fetch

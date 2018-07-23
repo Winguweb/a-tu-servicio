@@ -7,10 +7,15 @@ $search-bar-height: calc(44px + #{gutter(2)});
   overflow: auto;
   padding: gutter(1) gutter(1) gutter(1) 0; // for right
   position: absolute;
-  right: 0; // for right
   top: 0;
   width: 50%;
   z-index: 1000;
+  right: 0; // for right
+  transition: transform 300ms ease;
+  transform: translateX(100%); // for right
+  &.show {
+    transform: translateX(0); // for right
+  }
   > article {
     > header {
       border-bottom: 1px solid $blue;
@@ -19,7 +24,7 @@ $search-bar-height: calc(44px + #{gutter(2)});
         @include text-color($blue, 1);
         @include type-golden(1);
         line-height: gutter(1);
-        padding-left: gutter(1); // for left
+        padding-left: gutter(1); // for right
         text-align: right;  // for right
       }
       > h2 {

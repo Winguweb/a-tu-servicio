@@ -1,22 +1,24 @@
 div.provider-list-large-cell
   div
-    input placeholder="Buscar prestador de servicios..."
+    input placeholder="Buscar prestador de servicios..." v-model="searchQuery"
     = link_to '#' do
       = image_tag image_path("icons/magnifier.svg")
   div
     ul
-      - providers.each do |provider|
-        li
-          = link_to '#' do
-            article
-              header
-                h1 = provider.name
-              main
-                p = provider.address
+      li v-for="provider in providers"
+        = link_to '#' do
+          article
+            header
+              h1
+                | {{provider.name}}
+            main
+              p
+                | {{provider.address}}
 
 javascript:
   $(function() {
     new ATSB.Components['components/provider-list-large']({
       el: $('.provider-list-large-cell'),
+      providers: JSON.parse('#{providers.to_json.gsub("'", "\\\\'")}'),
     })
   });

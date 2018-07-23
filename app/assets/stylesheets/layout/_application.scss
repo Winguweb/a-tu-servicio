@@ -15,6 +15,8 @@ body {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
   }
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body > main {
