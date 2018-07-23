@@ -1,13 +1,12 @@
-ATSB.Components['components/site-header'] = Backbone.View.extend({
-  initialize: function(options) {
-    _.bindAll(this, 'menuClicked')
-
-    this.menuButton = this.$el.find('')
-  },
-  events: {
-    'click .site-menu-button': 'menuClicked',
-  },
-  menuClicked: function() {
-    ATSB.pubSub.trigger('branch:list:large:toggle')
-  },
-})
+ATSB.Components['components/site-header'] = function(options) {
+  new Vue({
+    el: '.site-header-cell',
+    data: {},
+    methods: {
+      menuClicked: function() {
+        ATSB.pubSub.$emit('all:slides:close')
+        ATSB.pubSub.$emit('branch:list:large:open')
+      }
+    }
+  })
+}

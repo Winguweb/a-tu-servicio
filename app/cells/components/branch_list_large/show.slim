@@ -1,4 +1,4 @@
-div.branch-list-large-cell
+div.branch-list-large-cell v-bind:class="{show: actions.show}"
   div
     input placeholder="Buscar prestador de servicios..." v-model="searchQuery"
     = link_to '#' do
@@ -6,7 +6,7 @@ div.branch-list-large-cell
   div
     ul
       li v-for="branch in branches"
-        = link_to '#' do
+        a v-on:click="branchClicked(branch.id)"
           article
             header
               h1
@@ -17,8 +17,7 @@ div.branch-list-large-cell
 
 javascript:
   $(function() {
-    new ATSB.Components['components/branch-list-large']({
-      el: $('.branch-list-large-cell'),
+    ATSB.Components['components/branch-list-large']({
       branches: JSON.parse('#{branches.to_json.gsub("'", "\\\\'")}'),
     })
   });

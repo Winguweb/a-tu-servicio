@@ -1,6 +1,5 @@
 ;(function(){
   var root = this
-
   root.$window = $(window)
   root.$document = $(document)
   root.$body = $('body')
@@ -11,7 +10,6 @@
     Components: {},
     Helpers: {},
     mobile: root.$html.hasClass('mobile'),
-    pubSub: Backbone.Events,
     Views: {},
     Routers: {},
     Models: {},
