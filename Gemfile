@@ -11,11 +11,14 @@ gem 'sass-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
+gem 'neat' # A lightweight and flexible Sass grid
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails-jquery-autocomplete'
 gem 'puma'
 gem 'rollbar'
+gem 'cells-rails'
+gem 'cells-slim', git: "git@github.com:trailblazer/cells-slim", branch: :master
 
 # Use Unicorn as the app server
 # gem 'unicorn'

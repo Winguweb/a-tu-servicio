@@ -1,0 +1,55 @@
+@mixin reference-map() {
+  height: 100%;
+  width: 100%;
+  > div {
+    height: 100%;
+    width: 100%;
+  }
+
+  .reference-map--marker {
+    border: none;
+    height: 15px;
+    overflow: hidden;
+    position: relative;
+    width: 15px;
+
+    &:hover {
+      overflow: visible;
+      > p {
+        opacity: 1;
+      }
+    }
+
+    > i {
+      background-image: image-url("icons/marker.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: 1002;
+    }
+    > p {
+      @include type-setting(-2);
+      background-color: color($white, 0.9);
+      left: -#{gutter(-1)};
+      line-height: 12px;
+      opacity: 0;
+      padding: gutter(0.5) gutter(0.5) gutter(0.5) gutter(1.5);
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      z-index: 1001;
+    }
+    &:hover i {
+      background-image: image-url("icons/marker-hover.svg");
+    }
+  }
+
+}
+
+.reference-map-cell{
+  @include reference-map;
+}

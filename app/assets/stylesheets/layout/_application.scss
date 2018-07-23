@@ -1,0 +1,33 @@
+$development: false;
+
+html, body {
+  font-family: $font-sans;
+  height: 100%;
+}
+
+body {
+  @include type-setting(0);
+  @include text-color($black);
+
+  @if $development { @include grid-visual };
+
+  * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+body > main {
+  height: calc(100% - #{$header-height});
+  position: relative;
+}
+
+/* LEAFLET SETTINGS */
+.leaflet-div-icon {
+  background-color: transparent;
+  border: none;
+}
+
+.leaflet-marker-icon:hover {
+  z-index: 1001 !important;
+}

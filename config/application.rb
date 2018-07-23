@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 APP_CONFIG = YAML.load_file(File.expand_path('../atsb.yml', __FILE__)).with_indifferent_access
+MAP = YAML.load_file(File.expand_path('../map.yml', __FILE__))
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -25,5 +26,20 @@ module AtuservicioRails
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.exceptions_app = self.routes
+
+    config.cells.with_assets = %w(
+      visualization_components/specialities_visualization_cell
+      visualization_components/in_hundreed_visualization_cell
+      visualization_components/people_visualization_cell
+      components/compare_provider_button_cell
+      components/provider_detail_half_right_cell
+      components/provider_detail_half_left_cell
+      components/provider_detail_large_cell
+      components/provider_list_half_right_cell
+      components/provider_list_large_cell
+      components/reference_map_cell
+      components/site_header_cell
+      components/story_slider_cell
+    )
   end
 end

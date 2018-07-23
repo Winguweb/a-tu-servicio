@@ -1,0 +1,24 @@
+div.people-visualization-cell
+  div
+    - for i in (1..count)
+      - icon = rand > 0.49 ? 'boy' : 'girl'
+      div
+        = image_tag image_path("icons/#{icon}.svg"), :class => 'people-filled'
+    - for i in (count+1..10)
+      - icon = rand > 0.49 ? 'boy' : 'girl'
+      div
+        = image_tag image_path("icons/#{icon}-empty.svg"), :class => 'people-empty'
+  div
+    p
+      = "Los centros de salud satisfacen a "
+      strong = "#{count} "
+      = "de cada "
+      strong = "10 "
+      = "personas."
+
+javascript:
+  $(function() {
+    new ATSB.Components['visualization-components/people-visualization']({
+      el: $('.people-visualization-cell'),
+    })
+  });

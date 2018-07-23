@@ -1,33 +1,19 @@
 # coding: utf-8
 class HomeController < ApplicationController
-  layout 'atuservicio'
+  include HomeHelper
+  layout 'public'
 
   def index
-    # Get the ProviderMaximum object which contains all the maximum
-    # values to compare in the graphs in the home view.
-    @provider_maximums = ProviderMaximum.first
+    @branches = Branch.where.not(georeference: nil)
+    @providers = Provider.all
+    @common_info = CommonInfoService.call
 
-    @title = 'Inicio'
-    @description = 'Toda la información e indicadores de todos los prestadores de Salud de Uruguay para elegir informado o conocer a fondo los indicadores de tu servicio de salud.'
-
-    # Get the selected state if we want to have the providers for a
-    # given state
-    @selected_state = params['departamento']
-
-    @sel_providers = if @selected_state && @selected_state != 'todos'
-                       state = State.find_by_name(@selected_state)
-                       raise ActionController::RoutingError.new('No se encontró el departamento') unless state
-                       state.providers.includes(:states).order(:private_insurance).order(:nombre_abreviado).uniq
-                     else
-                       @providers.order(:private_insurance).order(:nombre_abreviado)
-                     end
+    # dummy data
+    @provider_a = Provider.all[0]
+    @provider_b = Provider.all[1]
   end
 
   def about
-    @title = 'Sobre el proyecto'
   end
 
-  def temporal
-    @providers = Provider.all.includes(:waiting_times, :satisfactions, :costs, :medical_assistences, :specialities, :branches => [:state, :levels]).order(:is_private).order(:abbreviation)
-  end
 end
