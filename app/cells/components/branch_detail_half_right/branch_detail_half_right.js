@@ -6,12 +6,18 @@ ATSB.Components['components/branch-detail-half-right'] = function(options) {
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
-      ATSB.pubSub.$on('branchFetch:fetch', this.branchFetch)
       ATSB.pubSub.$on('branch:detail:half-right:open', this.componentOpen)
+      ATSB.pubSub.$on('branch:detail:half-right:fetch', this.branchFetch)
     },
     methods: {
-      branchFetch: function() {
-        console.log('branchFetch Event')
+      branchFetch: function(id) {
+        ATSB.pubSub.$emit('fetch:branch:id', id, this.branchFetchSuccess, this.branchFetchError)
+      },
+      branchFetchSuccess: function(data) {
+        console.log(data)
+      },
+      branchFetchError: function() {
+        console.warn('Cant reach branch')
       },
       componentClose: function() {
         this.actions.show = false

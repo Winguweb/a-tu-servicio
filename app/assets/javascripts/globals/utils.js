@@ -4,5 +4,3 @@
     out: function(data) {console.log(data)}
   }
 })();
-
-// var component = this

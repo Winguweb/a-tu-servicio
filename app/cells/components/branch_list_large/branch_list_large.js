@@ -14,9 +14,10 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       searchQuery: _.debounce(function(){this.searchQueryChanged()}, 300)
     },
     methods: {
-      branchClicked: function() {
+      branchClicked: function(id) {
         ATSB.pubSub.$emit('all:slides:close')
         ATSB.pubSub.$emit('branch:detail:half-right:open')
+        ATSB.pubSub.$emit('branch:detail:half-right:fetch', id)
       },
       branchesFetchSuccess: function(response) {
         this.branches = response.data

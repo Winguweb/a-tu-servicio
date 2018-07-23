@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get '/' => 'home#index'
 
   get '/api/v1/branches' => 'branches#index'
+  get '/api/v1/branches/:id' => 'branches#show'
   # ---
   match '/(departamento/:departamento)' => 'home#index', via: :get
 
