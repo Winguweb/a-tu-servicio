@@ -11,7 +11,7 @@
     Components: {},
     Helpers: {},
     mobile: root.$html.hasClass('mobile'),
-    pubSub: Backbone.Events,
+    pubSub: new Vue(),
     Views: {},
     Routers: {},
     Models: {},
