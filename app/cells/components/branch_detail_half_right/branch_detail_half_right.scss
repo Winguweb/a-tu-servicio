@@ -44,29 +44,33 @@ $search-bar-height: calc(44px + #{gutter(2)});
           > div:first-of-type {
             float: right;  // for right
             padding: gutter();
-            width: calc(100% - 100% / 1.61803398875);
             > h1 {
               @include text-color($blue, 1);
               text-align: right;  // for right
             }
           }
-          > div:last-of-type {
-            border-bottom: 2px solid $blue;
-            float: left;  // for right
-            width: calc(100% / 1.61803398875);
-            &.low { border-bottom-color: $red; > div {background-color: $red;}}
-            &.high { border-bottom-color: $light-blue; > div {background-color: $light-blue;}}
-            > div {
-              background-color: $blue;
+          &.percentage {
+            > div:first-of-type {
+              width: calc(100% - 100% / 1.61803398875);
+            }
+            > div:last-of-type {
+              border-bottom: 2px solid $blue;
               float: left;  // for right
-              height: 100%;
-              padding: gutter();
-              > span {
-                @include text-color($white);
-                @include type-golden(1);
+              width: calc(100% / 1.61803398875);
+              &.low { border-bottom-color: $red; > div {background-color: $red;}}
+              &.high { border-bottom-color: $light-blue; > div {background-color: $light-blue;}}
+              > div {
+                background-color: $blue;
                 float: left;  // for right
-                height: 19px;
-                line-height: 19px;
+                height: 100%;
+                padding: gutter();
+                > span {
+                  @include text-color($white);
+                  @include type-golden(1);
+                  float: left;  // for right
+                  height: 19px;
+                  line-height: 19px;
+                }
               }
             }
           }
@@ -85,15 +89,25 @@ $search-bar-height: calc(44px + #{gutter(2)});
             @include grid-column(16, $no-gutter);
             overflow: hidden;
             padding-left: gutter(); // for right
-            > div {
-              @include grid-collapse;
-              overflow: auto;
+            &.horizontal {
               > div {
-                @include grid-column(1 of 3);
-                background: $light-grey;
-                float: left;
-                height: 200px;
+                > div {
+                  background: $light-grey;
+                  margin-bottom: gutter();
+                  // height: 40px;
+                }
+              }
+            }
+            &.vertical {
+              > div {
+                @include grid-collapse;
                 overflow: auto;
+                > div {
+                  @include grid-column(1 of 3);
+                  background: $light-grey;
+                  height: 200px;
+                  overflow: auto;
+                }
               }
             }
           }

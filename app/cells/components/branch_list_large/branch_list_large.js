@@ -2,13 +2,14 @@ ATSB.Components['components/branch-list-large'] = function(options) {
   new Vue({
     el: '.branch-list-large-cell',
     data: {
-      branches: options.branches,
+      branches: [],
       searchQuery: "",
       actions: {show: false}
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:list:large:open', this.componentOpen)
+      ATSB.pubSub.$emit('fetch:branch:search', '', this.branchesFetchSuccess, this.branchesFetchError)
     },
     watch: {
       searchQuery: _.debounce(function(){this.searchQueryChanged()}, 300)

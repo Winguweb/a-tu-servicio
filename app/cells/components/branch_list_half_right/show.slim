@@ -10,9 +10,9 @@ div.branch-list-half-right-cell
           = link_to '#' do
             article
               header
-                h1 = branch.name
+                h1 = branch['name']
               main
-                p = branch.address
+                p = branch['address']
 
 javascript:
   $(function() {

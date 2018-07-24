@@ -30,6 +30,7 @@ module AtuservicioRails
     config.cells.with_assets = %w(
       visualization_components/specialities_visualization_cell
       visualization_components/in_hundreed_visualization_cell
+      visualization_components/beds_visualization_cell
       visualization_components/people_visualization_cell
       components/compare_branch_button_cell
       components/branch_detail_half_right_cell

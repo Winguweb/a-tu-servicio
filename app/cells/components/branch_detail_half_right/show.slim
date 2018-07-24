@@ -1,26 +1,26 @@
 div.branch-detail-half-right-cell v-bind:class="{show: actions.show}"
   article
     header
-      h1 =  branch.name
-      h2 =  branch.address
+      h1
+        | {{branch.name}}
+      h2
+        | {{branch.address}}
     main
       section
         header
           div
             h1 = "Camas"
-          div.high
-            div style="width: 80%;"
-              span = "%80"
         main
           div
-            p = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis rem repellendus quae recusandae, consequuntur autem quas numquam beatae vitae neque earum, praesentium tempora cupiditate magni porro debitis. Libero consequuntur, ea!"
-          div
+            p = "Estos gráficos representan la cantidad de camas existentes por cada 10.000 pacientes, desagregado en áreas."
+          div.horizontal
             div
-              div
-              div
-              div
+              div v-for="bed in branch.beds"
+                p
+                  | {{bed.area}}
+                == cell('visualization_components/beds_visualization')
       section
-        header
+        header.percentage
           div
             h1 = "Camas"
           div.low
@@ -29,7 +29,7 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}"
         main
           div
             p = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis rem repellendus quae recusandae, consequuntur autem quas numquam beatae vitae neque earum, praesentium tempora cupiditate magni porro debitis. Libero consequuntur, ea!"
-          div
+          div.vertical
             div
               div
               div
