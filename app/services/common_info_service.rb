@@ -15,6 +15,7 @@ class CommonInfoService
     @total_private_providers = _total_private_providers
     @total_public_providers = _total_public_providers
     @best_beds = _best_beds
+    @best_satisfaction = _best_satisfaction
     @specialities_count_by_type = _specialities_count_by_type
     @public_specialities_count_of_type = _public_specialities_count_of_type(@specialities_count_by_type)
     @private_specialities_count_of_type = _private_specialities_count_of_type(@specialities_count_by_type)
@@ -25,7 +26,8 @@ class CommonInfoService
   end
 
   attr_reader :total_beds, :best_beds
-  attr_reader :total_branches, :total_providers, :total_satisfaction
+  attr_reader :total_branches, :total_providers
+  attr_reader :total_satisfaction, :best_satisfaction
   attr_reader :total_private_providers, :total_public_providers
   attr_reader :specialities_count_by_type, :public_specialities_count_of_type, :private_specialities_count_of_type
 
@@ -49,6 +51,10 @@ class CommonInfoService
 
   def _total_providers
     @providers.count.to_i
+  end
+
+  def _best_satisfaction
+    @satisfactions.order(percentage: :desc).limit(1).first.percentage
   end
 
   def _total_satisfaction
