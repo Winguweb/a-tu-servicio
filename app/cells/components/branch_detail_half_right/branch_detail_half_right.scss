@@ -90,10 +90,19 @@ $search-bar-height: calc(44px + #{gutter(2)});
             @include grid-column(16, $no-gutter);
             overflow: hidden;
             padding-left: gutter(); // for right
+            > div {
+              > div {
+                > p {
+                  @include text-color($blue);
+                  border-bottom: 2px solid $blue;
+                  display: inline-block;
+                  width: 350px;
+                }
+              }
+            }
             &.horizontal {
               > div {
                 > div {
-                  background: $light-grey;
                   margin-bottom: gutter();
                   // height: 40px;
                 }

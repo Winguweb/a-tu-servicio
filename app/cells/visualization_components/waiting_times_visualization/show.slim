@@ -1,9 +1,9 @@
 div.waiting-times-visualization-cell
   div
     div v-for="i in Math.max(Math.min(10,Math.round(waiting_time.from_best*100/10)),0)"
-      img :src="'/assets/icons/'+(Math.random()>0.49 ? 'boy':'girl')+'.svg'"
+      img :src="'/assets/icons/clock.svg'"
     div v-for="i in Math.max(Math.min(10,Math.round(10 - waiting_time.from_best*100/10)),0)"
-      img :src="'/assets/icons/'+(Math.random()>0.49 ? 'boy':'girl')+'-empty.svg'"
+      img :src="'/assets/icons/clock-empty.svg'"
   div
     p
       = "Pasan "
