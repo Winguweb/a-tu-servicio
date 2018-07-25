@@ -21,5 +21,3 @@
 
 // VISUALIZATION CELLS
 //= require in_hundreed_visualization
-//= require people_visualization
-//= require specialities_visualization

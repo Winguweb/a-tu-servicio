@@ -1,34 +1,17 @@
 @mixin specialities-visualization() {
-  $aspect-ratio: 64/34;
-  margin: gutter(1) 0;
+  background-color: $light-grey;
+  border-radius: 2px;
   overflow: auto;
-  > div {
-    margin-bottom: gutter(-1);
-    overflow: auto;
-    > div {
-      display: block;
-      float: left;
-      width: calc(10%);
-      > img {
-        $width: calc(100% - #{gutter(-2)});
-        display: block;
-        margin-right: gutter(-2);
-        width: $width;
-      }
-      &:last-of-type {
-        > img {
-          margin-right: 0;
-        }
-      }
-    }
+  padding: gutter(-1);
+  > img {
+    display: inline-block;
+    width: 40px;
   }
-  > div:nth-of-type(2) {
-    > p {
-      @include type-golden(-1);
-      > strong {
-        font-weight: 800;
-      }
-    }
+  > span {
+    @include type-golden(-1);
+    display: inline-block;
+    line-height: 0.8rem;
+    width: calc(100% - 40px);
   }
 }
 

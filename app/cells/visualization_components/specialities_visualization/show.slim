@@ -1,10 +1,4 @@
 div.specialities-visualization-cell
-  canvas id="speciality_chart", width="400", height="400"
-
-javascript:
-  $(function() {
-    new ATSB.Components['visualization-components/specialities-visualization']({
-      el: $('.specialities-visualization-cell'),
-      common_info: #{common_info}
-    })
-  });
+  img :src="'/assets/icons/speciality.svg'"
+  span
+    | {{speciality.name}}

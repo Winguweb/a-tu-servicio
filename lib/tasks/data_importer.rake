@@ -26,25 +26,25 @@ namespace :import do
     ActiveRecord::Base.connection.execute("TRUNCATE #{State.table_name} RESTART IDENTITY")
 
     import_file("bogota.csv", col_sep: "\t") do |row|
-      especialidad = row["especialidades"]
+      especialidad = row["especialidades"].split('-').last.titleize.strip
       lote_camas = {
         :area => row["area"],
         :cantidad => row["camas"],
       }
       sede = {
-        :nombre => row["nombre_sede"],
+        :nombre => row["nombre_sede"].titleize.strip,
         :direccion => row["direccion_sede"],
         :localidad => row["localidad_sede"],
         :especialidades => [],
         :camas => []
       }
       prestador = {
-        :nombre => row["prestador"],
+        :nombre => row["prestador"].titleize.strip,
         :tipo => row["tipo_prestador"],
         :url_mail => row["url_mail"],
         :comunicacion => row["comunicacion"].to_s,
         :localidad => row["localidad_central"],
-        :subred => row["subred"],
+        :subred => row["subred"].titleize.strip,
         :direccion => row["direccion_central"],
         :satisfaccion => row["satisfaccion"],
         :tiempo_espera_cirugia_general => row["tiempo_espera_cirugia_general"],
@@ -64,7 +64,7 @@ namespace :import do
       end.first
 
       if prestador_existente.nil?
-        puts "New Provider: #{prestador[:nombre]}"
+        puts "New Provider: #{prestador[:nombre].titleize.strip}"
         prestadores << prestador
       else
         sede_existente = prestador_existente[:sedes].select do |s|

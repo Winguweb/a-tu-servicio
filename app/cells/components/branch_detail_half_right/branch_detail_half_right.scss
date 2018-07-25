@@ -114,8 +114,8 @@ $search-bar-height: calc(44px + #{gutter(2)});
                 overflow: auto;
                 > div {
                   @include grid-column(1 of 3);
-                  background: $light-grey;
-                  height: 200px;
+                  height: 67px;
+                  margin-bottom: gutter();
                   overflow: auto;
                 }
               }

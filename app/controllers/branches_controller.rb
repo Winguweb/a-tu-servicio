@@ -16,7 +16,7 @@ class BranchesController < ApplicationController
 
   def show
     @common_info = CommonInfoService.call
-    @branch = Branch.includes(:provider, :beds).find_by(id: params[:id])
+    @branch = Branch.includes(:provider, :beds, :specialities).find_by(id: params[:id])
     @beds_count = @branch.beds.reduce(0) {|last, bed| last += bed[:quantity]}
     satisfaction = (s = @branch.provider.satisfactions.first).nil? ? nil : s.percentage.to_f
     # Used for icon bar graph
@@ -36,6 +36,13 @@ class BranchesController < ApplicationController
       :has_waiting_times_information => !@branch.provider.waiting_times.blank?,
       :has_beds_information => !@branch.beds.blank?,
       :has_satisfaction_information => !@branch.provider.satisfactions.blank?,
+      :has_specialities_information => !@branch.specialities.blank?,
+      :specialities => @branch.specialities.map do |speciality|
+        {
+          name: speciality.name,
+        }
+      end,
+      :specialities_count => @branch.specialities.count,
       :waiting_times => @branch.provider.waiting_times.map do |waiting_time|
         # Percentage relation between actual branch provider's waiting times and worst provider's waiting times
         from_best = (waiting_time.days.to_f/@common_info.best_waiting_times[waiting_time.name].to_f).round(2)
