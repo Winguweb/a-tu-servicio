@@ -10,6 +10,8 @@ ATSB.Components['components/branch-detail-half-right'] = function(options) {
       ATSB.pubSub.$on('branch:detail:half-right:open', this.componentOpen)
       ATSB.pubSub.$on('branch:detail:half-right:fetch', this.branchFetch)
       ATSB.pubSub.$emit('branch:detail:half-right:open'),ATSB.pubSub.$emit('branch:detail:half-right:fetch', 277)
+      // 1384
+      // 277
     },
     methods: {
       branchFetch: function(id) {

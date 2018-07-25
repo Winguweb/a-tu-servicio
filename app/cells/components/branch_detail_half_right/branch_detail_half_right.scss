@@ -70,6 +70,7 @@ $search-bar-height: calc(44px + #{gutter(2)});
                   float: left;  // for right
                   height: 19px;
                   line-height: 19px;
+                  white-space: nowrap;
                 }
               }
             }

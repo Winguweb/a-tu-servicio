@@ -33,6 +33,7 @@ module AtuservicioRails
       visualization_components/beds_visualization_cell
       visualization_components/people_visualization_cell
       visualization_components/satisfaction_visualization_cell
+      visualization_components/waiting_times_visualization_cell
       components/compare_branch_button_cell
       components/branch_detail_half_right_cell
       components/branch_detail_half_left_cell
