@@ -1,8 +1,8 @@
 div.beds-visualization-cell
   div
-    div v-for="i in Math.round(bed.from_best*100/10)"
+    div v-for="i in toNOfTen(bed.from_best)"
       img :src="'/assets/icons/bed.svg'" class='beds-filled'
-    div v-for="i in Math.round(10 - bed.from_best*100/10)"
+    div v-for="i in toNOfTenReverse(bed.from_best)"
       img :src="'/assets/icons/bed-empty.svg'" class='beds-empty'
   div
     p

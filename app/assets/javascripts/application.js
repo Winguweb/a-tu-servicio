@@ -6,6 +6,7 @@
 // APP SETUP
 //= require globals/base
 //= require helpers/url
+//= require helpers/numbers
 
 // CELLS
 //= require compare_branch_button

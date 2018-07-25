@@ -9,11 +9,14 @@ ATSB.Components['components/branch-detail-half-right'] = function(options) {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:detail:half-right:open', this.componentOpen)
       ATSB.pubSub.$on('branch:detail:half-right:fetch', this.branchFetch)
-      ATSB.pubSub.$emit('branch:detail:half-right:open'),ATSB.pubSub.$emit('branch:detail:half-right:fetch', 277)
+      ATSB.pubSub.$emit('branch:detail:half-right:open'),ATSB.pubSub.$emit('branch:detail:half-right:fetch', 141)
       // 1384
       // 277
     },
     methods: {
+      toPercentage: ATSB.Helpers.numbers.toPercentage,
+      toNOfTen: ATSB.Helpers.numbers.toNOfTen,
+      toNOfTenReverse: ATSB.Helpers.numbers.toNOfTenReverse,
       branchFetch: function(id) {
         ATSB.pubSub.$emit('fetch:branch:id', id, this.branchFetchSuccess, this.branchFetchError)
       },
