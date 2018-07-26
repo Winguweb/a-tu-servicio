@@ -2,97 +2,147 @@ $search-button-width: gutter(1.5);
 $search-bar-height: calc(44px + #{gutter(2)});
 @mixin branch-detail-large() {
   background-color: $white;
+  border-left: 1px solid color($light-grey, 0.5); // for right
   bottom: 0;
   overflow: auto;
-  padding: gutter(1);
+  padding: gutter(1) gutter(1) gutter(1) 0; // for right
   position: absolute;
-  right: 0;
+  right: 0; // for right
   top: 0;
-  transform: translateX(100%);
-  transition: transform 300ms ease;
+  transform: translateX(100%); // for right
+  transition: transform 300ms ease 0ms;
   width: calc(100% / 1.61803398875);
+  will-change: transform;
+  z-index: 1000;
   &.show {
-    transform: translateX(0);
+    transform: translateX(0); // for right
+    transition: transform 300ms ease 300ms;
   }
-  > article {
-    > header {
-      border-bottom: 1px solid $blue;
-      margin-bottom: gutter();
-      > h1 {
-        @include text-color($blue, 1);
-        @include type-golden(1);
-        line-height: gutter(1);
+  > div {
+    > article {
+      > header {
+        border-bottom: 1px solid $blue;
+        margin-bottom: gutter();
+        > h1 {
+          @include text-color($blue, 1);
+          @include type-golden(1);
+          line-height: gutter(1);
+          padding-left: gutter(1); // for right
+          text-align: right;  // for right
+        }
+        > h2 {
+          @include text-color($grey, 1);
+          @include type-golden(0);
+          text-align: right;  // for right
+        }
       }
-      > h2 {
-        @include text-color($grey, 1);
-        @include type-golden(0);
-      }
-    }
-    > main {
-      > section {
-        margin-bottom: gutter(2);
-        > header {
-          background-color: $light-grey;
-          margin-bottom: gutter();
-          overflow: auto;
-          position: relative;
-          > div:first-of-type {
-            float: left;
-            padding: gutter();
-            width: calc(100% - 100% / 1.61803398875);
-            > h1 {
-              @include text-color($blue, 1);
+      > main {
+        @include grid-column(1 of 1);
+        > section {
+          @include grid-collapse;
+          clear: both;
+          margin-bottom: gutter(2);
+          > header {
+            background-color: $light-grey;
+            margin-bottom: gutter();
+            overflow: auto;
+            position: relative;
+            > div:first-of-type {
+              float: right;  // for right
+              padding: gutter();
+              > h1 {
+                @include text-color($blue, 1);
+                text-align: right;  // for right
+              }
+            }
+            &.percentage {
+              > div:first-of-type {
+                width: calc(100% - 100% / 1.61803398875);
+              }
+              > div:last-of-type {
+                border-bottom: 2px solid $blue;
+                float: left;  // for right
+                width: calc(100% / 1.61803398875);
+                &.low { border-bottom-color: $red; > div {background-color: $red;}}
+                &.high { border-bottom-color: $light-blue; > div {background-color: $light-blue;}}
+                > div {
+                  background-color: $blue;
+                  float: left;  // for right
+                  height: 100%;
+                  padding: gutter();
+                  > span {
+                    @include text-color($white);
+                    @include type-golden(1);
+                    float: left;  // for right
+                    height: 19px;
+                    line-height: 19px;
+                    white-space: nowrap;
+                  }
+                }
+              }
             }
           }
-          > div:last-of-type {
-            border-bottom: 2px solid $blue;
-            float: right;
-            width: calc(100% / 1.61803398875);
-            > div {
-              background-color: $blue;
-              float: right;
-              height: 100%;
-              padding: gutter();
-              > span {
-                @include text-color($white);
-                @include type-golden(1);
-                float: right;
-                height: 19px;
-                line-height: 19px;
+          > main {
+            @include grid-container;
+            > p {
+              @include type-golden(0);
+              font-weight: 300;
+              padding: 0 gutter();
+            }
+            padding: 0 gutter();
+            > div:first-of-type {
+              > p {
+                @include type-golden(0);
+                font-weight: 300;
+                margin-bottom: gutter();
+                > strong {
+                  font-weight: 600;
+                }
+              }
+            }
+            > div:last-of-type {
+              @include grid-collapse;
+              overflow: hidden;
+              > div {
+                > div {
+                  > p {
+                    @include text-color($blue);
+                    border-bottom: 2px solid $blue;
+                    display: inline-block;
+                    max-width: 350px;
+                    width: 100%;
+                  }
+                }
+              }
+              &.horizontal {
+                > div {
+                  > div {
+                    @include grid-column(1 of 2);
+                    margin-bottom: gutter();
+                  }
+                }
+              }
+              &.vertical {
+                > div {
+                  > div {
+                    @include grid-column(1 of 3);
+                    margin-bottom: gutter();
+                  }
+                }
               }
             }
           }
         }
-        > main {
-          @include grid-container;
-          > div:first-of-type {
-            padding: 0 gutter();
-            > p {
-              @include type-golden(0);
-              font-weight: 300;
-              margin-bottom: gutter();
-            }
-          }
-          > div:last-of-type {
-            @include grid-column(16, $no-gutter);
-            > div {
-              @include grid-collapse;
-              overflow: auto;
-              > div {
-                @include grid-column(1 of 3);
-                background: $light-grey;
-                float: left;
-                height: 200px;
-                overflow: auto;
-              }
-            }
+        > section:first-of-type {
+          > main {
+            @include grid-column(1 of 1);
+            clear: both;
           }
         }
       }
     }
   }
 }
-
 .branch-detail-large-cell{
   @include branch-detail-large;
 }

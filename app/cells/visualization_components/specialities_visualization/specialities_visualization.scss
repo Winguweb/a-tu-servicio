@@ -1,34 +1,22 @@
 @mixin specialities-visualization() {
-  $aspect-ratio: 64/34;
-  margin: gutter(1) 0;
-  overflow: auto;
-  > div {
-    margin-bottom: gutter(-1);
-    overflow: auto;
-    > div {
-      display: block;
-      float: left;
-      width: calc(10%);
-      > img {
-        $width: calc(100% - #{gutter(-2)});
-        display: block;
-        margin-right: gutter(-2);
-        width: $width;
-      }
-      &:last-of-type {
-        > img {
-          margin-right: 0;
-        }
-      }
-    }
+  background-color: $light-grey;
+  border-radius: 2px;
+  height: 60px;;
+  padding: gutter(-1);
+  > img {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: top;
+    width: 15px;
   }
-  > div:nth-of-type(2) {
-    > p {
-      @include type-golden(-1);
-      > strong {
-        font-weight: 800;
-      }
-    }
+  > span {
+    display: inline-block;
+    font-size: .85rem;
+    font-weight: 300;
+    line-height: 1.2rem;
+    margin-top: 1px;
+    vertical-align: top;
+    width: calc(100% - 40px);
   }
 }
 

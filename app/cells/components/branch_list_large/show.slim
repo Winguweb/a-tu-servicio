@@ -13,11 +13,9 @@ div.branch-list-large-cell v-bind:class="{show: actions.show}"
                 | {{branch.name}}
             main
               p
-                | {{branch.address}}
+                | {{branch.provider_name}}
 
 javascript:
   $(function() {
-    ATSB.Components['components/branch-list-large']({
-      branches: JSON.parse('#{branches.to_json.gsub("'", "\\\\'")}'),
-    })
+    ATSB.Components['components/branch-list-large']()
   });

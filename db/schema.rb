@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_15_154716) do
+ActiveRecord::Schema.define(version: 2018_07_24_151457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "beds", force: :cascade do |t|
+    t.string "area"
+    t.integer "quantity"
+    t.integer "branch_id", null: false
+  end
 
   create_table "branches", force: :cascade do |t|
     t.string "name"

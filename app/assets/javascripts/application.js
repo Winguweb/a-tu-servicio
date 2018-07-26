@@ -6,6 +6,7 @@
 // APP SETUP
 //= require globals/base
 //= require helpers/url
+//= require helpers/numbers
 
 // CELLS
 //= require compare_branch_button
@@ -20,5 +21,3 @@
 
 // VISUALIZATION CELLS
 //= require in_hundreed_visualization
-//= require people_visualization
-//= require specialities_visualization

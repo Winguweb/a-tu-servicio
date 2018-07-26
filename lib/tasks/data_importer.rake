@@ -26,24 +26,25 @@ namespace :import do
     ActiveRecord::Base.connection.execute("TRUNCATE #{State.table_name} RESTART IDENTITY")
 
     import_file("bogota.csv", col_sep: "\t") do |row|
-      especialidad = row["especialidades"]
-      cama = {
+      especialidad = row["especialidades"].split('-').last.titleize.strip
+      lote_camas = {
         :area => row["area"],
-        :camas => row["camas"],
+        :cantidad => row["camas"],
       }
       sede = {
-        :nombre => row["nombre_sede"],
+        :nombre => row["nombre_sede"].titleize.strip,
         :direccion => row["direccion_sede"],
         :localidad => row["localidad_sede"],
-        :especialidades => []
+        :especialidades => [],
+        :camas => []
       }
       prestador = {
-        :nombre => row["prestador"],
+        :nombre => row["prestador"].titleize.strip,
         :tipo => row["tipo_prestador"],
         :url_mail => row["url_mail"],
         :comunicacion => row["comunicacion"].to_s,
         :localidad => row["localidad_central"],
-        :subred => row["subred"],
+        :subred => row["subred"].titleize.strip,
         :direccion => row["direccion_central"],
         :satisfaccion => row["satisfaccion"],
         :tiempo_espera_cirugia_general => row["tiempo_espera_cirugia_general"],
@@ -54,32 +55,33 @@ namespace :import do
         :tiempo_espera_odontologia_general => row["tiempo_espera_odontologia_general"],
         :tiempo_espera_pediatria => row["tiempo_espera_pediatria"],
         :sedes => [],
-        :camas => []
       }
       sede[:especialidades] << especialidad
+      sede[:camas] << lote_camas
       prestador[:sedes] << sede
-      prestador[:camas] << cama
       prestador_existente = prestadores.select do |p|
         p[:nombre] == prestador[:nombre]
       end.first
 
       if prestador_existente.nil?
-        puts "New Provider: #{prestador[:nombre]}"
+        puts "New Provider: #{prestador[:nombre].titleize.strip}"
         prestadores << prestador
       else
         sede_existente = prestador_existente[:sedes].select do |s|
           s[:nombre] == sede[:nombre]
         end.first
         if sede_existente.nil?
+          sede[:especialidades] << especialidad
           prestador_existente[:sedes] << sede
+          sede_existente = sede
         else
           sede_existente[:especialidades] << especialidad
         end
-        cama_existente = prestador_existente[:camas].select do |c|
-          c[:area] == cama[:area]
+        cama_existente = sede_existente[:camas].select do |c|
+          c[:area] == lote_camas[:area]
         end.first
         if cama_existente.nil?
-          prestador_existente[:camas] << cama
+          sede_existente[:camas] << lote_camas
         end
       end
     end
@@ -97,12 +99,23 @@ namespace :import do
           )
           specialities << speciality
         end
+        beds = []
+        sede[:camas].each do |cama|
+          if cama[:area]
+            bed = Bed.new(
+              area: cama[:area].to_s,
+              quantity: cama[:cantidad].to_i
+            )
+            beds << bed
+          end
+        end
         state = State.find_or_create_by(name: sede[:localidad])
         branch = Branch.new(
           name: sede[:nombre],
           address: sede[:direccion],
           state: state,
-          specialities: specialities
+          specialities: specialities,
+          beds: beds
         )
         branches << branch
       end
@@ -155,6 +168,7 @@ namespace :import do
           days: prestador[:tiempo_espera_pediatria].to_f
         )
       end
+
       provider = Provider.new(
         name: prestador[:nombre],
         address: prestador[:direccion],
@@ -165,7 +179,7 @@ namespace :import do
         branches: branches,
         state: state,
         satisfactions: satisfactions,
-        waiting_times: waiting_times
+        waiting_times: waiting_times,
       )
       provider.save
       percentage = ((actual+1)/total.to_f * 100).round(2)
