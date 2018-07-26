@@ -4,7 +4,7 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}" v-if="bran
       h1
         | {{branch.name}}
       h2
-        | {{branch.address}}
+        | {{branch.provider_name}}
     main
       section
         header
@@ -20,7 +20,7 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}" v-if="bran
                   | {{bed.area}}
                 == cell('visualization_components/beds_visualization')
         main v-else=""
-          p ="No hay información de camas para esta sede"
+          p ="Sin información."
       section
         header :class="{percentage: branch.has_satisfaction_information}"
           div
@@ -38,7 +38,7 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}" v-if="bran
               div
                 == cell('visualization_components/satisfaction_visualization')
         main v-else=""
-          p ="No hay información de satisfacción para el prestador de servicios al que pertenece esta sede"
+          p ="Sin información."
       section
         header :class="{percentage: branch.has_waiting_times_information}"
           div
@@ -58,7 +58,7 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}" v-if="bran
                   | {{waiting_time.name}}
                 == cell('visualization_components/waiting_times_visualization')
         main v-else=""
-          p ="No hay información de tiempos de espera para el prestador de servicios al que pertenece esta sede"
+          p ="Sin información."
       section
         header
           div
@@ -72,7 +72,7 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}" v-if="bran
                 == cell('visualization_components/specialities_visualization')
               div
         main v-else=""
-          p ="No hay información de camas para esta sede"
+          p ="Sin información."
 
 javascript:
   $(function() {ATSB.Components['components/branch-detail-half-right']()});

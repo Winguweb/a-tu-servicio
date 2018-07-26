@@ -78,8 +78,13 @@ $search-bar-height: calc(44px + #{gutter(2)});
         }
         > main {
           @include grid-container;
-          > div:first-of-type {
+          > p {
+            @include type-golden(0);
+            font-weight: 300;
             padding: 0 gutter();
+          }
+            padding: 0 gutter();
+          > div:first-of-type {
             > p {
               @include type-golden(0);
               font-weight: 300;
@@ -113,8 +118,7 @@ $search-bar-height: calc(44px + #{gutter(2)});
                 @include grid-collapse;
                 overflow: auto;
                 > div {
-                  @include grid-column(1 of 3);
-                  height: 67px;
+                  @include grid-column(1 of 2);
                   margin-bottom: gutter();
                   overflow: auto;
                 }

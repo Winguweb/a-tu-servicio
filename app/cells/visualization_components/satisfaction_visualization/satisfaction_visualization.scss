@@ -1,11 +1,9 @@
 @mixin satisfaction-visualization() {
   $aspect-ratio: 64/34;
   margin: gutter(0) 0;
-  overflow: auto;
   > div {
     margin-bottom: gutter(-1);
-    overflow: auto;
-    width: 350px;
+    max-width: 350px;
     > div {
       display: block;
       float: left;

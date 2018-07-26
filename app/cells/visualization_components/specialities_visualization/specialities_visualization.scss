@@ -1,16 +1,21 @@
 @mixin specialities-visualization() {
   background-color: $light-grey;
   border-radius: 2px;
-  overflow: auto;
+  height: 60px;;
   padding: gutter(-1);
   > img {
     display: inline-block;
-    width: 40px;
+    margin-right: 5px;
+    vertical-align: top;
+    width: 15px;
   }
   > span {
-    @include type-golden(-1);
     display: inline-block;
-    line-height: 0.8rem;
+    font-size: .85rem;
+    font-weight: 300;
+    line-height: 1.2rem;
+    margin-top: 1px;
+    vertical-align: top;
     width: calc(100% - 40px);
   }
 }

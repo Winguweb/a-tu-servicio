@@ -30,7 +30,13 @@ class BranchesController < ApplicationController
       :id => @branch.id,
       :name => @branch.name,
       :address => @branch.address,
-      :provider_name => @branch.provider.name,
+      :provider => {
+        name: @branch.provider.name,
+        subnet: @branch.provider.subnet,
+        address: @branch.provider.address,
+        website: @branch.provider.website,
+        communication_services: @branch.provider.communication_services
+      },
       :satisfaction => satisfaction,
       :satisfaction_from_best => satisfaction_from_best,
       :has_waiting_times_information => !@branch.provider.waiting_times.blank?,
@@ -43,7 +49,7 @@ class BranchesController < ApplicationController
         }
       end,
       :specialities_count => @branch.specialities.count,
-      :waiting_times => @branch.provider.waiting_times.map do |waiting_time|
+      :waiting_times => @branch.provider.waiting_times.order(name: :asc).map do |waiting_time|
         # Percentage relation between actual branch provider's waiting times and worst provider's waiting times
         from_best = (waiting_time.days.to_f/@common_info.best_waiting_times[waiting_time.name].to_f).round(2)
         {

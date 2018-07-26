@@ -11,7 +11,7 @@
       return Math.max(0,Math.min(10, Math.round(value*100/10)))
     },
     toNOfTenReverse: function(value) {
-      return Math.max(0,Math.min(10, Math.round(10-value*100/10)))
+      return Math.max(0,Math.min(10, 10-Math.round(value*100/10)))
     }
   }
 })()
