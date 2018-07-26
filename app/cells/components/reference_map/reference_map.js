@@ -24,7 +24,19 @@ ATSB.Components['components/reference-map'] = function(options) {
       },
       createMap: function() {
         this.map = L.mapbox.map('map_container', this.style)
-        this.baseGeometryFeature = new L.FeatureGroup()
+        this.baseGeometryFeature = new L.MarkerClusterGroup({
+          spiderfyOnMaxZoom: true,
+          zoomToBoundsOnClick: true,
+          animateAddingMarkers: false,
+          animate: false,
+          maxClusterRadius: 25,
+          showCoverageOnHover: false,
+          spiderLegPolylineOptions: {opacity: 0},
+          iconCreateFunction: function(cluster) {
+            return L.divIcon({ html: '<div class="reference-map--cluster"><span>' + cluster.getChildCount() + '</span></div>' });
+          }
+
+        })
         this.map.addLayer(this.baseGeometryFeature)
       },
       setAccessToken: function() {
@@ -44,8 +56,9 @@ ATSB.Components['components/reference-map'] = function(options) {
               iconSize: [15, 15],
             }),
             id: branch.id
-          }).addTo(this.baseGeometryFeature)
+          })
           this.addEvents(marker)
+          this.baseGeometryFeature.addLayer(marker)
         }.bind(this))
       },
       getSelectedBranch: function(branch) {

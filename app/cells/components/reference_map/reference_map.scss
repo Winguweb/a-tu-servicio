@@ -47,6 +47,24 @@
       background-image: image-url("icons/marker-hover.svg");
     }
   }
+  .reference-map--cluster {
+    background-color: $blue;
+    border-radius: 30px;
+    height: 30px;
+    text-align: center;
+    transform: translate3d(50%, 50%, 0);
+    width: 30px;
+    &:hover {
+      background-color: $light-blue;
+    }
+    > span {
+      @include type-golden(0);
+      color: $white;
+      font-weight: 400;
+      position: relative;
+      top: 2px;
+    }
+  }
 
 }
 
