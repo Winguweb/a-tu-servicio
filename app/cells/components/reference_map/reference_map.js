@@ -17,6 +17,7 @@ ATSB.Components['components/reference-map'] = function(options) {
       this.createMap()
       this.centerMap()
       this.showReferences()
+      this.addMapEvents()
     },
     methods: {
       centerMap: function() {
@@ -37,6 +38,7 @@ ATSB.Components['components/reference-map'] = function(options) {
           }
 
         })
+
         this.map.addLayer(this.baseGeometryFeature)
       },
       setAccessToken: function() {
@@ -78,6 +80,11 @@ ATSB.Components['components/reference-map'] = function(options) {
           ATSB.pubSub.$emit('branch:selected', [id])
           ATSB.pubSub.$emit('branch:compare:set', id)
           ATSB.pubSub.$emit('branch:compare:button:show')
+        })
+      },
+      addMapEvents: function() {
+        this.map.on('click', function(evt) {
+          ATSB.pubSub.$emit('all:slides:close')
         })
       }
     }
