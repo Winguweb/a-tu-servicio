@@ -37,13 +37,15 @@ ATSB.Components['components/reference-map'] = function(options) {
         var branches = this.branches
         var filtered = this.selectedBranch.length ? branches.filter(this.getSelectedBranch) : branches
         filtered.forEach(function(branch) {
-          new L.Marker(branch.coordinates, {
+          var marker = new L.Marker(branch.coordinates, {
             icon: new L.divIcon({
               html: '<div class="reference-map--marker"><i></i><p>' + branch.name + '</p></div><!-- Icon made by [https://www.facebook.com/theflaticon] from www.flaticon.com -->',
               iconAnchor: [8, 15],
               iconSize: [15, 15],
-            })
+            }),
+            id: branch.id
           }).addTo(this.baseGeometryFeature)
+          this.addEvents(marker)
         }.bind(this))
       },
       getSelectedBranch: function(branch) {
@@ -53,6 +55,17 @@ ATSB.Components['components/reference-map'] = function(options) {
         this.selectedBranch = ids
         this.clearReferences()
         this.showReferences()
+      },
+      addEvents: function(marker) {
+        marker.on('click', function (evt) {
+          var id = evt.target.options.id
+          ATSB.pubSub.$emit('all:slides:close')
+          ATSB.pubSub.$emit('branch:detail:large:open')
+          ATSB.pubSub.$emit('branch:detail:large:fetch', id)
+          ATSB.pubSub.$emit('branch:selected', [id])
+          ATSB.pubSub.$emit('branch:compare:set', id)
+          ATSB.pubSub.$emit('branch:compare:button:show')
+        })
       }
     }
   })
