@@ -5,14 +5,15 @@ $search-bar-height: calc(44px + #{gutter(2)});
   bottom: 0;
   padding: gutter(1) gutter(1) 0 gutter(1);
   position: absolute;
-  top: 0;
-  width: 50%;
-  transition: transform 300ms ease;
   right: 0; // for right
-  transition: transform 300ms ease;
+  top: 0;
   transform: translateX(100%); // for right
+  transition: transform 300ms ease 0ms;
+  width: 50%;
+  will-change: transform;
   &.show {
     transform: translateX(0); // for right
+    transition: transform 300ms ease 300ms;
   }
   > div:first-of-type {
     height: 44px;
@@ -52,6 +53,7 @@ $search-bar-height: calc(44px + #{gutter(2)});
           background-color: color($light-grey, 0.3);
         }
         > a {
+          cursor: pointer;
           display: block;
           overflow: auto;
           padding: gutter(-1);

@@ -19,6 +19,8 @@ ATSB.Components['components/branch-list-large'] = function(options) {
         ATSB.pubSub.$emit('all:slides:close')
         ATSB.pubSub.$emit('branch:detail:large:open')
         ATSB.pubSub.$emit('branch:detail:large:fetch', id)
+        ATSB.pubSub.$emit('branch:compare:set', id)
+        ATSB.pubSub.$emit('branch:compare:button:show')
       },
       branchesFetchSuccess: function(response) {
         this.branches = response.data

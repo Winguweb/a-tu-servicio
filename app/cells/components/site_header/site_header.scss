@@ -16,6 +16,7 @@
     float: right;
     height: 100%;
     > a {
+      cursor: pointer;
       display: block;
       height: 100%;
       padding: gutter(-1);

@@ -9,7 +9,7 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:detail:large:open', this.componentOpen)
       ATSB.pubSub.$on('branch:detail:large:fetch', this.branchFetch)
-      ATSB.pubSub.$emit('branch:detail:large:open'),ATSB.pubSub.$emit('branch:detail:large:fetch', 2589)
+      // ATSB.pubSub.$emit('branch:detail:large:open'),ATSB.pubSub.$emit('branch:detail:large:fetch', 2589)
       // 1384
       // 277
     },
