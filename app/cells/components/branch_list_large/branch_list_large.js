@@ -10,6 +10,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:list:large:open', this.componentOpen)
       ATSB.pubSub.$emit('fetch:branch:search', '', this.branchesFetchSuccess, this.branchesFetchError)
+      ATSB.pubSub.$emit('branch:selected', ids)
     },
     watch: {
       searchQuery: _.debounce(function(){this.searchQueryChanged()}, 300)
@@ -25,8 +26,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       },
       branchesFetchSuccess: function(response) {
         this.branches = response.data
-        var ids = this.branches.map(function(branch) {return branch.id})
-        ATSB.pubSub.$emit('branch:selected', ids)
+        ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
       },
       branchesFetchError: function() {
         console.warn()
@@ -36,10 +36,14 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       },
       componentOpen: function() {
         this.actions.show = true
+        ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
       },
       searchQueryChanged: function() {
         ATSB.pubSub.$emit('fetch:branch:search', this.searchQuery, this.branchesFetchSuccess, this.branchesFetchError)
       },
+      getBranchesIds: function() {
+        return this.branches.map(function(branch) {return branch.id})
+      }
     }
   })
 }
