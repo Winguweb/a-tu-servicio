@@ -2,7 +2,7 @@ class BranchesController < ApplicationController
 
   def index
 
-    @branches = Branch.includes(:provider).where("branches.name ILIKE ?", "%#{params[:q]}%")
+    @branches = Branch.includes(:provider).where("branches.name ILIKE ?", "%#{params[:q]}%").where.not(georeference: nil)
     @response = @branches.map do |branch|
       {
         :id => branch.id,
