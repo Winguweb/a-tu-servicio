@@ -10,7 +10,7 @@ div.branch-list-large-cell v-bind:class="{show: actions.show}"
           a v-on:click="suggestionClicked(suggestion)"
             | {{suggestion}}
       span = "?"
-  div
+  div v-if="!perform_search"
     ul
       li v-for="branch in branches"
         a v-on:click="branchClicked(branch.id)"
@@ -21,6 +21,8 @@ div.branch-list-large-cell v-bind:class="{show: actions.show}"
             main
               p
                 | {{branch.provider_name}}
+  div v-if="perform_search"
+    == cell('components/progress_circle')
 
 javascript:
   $(function() {

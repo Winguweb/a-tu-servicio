@@ -2,17 +2,9 @@ class BranchesController < ApplicationController
 
   def index
     query = params[:q]
-    @branches = Branch.search(query, {
-      where: {
-        georeference: {not: nil}
-      },
-      match: :word_start,
-      misspellings: {
-        edit_distance: 2
-      },
-      fields: [:name, :provider_name, :address, :specialities],
-      suggest: true,
-    })
+
+    @branches = query.blank? ? _get_all_branches : _search_branches(query)
+
     @response = {
       :results => @branches.map do |branch|
         {
@@ -84,5 +76,31 @@ class BranchesController < ApplicationController
       end
     }
     render json: @response
+  end
+
+  private
+
+  def _get_all_branches
+    Branch.search('*', {
+      where: {
+        georeference: {not: nil}
+      },
+      suggest: true,
+      order: {name: :asc}
+    })
+  end
+
+  def _search_branches(query)
+    Branch.search(query, {
+      where: {
+        georeference: {not: nil}
+      },
+      match: :word_start,
+      misspellings: {
+        edit_distance: 2
+      },
+      fields: [:name, :provider_name, :address, :specialities],
+      suggest: true,
+    })
   end
 end

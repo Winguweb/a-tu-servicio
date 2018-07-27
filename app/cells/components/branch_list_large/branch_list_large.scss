@@ -64,6 +64,7 @@ $search-bar-height: calc(66px);
     height: calc(100% - #{$search-bar-height});
     overflow: auto;
     padding-right: $search-button-width;
+    position: relative;
     width: 100%;
     > ul {
       > li {
