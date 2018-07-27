@@ -3,6 +3,13 @@ div.branch-list-large-cell v-bind:class="{show: actions.show}"
     input placeholder="Buscar prestador de de servicios de salud, sede o especialidad..." v-model="searchQuery"
     = link_to '#' do
       = image_tag image_path("icons/magnifier.svg")
+    div v-if="suggestions.length && branches.length < 5"
+      span = "Quiso decir "
+      ul
+        li v-for="suggestion in suggestions"
+          a v-on:click="suggestionClicked(suggestion)"
+            | {{suggestion}}
+      span = "?"
   div
     ul
       li v-for="branch in branches"

@@ -1,16 +1,29 @@
 class BranchesController < ApplicationController
 
   def index
-
-    @branches = Branch.includes(:provider).where("branches.name ILIKE ?", "%#{params[:q]}%").where.not(georeference: nil)
-    @response = @branches.map do |branch|
-      {
-        :id => branch.id,
-        :name => branch.name,
-        :address => branch.address,
-        :provider_name => branch.provider.name
-      }
-    end
+    query = params[:q]
+    @branches = Branch.search(query, {
+      where: {
+        georeference: {not: nil}
+      },
+      match: :word_start,
+      misspellings: {
+        edit_distance: 2
+      },
+      fields: [:name, :provider_name, :address, :specialities],
+      suggest: true,
+    })
+    @response = {
+      :results => @branches.map do |branch|
+        {
+          :id => branch.id,
+          :name => branch.name,
+          :address => branch.address,
+          :provider_name => branch.provider.name
+        }
+      end,
+      suggestions: @branches.suggestions
+    }
     render json: @response
   end
 

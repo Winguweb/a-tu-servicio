@@ -4,7 +4,8 @@ ATSB.Components['components/branch-list-large'] = function(options) {
     data: {
       branches: [],
       searchQuery: "",
-      actions: {show: false}
+      actions: {show: false},
+      suggestions: "",
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
@@ -23,8 +24,12 @@ ATSB.Components['components/branch-list-large'] = function(options) {
         ATSB.pubSub.$emit('branch:compare:set', id)
         ATSB.pubSub.$emit('branch:compare:button:show')
       },
+      suggestionClicked: function(suggestion) {
+        this.searchQuery = suggestion
+      },
       branchesFetchSuccess: function(response) {
-        this.branches = response.data
+        this.branches = response.data.results
+        this.suggestions = response.data.suggestions
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
       },
       branchesFetchError: function() {

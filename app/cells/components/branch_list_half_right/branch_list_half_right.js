@@ -4,7 +4,8 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
     data: {
       branches: [],
       searchQuery: "",
-      actions: {show: false}
+      actions: {show: false},
+      suggestions: "",
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
@@ -14,6 +15,9 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
       searchQuery: _.debounce(function(){this.searchQueryChanged()}, 300)
     },
     methods: {
+      suggestionClicked: function(suggestion) {
+        this.searchQuery = suggestion
+      },
       branchClicked: function(id) {
         this.componentClose()
         ATSB.pubSub.$emit('branch:detail:half-right:open')
@@ -22,7 +26,8 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
         ATSB.pubSub.$emit('branch:compare:button:hide')
       },
       branchesFetchSuccess: function(response) {
-        this.branches = response.data
+        this.branches = response.data.results
+        this.suggestions = response.data.suggestions
       },
       branchesFetchError: function() {
         console.warn()
