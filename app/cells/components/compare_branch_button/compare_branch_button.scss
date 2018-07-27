@@ -37,10 +37,14 @@
     }
     > img {
       margin-right: 2px;
+      margin-right: gutter(-1);
       position: relative;
       top: -1px;
       vertical-align: middle;
       width: 21px;
+      &.icon-close {
+        width: 13px;
+      }
     }
     > span {
       font-weight: 400;

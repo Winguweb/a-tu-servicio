@@ -3,7 +3,7 @@ div.compare-branch-button-cell v-bind:class="{show: actions.show}"
     = image_tag image_path("icons/compare.svg")
     span = "Comparar"
   button v-on:click="compareCancelButtonClicked" v-if="action=='cancel'"
-    = image_tag image_path("icons/compare.svg")
+    = image_tag image_path("icons/close.svg"), class:"icon-close"
     span = "Cancelar"
 
 javascript:
