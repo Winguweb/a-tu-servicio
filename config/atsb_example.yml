@@ -1,0 +1,14 @@
+development: &app_config
+  redis:
+    host: 'localhost'
+    port: 6379
+    db:   0
+  georeference:
+    api_key:
+
+
+production:
+  <<: *app_config
+
+test:
+  <<: *app_config

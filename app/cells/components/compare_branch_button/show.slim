@@ -1,0 +1,11 @@
+div.compare-branch-button-cell v-bind:class="{show: actions.show}"
+  button v-on:click="compareButtonClicked" v-if="action=='compare'"
+    = image_tag image_path("icons/compare.svg")
+    span = "Comparar"
+  button v-on:click="compareCancelButtonClicked" v-if="action=='cancel'"
+    = image_tag image_path("icons/compare.svg")
+    span = "Cancelar"
+
+javascript:
+  $(function() {ATSB.Components['components/compare-branch-button']()});
+

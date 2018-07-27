@@ -1,4 +1,4 @@
-class AddStructureToProvider < ActiveRecord::Migration
+class AddStructureToProvider < ActiveRecord::Migration[5.2]
   def change
     add_column :providers, :estructura_primaria, :integer, default: 0
     add_column :providers, :estructura_secundaria, :integer, default: 0

@@ -1,0 +1,15 @@
+div.waiting-times-visualization-cell
+  div
+    div v-for="i in toNOfTen(waiting_time.from_best)"
+      img :src="'/assets/icons/clock.svg'"
+    div v-for="i in toNOfTenReverse(waiting_time.from_best)"
+      img :src="'/assets/icons/clock-empty.svg'"
+  div
+    p
+      = "Pasan "
+      strong
+        | {{waiting_time.days}}
+      span v-if="waiting_time.days > 1"
+        = " días hasta ser atendido por el especialista."
+      span v-else=""
+        = " día hasta ser atendido por el especialista."

@@ -1,4 +1,4 @@
-class UpdateGoalsColumns < ActiveRecord::Migration
+class UpdateGoalsColumns < ActiveRecord::Migration[5.2]
   def change
     unless column_exists? :providers, :captacion_rn
         add_column :providers, :captacion_rn, :decimal
