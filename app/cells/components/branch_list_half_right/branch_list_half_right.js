@@ -4,16 +4,22 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
     data: {
       branches: [],
       searchQuery: "",
-      actions: {show: false}
+      actions: {show: false},
+      suggestions: "",
+      perform_search: true,
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:list:half-right:open', this.componentOpen)
+      ATSB.pubSub.$emit('fetch:branch:search', '', this.branchesFetchSuccess, this.branchesFetchError)
     },
     watch: {
       searchQuery: _.debounce(function(){this.searchQueryChanged()}, 300)
     },
     methods: {
+      suggestionClicked: function(suggestion) {
+        this.searchQuery = suggestion
+      },
       branchClicked: function(id) {
         this.componentClose()
         ATSB.pubSub.$emit('branch:detail:half-right:open')
@@ -22,9 +28,12 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
         ATSB.pubSub.$emit('branch:compare:button:hide')
       },
       branchesFetchSuccess: function(response) {
-        this.branches = response.data
+        this.branches = response.data.results
+        this.suggestions = response.data.suggestions
+        this.perform_search = false
       },
       branchesFetchError: function() {
+        this.perform_search = false
         console.warn()
       },
       componentClose: function() {
@@ -35,6 +44,7 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
       },
       searchQueryChanged: function() {
         ATSB.pubSub.$emit('fetch:branch:search', this.searchQuery, this.branchesFetchSuccess, this.branchesFetchError)
+        this.perform_search = true
       },
     }
   })
