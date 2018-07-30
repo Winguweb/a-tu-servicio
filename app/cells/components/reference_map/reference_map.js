@@ -23,7 +23,8 @@ ATSB.Components['components/reference-map'] = function(options) {
     methods: {
       centerMap: function() {
         var targetLatLng = this.baseGeometryFeature.getBounds().getCenter()
-        this.map.fitBounds(this.baseGeometryFeature.getBounds(),{animate: false, padding: [75, 75]});
+        var padding = this.centered ? [0, 0] : [100, 100]
+        this.map.fitBounds(this.baseGeometryFeature.getBounds(),{animate: false, padding: padding});
         var zoom = this.map.getZoom()
         var targetPoint = this.map.project(targetLatLng, zoom)
         if (!this.centered) targetPoint = targetPoint.add([791 / 2, 0])
