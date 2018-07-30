@@ -20,3 +20,11 @@ class Branch < ActiveRecord::Base
   end
 
 end
+
+#If indices are blocked
+#**********************
+#Try running Job.search_index.clean_indices in the console first and see if that helps.
+#If you still get that error, you could also try adding the following to your searchkick config in the Job model and reindexing (although it shouldn't really be necessary):
+#searchkick settings: {blocks: {read_only: false}}
+#If you are still getting the error, then the final thing you could try would be to delete the existing index first by running Job.search_index.delete and then reindexing to create a new index.
+
