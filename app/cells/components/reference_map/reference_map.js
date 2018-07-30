@@ -3,7 +3,7 @@ ATSB.Components['components/reference-map'] = function(options) {
     el: '.reference-map-cell',
     data: {
       branches: options.branches,
-      center: options.defaults.center,
+      centered: true,
       style: options.defaults.style,
       zoom: options.defaults.zoom,
       token: options.token,
@@ -11,17 +11,24 @@ ATSB.Components['components/reference-map'] = function(options) {
     },
     created: function() {
       ATSB.pubSub.$on('branch:selected', this.setSelectedBranch)
+      ATSB.pubSub.$on('map:centered', this.setCentered)
     },
     mounted: function() {
       this.setAccessToken()
       this.createMap()
-      this.centerMap()
       this.showReferences()
+      this.centerMap()
       this.addMapEvents()
     },
     methods: {
       centerMap: function() {
-        this.map.setView([this.center.lat, this.center.lng], this.zoom)
+        var targetLatLng = this.baseGeometryFeature.getBounds().getCenter()
+        this.map.fitBounds(this.baseGeometryFeature.getBounds(),{animate: false, padding: [75, 75]});
+        var zoom = this.map.getZoom()
+        var targetPoint = this.map.project(targetLatLng, zoom)
+        if (!this.centered) targetPoint = targetPoint.add([791 / 2, 0])
+        var targetLatLng = this.map.unproject(targetPoint, zoom)
+        this.map.setView(targetLatLng, zoom, {animate: false})
       },
       createMap: function() {
         this.map = L.mapbox.map('map_container', this.style)
@@ -70,6 +77,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         this.selectedBranch = ids
         this.clearReferences()
         this.showReferences()
+        this.centerMap()
       },
       addEvents: function(marker) {
         marker.on('click', function (evt) {
@@ -86,6 +94,9 @@ ATSB.Components['components/reference-map'] = function(options) {
         this.map.on('click', function(evt) {
           ATSB.pubSub.$emit('all:slides:close')
         })
+      },
+      setCentered: function(value) {
+        this.centered = value
       }
     }
   })

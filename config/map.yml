@@ -1,7 +1,8 @@
 center:
-  lat: 4.6482837
-  lng: -73.85
-zoom: 11
+  lat: 4.6494814
+  lng: -74.172364
+
+zoom: 10
 style: 'mapbox.streets'
 geometry_styles:
   marker:

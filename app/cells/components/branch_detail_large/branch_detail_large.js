@@ -30,9 +30,11 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
       },
       componentClose: function() {
         this.actions.show = false
+        ATSB.pubSub.$emit('map:centered', true)
       },
       componentOpen: function() {
         this.actions.show = true
+        ATSB.pubSub.$emit('map:centered', false)
       },
     }
   })

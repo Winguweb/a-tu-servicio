@@ -40,9 +40,11 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       },
       componentClose: function() {
         this.actions.show = false
+        ATSB.pubSub.$emit('map:centered', true)
       },
       componentOpen: function() {
         this.actions.show = true
+        ATSB.pubSub.$emit('map:centered', false)
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
       },
       searchQueryChanged: function() {
