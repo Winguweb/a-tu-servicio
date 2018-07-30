@@ -27,7 +27,8 @@ ATSB.Components['components/reference-map'] = function(options) {
         this.map.fitBounds(this.baseGeometryFeature.getBounds(),{animate: false, padding: padding});
         var zoom = this.map.getZoom()
         var targetPoint = this.map.project(targetLatLng, zoom)
-        if (!this.centered) targetPoint = targetPoint.add([791 / 2, 0])
+        var offset = window.innerWidth * 0.61803398875
+        if (!this.centered) targetPoint = targetPoint.add([offset / 2, 0])
         var targetLatLng = this.map.unproject(targetPoint, zoom)
         this.map.setView(targetLatLng, zoom, {animate: false})
       },
