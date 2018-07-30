@@ -60,11 +60,11 @@
       opacity: 1;
     }
     > span {
-      @include type-golden(0);
       color: $white;
+      font-size: 12px;
       font-weight: 400;
       position: relative;
-      top: 2px;
+      top: 4px;
     }
   }
 

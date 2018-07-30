@@ -30,7 +30,7 @@ ATSB.Components['components/reference-map'] = function(options) {
           zoomToBoundsOnClick: true,
           animateAddingMarkers: false,
           animate: false,
-          maxClusterRadius: 25,
+          maxClusterRadius: 45,
           showCoverageOnHover: false,
           spiderLegPolylineOptions: {opacity: 0},
           iconCreateFunction: function(cluster) {
