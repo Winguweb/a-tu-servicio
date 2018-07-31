@@ -3,7 +3,9 @@ header.site-header-cell
     = image_tag image_path("logos/atsb-w.svg")
   div
     a.site-menu-button v-on:click="menuClicked"
-      = image_tag image_path("icons/menu.svg")
+      img v-if="action == 'open'" src=image_path("icons/menu.svg")
+      img v-if="action == 'close'" src=image_path("icons/close-menu.svg")
+      img v-if="action == 'back'" src=image_path("icons/back-menu.svg")
 
 javascript:
   $(function() {

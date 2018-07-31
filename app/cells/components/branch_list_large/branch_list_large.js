@@ -11,6 +11,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:list:large:open', this.componentOpen)
+      ATSB.pubSub.$on('branch:list:large:close', this.componentClose)
       ATSB.pubSub.$emit('fetch:branch:search', '', this.branchesFetchSuccess, this.branchesFetchError)
     },
     watch: {
@@ -43,6 +44,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
         ATSB.pubSub.$emit('map:centered', true)
       },
       componentOpen: function() {
+        if (this.actions.show) return
         this.actions.show = true
         ATSB.pubSub.$emit('map:centered', false)
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())

@@ -45,9 +45,7 @@ ATSB.Components['components/reference-map'] = function(options) {
           iconCreateFunction: function(cluster) {
             return L.divIcon({ html: '<div class="reference-map--cluster"><span>' + cluster.getChildCount() + '</span></div>' });
           }
-
         })
-
         this.map.addLayer(this.baseGeometryFeature)
       },
       setAccessToken: function() {
@@ -95,6 +93,7 @@ ATSB.Components['components/reference-map'] = function(options) {
       addMapEvents: function() {
         this.map.on('click', function(evt) {
           ATSB.pubSub.$emit('all:slides:close')
+          ATSB.pubSub.$emit('header:action:set', 'open')
         })
       },
       setCentered: function(value) {
