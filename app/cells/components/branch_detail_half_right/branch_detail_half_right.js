@@ -3,12 +3,18 @@ ATSB.Components['components/branch-detail-half-right'] = function(options) {
     el: '.branch-detail-half-right-cell',
     data: {
       branch: {loaded: false},
-      actions: {show: false}
+      actions: {show: false},
+      colors: {
+        beds: null,
+        waiting_times: null,
+        satisfactions: null,
+      }
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:detail:half-right:open', this.componentOpen)
       ATSB.pubSub.$on('branch:detail:half-right:fetch', this.branchFetch)
+      ATSB.pubSub.$on('branch:compare:colors', this.changeColors)
     },
     methods: {
       toPercentage: ATSB.Helpers.numbers.toPercentage,
@@ -20,6 +26,7 @@ ATSB.Components['components/branch-detail-half-right'] = function(options) {
       branchFetchSuccess: function(response) {
         this.branch = response.data
         this.branch.loaded = true
+        ATSB.pubSub.$emit('branch:compare:load:right', this.branch)
         console.log(response.data)
       },
       branchFetchError: function() {
@@ -38,7 +45,14 @@ ATSB.Components['components/branch-detail-half-right'] = function(options) {
       },
       normalLayout: function() {
         $('body').removeClass('comparing')
-      }
+      },
+      changeColors: function(compared) {
+        c = ['red', 'blue', 'green']
+        this.colors = {
+          satisfactions: c[ATSB.Utils.compare(compared.right.satisfaction,compared.left.satisfaction)+1],
+          waiting_times: c[ATSB.Utils.compare(compared.left.waiting_times_percentage_from_worst,compared.right.waiting_times_percentage_from_worst)+1],
+        }
+      },
     }
   })
 }

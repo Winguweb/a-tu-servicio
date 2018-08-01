@@ -4,12 +4,18 @@ ATSB.Components['components/compare-branch-button'] = function(options) {
     data: {
       actions: {show: false},
       compared_stack: [],
-      action: 'compare'
+      action: 'compare',
+      compared_objects: {
+        right: null,
+        left: null
+      }
     },
     created: function() {
       ATSB.pubSub.$on('branch:compare:button:show', this.compareButtonShow)
       ATSB.pubSub.$on('branch:compare:button:hide', this.compareButtonHide)
       ATSB.pubSub.$on('branch:compare:set', this.setBranchToCompare)
+      ATSB.pubSub.$on('branch:compare:load:right', this.loadCompareRight)
+      ATSB.pubSub.$on('branch:compare:load:left', this.loadCompareLeft)
       ATSB.pubSub.$on('branch:compare:remove', this.removeBranchToCompare)
     },
     watch: {},
@@ -23,6 +29,13 @@ ATSB.Components['components/compare-branch-button'] = function(options) {
       },
       setBranchToCompare: function(id) {
         this.compared_stack.push(id)
+      },
+      loadCompareRight: function(branch) {
+        this.compared_objects.right = branch
+        ATSB.pubSub.$emit('branch:compare:colors', this.compared_objects)
+      },
+      loadCompareLeft: function(branch) {
+        this.compared_objects.left = branch
       },
       removeBranchToCompare: function() {
         this.compared_stack.pop()
