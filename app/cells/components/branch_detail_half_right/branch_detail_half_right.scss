@@ -145,7 +145,7 @@ $search-bar-height: calc(66px);
           > main {
             @include grid-column(1 of 1);
             clear: both;
-            min-height: 250px;
+            min-height: 316px;
           }
         }
       }
