@@ -1,14 +1,14 @@
 $search-button-width: gutter(1.5);
-$search-bar-height: calc(44px + #{gutter(2)});
+$search-bar-height: calc(66px);
 @mixin branch-detail-large() {
   background-color: $white;
   border-left: 1px solid color($light-grey, 0.5); // for right
   bottom: 0;
   overflow: auto;
   padding: gutter(1) gutter(1) gutter(1) 0; // for right
-  position: absolute;
+  position: fixed;
   right: 0; // for right
-  top: 0;
+  top: $search-bar-height;
   transform: translateX(100%); // for right
   transition: transform 300ms ease 0ms;
   width: calc(100% / 1.61803398875);

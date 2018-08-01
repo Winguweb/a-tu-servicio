@@ -15,7 +15,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       ATSB.pubSub.$emit('fetch:branch:search', '', this.branchesFetchSuccess, this.branchesFetchError)
     },
     watch: {
-      searchQuery: _.debounce(function(){this.searchQueryChanged()}, 300)
+      searchQuery: _.debounce(function(){this.searchQueryChanged()}, 1000)
     },
     methods: {
       branchClicked: function(id) {
@@ -29,14 +29,19 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       suggestionClicked: function(suggestion) {
         this.searchQuery = suggestion
       },
+      clearSearchClicked: function() {
+        this.searchQuery = ''
+      },
       branchesFetchSuccess: function(response) {
         this.branches = response.data.results
         this.suggestions = response.data.suggestions
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
         this.perform_search = false
+        this.focusSearch()
       },
       branchesFetchError: function() {
         this.perform_search = false
+        this.focusSearch()
         console.warn()
       },
       componentClose: function() {
@@ -48,6 +53,9 @@ ATSB.Components['components/branch-list-large'] = function(options) {
         this.actions.show = true
         ATSB.pubSub.$emit('map:centered', false)
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
+      },
+      focusSearch: function() {
+        this.actions.show && this.$nextTick(function() {this.$refs.search.focus()}.bind(this))
       },
       searchQueryChanged: function() {
         ATSB.pubSub.$emit('fetch:branch:search', this.searchQuery, this.branchesFetchSuccess, this.branchesFetchError)

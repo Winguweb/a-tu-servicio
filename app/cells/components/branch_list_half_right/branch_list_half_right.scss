@@ -1,12 +1,11 @@
-$search-button-width: gutter(1.5);
 $search-bar-height: calc(66px);
 @mixin branch-list-half-right() {
   background-color: $white;
   bottom: 0;
   padding: gutter(1) gutter(1) 0 gutter(1);
-  position: absolute;
+  position: fixed;
   right: 0; // for right
-  top: 0;
+  top: $search-bar-height;
   transform: translateX(100%); // for right
   transition: transform 300ms ease 0ms;
   width: 50%;
@@ -18,22 +17,32 @@ $search-bar-height: calc(66px);
   > div:first-of-type {
     height: 66px;
     overflow: auto;
+    position: relative;
     > input {
       @include type-golden(0);
       float: left;
       height: 44px;
-      padding: gutter();
-      width: calc(100% - #{$search-button-width});
+      padding: gutter() gutter(2) gutter() gutter();
+      width: calc(100%);
     }
     > a {
-      float: right;
-      height: 44px;
-      padding: gutter(-0.5) 0 gutter(-0.5) gutter(-0.5);
-      text-align: right;
-      width: $search-button-width;
+      cursor: pointer;
+      display: block;
+      height: 16px;
+      opacity: 0.6;
+      position: absolute;
+      right: gutter();
+      top: 14px;
+      width: 16px;
+      &:hover {
+        opacity: 1;
+      }
       > img {
         height: 100%;
       }
+    }
+    input:invalid ~ a {
+      display: none;
     }
     > div {
       clear: both;

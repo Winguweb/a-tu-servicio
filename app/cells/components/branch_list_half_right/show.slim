@@ -1,9 +1,9 @@
 div.branch-list-half-right-cell v-bind:class="{show: actions.show}"
   div
-    input placeholder="Buscar prestador de de servicios de salud, sede o especialidad..." v-model="searchQuery"
-    = link_to '#' do
-      = image_tag image_path("icons/magnifier.svg")
-    div v-if="suggestions.length && branches.length < 5"
+    input placeholder="Buscar prestador de de servicios de salud, sede o especialidad..." v-model="searchQuery" required="" :disabled="perform_search" ref="search" autofocus="true"
+    a v-on:click="clearSearchClicked"
+      = image_tag image_path("icons/cancel-search.svg")
+    div v-if="suggestions.length && branches.length < 5 && false"
       span = "Quiso decir "
       ul
         li v-for="suggestion in suggestions"

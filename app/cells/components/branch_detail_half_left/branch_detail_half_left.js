@@ -30,6 +30,7 @@ ATSB.Components['components/branch-detail-half-left'] = function(options) {
       },
       componentOpen: function() {
         this.actions.show = true
+        ATSB.pubSub.$emit('header:action:set', 'close')
       },
     }
   })
