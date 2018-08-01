@@ -53,6 +53,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
         this.actions.show = true
         ATSB.pubSub.$emit('map:centered', false)
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
+        this.focusSearch()
       },
       focusSearch: function() {
         this.actions.show && this.$nextTick(function() {this.$refs.search.focus()}.bind(this))

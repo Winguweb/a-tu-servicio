@@ -46,6 +46,7 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
       },
       componentOpen: function() {
         this.actions.show = true
+        this.focusSearch()
       },
       focusSearch: function() {
         this.actions.show && this.$nextTick(function() {this.$refs.search.focus()}.bind(this))
