@@ -27,10 +27,18 @@ ATSB.Components['components/branch-detail-half-right'] = function(options) {
       },
       componentClose: function() {
         this.actions.show = false
+        this.normalLayout()
       },
       componentOpen: function() {
         this.actions.show = true
+        this.comparingLayout()
       },
+      comparingLayout: function() {
+        $('body').addClass('comparing')
+      },
+      normalLayout: function() {
+        $('body').removeClass('comparing')
+      }
     }
   })
 }

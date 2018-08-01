@@ -18,13 +18,21 @@ body {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
   }
-}
-
-body > main {
-  height: calc(100% - #{$header-height});
-  overflow-x: hidden;
-  position: relative;
-  width: 100%;
+  > main {
+    height: calc(100% - #{$header-height});
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+  &.comparing {
+    .branch-detail-half-right-cell,
+    .branch-detail-half-left-cell {
+      bottom: initial;
+      height: auto;
+      position: absolute;
+      top: 0;
+    }
+  }
 }
 
 /* LEAFLET SETTINGS */
