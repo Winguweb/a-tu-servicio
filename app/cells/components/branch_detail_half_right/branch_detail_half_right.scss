@@ -23,6 +23,7 @@ $search-bar-height: calc(66px);
       > header {
         border-bottom: 1px solid $blue;
         margin-bottom: gutter();
+        min-height: 76px;
         > h1 {
           @include text-color($blue, 1);
           @include type-golden(1);
@@ -115,6 +116,7 @@ $search-bar-height: calc(66px);
                 }
               }
               &.horizontal {
+                min-height: 250px;
                 > div {
                   > div {
                     @include grid-column(1 of 2);
@@ -137,6 +139,7 @@ $search-bar-height: calc(66px);
           > main {
             @include grid-column(1 of 1);
             clear: both;
+            min-height: 250px;
           }
         }
       }
