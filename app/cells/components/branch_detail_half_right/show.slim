@@ -51,7 +51,7 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}"
                   == cell('visualization_components/beds_visualization')
           main v-else=""
             p ="Sin información."
-        section
+        section :class="colors.satisfactions"
           header :class="{percentage: branch.has_satisfaction_information}"
             div
               h1 = "Satisfacción"
@@ -69,7 +69,7 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}"
                   == cell('visualization_components/satisfaction_visualization')
           main v-else=""
             p ="Sin información."
-        section
+        section :class="colors.waiting_times"
           header :class="{percentage: branch.has_waiting_times_information}"
             div
               h1 = "Tiempos de espera"

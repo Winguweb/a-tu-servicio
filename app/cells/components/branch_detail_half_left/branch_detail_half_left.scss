@@ -43,16 +43,22 @@ $search-bar-height: calc(66px);
           @include grid-collapse;
           clear: both;
           margin-bottom: gutter(2);
+          &.red > header.percentage > div:last-of-type {border-color: $red;}
+          &.red > header.percentage > div:last-of-type > div {background-color: $red;}
+          &.green > header.percentage > div:last-of-type  {border-color: $green;}
+          &.green > header.percentage > div:last-of-type > div {background-color: $green;}
           > header {
             background-color: $light-grey;
+            height: 53px;
             margin-bottom: gutter();
-            overflow: auto;
+            overflow: hidden;
             position: relative;
             > div:first-of-type {
               float: left;
               padding: gutter();
               > h1 {
                 @include text-color($blue, 1);
+                @include type-golden(0);
                 text-align: left;  // for left
               }
             }

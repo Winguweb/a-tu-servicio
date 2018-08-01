@@ -44,14 +44,16 @@ $search-bar-height: calc(66px);
           margin-bottom: gutter(2);
           > header {
             background-color: $light-grey;
+            height: 53px;
             margin-bottom: gutter();
-            overflow: auto;
+            overflow: hidden;
             position: relative;
             > div:first-of-type {
               float: right;  // for right
               padding: gutter();
               > h1 {
                 @include text-color($blue, 1);
+                @include type-golden(0);
                 text-align: right;  // for right
               }
             }
