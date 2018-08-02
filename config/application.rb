@@ -40,6 +40,7 @@ module AtuservicioRails
       components/branch_detail_large_cell
       components/branch_list_half_right_cell
       components/branch_list_large_cell
+      components/general_info_cell
       components/progress_circle_cell
       components/reference_map_cell
       components/site_footer_cell
