@@ -1,0 +1,17 @@
+footer.site-footer-cell
+  div
+    ul
+      li
+        = link_to '#' do
+          = image_tag image_path("logos/data-uruguay.png")
+      li
+        = link_to '#' do
+          = image_tag image_path("logos/fundacion-corona.svg"), class: 'fundacion-corona'
+      li
+        = link_to '#' do
+          = image_tag image_path("logos/wingu.svg"), class: 'fundacion-corona'
+
+javascript:
+  $(function() {
+    ATSB.Components['components/site-footer']()
+  });
