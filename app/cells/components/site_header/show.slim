@@ -1,11 +1,14 @@
 header.site-header-cell
   div
-    = image_tag image_path("logos/atsb-w.svg")
+    = link_to home_path do
+      = image_tag image_path("logos/atsb-w.svg")
   div
-    a.site-menu-button v-on:click="menuClicked"
-      img v-if="action == 'open'" src=image_path("icons/search.svg")
-      img v-if="action == 'close'" src=image_path("icons/close-menu.svg")
-      img v-if="action == 'back'" src=image_path("icons/back-menu.svg")
+    = link_to 'Mapa de Servicios', home_path, class: current_page?(:controller => 'home', :action => 'index') ? 'active' : ''
+    = link_to 'El Proyecto', about_path, class: current_page?(:controller => 'home', :action => 'about') ? 'active' : ''
+  div
+    - if current_page?(:controller => 'home', :action => 'index')
+      a.site-menu-button v-on:click="menuClicked"
+        i :class="action"
 
 javascript:
   $(function() {

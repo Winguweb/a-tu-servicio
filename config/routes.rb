@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/' => 'home#index'
+  get '/' => 'home#index', as: :home
 
   get '/api/v1/branches' => 'branches#index'
   get '/api/v1/branches/:id' => 'branches#show'
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get :autocomplete_provider_search_name, on: :collection
   end
 
-  get '/sobre_el_proyecto' => 'home#about'
+  get '/sobre_el_proyecto' => 'home#about', as: :about
 
   get '/404' => 'errors#not_found'
   get '/500' => 'errors#internal_server_error'

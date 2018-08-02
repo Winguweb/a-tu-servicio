@@ -2,21 +2,43 @@
   background-color: $white;
   box-shadow: 0 2px 4px color($black, 0.5);
   height: $header-height;
-  padding: gutter();
   position: relative;
   z-index: 2000;
-  > div {
+  > div:first-of-type {
     float: left;
     height: 100%;
-    > img {
+    width: 206px;
+    > a {
+      display: inline-block;
       height: 100%;
-      left: 0;
-      padding: 10px;
-      position: absolute;
-      top: 0;
+      padding: gutter();
+      > img {
+        height: 100%;
+      }
     }
   }
   > div:nth-of-type(2) {
+    float: left;
+    height: 100%;
+    text-align: right;
+    width: calc(100% - 206px - 68px);
+    > a {
+      @include type-golden(0);
+      border-bottom: 2px solid transparent;
+      color: $blue;
+      display: inline-block;
+      height: 100%;
+      line-height: 19px;
+      padding: gutter(1);
+      &.active, &:hover {
+        border-bottom-color: $light-blue;
+        color: $light-blue;
+        text-decoration: none;
+      }
+      &:focus {text-decoration: none;}
+    }
+  }
+  > div:nth-of-type(3) {
     float: right;
     height: 100%;
     > a {
@@ -24,8 +46,22 @@
       display: block;
       height: 100%;
       padding: gutter(-1);
-      > img {
-        height: 21px;
+      &:hover {
+        > i {
+          &.open {background-image: image-url('icons/search-light-blue.svg');}
+          &.close {background-image: image-url('icons/close-menu-light-blue.svg');}
+          &.back {background-image: image-url('icons/back-menu-light-blue.svg');}
+        }
+      }
+      > i {
+        &.open {background-image: image-url('icons/search.svg');}
+          &.close {background-image: image-url('icons/close-menu.svg');}
+          &.back {background-image: image-url('icons/back-menu.svg');}
+        background-size: cover;
+        display: block;
+        height: 20px;
+        margin: 15px 14px;
+        width: 20px;
       }
     }
   }
