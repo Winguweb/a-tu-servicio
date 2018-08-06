@@ -62,6 +62,20 @@ $search-bar-height: calc(66px);
     }
   }
 }
-.general-info-cell{
+
+@mixin mobile-general-info() {
+  display: none;
+  width: 100%;
+  &.show {
+    display: block;
+    position: static;
+  }
+}
+
+.general-info-cell {
   @include general-info;
+}
+
+.mobile .general-info-cell {
+  @include mobile-general-info;
 }

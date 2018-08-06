@@ -35,7 +35,7 @@ html.desktop.no-js lang=I18n.locale.to_s xmlns="http://www.w3.org/1999/xhtml" xm
     = javascript_include_tag 'https://unpkg.com/axios/dist/axios.min.js'
     = javascript_include_tag 'application'
 
-    body id=body_id class="#{body_class} mobile"
+    body id=body_id class="#{body_class} mobile small-reference-map"
       = query_diet_widget if Rails.env.development?
       == cell('mobile_components/m_site_header')
       main

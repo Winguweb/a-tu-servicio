@@ -121,7 +121,10 @@ $search-bar-height: calc(66px);
       @include type-golden(0);
       border: none;
       border-bottom: 1px solid $blue;
-      padding: gutter() gutter(2) 0 0
+      padding: gutter() gutter(2) 0 0;
+      &:disabled {
+        background-color: transparent;
+      }
     }
     > a {
       height: 24px;
