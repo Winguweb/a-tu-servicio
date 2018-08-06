@@ -13,7 +13,7 @@ ATSB.Components['components/site-header'] = function(options) {
       ATSB.pubSub.$on('header:action:set', this.actionChange)
     },
     methods: {
-      menuClicked: function() {
+      actionClicked: function() {
         ATSB.pubSub.$emit(this.events[this.action])
       },
       actionChange: function(action) {

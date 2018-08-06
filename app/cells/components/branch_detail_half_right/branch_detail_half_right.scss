@@ -108,7 +108,7 @@ $search-bar-height: calc(66px);
                 }
               }
             }
-            > div:last-of-type {
+            > div:nth-of-type(2) {
               @include grid-collapse;
               overflow: hidden;
               > div {
@@ -143,7 +143,6 @@ $search-bar-height: calc(66px);
         }
         > section:first-of-type {
           > main {
-            @include grid-column(1 of 1);
             clear: both;
             min-height: 316px;
           }
@@ -152,6 +151,100 @@ $search-bar-height: calc(66px);
     }
   }
 }
+
+@mixin mobile-branch-detail-half-right() {
+  padding: 0;
+  > div {
+    > article {
+      > header {
+        min-height: 150px;
+        > h1 {
+          @include type-golden(0);
+          padding: gutter(-1);
+        }
+        > h2 {
+          @include type-golden(-1);
+          padding: gutter(-1);
+        }
+      }
+      > main {
+        @include grid-column(1 of 1);
+        > section {
+          > header {
+            > div:first-of-type {
+              > h1 {
+                @include type-golden(-1);
+              }
+            }
+            &.percentage {
+              > div:first-of-type {
+                width: calc(100% / 1.61803398875);
+              }
+              > div:last-of-type {
+                width: calc(100% - 100% / 1.61803398875);
+                > div {
+                  > span {
+                    @include type-golden(0);
+                  }
+                }
+              }
+            }
+          }
+          > main {
+            @include grid-container;
+            max-height: 300px;
+            min-height: 300px;
+            overflow: -moz-scrollbars-none;  // Firefox
+            -ms-overflow-style: none;  // IE 10+
+            overflow-x: hidden;
+            overflow-y: auto;
+            &::-webkit-scrollbar {
+              display: none;  // Safari and Chrome
+            }
+            > p {
+              @include type-golden(-1);
+            }
+            > div:first-of-type {
+              > p {
+                @include type-golden(-1);
+                > strong {
+                }
+              }
+            }
+            > div:last-of-type {
+              > div {
+                > div {
+                  > p {
+                    max-width: initial;
+                  }
+                }
+              }
+              &.horizontal {
+                > div {
+                  > div {
+                    @include grid-column(1 of 1);
+                  }
+                }
+              }
+              &.vertical {
+                > div {
+                  > div {
+                    @include grid-column(1 of 1);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .branch-detail-half-right-cell {
   @include branch-detail-half-right;
+}
+
+.mobile .branch-detail-half-right-cell {
+  @include mobile-branch-detail-half-right;
 }

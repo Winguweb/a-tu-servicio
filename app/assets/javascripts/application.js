@@ -19,6 +19,7 @@
 //= require reference_map
 //= require site_header
 //= require story_slider
+//= require m_site_header
 
 // VISUALIZATION CELLS
 //= require in_hundreed_visualization

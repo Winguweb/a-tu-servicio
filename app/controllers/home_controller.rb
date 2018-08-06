@@ -1,7 +1,7 @@
 # coding: utf-8
 class HomeController < ApplicationController
+  before_action :check_for_mobile
   include HomeHelper
-  layout 'public'
 
   def index
     @branches = Branch.where.not(georeference: nil)

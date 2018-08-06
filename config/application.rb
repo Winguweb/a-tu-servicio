@@ -46,6 +46,7 @@ module AtuservicioRails
       components/site_footer_cell
       components/site_header_cell
       components/story_slider_cell
+      mobile_components/m_site_header_cell
     )
 
     api_mime_types = %W(

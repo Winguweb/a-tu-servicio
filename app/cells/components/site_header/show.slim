@@ -7,7 +7,7 @@ header.site-header-cell
     = link_to 'El Proyecto', about_path, class: current_page?(:controller => 'home', :action => 'about') ? 'active' : ''
   div
     - if current_page?(:controller => 'home', :action => 'index')
-      a.site-menu-button v-on:click="menuClicked"
+      a.site-menu-button v-on:click="actionClicked"
         i :class="action"
 
 javascript:
