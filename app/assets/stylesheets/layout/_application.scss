@@ -25,6 +25,7 @@ body {
     width: 100%;
   }
   &.comparing {
+    overflow-x: auto;
     .branch-detail-half-right-cell,
     .branch-detail-half-left-cell {
       bottom: initial;

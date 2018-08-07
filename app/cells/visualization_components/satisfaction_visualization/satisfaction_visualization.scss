@@ -31,6 +31,16 @@
   }
 }
 
+@mixin mobile-satisfaction-visualization() {
+  > div {
+    max-width: initial;
+  }
+}
+
 .satisfaction-visualization-cell{
   @include satisfaction-visualization;
+}
+
+.mobile .satisfaction-visualization-cell{
+  @include mobile-satisfaction-visualization;
 }

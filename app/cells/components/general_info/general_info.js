@@ -11,6 +11,7 @@ ATSB.Components['components/general-info'] = function(options) {
       componentClose: function() {
         this.actions.show = false
         ATSB.pubSub.$emit('map:centered', true)
+        $('body').removeClass('small-reference-map')
       },
       componentOpen: function() {
         this.actions.show = true

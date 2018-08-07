@@ -10,6 +10,7 @@ $search-bar-height: calc(66px);
   transition: transform 300ms ease 0ms;
   width: 50%;
   will-change: transform;
+  z-index: 2000;
   &.show {
     transform: translateX(0); // for right
     transition: transform 300ms ease 300ms;
@@ -115,6 +116,48 @@ $search-bar-height: calc(66px);
   }
 }
 
-.branch-list-half-right-cell{
+@mixin mobile-branch-list-half-right() {
+  width: 100%;
+  > div:first-of-type {
+    > input {
+      @include type-golden(0);
+      border: none;
+      border-bottom: 1px solid $blue;
+      padding: gutter() gutter(2) 0 0;
+      &:disabled {
+        background-color: transparent;
+      }
+    }
+    > a {
+      height: 24px;
+      padding: 7px 0 7px 7px;
+      right: 0;
+      text-align: right;
+      top: 12px;
+      width: 24px;
+      &:hover {
+        opacity: 1;
+      }
+      > img {
+        height: 100%;
+      }
+    }
+  }
+  > div:nth-of-type(2) {
+    > ul {
+      > li {
+        > a {
+          padding: gutter(-1) 0;
+         }
+      }
+    }
+  }
+}
+
+.branch-list-half-right-cell {
   @include branch-list-half-right;
+}
+
+.mobile .branch-list-half-right-cell {
+  @include mobile-branch-list-half-right;
 }

@@ -31,6 +31,16 @@
   }
 }
 
+@mixin mobile-waiting-times-visualization() {
+  > div {
+    max-width: initial;
+  }
+}
+
 .waiting-times-visualization-cell{
   @include waiting-times-visualization;
+}
+
+.mobile .waiting-times-visualization-cell{
+  @include mobile-waiting-times-visualization;
 }

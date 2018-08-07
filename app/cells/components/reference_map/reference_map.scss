@@ -70,6 +70,14 @@
 
 }
 
-.reference-map-cell{
+@mixin mobile-reference-map() {
+  height: 75%;
+}
+
+.reference-map-cell {
   @include reference-map;
+}
+
+.mobile.small-reference-map .reference-map-cell {
+  @include mobile-reference-map;
 }

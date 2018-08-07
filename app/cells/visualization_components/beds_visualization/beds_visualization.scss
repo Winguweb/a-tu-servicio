@@ -31,6 +31,16 @@
   }
 }
 
+@mixin mobile-beds-visualization() {
+  > div {
+    max-width: initial;
+  }
+}
+
 .beds-visualization-cell{
   @include beds-visualization;
+}
+
+.mobile .beds-visualization-cell{
+  @include mobile-beds-visualization;
 }
