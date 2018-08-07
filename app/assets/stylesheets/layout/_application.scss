@@ -36,6 +36,15 @@ body {
   }
 }
 
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+
 /* LEAFLET SETTINGS */
 .leaflet-div-icon {
   background-color: transparent;
