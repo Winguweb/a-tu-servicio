@@ -20,6 +20,7 @@
 //= require site_header
 //= require story_slider
 //= require m_site_header
+//= require m_drawer
 
 // VISUALIZATION CELLS
 //= require in_hundreed_visualization

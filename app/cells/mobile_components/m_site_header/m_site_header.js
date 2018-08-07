@@ -4,7 +4,7 @@ ATSB.Components['mobile-components/m-site-header'] = function(options) {
     data: {
       action: 'menu',
       events: {
-        menu: [['all:slides:close'], ['mobile:menu:toggle']],
+        menu: [['drawer:open'], ['header:action:set', 'close']],
         search: [['all:slides:close'], ['branch:list:large:open'], ['branch:compare:button:hide'], ['header:action:set', 'close']],
         close: [['all:slides:close'], ['branch:compare:button:hide'], ['header:action:set', 'menu']],
         back: [['branch:detail:large:close'], ['branch:list:large:open'], ['branch:compare:button:hide'], ['header:action:set', 'close']]

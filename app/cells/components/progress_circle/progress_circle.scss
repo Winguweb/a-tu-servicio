@@ -1,9 +1,15 @@
 @mixin progress-circle() {
   left: 50%;
   position: absolute;
+  text-align: center;
   top: 50%;
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
+  &.static {
+    margin: gutter();
+    position: static;
+    transform: none;
+  }
   @-webkit-keyframes progress-circle-rotation {
     100% {
       transform: rotate(360deg);

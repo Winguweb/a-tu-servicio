@@ -3,14 +3,7 @@ div.branch-list-half-right-cell v-bind:class="{show: actions.show}"
     input placeholder="Buscar..." v-model="searchQuery" required="" :disabled="perform_search" ref="search" autofocus="true"
     a v-on:click="clearSearchClicked"
       = image_tag image_path("icons/cancel-search.svg")
-    div v-if="suggestions.length && branches.length < 5 && false"
-      span = "Quiso decir "
-      ul
-        li v-for="suggestion in suggestions"
-          a v-on:click="suggestionClicked(suggestion)"
-            | {{suggestion}}
-      span = "?"
-  div v-if="!perform_search"
+  div v-if="!perform_search" v-on:scroll="scrollEnd"
     ul
       li v-for="branch in branches"
         a v-on:click="branchClicked(branch.id)"
@@ -21,6 +14,8 @@ div.branch-list-half-right-cell v-bind:class="{show: actions.show}"
             main
               p
                 | {{branch.provider_name}}
+      li v-if="perform_lazy"
+        == cell('components/progress_circle', 'static')
   div v-if="perform_search"
     == cell('components/progress_circle')
 
