@@ -24,10 +24,10 @@
   height: auto;
 }
 
-.specialities-visualization-cell{
+.specialities-visualization-cell {
   @include specialities-visualization;
 }
 
-.mobile .specialities-visualization-cell{
+.mobile .specialities-visualization-cell {
   @include mobile-specialities-visualization;
 }
