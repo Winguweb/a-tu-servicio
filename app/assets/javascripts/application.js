@@ -15,6 +15,7 @@
 //= require branch_detail_large
 //= require branch_list_half_right
 //= require branch_list_large
+//= require general_info
 //= require reference_map
 //= require site_header
 //= require story_slider

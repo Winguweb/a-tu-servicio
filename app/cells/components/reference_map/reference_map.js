@@ -3,7 +3,7 @@ ATSB.Components['components/reference-map'] = function(options) {
     el: '.reference-map-cell',
     data: {
       branches: options.branches,
-      centered: true,
+      centered: false,
       style: options.defaults.style,
       zoom: options.defaults.zoom,
       token: options.token,
