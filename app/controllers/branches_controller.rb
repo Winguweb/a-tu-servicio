@@ -13,8 +13,7 @@ class BranchesController < ApplicationController
           :address => branch.address,
           :provider_name => branch.provider.name
         }
-      end,
-      suggestions: @branches.suggestions
+      end
     }
     render json: @response
   end
@@ -85,8 +84,9 @@ class BranchesController < ApplicationController
       where: {
         georeference: {not: nil}
       },
-      suggest: true,
-      order: {name: :asc}
+      order: {name: :asc},
+      page: params[:page],
+      per_page: 20
     })
   end
 
@@ -100,7 +100,8 @@ class BranchesController < ApplicationController
         edit_distance: 2
       },
       fields: [:name, :provider_name, :address, :specialities],
-      suggest: true,
+      page: params[:page],
+      per_page: 20
     })
   end
 end
