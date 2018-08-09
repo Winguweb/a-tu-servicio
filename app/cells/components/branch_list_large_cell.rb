@@ -1,5 +1,6 @@
 class Components::BranchListLargeCell < Cell::ViewModel
-  include StatisticsHelper
-
+  def branches
+    model.to_json
+  end
   private
 end

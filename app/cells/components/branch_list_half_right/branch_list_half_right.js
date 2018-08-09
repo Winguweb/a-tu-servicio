@@ -6,10 +6,10 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
       searchQuery: "",
       actions: {show: false},
       suggestions: "",
-      page: 0,
+      page: 1,
       perform_search: true,
       perform_lazy: false,
-      end_of_lazy: false,
+      end_of_lazy: true,
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
@@ -18,7 +18,7 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
     },
     watch: {
       searchQuery: _.debounce(function(){
-        this.page = 0
+        this.page = 1
         this.end_of_lazy = false
         this.searchQueryChanged()
       }, 1000)

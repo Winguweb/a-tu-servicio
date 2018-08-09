@@ -86,7 +86,7 @@ class BranchesController < ApplicationController
       },
       order: {name: :asc},
       page: params[:page],
-      per_page: 20
+      per_page: 50
     })
   end
 
@@ -101,7 +101,7 @@ class BranchesController < ApplicationController
       },
       fields: [:name, :provider_name, :address, :specialities],
       page: params[:page],
-      per_page: 20
+      per_page: 50
     })
   end
 end
