@@ -7,7 +7,8 @@ ATSB.Components['components/reference-map'] = function(options) {
       style: options.defaults.style,
       zoom: options.defaults.zoom,
       token: options.token,
-      selectedBranch: []
+      selectedBranch: [],
+      isMobile: $('body').hasClass('mobile')
     },
     created: function() {
       ATSB.pubSub.$on('branch:selected', this.setSelectedBranch)
@@ -29,15 +30,16 @@ ATSB.Components['components/reference-map'] = function(options) {
         var targetPoint = this.map.project(targetLatLng, zoom)
         var offset = window.innerWidth * 0.61803398875
         if (!this.centered) targetPoint = targetPoint.add([offset / 2, 0])
-        var targetLatLng = this.map.unproject(targetPoint, zoom)
+        if (!this.isMobile) targetLatLng = this.map.unproject(targetPoint, zoom)
         this.map.setView(targetLatLng, zoom, {animate: false})
       },
       createMap: function() {
         var southWest = L.latLng(4.456638, -74.794551),
         northEast = L.latLng(4.867143, -73.370018),
         bounds = L.latLngBounds(southWest, northEast);
+        var minZoom = this.isMobile ? 10 : 11
 
-        this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: 11})
+        this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom})
         this.baseGeometryFeature = new L.MarkerClusterGroup({
           spiderfyOnMaxZoom: true,
           zoomToBoundsOnClick: true,
