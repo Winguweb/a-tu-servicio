@@ -9,7 +9,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       page: 1,
       perform_search: false,
       perform_lazy: false,
-      end_of_lazy: true,
+      end_of_lazy: false,
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)

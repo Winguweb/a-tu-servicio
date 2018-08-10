@@ -2,8 +2,9 @@ class BranchesController < ApplicationController
 
   def index
     query = params[:q]
+    page = params[:page]
     search_service = SearchService.call
-    @branches = query.blank? ? search_service.search('*') : search_service.search(query)
+    @branches = query.blank? ? search_service.search('*', page) : search_service.search(query, page)
 
     @response = {
       :results => @branches.map do |branch|
