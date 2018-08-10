@@ -4,7 +4,7 @@ class Components::ReferenceMapCell < Cell::ViewModel
 
   def features
     return [] if model.blank?
-    Branch.where.not(:georeference => nil).map do |feature|
+    Branch.includes(:provider).where.not(:georeference => nil).map do |feature|
       {
         id: feature['id'],
         name: feature['name'].titlecase,
