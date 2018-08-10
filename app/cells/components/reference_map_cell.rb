@@ -4,11 +4,12 @@ class Components::ReferenceMapCell < Cell::ViewModel
 
   def features
     return [] if model.blank?
-    model.map do |feature|
+    Branch.where.not(:georeference => nil).map do |feature|
       {
         id: feature['id'],
         name: feature['name'].titlecase,
         coordinates: feature['georeference'].coordinates.reverse,
+        provider_name: feature.provider.name,
       }
     end.to_json
   end

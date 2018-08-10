@@ -4,7 +4,8 @@ class HomeController < ApplicationController
   include HomeHelper
 
   def index
-    @branches = Branch.where.not(georeference: nil)
+    search_service = SearchService.call
+    @branches = search_service.search('*')
     @common_info = CommonInfoService.call
   end
 
