@@ -4,7 +4,8 @@ div.splash-cell v-bind:class="{show: actions.show}"
       li
         span = 'Conocé a fondo datos de tu prestador de salud y compará con otras opciones'
     div
-      button = 'Conocer más'
+      button v-on:click="closeClicked()"
+        = 'Conocer más'
   == cell('components/city_image')
 
 javascript:

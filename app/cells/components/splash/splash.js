@@ -2,7 +2,7 @@ ATSB.Components['components/splash'] = function(options) {
   new Vue({
     el: '.splash-cell',
     data: {
-      actions: {show: false},
+      actions: {show: true},
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
@@ -11,7 +11,7 @@ ATSB.Components['components/splash'] = function(options) {
     },
     methods: {
       closeClicked: function(id) {
-
+        this.actions.show = false
       },
     }
   })

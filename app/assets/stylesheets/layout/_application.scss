@@ -10,7 +10,7 @@ html, body {
 
 body {
   @include type-setting(0);
-  @include text-color($black);
+  @include text-color($blue);
 
   @if $development { @include grid-visual };
 

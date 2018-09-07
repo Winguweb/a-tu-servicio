@@ -82,7 +82,21 @@ $search-bar-height: calc(66px);
           border: none;
         }
         &:hover {
-          background-color: color($light-grey, 0.3);
+          background-color: $light-blue;
+          > a {
+            > article {
+              > header {
+                > h1 {
+                  color: $white;
+                }
+              }
+              > main {
+                > p {
+                  color: $white;
+                }
+              }
+            }
+          }
         }
         > a {
           cursor: pointer;

@@ -14,7 +14,6 @@
 //= require branch_detail_large
 //= require branch_list_half_right
 //= require branch_list_large
-//= require city_image
 //= require compare_branch_button
 //= require general_info
 //= require m_drawer

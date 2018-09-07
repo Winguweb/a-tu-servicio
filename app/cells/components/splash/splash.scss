@@ -1,11 +1,15 @@
 @mixin splash() {
   background-color: $white;
   bottom: 0;
+  display: none;
   left: 0;
   position: fixed;
   right: 0;
   top: $header-height;
   z-index: 1000;
+  &.show {
+    display: block;
+  }
   > div:first-of-type {
     background-color: rgba(255,255,255,0.6);
     border-radius: 2px;
