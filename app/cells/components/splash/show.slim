@@ -1,0 +1,13 @@
+div.splash-cell v-bind:class="{show: actions.show}"
+  div
+    ul
+      li
+        span = 'Conocé a fondo datos de tu prestador de salud y compará con otras opciones'
+    div
+      button = 'Conocer más'
+  == cell('components/city_image')
+
+javascript:
+  $(function() {
+    ATSB.Components['components/splash']({})
+  });
