@@ -4,6 +4,9 @@ class HomeController < ApplicationController
   include HomeHelper
 
   def index
+  end
+
+  def services
     search_service = SearchService.call
     @all_branches = Branch.includes(:provider).where.not(:georeference => nil)
     @branches = search_service.search('*')

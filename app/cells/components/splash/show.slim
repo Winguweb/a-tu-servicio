@@ -4,7 +4,7 @@ div.splash-cell v-bind:class="{show: actions.show}"
       li
         span = 'Conocé a fondo datos de tu prestador de salud y compará con otras opciones'
     div
-      button v-on:click="closeClicked()"
+      = link_to services_path
         = 'Conocer más'
   == cell('components/city_image')
 
