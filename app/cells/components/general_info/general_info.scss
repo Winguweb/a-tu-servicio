@@ -53,6 +53,7 @@ $search-bar-height: calc(66px);
         text-align: justify;
       }
       > ul {
+        margin-bottom: gutter(2);
         > li {
           margin-bottom: gutter();
           &:before {
@@ -80,6 +81,40 @@ $search-bar-height: calc(66px);
             position: relative;
             top: 5px;
           }
+        }
+      }
+      > a {
+        @include type-golden(0);
+        background-color: $light-blue;
+        border: none;
+        border-radius: 2px;
+        box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
+        color: $white;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        padding: gutter(-1) gutter();
+        text-align: center;
+        width: 100px;
+        &:before {
+          border-left: 3px solid $white;
+          border-top: 3px solid $white;
+          content: '';
+          display: inline-block;
+          height: 10px;
+          left: -5px;
+          position: relative;
+          top: 1px;
+          transform: rotateZ(-45deg);
+          vertical-align: baseline;
+          width: 10px;
+        }
+        &:active {
+          position: relative;
+          top: 1px;
+        }
+        &:hover {
+          text-decoration: none;
         }
       }
     }

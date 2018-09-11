@@ -48,7 +48,7 @@ $search-bar-height: calc(66px);
           &.green > header.percentage > div:last-of-type  {border-color: $green;}
           &.green > header.percentage > div:last-of-type > div {background-color: $green;}
           > header {
-            background-color: $light-grey;
+            background-color: $light-blue;
             height: 53px;
             margin-bottom: gutter();
             overflow: hidden;
@@ -57,7 +57,7 @@ $search-bar-height: calc(66px);
               float: left;
               padding: gutter();
               > h1 {
-                @include text-color($blue, 1);
+                @include text-color($white, 1);
                 @include type-golden(0);
                 text-align: left;  // for left
               }

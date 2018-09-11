@@ -13,6 +13,8 @@ div.general-info-cell v-bind:class="{show: actions.show}"
           p = "Puedes utilizar los filtros para una mejor experiencia"
         li
           p = "Califica los servicios recibidos"
+      a.search-info-button v-on:click="actionClicked"
+        = "Buscar"
 
 
 javascript:

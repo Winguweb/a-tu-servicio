@@ -9,7 +9,7 @@
   transform: scale(0.75);
   transition: transform 300ms ease, opacity 300ms ease;
   will-change: opacity, transform;
-  z-index: 1000;
+  z-index: 2002;
   &.show {
     opacity: 1;
     pointer-events: initial;

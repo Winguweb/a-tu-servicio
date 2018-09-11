@@ -52,7 +52,7 @@ $search-bar-height: calc(66px);
             overflow: hidden;
             position: relative;
             > div:first-of-type {
-              float: left;  // for right
+              float: right;  // for right
               padding: gutter();
               > h1 {
                 @include text-color($white, 1);
@@ -66,7 +66,7 @@ $search-bar-height: calc(66px);
               }
               > div:last-of-type {
                 border-bottom: 2px solid $blue;
-                float: left;  // for right
+                float: right;  // for right
                 width: calc(100% / 1.61803398875);
                 &.low { border-bottom-color: $red; > div {background-color: $red;}}
                 &.high { border-bottom-color: $light-blue; > div {background-color: $light-blue;}}

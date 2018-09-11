@@ -17,6 +17,9 @@ ATSB.Components['components/general-info'] = function(options) {
         this.actions.show = true
         ATSB.pubSub.$emit('map:centered', false)
         ATSB.pubSub.$emit('header:action:set', 'back')
+      },
+      actionClicked: function() {
+        ATSB.pubSub.$emit([['all:slides:close'], ['branch:list:large:open'], ['branch:compare:button:hide'], ['header:action:set', 'close']])
       }
     }
   })
