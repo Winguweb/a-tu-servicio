@@ -26,7 +26,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         var targetLatLng = this.baseGeometryFeature.getBounds().getCenter()
         var padding = this.centered ? [0, 0] : [20, 20]
         this.map.fitBounds(this.baseGeometryFeature.getBounds(),{animate: false, padding: padding});
-        var zoom = this.map.getZoom() + 2
+        var zoom = this.map.getZoom()
         var targetPoint = this.map.project(targetLatLng, zoom)
         var offset = window.innerWidth * 0.61803398875
         if (!this.centered) targetPoint = targetPoint.add([offset / 2, 0])
@@ -37,7 +37,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         var southWest = L.latLng(4.456638, -74.794551),
         northEast = L.latLng(4.867143, -73.370018),
         bounds = L.latLngBounds(southWest, northEast);
-        var minZoom = this.isMobile ? 10 : 11
+        var minZoom = this.isMobile ? 10 : 12
 
         this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom})
         this.baseGeometryFeature = new L.MarkerClusterGroup({
