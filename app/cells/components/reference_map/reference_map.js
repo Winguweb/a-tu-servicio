@@ -25,7 +25,7 @@ ATSB.Components['components/reference-map'] = function(options) {
     },
     methods: {
       resetMapOffset: function() {
-        this.setMapOffset(0)
+        this.setMapOffset(0.5)
       },
       setMapOffset: function(offset) {
         this.map.options.mapOffset = offset
@@ -36,7 +36,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         this.map.fitBounds(this.baseGeometryFeature.getBounds(),{animate: false});
         var zoom = this.map.getZoom()
         var targetPoint = this.map.project(targetLatLng, zoom)
-        var offset = window.innerWidth * 0.61803398875
+        var offset = window.innerWidth * (0.61803398875)
         if (!this.centered) targetPoint = targetPoint.add([offset / 2, 0])
         if (!this.isMobile) targetLatLng = this.map.unproject(targetPoint, zoom)
         this.map.setView(targetLatLng, zoom, {animate: false})
@@ -47,7 +47,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         bounds = L.latLngBounds(southWest, northEast);
         var minZoom = this.isMobile ? 10 : 12
 
-        this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom, mapOffset: 1-0.61803398875})
+        this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom, mapOffset: 0.61803398875/2})
         this.baseGeometryFeature = new L.MarkerClusterGroup({
           spiderfyOnMaxZoom: true,
           zoomToBoundsOnClick: true,

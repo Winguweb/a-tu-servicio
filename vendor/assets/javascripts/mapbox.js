@@ -2556,11 +2556,17 @@ L.Map = L.Evented.extend({
       this._zoom = zoom;
       return this;
     }
-    var s = this._zoom < zoom ? -this._zoom/zoom/2 : zoom/this._zoom;
     var p = this.options.mapOffset
-    var offset = this.getSize().x * p / 2
-    var centerLayerPoint = this._getCenterLayerPoint()
-    var center = new L.Point(centerLayerPoint.x + s * offset , centerLayerPoint.y)
+    var centerPoint = this.getSize()
+    var d = 1280 * (this._zoom < zoom
+      // zoom in
+      ? (1 + p * 2) / 4
+      // zoom out
+      : (1 - p)
+    )
+    var centerPointWithOffset = new L.Point(d , centerPoint.y/2)
+    var centerLayerPoint = this.containerPointToLayerPoint(centerPointWithOffset);
+    var center = new L.Point(centerLayerPoint.x , centerLayerPoint.y)
     var centerLatLng = this.layerPointToLatLng(center);
     return this.setView(centerLatLng, zoom, {zoom: options});
   },

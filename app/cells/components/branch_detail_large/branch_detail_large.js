@@ -35,7 +35,7 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
       componentOpen: function() {
         this.actions.show = true
         ATSB.pubSub.$emit('map:centered', false)
-        ATSB.pubSub.$emit('map:offset', 0.61803398875)
+        ATSB.pubSub.$emit('map:offset', (1-0.61803398875)/2)
         ATSB.pubSub.$emit('header:action:set', 'back')
       },
     }
