@@ -13,6 +13,8 @@ ATSB.Components['components/reference-map'] = function(options) {
     created: function() {
       ATSB.pubSub.$on('branch:selected', this.setSelectedBranch)
       ATSB.pubSub.$on('map:centered', this.setCentered)
+      ATSB.pubSub.$on('map:offset', this.setMapOffset)
+      ATSB.pubSub.$on('all:slides:close', this.resetMapOffset)
     },
     mounted: function() {
       this.setAccessToken()
@@ -22,10 +24,16 @@ ATSB.Components['components/reference-map'] = function(options) {
       this.addMapEvents()
     },
     methods: {
+      resetMapOffset: function() {
+        this.setMapOffset(0)
+      },
+      setMapOffset: function(offset) {
+        this.map.options.mapOffset = offset
+      },
       centerMap: function() {
         var targetLatLng = this.baseGeometryFeature.getBounds().getCenter()
         var padding = this.centered ? [0, 0] : [20, 20]
-        this.map.fitBounds(this.baseGeometryFeature.getBounds(),{animate: false, padding: padding});
+        this.map.fitBounds(this.baseGeometryFeature.getBounds(),{animate: false});
         var zoom = this.map.getZoom()
         var targetPoint = this.map.project(targetLatLng, zoom)
         var offset = window.innerWidth * 0.61803398875
@@ -39,7 +47,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         bounds = L.latLngBounds(southWest, northEast);
         var minZoom = this.isMobile ? 10 : 12
 
-        this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom})
+        this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom, mapOffset: 1-0.61803398875})
         this.baseGeometryFeature = new L.MarkerClusterGroup({
           spiderfyOnMaxZoom: true,
           zoomToBoundsOnClick: true,
@@ -53,6 +61,7 @@ ATSB.Components['components/reference-map'] = function(options) {
           }
         })
         this.map.addLayer(this.baseGeometryFeature)
+        window.map = this.map
       },
       setAccessToken: function() {
         L.mapbox.accessToken = this.token

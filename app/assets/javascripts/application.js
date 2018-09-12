@@ -2,6 +2,7 @@
 //= require jquery
 //= require underscore
 //= require backbone
+//= require mapbox
 
 // APP SETUP
 //= require globals/base

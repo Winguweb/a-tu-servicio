@@ -29,11 +29,11 @@ html.desktop.no-js lang=I18n.locale.to_s xmlns="http://www.w3.org/1999/xhtml" xm
     = csrf_meta_tags
 
     = javascript_include_tag 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js'
-    = javascript_include_tag 'https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'
-    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.3/leaflet.markercluster.js'
+
     = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js'
     = javascript_include_tag 'https://unpkg.com/axios/dist/axios.min.js'
     = javascript_include_tag 'application'
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.3/leaflet.markercluster.js'
 
     body id=body_id class="#{body_class}"
       = query_diet_widget if Rails.env.development?
