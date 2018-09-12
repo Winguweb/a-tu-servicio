@@ -2558,7 +2558,7 @@ L.Map = L.Evented.extend({
     }
     var p = this.options.mapOffset
     var centerPoint = this.getSize()
-    var d = 1280 * (this._zoom < zoom
+    var d = this.getSize().x * (this._zoom < zoom
       // zoom in
       ? (1 + p * 2) / 4
       // zoom out
