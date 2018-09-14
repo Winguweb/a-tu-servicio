@@ -9,12 +9,13 @@ a:hover, a:focus {
 }
 
 .map-active-area {
+  $padding: 20px;
+  height: calc(100% - #{$padding*2});
+  left: 10px;
   position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  right: 100%;
-  &.medium { right: calc(100% - 61.803398875%); }
-  &.small { right: 61.803398875%; }
+  right: calc(100% + #{$padding});
+  top: $padding;
+  &.medium { right: calc(100% - 61.803398875% + #{$padding}); }
+  &.small { right: calc(61.803398875% + #{$padding}); }
  }
 

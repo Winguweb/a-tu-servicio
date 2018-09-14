@@ -96,6 +96,8 @@ $search-bar-height: calc(66px);
             }
             padding: 0 gutter();
             > div:first-of-type {
+              float: left;
+              width: 50%;
               > p {
                 @include type-golden(0);
                 font-weight: 300;
@@ -106,8 +108,9 @@ $search-bar-height: calc(66px);
               }
             }
             > div:last-of-type {
-              @include grid-collapse;
+              float: right;
               overflow: hidden;
+              @include grid-collapse;
               > div {
                 > div {
                   > p {
@@ -120,12 +123,7 @@ $search-bar-height: calc(66px);
                 }
               }
               &.horizontal {
-                > div {
-                  > div {
-                    @include grid-column(1 of 2);
-                    // margin-bottom: gutter();
-                  }
-                }
+                width: 50%;
               }
               &.vertical {
                 > div {
@@ -142,6 +140,26 @@ $search-bar-height: calc(66px);
           > main {
             @include grid-column(1 of 1);
             clear: both;
+          }
+        }
+        > section:last-of-type {
+          > main {
+            > div:first-of-type {
+              float: none;
+              width: 100%;
+            }
+            > div:last-of-type {
+              float: none;
+              &.horizontal {
+                width: 100%;
+                > div {
+                  > div {
+                    @include grid-column(1 of 2);
+                    // margin-bottom: gutter();
+                  }
+                }
+              }
+            }
           }
         }
       }
