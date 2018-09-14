@@ -73,7 +73,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
         if (this.actions.show) return
         this.actions.show = true
         ATSB.pubSub.$emit('map:centered', false)
-        ATSB.pubSub.$emit('map:offset', (1-0.61803398875)/2)
+        ATSB.pubSub.$emit('map:activearea', "small")
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
         this.focusSearch()
       },

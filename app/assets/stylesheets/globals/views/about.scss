@@ -1,6 +1,8 @@
 #home-about > main {
+  overflow: hidden;
   > section {
     font-weight: 300;
+    height: calc(100% - 70px);
     padding: gutter(2);
     > h1, h2 {
       @include type-golden(1);

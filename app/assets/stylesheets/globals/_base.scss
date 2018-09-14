@@ -7,3 +7,14 @@ a:hover, a:focus {
   @include text-color($light-blue);
   text-decoration: underline;
 }
+
+.map-active-area {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  right: 100%;
+  &.medium { right: calc(100% - 61.803398875%); }
+  &.small { right: 61.803398875%; }
+ }
+
