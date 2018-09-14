@@ -14,7 +14,6 @@ ATSB.Components['components/reference-map'] = function(options) {
       ATSB.pubSub.$on('branch:selected', this.setSelectedBranch)
       ATSB.pubSub.$on('map:centered', this.setCentered)
       ATSB.pubSub.$on('map:activearea', this.setMapActiveArea)
-      ATSB.pubSub.$on('all:slides:close', this.setMapActiveArea)
     },
     mounted: function() {
       this.setAccessToken()
@@ -35,8 +34,8 @@ ATSB.Components['components/reference-map'] = function(options) {
         var targetPoint = this.map.project(targetLatLng, zoom)
         var offset = window.innerWidth * (0.61803398875)
         if (!this.centered) targetPoint = targetPoint.add([offset / 2, 0])
-        if (!this.isMobile) targetLatLng = this.map.unproject(targetPoint, zoom)
-        this.map.setView(targetLatLng, zoom, {animate: false})
+        // if (!this.isMobile) targetLatLng = this.map.unproject(targetPoint, zoom)
+        // this.map.setView(targetLatLng, zoom, {animate: false})
       },
       createMap: function() {
         var southWest = L.latLng(4.456638, -74.794551),
@@ -107,6 +106,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         this.map.on('click', function(evt) {
           ATSB.pubSub.$emit('all:slides:close')
           ATSB.pubSub.$emit('header:action:set', 'open')
+          ATSB.pubSub.$emit('map:activearea', "")
         })
       },
       setCentered: function(value) {
