@@ -10,6 +10,7 @@ class Components::ReferenceMapCell < Cell::ViewModel
         name: feature['name'].titlecase,
         coordinates: feature['georeference'].coordinates.reverse,
         provider_name: feature.provider.name,
+        featured: feature.provider.featured,
       }
     end.to_json
   end

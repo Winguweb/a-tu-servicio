@@ -1,11 +1,13 @@
 # See:
 require "#{Rails.root}/lib/importer_helper"
+require 'sidekiq/api'
 
 include ImporterHelper
 
 namespace :import do
   desc 'Import From Excel Data'
   task :all => [:environment] do
+    Searchkick.disable_callbacks
     prestadores = []
     puts 'Importing csv from Excel data'
     puts 'Truncate Provider table...'
@@ -26,6 +28,8 @@ namespace :import do
     ActiveRecord::Base.connection.execute("TRUNCATE #{State.table_name} RESTART IDENTITY")
 
     import_file("bogota.csv", col_sep: "\t") do |row|
+      # puts row
+      # puts "\n"
       especialidad = row["especialidades"].split('-').last.titleize.strip
       lote_camas = {
         :area => row["area"],
@@ -41,7 +45,10 @@ namespace :import do
       prestador = {
         :nombre => row["prestador"].titleize.strip,
         :tipo => row["tipo_prestador"],
-        :url_mail => row["url_mail"],
+        :website => row["website"],
+        :destacado => row["destacado"],
+        :mostrar => row["mostrar"],
+        :email => row["email"],
         :comunicacion => row["comunicacion"].to_s,
         :localidad => row["localidad_central"],
         :subred => row["subred"].titleize.strip,
@@ -172,7 +179,10 @@ namespace :import do
       provider = Provider.new(
         name: prestador[:nombre],
         address: prestador[:direccion],
-        website: prestador[:url_mail],
+        website: prestador[:website],
+        email: prestador[:email],
+        show: prestador[:mostrar],
+        featured: prestador[:destacado],
         communication_services: prestador[:comunicacion],
         is_private: prestador[:tipo].downcase().include?('privado'),
         subnet: prestador[:subred],
@@ -185,14 +195,20 @@ namespace :import do
       percentage = ((actual+1)/total.to_f * 100).round(2)
       printf("\rCompleted: %.2f%", percentage)
     end
+    Searchkick.enable_callbacks
+    Branch.reindex
     puts
   end
 end
 
 namespace :import do
+
   desc 'Import From Excel Data'
   task :resolveGeolocation => [:environment] do
-    branches = Branch.all
+    # clear all queues
+    Sidekiq::Queue.all.each &:clear
+
+    branches = Branch.joins(:provider).where({providers: {show: true}})
     branches.each do |branch|
       GeolocationWorker.perform_async(branch.id)
     end

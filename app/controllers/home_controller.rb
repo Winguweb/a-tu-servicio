@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 
   def services
     search_service = SearchService.call
-    @all_branches = Branch.includes(:provider).where.not(:georeference => nil)
+    @all_branches = Branch.includes(:provider).where.not(georeference: nil).where(providers:{show: true})
     @branches = search_service.search('*')
     @common_info = CommonInfoService.call
   end
