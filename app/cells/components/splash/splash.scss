@@ -77,7 +77,11 @@
 }
 
 @mixin mobile-splash() {
-
+  > div:first-of-type {
+    > ul {
+      margin-bottom: gutter(3);
+    }
+  }
 }
 
 .splash-cell {

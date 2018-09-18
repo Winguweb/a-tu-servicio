@@ -37,6 +37,43 @@
   }
 }
 
+@mixin mobile-site-footer() {
+  > div {
+    > ul {
+      text-align: center;
+      > li {
+        display: inline-block;
+        height: 50px;
+        margin: gutter() 0;
+        text-align: center;
+        width: 50%;
+        > a {
+          display: inline-block;
+          > img {
+            height: 40px;
+            max-width: 120px;
+            position: relative;
+            vertical-align: middle;
+            &.fundacion-corona {
+              top: 5px;
+            }
+            &.alcaldia {
+              top: 3px;
+            }
+          }
+        }
+      }
+      > li:before {
+        display: none;
+      }
+    }
+  }
+}
+
 .site-footer-cell{
   @include site-footer;
+}
+
+.mobile .site-footer-cell{
+  @include mobile-site-footer;
 }
