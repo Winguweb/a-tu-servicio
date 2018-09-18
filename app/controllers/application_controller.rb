@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
       session[:mobile_override] == "1"
     else
       # Season this regexp to taste. I prefer to treat iPad as non-mobile.
+      # TODO: Remove this
       # (request.user_agent =~ /Mobile|webOS/) && (request.user_agent !~ /iPad/)
       (request.user_agent =~ /Mobile|webOS|iPad|Android/)
     end
