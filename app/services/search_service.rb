@@ -13,7 +13,8 @@ class SearchService
     Branch.search(query, {
       includes: [:provider],
       where: {
-        georeference: {not: nil}
+        georeference: {not: nil},
+        show: true,
       },
       match: :word_start,
       misspellings: {

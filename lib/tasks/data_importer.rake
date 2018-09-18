@@ -1,11 +1,13 @@
 # See:
 require "#{Rails.root}/lib/importer_helper"
+require 'sidekiq/api'
 
 include ImporterHelper
 
 namespace :import do
   desc 'Import From Excel Data'
   task :all => [:environment] do
+    Searchkick.disable_callbacks
     prestadores = []
     puts 'Importing csv from Excel data'
     puts 'Truncate Provider table...'
@@ -25,35 +27,39 @@ namespace :import do
     puts 'Truncate State table...'
     ActiveRecord::Base.connection.execute("TRUNCATE #{State.table_name} RESTART IDENTITY")
 
-    import_file("bogota.csv", col_sep: "\t") do |row|
-      especialidad = row["especialidades"].split('-').last.titleize.strip
+    imported_csv = File.read('./db/data/bogota.csv')
+    CSV.parse(imported_csv, headers: true, header_converters: :symbol, col_sep: "\t", :quote_char => "`") do |row|
+      especialidad = row[:especialidades].split('-').last.titleize.strip
       lote_camas = {
-        :area => row["area"],
-        :cantidad => row["camas"],
+        :area => row[:area],
+        :cantidad => row[:camas],
       }
       sede = {
-        :nombre => row["nombre_sede"].titleize.strip,
-        :direccion => row["direccion_sede"],
-        :localidad => row["localidad_sede"],
+        :nombre => row[:nombre_sede].titleize.strip,
+        :direccion => row[:direccion_sede],
+        :localidad => row[:localidad_sede],
         :especialidades => [],
         :camas => []
       }
       prestador = {
-        :nombre => row["prestador"].titleize.strip,
-        :tipo => row["tipo_prestador"],
-        :url_mail => row["url_mail"],
-        :comunicacion => row["comunicacion"].to_s,
-        :localidad => row["localidad_central"],
-        :subred => row["subred"].titleize.strip,
-        :direccion => row["direccion_central"],
-        :satisfaccion => row["satisfaccion"],
-        :tiempo_espera_cirugia_general => row["tiempo_espera_cirugia_general"],
-        :tiempo_espera_ginecologia => row["tiempo_espera_ginecologia"],
-        :tiempo_espera_medicina_general => row["tiempo_espera_medicina_general"],
-        :tiempo_espera_medicina_interna => row["tiempo_espera_medicina_interna"],
-        :tiempo_espera_obstetricia => row["tiempo_espera_obstetricia"],
-        :tiempo_espera_odontologia_general => row["tiempo_espera_odontologia_general"],
-        :tiempo_espera_pediatria => row["tiempo_espera_pediatria"],
+        :nombre => row[:prestador].titleize.strip,
+        :tipo => row[:tipo_prestador],
+        :website => row[:website],
+        :destacado => row[:destacado],
+        :mostrar => row[:mostrar],
+        :email => row[:email],
+        :comunicacion => row[:comunicacion].to_s,
+        :localidad => row[:localidad_central],
+        :subred => row[:subred].titleize.strip,
+        :direccion => row[:direccion_central],
+        :satisfaccion => row[:satisfaccion],
+        :tiempo_espera_cirugia_general => row[:tiempo_espera_cirugia_general],
+        :tiempo_espera_ginecologia => row[:tiempo_espera_ginecologia],
+        :tiempo_espera_medicina_general => row[:tiempo_espera_medicina_general],
+        :tiempo_espera_medicina_interna => row[:tiempo_espera_medicina_interna],
+        :tiempo_espera_obstetricia => row[:tiempo_espera_obstetricia],
+        :tiempo_espera_odontologia_general => row[:tiempo_espera_odontologia_general],
+        :tiempo_espera_pediatria => row[:tiempo_espera_pediatria],
         :sedes => [],
       }
       sede[:especialidades] << especialidad
@@ -172,7 +178,10 @@ namespace :import do
       provider = Provider.new(
         name: prestador[:nombre],
         address: prestador[:direccion],
-        website: prestador[:url_mail],
+        website: prestador[:website],
+        email: prestador[:email],
+        show: prestador[:mostrar],
+        featured: prestador[:destacado],
         communication_services: prestador[:comunicacion],
         is_private: prestador[:tipo].downcase().include?('privado'),
         subnet: prestador[:subred],
@@ -185,17 +194,35 @@ namespace :import do
       percentage = ((actual+1)/total.to_f * 100).round(2)
       printf("\rCompleted: %.2f%", percentage)
     end
+    puts "\n"
+    puts 'Providers uploaded'
+    puts "\n"
+    Searchkick.enable_callbacks
+    puts 'Indexing branches'
+    puts "\n"
+    Branch.reindex
+    puts 'Indexing completed!'
     puts
+    Rake::Task["import:resolveGeolocation"].execute
   end
 end
 
 namespace :import do
-  desc 'Import From Excel Data'
+
+  desc 'Resolve geolocation from addresses'
   task :resolveGeolocation => [:environment] do
-    branches = Branch.all
+    puts 'Generating tasks: resolve geolocation from address'
+    puts "\n"
+
+    # clear all queues
+    Sidekiq::Queue.all.each &:clear
+
+    branches = Branch.joins(:provider).where({providers: {show: true}})
     branches.each do |branch|
       GeolocationWorker.perform_async(branch.id)
     end
+    puts 'Tasks generated'
+    puts
   end
 end
 

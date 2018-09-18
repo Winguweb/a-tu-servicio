@@ -4,6 +4,7 @@
   height: $header-height;
   position: relative;
   z-index: 2001;
+  @media (max-width: 720px) { display: none; }
   > div:first-of-type {
     float: left;
     height: 100%;

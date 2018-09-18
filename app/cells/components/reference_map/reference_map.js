@@ -24,6 +24,7 @@ ATSB.Components['components/reference-map'] = function(options) {
     },
     methods: {
       setMapActiveArea: function(name) {
+        if (this.isMobile) return
         this.map.setActiveArea("map-active-area " + name)
       },
       centerMap: function() {
@@ -35,14 +36,14 @@ ATSB.Components['components/reference-map'] = function(options) {
         bounds = L.latLngBounds(southWest, northEast);
         var minZoom = this.isMobile ? 10 : 12
 
-        this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom, zoomDelta: 0.5, zoomSnap: 0.5})
+        this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, zoomDelta: 0.5, zoomSnap: 0.5})
         this.setMapActiveArea('medium')
         this.baseGeometryFeature = new L.MarkerClusterGroup({
           spiderfyOnMaxZoom: true,
           zoomToBoundsOnClick: true,
           animateAddingMarkers: false,
           animate: false,
-          maxClusterRadius: 45,
+          maxClusterRadius: 30,
           showCoverageOnHover: false,
           spiderLegPolylineOptions: {opacity: 0},
           iconCreateFunction: function(cluster) {
@@ -62,9 +63,10 @@ ATSB.Components['components/reference-map'] = function(options) {
         var branches = this.branches
         var filtered = this.selectedBranch.length ? branches.filter(this.getSelectedBranch) : branches
         filtered.forEach(function(branch) {
+          var featured = branch.featured ? 'marker-featured' : ''
           var marker = new L.Marker(branch.coordinates, {
             icon: new L.divIcon({
-              html: '<div class="reference-map--marker"><i></i><p>' + branch.name + '</p></div><!-- Icon made by [https://www.facebook.com/theflaticon] from www.flaticon.com -->',
+              html: '<div class="reference-map--marker ' + featured + '"><i></i><p>' + branch.name + '</p></div><!-- Icon made by [https://www.facebook.com/theflaticon] from www.flaticon.com -->',
               iconAnchor: [8, 15],
               iconSize: [15, 15],
             }),

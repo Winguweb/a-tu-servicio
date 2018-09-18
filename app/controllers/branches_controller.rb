@@ -12,7 +12,8 @@ class BranchesController < ApplicationController
           :id => branch.id,
           :name => branch.name,
           :address => branch.address,
-          :provider_name => branch.provider.name
+          :provider_name => branch.provider.name,
+          :featured => branch.provider.featured
         }
       end
     }

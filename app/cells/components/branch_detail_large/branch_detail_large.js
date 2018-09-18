@@ -10,9 +10,6 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
       ATSB.pubSub.$on('branch:detail:large:open', this.componentOpen)
       ATSB.pubSub.$on('branch:detail:large:close', this.componentClose)
       ATSB.pubSub.$on('branch:detail:large:fetch', this.branchFetch)
-      // ATSB.pubSub.$emit('branch:detail:large:open'),ATSB.pubSub.$emit('branch:detail:large:fetch', 224)
-      // 1384
-      // 277
     },
     methods: {
       toPercentage: ATSB.Helpers.numbers.toPercentage,
@@ -33,6 +30,7 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
         ATSB.pubSub.$emit('map:centered', true)
       },
       componentOpen: function() {
+        this.$el.scrollTop = 0
         this.actions.show = true
         ATSB.pubSub.$emit('map:centered', false)
         ATSB.pubSub.$emit('map:activearea', "small")

@@ -54,6 +54,26 @@
   }
 }
 
-.compare-branch-button-cell{
+@mixin mobile-compare-branch-button() {
+  > button {
+    width: 55px;
+    &:hover {
+      background: color($blue, 1);
+      box-shadow: 0 3px 5px -1px color($black, 0.2), 0 6px 10px 0 color($black, 0.14), 0 1px 18px 0 color($black, 0.12);
+    }
+    > img {
+      margin: 0;
+    }
+    > span {
+      display: none;
+    }
+  }
+}
+
+.compare-branch-button-cell {
   @include compare-branch-button;
+}
+
+.mobile .compare-branch-button-cell {
+  @include mobile-compare-branch-button;
 }

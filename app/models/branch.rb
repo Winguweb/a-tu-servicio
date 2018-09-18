@@ -14,11 +14,15 @@ class Branch < ActiveRecord::Base
       name: name,
       town: town,
       provider_name: provider.name,
+      show: provider.show,
       specialities: specialities.map(&:name),
       subnet_name: provider.subnet
     }
   end
 
+  def should_index?
+    self.provider.show
+  end
 end
 
 #If indices are blocked
