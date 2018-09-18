@@ -28,8 +28,6 @@ namespace :import do
     ActiveRecord::Base.connection.execute("TRUNCATE #{State.table_name} RESTART IDENTITY")
 
     import_file("bogota.csv", col_sep: "\t") do |row|
-      # puts row
-      # puts "\n"
       especialidad = row["especialidades"].split('-').last.titleize.strip
       lote_camas = {
         :area => row["area"],

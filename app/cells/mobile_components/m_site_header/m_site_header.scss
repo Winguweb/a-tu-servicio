@@ -31,9 +31,9 @@
       padding: gutter(-1);
       > i {
         &.menu {background-image: image-url('icons/menu.svg');}
-        &.search {background-image: image-url('icons/search.svg');}
-        &.close {background-image: image-url('icons/arrow-left.svg');}
-        &.back {background-image: image-url('icons/arrow-left.svg');}
+        &.search {background-image: image-url('icons/search-mobile.svg');}
+        &.close {background-image: image-url('icons/arrow-left-mobile.svg');}
+        &.back {background-image: image-url('icons/arrow-left-mobile.svg');}
         background-size: cover;
         display: block;
         height: 20px;
