@@ -5,8 +5,16 @@ div.general-info-cell v-bind:class="{show: actions.show}"
         span = "A tu servicio"
         strong = "Bogotá"
     article
-      p = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus sapiente magni dolorem soluta earum nam blanditiis debitis in unde rem velit quisquam dignissimos tempore, optio necessitatibus vero mollitia dicta, iusto."
-      p = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus sapiente magni dolorem soluta earum nam blanditiis debitis in unde rem velit quisquam dignissimos tempore, optio necessitatibus vero mollitia dicta, iusto."
+      p = "Conoce información oficial sobre los prestadores de salud (IPS) de Bogotá y califica los servicios recibidos para contribuir a mejorar la toma de decisiones."
+      ul
+        li
+          p = "Explora el mapa y ubica tu prestador"
+        li
+          p = "Puedes utilizar los filtros para una mejor experiencia"
+        li
+          p = "Califica los servicios recibidos"
+      a.search-info-button v-on:click="actionClicked"
+        = "Buscar"
 
 
 javascript:

@@ -40,30 +40,37 @@
 =============================== */
 @import 'globals/base';
 
+/* ===============================
+  PAGE STYLES
+=============================== */
+@import 'globals/views/about';
+
 /* ===================
   CELLS UI
 =================== */
 // COMPONENTS
-@import "compare_branch_button";
-@import "branch_detail_half_right";
+@import "city_image";
 @import "branch_detail_half_left";
+@import "branch_detail_half_right";
 @import "branch_detail_large";
 @import "branch_list_half_right";
 @import "branch_list_large";
+@import "compare_branch_button";
 @import "general_info";
 @import "progress_circle";
 @import "reference_map";
 @import "site_footer";
 @import "site_header";
+@import "splash";
 @import "story_slider";
 
 // MOBILE COMPONENTS
-@import "m_site_header";
 @import "m_drawer";
+@import "m_site_header";
 
 // VISUALIZATION COMPONENTS
-@import "in_hundreed_visualization";
 @import "beds_visualization";
+@import "in_hundreed_visualization";
 @import "people_visualization";
 @import "satisfaction_visualization";
 @import "specialities_visualization";

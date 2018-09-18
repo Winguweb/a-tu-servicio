@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     get :autocomplete_provider_search_name, on: :collection
   end
 
-  get '/sobre_el_proyecto' => 'home#about', as: :about
+  get '/sobre-el-proyecto' => 'home#about', as: :about
+  get '/mapa-de-servicios' => 'home#services', as: :services
 
   get '/404' => 'errors#not_found'
   get '/500' => 'errors#internal_server_error'

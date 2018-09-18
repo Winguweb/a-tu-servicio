@@ -28,26 +28,28 @@ module AtuservicioRails
     config.exceptions_app = self.routes
 
     config.cells.with_assets = %w(
-      visualization_components/specialities_visualization_cell
-      visualization_components/in_hundreed_visualization_cell
-      visualization_components/beds_visualization_cell
-      visualization_components/people_visualization_cell
-      visualization_components/satisfaction_visualization_cell
-      visualization_components/waiting_times_visualization_cell
-      components/compare_branch_button_cell
-      components/branch_detail_half_right_cell
       components/branch_detail_half_left_cell
+      components/branch_detail_half_right_cell
       components/branch_detail_large_cell
       components/branch_list_half_right_cell
       components/branch_list_large_cell
+      components/city_image_cell
+      components/compare_branch_button_cell
       components/general_info_cell
       components/progress_circle_cell
       components/reference_map_cell
       components/site_footer_cell
       components/site_header_cell
+      components/splash_cell
       components/story_slider_cell
-      mobile_components/m_site_header_cell
       mobile_components/m_drawer_cell
+      mobile_components/m_site_header_cell
+      visualization_components/beds_visualization_cell
+      visualization_components/in_hundreed_visualization_cell
+      visualization_components/people_visualization_cell
+      visualization_components/satisfaction_visualization_cell
+      visualization_components/specialities_visualization_cell
+      visualization_components/waiting_times_visualization_cell
     )
 
     api_mime_types = %W(

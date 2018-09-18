@@ -13,6 +13,7 @@ ATSB.Components['components/reference-map'] = function(options) {
     created: function() {
       ATSB.pubSub.$on('branch:selected', this.setSelectedBranch)
       ATSB.pubSub.$on('map:centered', this.setCentered)
+      ATSB.pubSub.$on('map:activearea', this.setMapActiveArea)
     },
     mounted: function() {
       this.setAccessToken()
@@ -22,24 +23,20 @@ ATSB.Components['components/reference-map'] = function(options) {
       this.addMapEvents()
     },
     methods: {
+      setMapActiveArea: function(name) {
+        this.map.setActiveArea("map-active-area " + name)
+      },
       centerMap: function() {
-        var targetLatLng = this.baseGeometryFeature.getBounds().getCenter()
-        var padding = this.centered ? [0, 0] : [20, 20]
-        this.map.fitBounds(this.baseGeometryFeature.getBounds(),{animate: false, padding: padding});
-        var zoom = this.map.getZoom() + 2
-        var targetPoint = this.map.project(targetLatLng, zoom)
-        var offset = window.innerWidth * 0.61803398875
-        if (!this.centered) targetPoint = targetPoint.add([offset / 2, 0])
-        if (!this.isMobile) targetLatLng = this.map.unproject(targetPoint, zoom)
-        this.map.setView(targetLatLng, zoom, {animate: false})
+        this.map.fitBounds(this.baseGeometryFeature.getBounds(), {animate: true});
       },
       createMap: function() {
         var southWest = L.latLng(4.456638, -74.794551),
         northEast = L.latLng(4.867143, -73.370018),
         bounds = L.latLngBounds(southWest, northEast);
-        var minZoom = this.isMobile ? 10 : 11
+        var minZoom = this.isMobile ? 10 : 12
 
-        this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom})
+        this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom, zoomDelta: 0.5, zoomSnap: 0.5})
+        this.setMapActiveArea('medium')
         this.baseGeometryFeature = new L.MarkerClusterGroup({
           spiderfyOnMaxZoom: true,
           zoomToBoundsOnClick: true,
@@ -53,6 +50,7 @@ ATSB.Components['components/reference-map'] = function(options) {
           }
         })
         this.map.addLayer(this.baseGeometryFeature)
+        window.map = this.map
       },
       setAccessToken: function() {
         L.mapbox.accessToken = this.token
@@ -100,11 +98,12 @@ ATSB.Components['components/reference-map'] = function(options) {
         this.map.on('click', function(evt) {
           ATSB.pubSub.$emit('all:slides:close')
           ATSB.pubSub.$emit('header:action:set', 'open')
+          ATSB.pubSub.$emit('map:activearea', "")
         })
       },
       setCentered: function(value) {
         this.centered = value
-      }
+      },
     }
   })
 }

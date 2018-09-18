@@ -1,13 +1,11 @@
 @mixin specialities-visualization() {
-  background-color: $light-grey;
   border-radius: 2px;
-  height: 60px;
   padding: gutter(-1);
   > img {
     display: inline-block;
     margin-right: 5px;
     vertical-align: top;
-    width: 15px;
+    width: 30px;
   }
   > span {
     display: inline-block;

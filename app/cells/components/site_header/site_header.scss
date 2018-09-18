@@ -3,7 +3,7 @@
   box-shadow: 0 2px 4px color($black, 0.5);
   height: $header-height;
   position: relative;
-  z-index: 2000;
+  z-index: 2001;
   > div:first-of-type {
     float: left;
     height: 100%;
@@ -42,11 +42,13 @@
     float: right;
     height: 100%;
     > a {
+      background-color: $light-blue;
       cursor: pointer;
       display: block;
       height: 100%;
       padding: gutter(-1);
       &:hover {
+        background-color: transparent;
         > i {
           &.open {background-image: image-url('icons/search-light-blue.svg');}
           &.close {background-image: image-url('icons/close-menu-light-blue.svg');}

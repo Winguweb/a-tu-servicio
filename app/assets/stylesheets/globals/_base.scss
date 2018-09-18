@@ -7,3 +7,15 @@ a:hover, a:focus {
   @include text-color($light-blue);
   text-decoration: underline;
 }
+
+.map-active-area {
+  $padding: 20px;
+  height: calc(100% - #{$padding*2});
+  left: 10px;
+  position: absolute;
+  right: calc(100% + #{$padding});
+  top: $padding;
+  &.medium { right: calc(100% - 61.803398875% + #{$padding}); }
+  &.small { right: calc(61.803398875% + #{$padding}); }
+ }
+
