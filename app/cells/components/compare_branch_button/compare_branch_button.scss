@@ -54,6 +54,22 @@
   }
 }
 
-.compare-branch-button-cell{
+@mixin mobile-compare-branch-button() {
+  > button {
+    width: 55px;
+    > img {
+      margin: 0;
+    }
+    > span {
+      display: none;
+    }
+  }
+}
+
+.compare-branch-button-cell {
   @include compare-branch-button;
+}
+
+.mobile .compare-branch-button-cell {
+  @include mobile-compare-branch-button;
 }

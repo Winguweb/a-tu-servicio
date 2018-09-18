@@ -24,6 +24,7 @@ ATSB.Components['components/reference-map'] = function(options) {
     },
     methods: {
       setMapActiveArea: function(name) {
+        if (this.isMobile) return
         this.map.setActiveArea("map-active-area " + name)
       },
       centerMap: function() {

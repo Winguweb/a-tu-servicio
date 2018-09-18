@@ -3,7 +3,8 @@
   box-shadow: 0 2px 4px color($black, 0.5);
   height: $header-height;
   position: relative;
-  z-index: 2000;
+  z-index: 2001;
+  @media (min-width: 720px) { display: none; }
   > div:nth-of-type(2) {
     float: left;
     height: 100%;

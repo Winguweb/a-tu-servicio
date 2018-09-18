@@ -8,6 +8,7 @@ $search-bar-height: calc(66px);
   background-size: 48px 116px;
   border-left: 1px solid color($light-grey, 0.5); // for right
   bottom: 0;
+  min-width: 400px;
   overflow: auto;
   padding: gutter(1) 0; // for right
   position: fixed;
