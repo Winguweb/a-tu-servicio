@@ -216,6 +216,14 @@ namespace :import do
 
     # clear all queues
     Sidekiq::Queue.all.each &:clear
+    # 1. Clear retry set
+    Sidekiq::RetrySet.new.clear
+    # 2. Clear scheduled jobs
+    Sidekiq::ScheduledSet.new.clear
+    # 3. Clear 'Processed' and 'Failed' jobs
+    Sidekiq::Stats.new.reset
+    # 3. Clear 'Dead' jobs statistics
+    Sidekiq::DeadSet.new.clear
 
     branches = Branch.joins(:provider).where({providers: {show: true}})
     branches.each do |branch|
