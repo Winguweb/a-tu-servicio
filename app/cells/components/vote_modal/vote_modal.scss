@@ -1,0 +1,108 @@
+@mixin vote-modal() {
+  background-color: #00000088;
+  bottom: 0;
+  left: 0;
+  padding: gutter(4) gutter(5);
+  // display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 3000;
+  &.show {
+    display: block;
+  }
+  &:hover {
+    display: block;
+  }
+  > section {
+    background-color: $white;
+    height: 100%;
+    padding: gutter();
+    position: relative;
+    width: 100%;
+    > header {
+      border-bottom: 1px solid $light-grey;
+      margin-bottom: gutter();
+      position: relative;
+      > button {
+        background-image: image-url('icons/close-menu-light-blue.svg');
+        border: none;
+        cursor: pointer;
+        display: block;
+        height: gutter(1);
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: gutter(1);
+      }
+      > h1 {
+        @include type-golden(1);
+        color: $light-blue;
+        font-weight: 600;
+        line-height: gutter();
+      }
+      > span {
+        @include type-golden(0);
+        color: $blue;
+        font-weight: 600;
+        line-height: gutter();
+      }
+    }
+    > section {
+      > h1 {
+        @include type-golden(2);
+        margin-bottom: gutter();
+        text-align: center;
+      }
+    }
+    > section {
+      text-align: center;
+      > ul {
+        display: inline-block;
+        text-align: left;
+        > li {
+          display: inline-block;
+          margin: gutter(-1);
+          text-align: center;
+          > button {
+            @include type-golden(0);
+            border: 1px solid $light-blue;
+            border-radius: 2px;
+            color: $light-blue;
+            cursor: pointer;
+            display: block;
+            height: 100%;
+            padding: gutter();
+            width: 100%;
+            &:hover {
+              background-color: $light-blue;
+              color: $white;
+            }
+            &.selected {
+              background-color: $blue;
+              border-color: $blue;
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+    > footer {
+      > button {
+
+      }
+    }
+  }
+}
+
+@mixin mobile-vote-modal() {
+
+}
+
+.vote-modal-cell {
+  @include vote-modal;
+}
+
+.mobile .vote-modal-cell {
+  @include mobile-vote-modal;
+}

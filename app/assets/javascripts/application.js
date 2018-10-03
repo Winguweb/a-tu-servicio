@@ -23,6 +23,7 @@
 //= require site_header
 //= require splash
 //= require story_slider
+//= require vote_modal
 
 // VISUALIZATION CELLS
 //= require in_hundreed_visualization

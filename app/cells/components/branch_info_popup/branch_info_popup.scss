@@ -69,6 +69,7 @@
       button {
         @include type-golden(0);
         border: 2px solid $light-blue;
+        border-radius: 2px;
         cursor: pointer;
         display: inline-block;
         font-weight: 600;

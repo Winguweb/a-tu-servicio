@@ -30,14 +30,39 @@ $search-bar-height: calc(66px);
             @include text-color($blue, 1);
             @include type-golden(1);
             line-height: gutter(1);
+            max-width: calc(100% - 135px);
             padding: 0 gutter(1) 0 gutter(); // for right
             text-align: left;  // for right
           }
           > h2 {
             @include text-color($grey, 1);
             @include type-golden(0);
+            max-width: calc(100% - 135px);
             padding: 0 gutter(1) 0 gutter(); // for right
             text-align: left;  // for right
+          }
+          button {
+            border: 2px solid $light-blue;
+            border-radius: 2px;
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 600;
+            height: 44px;
+            padding: gutter(-1) gutter();
+            position: absolute;
+            right: gutter(1);
+            top: gutter();
+            @include type-golden(0);
+            img {
+              height: 100%;
+              margin-right: gutter(-1);
+            }
+            span {
+              @include type-golden(0);
+              color: $light-blue;
+              position: relative;
+              top: -4px;
+            }
           }
         }
         > main {

@@ -9,6 +9,9 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
             | {{branch.name}}
           h2
             | {{branch.provider.name}}
+          button
+            img :src="'/assets/icons/rating.svg'"
+            span = "Calificar"
         main
           section
             header

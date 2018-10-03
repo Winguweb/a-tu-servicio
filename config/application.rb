@@ -43,6 +43,7 @@ module AtuservicioRails
       components/site_header_cell
       components/splash_cell
       components/story_slider_cell
+      components/vote_modal_cell
       mobile_components/m_drawer_cell
       mobile_components/m_site_header_cell
       visualization_components/beds_visualization_cell

@@ -1,0 +1,18 @@
+div.vote-modal-cell v-bind:class="{show: actions.show}"
+  section
+    header
+      button @click="componentClose()"
+      h1 = "Reporte ciudadano"
+      span = "{{branchId}}"
+    section
+      h1 = "{{steps[actualStep].question}}"
+    section
+      ul
+        li v-for="answer in steps[actualStep].answers"
+          button @click="selectAnswer(answer.id)" :class="{selected: steps[actualStep].answer == answer.id}" = "{{answer.text}}"
+    footer
+      button @click="previousStep()" = "<"
+      button @click="nextStep()" = ">"
+javascript:
+    $(function() {ATSB.Components['components/vote-modal']()});
+
