@@ -1,0 +1,126 @@
+@mixin branch-info-popup() {
+  background-color: $white;
+  border-radius: 2px;
+  box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+  display: none;
+  left: 0;
+  margin-left: 35px;
+  margin-top: -21px;
+  max-width: 400px;
+  min-height: 50px;
+  min-width: 300px;
+  padding: gutter(-1) gutter();
+  position: absolute;
+  top: 0;
+  z-index: 3000;
+  &.show {
+    display: block;
+  }
+  &:hover {
+    display: block;
+  }
+  &:before {
+    background-color: $white;
+    content: '';
+    display: block;
+    height: 35px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    z-index: 2;
+  }
+  &:after {
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px color($black, 0.5);
+    content: '';
+    height: 10px;
+    left: -4px;
+    position: absolute;
+    top: 18px;
+    transform: rotateZ(45deg);
+    width: 10px;
+    z-index: 1;
+  }
+  > article {
+    > header {
+      border-bottom: 1px solid $light-grey;
+      margin-bottom: gutter();
+      padding-bottom: gutter(-4);
+      > h1 {
+        @include type-golden(0);
+        color: $blue;
+        font-weight: 600;
+        line-height: gutter();
+      }
+      > span {
+        @include type-golden(-1);
+        color: $grey;
+      }
+    }
+    > section {
+      > p {
+        @include type-golden(0);
+        color: $blue;
+      }
+    }
+    > section {
+      button {
+        @include type-golden(0);
+        border: 2px solid $light-blue;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        height: 44px;
+        padding: gutter(-1) gutter();
+        img {
+          height: 100%;
+          margin-right: gutter(-1);
+        }
+        span {
+          @include type-golden(0);
+          color: $light-blue;
+          position: relative;
+          top: -4px;
+        }
+      }
+    }
+    > section {
+      > ul {
+        display: flex;
+        > li {
+          flex-grow: 1;
+          text-align: center;
+          > a {
+            display: block;
+            &:hover {
+              text-decoration: none;
+            }
+            > img {
+              display: block;
+              margin: 0 auto;
+              width: gutter(2);
+            }
+            > span {
+              @include type-golden(-2);
+              color: $grey;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin mobile-branch-info-popup() {
+
+}
+
+.branch-info-popup-cell {
+  @include branch-info-popup;
+}
+
+.mobile .branch-info-popup-cell {
+  @include mobile-branch-info-popup;
+}

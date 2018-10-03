@@ -31,6 +31,7 @@ module AtuservicioRails
       components/branch_detail_half_left_cell
       components/branch_detail_half_right_cell
       components/branch_detail_large_cell
+      components/branch_info_popup_cell
       components/branch_list_half_right_cell
       components/branch_list_large_cell
       components/city_image_cell
