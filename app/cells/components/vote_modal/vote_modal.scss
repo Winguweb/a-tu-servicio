@@ -51,6 +51,7 @@
     > section {
       > h1 {
         @include type-golden(2);
+        line-height: gutter(2);
         margin-bottom: gutter();
         text-align: center;
       }

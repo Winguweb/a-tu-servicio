@@ -14,5 +14,7 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
       button @click="previousStep()" = "<"
       button @click="nextStep()" = ">"
 javascript:
-    $(function() {ATSB.Components['components/vote-modal']()});
+    $(function() {ATSB.Components['components/vote-modal']({
+      steps: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json}
+    })});
 
