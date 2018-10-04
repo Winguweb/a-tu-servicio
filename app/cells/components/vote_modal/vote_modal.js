@@ -6,15 +6,28 @@ ATSB.Components['components/vote-modal'] = function(options) {
       actions: {show: false},
       steps: options.steps,
       actualStep: 1,
-      inputValue: ""
+      inputValue: "",
+      showForm: true,
     },
     created: function() {
       ATSB.pubSub.$on('vote:open', this.componentOpen)
       ATSB.pubSub.$on('vote:close', this.componentClose)
     },
+    watch: {
+      inputValue: function(val) {
+        this.setAnswer(val)
+      }
+    },
     methods: {
+      resetForm: function() {
+        for(var i in this.steps) {
+          this.steps[i].answer = null
+        }
+        this.actualStep = 1
+      },
       componentClose: function() {
         this.actions.show = false
+        this.resetForm()
       },
       componentOpen: function(id) {
         this.branchId = id
@@ -33,6 +46,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
         return step && step[0]
       },
       nextStep: function() {
+        var _this = this
         var actualStep = this.getActualStep()
         var actualAnswerId = this.getActualAnswer()
         if (actualAnswerId == null) { return }
@@ -41,18 +55,23 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.inputValue = ""
         this.actualStep = +nextStep
         this.preloadInputValue()
+        this.showForm = false
+        setTimeout(function() {_this.showForm = true}, 300)
       },
       preloadInputValue: function() {
         var actualStep = this.getActualStep()
-        if(actualStep.answers[0].type == "input") {
+        if(actualStep.answers && actualStep.answers[0].type == "input") {
           this.inputValue = actualStep.answer
         }
       },
       previousStep: function() {
+        var _this = this
         var actualStep = this.getActualStep()
         var previousStep = actualStep.previous_step
         if (previousStep) { this.actualStep = +previousStep }
         this.preloadInputValue()
+        this.showForm = false
+        setTimeout(function() {_this.showForm = true}, 300)
       },
       selectAnswer: function(id) {
         this.getStepById(this.actualStep).answer = id

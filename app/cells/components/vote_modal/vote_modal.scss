@@ -1,17 +1,14 @@
 @mixin vote-modal() {
   background-color: #00000088;
   bottom: 0;
+  display: none;
   left: 0;
   padding: gutter(3) gutter(5);
-  // display: none;
   position: fixed;
   right: 0;
   top: 0;
   z-index: 3000;
   &.show {
-    display: block;
-  }
-  &:hover {
     display: block;
   }
   > section {
@@ -20,6 +17,7 @@
     height: 100%;
     padding: gutter();
     position: relative;
+    transition: transform 300ms ease, opacity 300ms ease, ;
     width: 100%;
     > header {
       border-bottom: 1px solid $light-grey;
@@ -40,13 +38,6 @@
         @include type-golden(1);
         color: $light-blue;
         font-weight: 600;
-        line-height: gutter();
-      }
-      > span {
-        @include type-golden(0);
-        color: $blue;
-        font-weight: 600;
-        line-height: gutter();
       }
     }
     > section {
@@ -177,7 +168,8 @@
           }
           > input {
             @include type-golden(0);
-            border: 1px solid $light-blue;
+            border: none;
+            border-bottom: 3px solid $light-blue;
             border-radius: 2px;
             color: $light-blue;
             display: inline;
@@ -241,6 +233,22 @@
         }
       }
     }
+  }
+  .swipe-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .swipe-leave-active {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  .swipe-enter {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  .swipe-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    transform: translateY(5px);
   }
 }
 
