@@ -5,7 +5,8 @@ ATSB.Components['components/vote-modal'] = function(options) {
       branchId: 1,
       actions: {show: false},
       steps: options.steps,
-      actualStep: 0
+      actualStep: 1,
+      inputValue: ""
     },
     created: function() {
       ATSB.pubSub.$on('vote:open', this.componentOpen)
@@ -19,15 +20,46 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.branchId = id
         this.actions.show = true
       },
-      selectAnswer: function(id) {
-        this.steps[this.actualStep].answer = id
+      getActualAnswer: function() {
+        return this.getActualStep().answer
+      },
+      getActualStep: function() {
+        return this.getStepById(this.actualStep)
+      },
+      getStepById: function(id) {
+        var step = this.steps.filter(function(step) {
+          return step.id == id
+        })
+        return step && step[0]
       },
       nextStep: function() {
-        (this.actualStep == this.steps.length - 1) || this.actualStep++
+        var actualStep = this.getActualStep()
+        var actualAnswerId = this.getActualAnswer()
+        if (actualAnswerId == null) { return }
+        var nextStep = actualStep.next_step[actualAnswerId] || actualStep.id+1
+        this.getStepById(nextStep).previous_step = actualStep.id
+        this.inputValue = ""
+        this.actualStep = +nextStep
+        this.preloadInputValue()
+      },
+      preloadInputValue: function() {
+        var actualStep = this.getActualStep()
+        if(actualStep.answers[0].type == "input") {
+          this.inputValue = actualStep.answer
+        }
       },
       previousStep: function() {
-        this.actualStep == 0 || this.actualStep--
-      }
+        var actualStep = this.getActualStep()
+        var previousStep = actualStep.previous_step
+        if (previousStep) { this.actualStep = +previousStep }
+        this.preloadInputValue()
+      },
+      selectAnswer: function(id) {
+        this.getStepById(this.actualStep).answer = id
+      },
+      setAnswer: function() {
+        this.getStepById(this.actualStep).answer = this.inputValue
+      },
     }
   })
 }
