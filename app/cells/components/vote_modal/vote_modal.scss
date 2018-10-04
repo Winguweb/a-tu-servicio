@@ -16,6 +16,7 @@
   }
   > section {
     background-color: $white;
+    border-radius: 2px;
     height: 100%;
     padding: gutter();
     position: relative;
@@ -63,7 +64,7 @@
         text-align: left;
         > li {
           display: inline-block;
-          margin: gutter(-1);
+          margin: gutter(-2);
           text-align: center;
           > button {
             @include type-golden(0);
@@ -73,7 +74,7 @@
             cursor: pointer;
             display: block;
             height: 100%;
-            padding: gutter();
+            padding: gutter(-2) gutter();
             width: 100%;
             &:hover {
               background-color: $light-blue;
