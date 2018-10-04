@@ -8,6 +8,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
       actualStep: 1,
       inputValue: "",
       showForm: true,
+      clientId: 'ad45d163d93a957eb9a63f2958542fc21d738f7f392d660126621e97deaf5bf5'
     },
     created: function() {
       ATSB.pubSub.$on('vote:open', this.componentOpen)
@@ -39,6 +40,13 @@ ATSB.Components['components/vote-modal'] = function(options) {
       getActualStep: function() {
         return this.getStepById(this.actualStep)
       },
+      getAnswerById: function(id) {
+        var step = this.getActualStep()
+        var answer = step.answers.filter(function(answer) {
+          return answer.id == id
+        })
+        return answer && answer[0] || {}
+      },
       getStepById: function(id) {
         var step = this.steps.filter(function(step) {
           return step.id == id
@@ -50,6 +58,24 @@ ATSB.Components['components/vote-modal'] = function(options) {
         var actualStep = this.getActualStep()
         var actualAnswerId = this.getActualAnswer()
         if (actualAnswerId == null) { return }
+
+        client_id = this.clientId
+        branch_id = this.branchId
+        step_id = actualStep.id
+        answer_id = isNaN(actualAnswerId) ? null : actualAnswerId
+        answerString = this.getAnswerById(this.getActualStep().answer).value
+        answer_value = this.inputValue ? this.inputValue : answerString
+        question_value = this.getActualStep().question
+
+        this.sendVote({
+          client_id: client_id,
+          branch_id: branch_id,
+          step_id: step_id,
+          answer_id: answer_id,
+          question_value: question_value,
+          answer_value: answer_value,
+        })
+
         var nextStep = actualStep.next_step[actualAnswerId] || actualStep.id+1
         this.getStepById(nextStep).previous_step = actualStep.id
         this.inputValue = ""
@@ -75,6 +101,9 @@ ATSB.Components['components/vote-modal'] = function(options) {
       },
       selectAnswer: function(id) {
         this.getStepById(this.actualStep).answer = id
+      },
+      sendVote: function(vote) {
+        console.table(vote)
       },
       setAnswer: function() {
         this.getStepById(this.actualStep).answer = this.inputValue

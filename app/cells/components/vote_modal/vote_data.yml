@@ -22,7 +22,7 @@
     4: 2
   answer: null
 - id: 2
-  question: "¿Selecciona el servicio para el cual solicitaste la cita?"
+  question: "Selecciona el servicio para el cual solicitaste la cita"
   answers:
   - id: 1
     type: "cuckoo"
