@@ -94,6 +94,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
         setTimeout(function() {_this.showForm = true}, 300)
       },
       preloadInputValue: function() {
+        this.inputValue = ""
         var actualStep = this.getActualStep()
         if(actualStep.answers && actualStep.answers[0].type == "input") {
           this.inputValue = actualStep.answer
@@ -113,7 +114,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.nextStep()
       },
       sendVote: function(vote) {
-        console.table(vote)
+        ATSB.pubSub.$emit('vote:send', vote)
       },
       setAnswer: function() {
         var actualStep = this.getActualStep()
