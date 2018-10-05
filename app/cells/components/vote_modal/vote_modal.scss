@@ -214,6 +214,7 @@
         padding: gutter(-1);
         position: absolute;
         text-align: center;
+        transition: all 300ms ease;
         width: gutter(2);
         &:active {
           bottom: -1px;
@@ -262,6 +263,23 @@
   .swipe-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
     transform: translateY(5px);
+  }
+
+  .next-enter-active {
+    bottom: 0;
+    opacity: 1;
+  }
+  .next-leave-active {
+    bottom: -10px;
+    opacity: 0;
+  }
+  .next-enter {
+    bottom: -10px;
+    opacity: 0;
+  }
+  .next-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    bottom: -10px;
+    opacity: 0;
   }
 }
 

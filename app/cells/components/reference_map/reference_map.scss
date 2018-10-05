@@ -54,8 +54,11 @@
       white-space: nowrap;
       z-index: 1001;
     }
-    &:hover i {
-      background-image: image-url("icons/marker-hover.svg");
+    &:hover {
+      background-color: $blue;
+      i {
+        background-image: image-url("icons/marker-hover.svg");
+      }
     }
   }
   .reference-map--cluster {

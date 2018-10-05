@@ -23,7 +23,8 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
             button.option v-if="answer.type == 'option'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.value}}"
       footer
         button.previous v-if="getActualStep().previous_step" @click="previousStep()"
-        button.next v-if="getActualStep().next_step && getActualAnswer()" @click="nextStep()"
+        transition name="next"
+          button.next v-if="getActualStep().next_step && getActualAnswer()" @click="nextStep()"
 javascript:
     $(function() {ATSB.Components['components/vote-modal']({
       steps: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json}
