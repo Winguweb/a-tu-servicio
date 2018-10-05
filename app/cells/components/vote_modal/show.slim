@@ -1,0 +1,38 @@
+div.vote-modal-cell v-bind:class="{show: actions.show}"
+  transition name="swipe"
+    section v-if="showForm"
+      header
+        button @click="componentClose()"
+        h1 = "Reporte ciudadano"
+      section
+        h1 = "{{getActualStep().question}}"
+        ul
+          li v-for="answer in getActualStep().answers" :class="{large: answer.type == 'option'}"
+
+            button.cuckoo v-if="answer.type == 'cuckoo'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.value}}"
+
+            label v-if="answer.type == 'input'"
+              input type="number" size="1" min="0" v-model="inputValue" placeholder="-"
+              span = " días"
+
+            button.star v-if="answer.type == 'star'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}"
+              span = "{{answer.value}}"
+
+            button.icon v-if="answer.type == 'icon'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}"
+              span = "{{answer.display}}"
+              span = "{{answer.value}}"
+
+            button.option v-if="answer.type == 'option'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.value}}"
+      footer
+        button.navigation.previous v-if="getActualStep().previous_step" @click="previousStep()"
+        transition name="next"
+          button.navigation.next v-if="getActualStep().next_step && getActualAnswer()" @click="nextStep()"
+          button.back v-if="getActualStep().next_step == null" @click="backToProvider()"
+            span = "Volver al prestador"
+            img :src="'/assets/icons/arrow-right.svg'"
+javascript:
+    $(function() {ATSB.Components['components/vote-modal']({
+      steps: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json},
+      client_id: "#{SecureRandom.urlsafe_base64(40, false)}"
+    })});
+

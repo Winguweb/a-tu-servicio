@@ -22,7 +22,7 @@
     z-index: 1;
     > ul {
       height: 100px;
-      margin-bottom: gutter();
+      margin-bottom: gutter(2);
       position: relative;
       > li {
         left: 0;
@@ -30,7 +30,9 @@
         right: 0;
         top: 25%;
         > span {
+          @include type-golden(0);
           display: block;
+          font-weight: 600;
           opacity: 0;
           position: absolute;
           text-align: center;
@@ -58,11 +60,9 @@
         color: $white;
         cursor: pointer;
         display: block;
-        font-weight: 600;
         margin: 0 auto;
-        padding: gutter();
+        padding: gutter(-1);
         text-align: center;
-        text-transform: uppercase;
         width: 200px;
         &:active {
           position: relative;
@@ -70,6 +70,18 @@
         }
         &:hover {
           text-decoration: none;
+        }
+        &:after {
+          border-bottom: 3px solid $white;
+          border-right: 3px solid $white;
+          content: '';
+          display: inline-block;
+          height: 8px;
+          left: 5px;
+          position: relative;
+          transform: rotateZ(-45deg);
+          vertical-align: baseline;
+          width: 8px;
         }
       }
     }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_24_151457) do
+ActiveRecord::Schema.define(version: 2018_10_05_184847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -252,6 +252,21 @@ ActiveRecord::Schema.define(version: 2018_07_24_151457) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.string "client_id"
+    t.integer "branch_id"
+    t.integer "step_id"
+    t.string "question_value"
+    t.integer "answer_id"
+    t.string "answer_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_surveys_on_answer_id"
+    t.index ["branch_id"], name: "index_surveys_on_branch_id"
+    t.index ["client_id"], name: "index_surveys_on_client_id"
+    t.index ["step_id"], name: "index_surveys_on_step_id"
   end
 
   create_table "taggings", force: :cascade do |t|

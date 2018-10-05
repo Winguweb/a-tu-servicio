@@ -66,7 +66,7 @@ ATSB.Components['components/reference-map'] = function(options) {
           var featured = branch.featured ? 'marker-featured' : ''
           var marker = new L.Marker(branch.coordinates, {
             icon: new L.divIcon({
-              html: '<div class="reference-map--marker ' + featured + '"><i></i><p>' + branch.name + '</p></div><!-- Icon made by [https://www.facebook.com/theflaticon] from www.flaticon.com -->',
+              html: '<div class="reference-map--marker ' + featured + '"><i></i></div><!-- Icon made by [https://www.facebook.com/theflaticon] from www.flaticon.com -->',
               iconAnchor: [8, 15],
               iconSize: [15, 15],
             }),
@@ -86,6 +86,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         this.centerMap()
       },
       addEvents: function(marker) {
+        var _this = this
         marker.on('click', function (evt) {
           var id = evt.target.options.id
           ATSB.pubSub.$emit('all:slides:close')
@@ -94,14 +95,38 @@ ATSB.Components['components/reference-map'] = function(options) {
           ATSB.pubSub.$emit('branch:selected', [id])
           ATSB.pubSub.$emit('branch:compare:set', id)
           ATSB.pubSub.$emit('branch:compare:button:show')
+          ATSB.pubSub.$emit('branch:hover:close')
+        })
+        marker.on('mouseover', function (evt) {
+          var branch = _this.getBranchById(evt.target.options.id)
+          var info = {
+            branch: branch,
+            position: {left: evt.containerPoint.x, top: evt.containerPoint.y}
+          }
+          ATSB.pubSub.$emit('branch:hover:open', info)
+        })
+        marker.on('mouseout', function (evt) {
+          ATSB.pubSub.$emit('branch:hover:close')
         })
       },
       addMapEvents: function() {
+        var _this = this
         this.map.on('click', function(evt) {
-          ATSB.pubSub.$emit('all:slides:close')
-          ATSB.pubSub.$emit('header:action:set', 'open')
-          ATSB.pubSub.$emit('map:activearea', "")
+          console.log(_this.selectedBranch.length)
+          // ATSB.pubSub.$emit('map:activearea', "")
+          if (_this.selectedBranch.length == 1) {
+            ATSB.pubSub.$emit('all:slides:close')
+            ATSB.pubSub.$emit('branch:list:large:open')
+            ATSB.pubSub.$emit('branch:compare:button:hide')
+            ATSB.pubSub.$emit('header:action:set', 'close')
+          }
         })
+      },
+      getBranchById: function(id) {
+        branch = this.branches.filter(function(branch) {
+          return branch.id == id
+        })
+        return branch && branch[0]
       },
       setCentered: function(value) {
         this.centered = value

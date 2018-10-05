@@ -12,6 +12,7 @@
 //= require branch_detail_half_left
 //= require branch_detail_half_right
 //= require branch_detail_large
+//= require branch_info_popup
 //= require branch_list_half_right
 //= require branch_list_large
 //= require compare_branch_button
@@ -22,6 +23,7 @@
 //= require site_header
 //= require splash
 //= require story_slider
+//= require vote_modal
 
 // VISUALIZATION CELLS
 //= require in_hundreed_visualization

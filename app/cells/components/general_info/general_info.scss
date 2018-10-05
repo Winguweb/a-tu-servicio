@@ -56,9 +56,11 @@ $search-bar-height: calc(66px);
       > ul {
         margin-bottom: gutter(2);
         > li {
+          height: 42px;
           margin-bottom: gutter();
+          position: relative;
           &:before {
-            @include type-golden();
+            @include type-golden(1);
             background-color: $light-blue;
             border-radius: 100%;
             color: $white;
@@ -66,21 +68,21 @@ $search-bar-height: calc(66px);
             display: block;
             float: left;
             font-weight: 600;
-            height: 32px;
-            line-height: 32px;
+            height: 42px;
+            line-height: 42px;
             margin-right: gutter();
             text-align: center;
-            width: 32px;
+            width: 42px;
           }
           &:nth-of-type(1):before {content: '1'}
           &:nth-of-type(2):before {content: '2'}
           &:nth-of-type(3):before {content: '3'}
           p {
             color: $blue;
-            min-height: 50px;
-            overflow: auto;
-            position: relative;
-            top: 5px;
+            left: calc(42px + #{gutter()});
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
           }
         }
       }
@@ -102,13 +104,12 @@ $search-bar-height: calc(66px);
           border-top: 3px solid $white;
           content: '';
           display: inline-block;
-          height: 10px;
+          height: 8px;
           left: -5px;
           position: relative;
-          top: 1px;
           transform: rotateZ(-45deg);
           vertical-align: baseline;
-          width: 10px;
+          width: 8px;
         }
         &:active {
           position: relative;

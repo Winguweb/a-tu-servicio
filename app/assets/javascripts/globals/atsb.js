@@ -20,17 +20,6 @@
   if( typeof ATSB.CSRFtoken !== 'string' || !ATSB.CSRFtoken.length ) {
     ATSB.CSRFtoken = null
   } else {
-    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
-      if( ATSB.Helpers.url.isSameDomain(options.url) ) {
-        jqXHR.setRequestHeader('X-CSRF-Token', ATSB.CSRFtoken)
-      }
-
-      jqXHR.promise().fail(function(xhr){
-        var url = xhr.responseJSON.url
-        if( xhr.status === 302 && !_.isEmpty(url)){
-          window.location.href = url
-        }
-      })
-    })
+    axios.defaults.headers.post['X-CSRF-Token'] = ATSB.CSRFtoken
   }
 })();

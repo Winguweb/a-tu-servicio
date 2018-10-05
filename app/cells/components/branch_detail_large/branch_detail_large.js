@@ -36,6 +36,9 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
         ATSB.pubSub.$emit('map:activearea', "small")
         ATSB.pubSub.$emit('header:action:set', 'back')
       },
+      openVoteModal: function() {
+        ATSB.pubSub.$emit('vote:open', this.branch.id)
+      },
     }
   })
 }

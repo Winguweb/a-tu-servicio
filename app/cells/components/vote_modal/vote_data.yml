@@ -1,0 +1,477 @@
+---
+- id: 1
+  question: "¿Qué tipo de usuario eres?"
+  answers:
+  - id: 1
+    type: "cuckoo"
+    value: "No asegurado"
+  - id: 2
+    type: "cuckoo"
+    value: "Subsidiado"
+  - id: 3
+    type: "cuckoo"
+    value: "Contributivo"
+  - id: 4
+    type: "cuckoo"
+    value: "Particular"
+  previous_step: null
+  next_step:
+    1: 2
+    2: 2
+    3: 2
+    4: 2
+  answer: null
+- id: 2
+  question: "Selecciona el servicio para el cual solicitaste la cita"
+  answers:
+  - id: 1
+    type: "cuckoo"
+    value: "Pediatría"
+  - id: 2
+    type: "cuckoo"
+    value: "Medicina Interna"
+  - id: 3
+    type: "cuckoo"
+    value: "Odontología"
+  - id: 4
+    type: "cuckoo"
+    value: "Medicina General"
+  - id: 5
+    type: "cuckoo"
+    value: "Ginecología"
+  - id: 6
+    type: "cuckoo"
+    value: "Obstetricia"
+  - id: 7
+    type: "cuckoo"
+    value: "Cirujía General"
+  - id: 8
+    type: "cuckoo"
+    value: "Laboratorio"
+  - id: 9
+    type: "cuckoo"
+    value: "Radiología"
+  previous_step: null
+  next_step:
+    1: 3
+    2: 3
+    3: 3
+    4: 3
+    5: 3
+    6: 3
+    7: 3
+    8: 3
+    9: 3
+  answer: null
+- id: 3
+  question: "¿Cómo calificas el tiempo para obtener la cita?"
+  answers:
+  - id: 1
+    type: "star"
+    value: "Muy Malo"
+  - id: 2
+    type: "star"
+    value: "Malo"
+  - id: 3
+    type: "star"
+    value: "Aceptable"
+  - id: 4
+    type: "star"
+    value: "Bueno"
+  - id: 5
+    type: "star"
+    value: "Muy Bueno"
+  previous_step: null
+  next_step:
+    1: 4
+    2: 4
+    3: 4
+    4: 4
+    5: 4
+  answer: null
+- id: 4
+  question: "¿Cómo calificas el tiempo desde la asignación de la cita hasta que te atendieron?"
+  answers:
+  - id: 1
+    type: "star"
+    value: "Muy Malo"
+  - id: 2
+    type: "star"
+    value: "Malo"
+  - id: 3
+    type: "star"
+    value: "Aceptable"
+  - id: 4
+    type: "star"
+    value: "Bueno"
+  - id: 5
+    type: "star"
+    value: "Muy Bueno"
+  previous_step: null
+  next_step:
+    1: 6
+    2: 6
+    3: 6
+    4: 6
+    5: 6
+  answer: null
+# - id: 5
+#   question: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
+#   answers:
+#   - id: 1
+#     type: "icon"
+#     value: "Menos de 1 día"
+#     display: "-1"
+#   - id: 2
+#     type: "icon"
+#     value: "De 3 a 4 días"
+#     display: "3-4"
+#   - id: 3
+#     type: "icon"
+#     value: "Más de 5 días"
+#     display: "+5"
+#   - id: 4
+#     type: "icon"
+#     value: "Otro"
+#     display: "?"
+#   previous_step: null
+#   next_step:
+#     1: 7
+#     2: 7
+#     3: 7
+#     4: 6
+#   answer: null
+- id: 6
+  question: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
+  answers:
+  - id: 1
+    type: "input"
+    value: "Entre 6 y 8 días"
+  previous_step: null
+  next_step:
+    1: 7
+  answer: null
+- id: 7
+  question: "¿Cómo calificas la atención recibida?"
+  answers:
+  - id: 1
+    type: "star"
+    value: "Muy Mala"
+  - id: 2
+    type: "star"
+    value: "Mala"
+  - id: 3
+    type: "star"
+    value: "Aceptable"
+  - id: 4
+    type: "star"
+    value: "Buena"
+  - id: 5
+    type: "star"
+    value: "Muy Buena"
+  previous_step: null
+  next_step:
+    1: 8
+    2: 8
+    3: 8
+    4: 8
+    5: 8
+  answer: null
+- id: 8
+  question: "¿Cómo calificas tu experiencia en el servicio de urgencia?"
+  answers:
+  - id: 1
+    type: "star"
+    value: "Muy Mala"
+  - id: 2
+    type: "star"
+    value: "Mala"
+  - id: 3
+    type: "star"
+    value: "Aceptable"
+  - id: 4
+    type: "star"
+    value: "Buena"
+  - id: 5
+    type: "star"
+    value: "Muy Buena"
+  previous_step: null
+  next_step:
+    1: 9
+    2: 9
+    3: 10
+    4: 10
+    5: 10
+  answer: null
+- id: 9
+  question: "¿Cuál fue el motivo de tu mala experiencia?"
+  answers:
+  - id: 1
+    type: "option"
+    value: "El tiempo de espera hasta que me evaluaron fue excesivamente largo"
+  - id: 2
+    type: "option"
+    value: "No había donde sentarse en la sala de espera"
+  - id: 3
+    type: "option"
+    value: "El tiempo entre la evaluación previa y la atención fue exesivamente largo"
+  - id: 4
+    type: "option"
+    value: "No encontré solución para mi motivo de consulta"
+  - id: 5
+    type: "option"
+    value: "El personal médico y de enfermería no prestó un servicio adecuado"
+  - id: 6
+    type: "option"
+    value: "El personal administrativo no prestó un servicio adecuado"
+  - id: 7
+    type: "option"
+    value: "No había disponibilidad de camilla de observación ni sillones reclinables"
+  previous_step: null
+  next_step:
+    1: 11
+    2: 11
+    3: 11
+    4: 11
+    5: 11
+    6: 11
+    7: 11
+  answer: null
+- id: 10
+  question: "¿Qué valoras de tu experiencia en el servicio de urgencia?"
+  answers:
+  - id: 1
+    type: "option"
+    value: "El tiempo de espera hasta que me evaluaron fue corto"
+  - id: 2
+    type: "option"
+    value: "La sala de espera se encontraba en condiciones óptimas"
+  - id: 3
+    type: "option"
+    value: "El tiempo entre la evaluación previa y la atención fue corto"
+  - id: 4
+    type: "option"
+    value: "La atención médica fue resolutiva"
+  - id: 5
+    type: "option"
+    value: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis espectativas"
+  previous_step: null
+  next_step:
+    1: 11
+    2: 11
+    3: 11
+    4: 11
+    5: 11
+  answer: null
+- id: 11
+  question: "Selecciona el servicio para el cual solicitaste la cita"
+  answers:
+  - id: 1
+    type: "cuckoo"
+    value: "De apoyo"
+  - id: 2
+    type: "cuckoo"
+    value: "Administrativo"
+  - id: 3
+    type: "cuckoo"
+    value: "Enfermería"
+  - id: 4
+    type: "cuckoo"
+    value: "Medicina General"
+  - id: 5
+    type: "cuckoo"
+    value: "Medicina Especializada"
+  - id: 6
+    type: "cuckoo"
+    value: "Odontología"
+  - id: 7
+    type: "cuckoo"
+    value: "Psicología"
+  - id: 8
+    type: "cuckoo"
+    value: "Terapia Ocupacional"
+  - id: 9
+    type: "cuckoo"
+    value: "Fonoaudiología"
+  - id: 10
+    type: "cuckoo"
+    value: "Bacteriología"
+  - id: 11
+    type: "cuckoo"
+    value: "Nutrición"
+  - id: 12
+    type: "cuckoo"
+    value: "Fisioterapia"
+  previous_step: null
+  next_step:
+    1: 12
+    2: 12
+    3: 12
+    4: 12
+    5: 12
+    6: 12
+    7: 12
+    8: 12
+    9: 12
+    10: 12
+    11: 12
+    12: 12
+  answer: null
+- id: 12
+  question: "¿Cómo califica la atención recibida por parte del personal?"
+  answers:
+  - id: 1
+    type: "star"
+    value: "Muy Mala"
+  - id: 2
+    type: "star"
+    value: "Mala"
+  - id: 3
+    type: "star"
+    value: "Aceptable"
+  - id: 4
+    type: "star"
+    value: "Buena"
+  - id: 5
+    type: "star"
+    value: "Muy Buena"
+  previous_step: null
+  next_step:
+    1: 13
+    2: 13
+    3: 14
+    4: 14
+    5: 14
+  answer: null
+- id: 13
+  question: "¿Cuál fue el motivo la mala atención?"
+  answers:
+  - id: 1
+    type: "option"
+    value: "No se presentó amabilidad y calidéz por parte de los funcionarios"
+  - id: 2
+    type: "option"
+    value: "No le demostraron interés o voluntad en ayudarlo"
+  - id: 3
+    type: "option"
+    value: "No tuvo privacidad para contar su caso"
+  - id: 4
+    type: "option"
+    value: "La explicación o información que le brindaron no fue confiable"
+  - id: 5
+    type: "option"
+    value: "Otros"
+  previous_step: null
+  next_step:
+    1: 15
+    2: 15
+    3: 15
+    4: 15
+    5: 15
+  answer: null
+- id: 14
+  question: "¿Qué valoras de la atención recibida?"
+  answers:
+  - id: 1
+    type: "option"
+    value: "Se presentó amabilidad y calidéz por parte de los funcionarios"
+  - id: 2
+    type: "option"
+    value: "Le demostraron interés y voluntad en ayudarlo"
+  - id: 3
+    type: "option"
+    value: "La privacidad para contar su caso"
+  - id: 4
+    type: "option"
+    value: "La explicación o información que le brindaron fue confiable"
+  - id: 5
+    type: "option"
+    value: "Otros"
+  previous_step: null
+  next_step:
+    1: 15
+    2: 15
+    3: 15
+    4: 15
+    5: 15
+  answer: null
+- id: 15
+  question: "¿Cuál es su nivel de satisfacción con la calidad el servicio de salud?"
+  answers:
+  - id: 1
+    type: "star"
+    value: "Muy Mala"
+  - id: 2
+    type: "star"
+    value: "Mala"
+  - id: 3
+    type: "star"
+    value: "Aceptable"
+  - id: 4
+    type: "star"
+    value: "Buena"
+  - id: 5
+    type: "star"
+    value: "Muy Buena"
+  previous_step: null
+  next_step:
+    1: 16
+    2: 16
+    3: 17
+    4: 17
+    5: 17
+  answer: null
+- id: 16
+  question: "¿Cuál fue el motivo la mala atención?"
+  answers:
+  - id: 1
+    type: "option"
+    value: "No hubo coherencia o relación entre la atención y su necesidad"
+  - id: 2
+    type: "option"
+    value: "No hay tranquilidad y comodidad del punto de atención"
+  - id: 3
+    type: "option"
+    value: "No hubo respeto a la dignidad y la condición humana"
+  - id: 4
+    type: "option"
+    value: "No se resolvió su necesidad"
+  - id: 5
+    type: "option"
+    value: "Otros"
+  previous_step: null
+  next_step:
+    1: 18
+    2: 18
+    3: 18
+    4: 18
+    5: 18
+  answer: null
+- id: 17
+  question: "¿Qué valoras de la calidad del servicio de salud?"
+  answers:
+  - id: 1
+    type: "option"
+    value: "Hubo coherencia o relación entre la atención y su necesidad"
+  - id: 2
+    type: "option"
+    value: "Hubo tranquilidad y comodidad del punto de atención"
+  - id: 3
+    type: "option"
+    value: "Hubo respeto a la dignidad y condición humana"
+  - id: 4
+    type: "option"
+    value: "Se resolvió su necesidad"
+  previous_step: null
+  next_step:
+    1: 18
+    2: 18
+    3: 18
+    4: 18
+  answer: null
+- id: 18
+  question: "¡Gracias por contestar la encuesta!"
+  answers: null
+  previous_step: null
+  next_step: null
+  answer: null

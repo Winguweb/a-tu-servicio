@@ -31,6 +31,7 @@ module AtuservicioRails
       components/branch_detail_half_left_cell
       components/branch_detail_half_right_cell
       components/branch_detail_large_cell
+      components/branch_info_popup_cell
       components/branch_list_half_right_cell
       components/branch_list_large_cell
       components/city_image_cell
@@ -42,6 +43,7 @@ module AtuservicioRails
       components/site_header_cell
       components/splash_cell
       components/story_slider_cell
+      components/vote_modal_cell
       mobile_components/m_drawer_cell
       mobile_components/m_site_header_cell
       visualization_components/beds_visualization_cell
