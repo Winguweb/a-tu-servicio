@@ -26,6 +26,15 @@ ATSB.Components['components/vote-modal'] = function(options) {
         }
         this.actualStep = 1
       },
+      backToProvider: function() {
+        this.componentClose()
+        ATSB.pubSub.$emit('all:slides:close')
+        ATSB.pubSub.$emit('branch:detail:large:open')
+        ATSB.pubSub.$emit('branch:detail:large:fetch', this.branchId)
+        ATSB.pubSub.$emit('branch:selected', [this.branchId])
+        ATSB.pubSub.$emit('branch:compare:set', this.branchId)
+        ATSB.pubSub.$emit('branch:compare:button:show')
+      },
       componentClose: function() {
         this.actions.show = false
         this.resetForm()
@@ -101,12 +110,16 @@ ATSB.Components['components/vote-modal'] = function(options) {
       },
       selectAnswer: function(id) {
         this.getStepById(this.actualStep).answer = id
+        this.nextStep()
       },
       sendVote: function(vote) {
         console.table(vote)
       },
       setAnswer: function() {
-        this.getStepById(this.actualStep).answer = this.inputValue
+        var actualStep = this.getActualStep()
+        if(actualStep.answers && actualStep.answers[0].type == "input") {
+          this.getStepById(this.actualStep).answer = this.inputValue
+        }
       },
     }
   })

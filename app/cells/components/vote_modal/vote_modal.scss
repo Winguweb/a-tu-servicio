@@ -68,7 +68,6 @@
       width: calc(100% - #{gutter()*2});
       > ul {
         display: inline-block;
-        text-align: left;
         > li {
           display: inline-block;
           margin: gutter(-2);
@@ -130,6 +129,9 @@
             height: 85px;
             position: relative;
             width: gutter(3);
+            &:hover {
+              background-image: image-url('icons/star-hover.svg');
+            }
             &.selected {
               background-image: image-url('icons/star-selected.svg');
             }
@@ -153,17 +155,28 @@
             color: $light-blue;
             cursor: pointer;
             display: block;
-            height: 85px;
+            height: 105px;
             position: relative;
-            width: 75px;
+            width: 95px;
             &.selected {
               background-color: $blue;
               background-image: image-url('icons/calendar-selected.svg');
               color: $white;
+              > span:last-of-type {
+                color: $white;
+              }
+            }
+            &:hover {
+              background-color: $light-blue;
+              background-image: image-url('icons/calendar-selected.svg');
+              color: $white;
+              > span:last-of-type {
+                color: $white;
+              }
             }
             > span:first-of-type {
               @include type-golden(0);
-              bottom: 28px;
+              bottom: 38px;
               font-weight: 800;
               left: 0;
               position: absolute;
@@ -171,35 +184,38 @@
               text-align: center;
             }
             > span:last-of-type {
-              bottom: 2px;
+              @include type-golden(-0.6);
+              bottom: 0;
+              color: $black;
+              font-weight: 800;
               left: 0;
               position: absolute;
               right: 0;
               text-align: center;
             }
           }
-          > input {
-            @include type-golden(0);
-            border: none;
+          > label {
             border-bottom: 3px solid $light-blue;
-            border-radius: 2px;
-            color: $blue;
-            display: inline;
-            font-weight: 600;
-            height: 100%;
-            min-width: 50px;
-            overflow: visible;
             padding: gutter(-2) gutter();
-            resize: horizontal;
-            text-align: center;
-            width: 300px;
+            input {
+              @include type-golden(0);
+              border: none;
+              border-radius: 2px;
+              color: $blue;
+              display: inline;
+              font-weight: 600;
+              height: 100%;
+              overflow: visible;
+              text-align: center;
+              width: 50px;
+            }
           }
         }
       }
     }
     > footer {
       padding: gutter();
-      > button {
+      > button.navigation {
         @include type-golden(0);
         background-color: $blue;
         border: none;
@@ -246,6 +262,37 @@
           }
         }
       }
+      button.back {
+        @include type-golden(0);
+        background-color: $blue;
+        border: none;
+        border-radius: 2px;
+        bottom: gutter();
+        box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        height: 44px;
+        padding: gutter(-1) gutter();
+        position: absolute;
+        right: gutter();
+        &:active {
+          bottom: calc(#{gutter()} - 1px);
+        }
+        img {
+          height: 100%;
+          margin-left: gutter(-1);
+          padding: gutter(-2) 0;
+        }
+        span {
+          @include type-golden(0);
+          color: $white;
+          font-weight: 300;
+          position: relative;
+          text-transform: uppercase;
+          top: -6px;
+        }
+      }
     }
   }
   .swipe-enter-active {
@@ -265,19 +312,19 @@
     transform: translateY(5px);
   }
 
-  .next-enter-active {
+  .navigation.next-enter-active {
     bottom: 0;
     opacity: 1;
   }
-  .next-leave-active {
+  .navigation.next-leave-active {
     bottom: -10px;
     opacity: 0;
   }
-  .next-enter {
+  .navigation.next-enter {
     bottom: -10px;
     opacity: 0;
   }
-  .next-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  .navigation.next-leave-to /* .fade-leave-active below version 2.1.8 */ {
     bottom: -10px;
     opacity: 0;
   }
