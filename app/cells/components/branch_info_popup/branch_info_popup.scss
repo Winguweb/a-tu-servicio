@@ -57,6 +57,7 @@
       > span {
         @include type-golden(-1);
         color: $grey;
+        line-height: gutter();
       }
     }
     > section {
@@ -68,22 +69,25 @@
     > section {
       button {
         @include type-golden(0);
-        border: 2px solid $light-blue;
-        border-radius: 2px;
-        cursor: pointer;
-        display: inline-block;
-        font-weight: 600;
-        height: 44px;
-        padding: gutter(-1) gutter();
+            background-color: $blue;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 600;
+            height: 44px;
+            padding: gutter(-1) gutter();
         img {
           height: 100%;
           margin-right: gutter(-1);
         }
         span {
           @include type-golden(0);
-          color: $light-blue;
+          color: $white;
+          font-weight: 300;
           position: relative;
-          top: -4px;
+          text-transform: uppercase;
+          top: -6px;
         }
       }
     }

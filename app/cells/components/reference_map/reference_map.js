@@ -110,10 +110,16 @@ ATSB.Components['components/reference-map'] = function(options) {
         })
       },
       addMapEvents: function() {
+        var _this = this
         this.map.on('click', function(evt) {
-          ATSB.pubSub.$emit('all:slides:close')
-          ATSB.pubSub.$emit('header:action:set', 'open')
-          ATSB.pubSub.$emit('map:activearea', "")
+          console.log(_this.selectedBranch.length)
+          // ATSB.pubSub.$emit('map:activearea', "")
+          if (_this.selectedBranch.length == 1) {
+            ATSB.pubSub.$emit('all:slides:close')
+            ATSB.pubSub.$emit('branch:list:large:open')
+            ATSB.pubSub.$emit('branch:compare:button:hide')
+            ATSB.pubSub.$emit('header:action:set', 'close')
+          }
         })
       },
       getBranchById: function(id) {

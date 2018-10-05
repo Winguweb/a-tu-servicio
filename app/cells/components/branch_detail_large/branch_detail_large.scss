@@ -42,7 +42,9 @@ $search-bar-height: calc(66px);
             text-align: left;  // for right
           }
           button {
-            border: 2px solid $light-blue;
+            @include type-golden(0);
+            background-color: $blue;
+            border: none;
             border-radius: 2px;
             cursor: pointer;
             display: inline-block;
@@ -52,16 +54,17 @@ $search-bar-height: calc(66px);
             position: absolute;
             right: gutter(1);
             top: gutter();
-            @include type-golden(0);
             img {
               height: 100%;
               margin-right: gutter(-1);
             }
             span {
               @include type-golden(0);
-              color: $light-blue;
+              color: $white;
+              font-weight: 300;
               position: relative;
-              top: -4px;
+              text-transform: uppercase;
+              top: -6px;
             }
           }
         }
