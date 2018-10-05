@@ -8,11 +8,12 @@ ATSB.Components['components/vote-modal'] = function(options) {
       actualStep: 1,
       inputValue: "",
       showForm: true,
-      clientId: 'ad45d163d93a957eb9a63f2958542fc21d738f7f392d660126621e97deaf5bf5'
+      clientId: null
     },
     created: function() {
       ATSB.pubSub.$on('vote:open', this.componentOpen)
       ATSB.pubSub.$on('vote:close', this.componentClose)
+      this.getClientId(options.client_id)
     },
     watch: {
       inputValue: function(val) {
@@ -55,6 +56,10 @@ ATSB.Components['components/vote-modal'] = function(options) {
           return answer.id == id
         })
         return answer && answer[0] || {}
+      },
+      getClientId: function(client_id) {
+        this.clientId = localStorage.getItem('client_id') || client_id
+        localStorage.setItem('client_id', this.clientId)
       },
       getStepById: function(id) {
         var step = this.steps.filter(function(step) {

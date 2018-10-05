@@ -32,6 +32,7 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
             img :src="'/assets/icons/arrow-right.svg'"
 javascript:
     $(function() {ATSB.Components['components/vote-modal']({
-      steps: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json}
+      steps: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json},
+      client_id: "#{SecureRandom.urlsafe_base64(40, false)}"
     })});
 
