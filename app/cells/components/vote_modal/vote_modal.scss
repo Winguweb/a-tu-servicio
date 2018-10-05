@@ -13,48 +13,58 @@
   }
   > section {
     background-color: $white;
+    background-image: image-url('cloud.svg'), image-url('baloon.svg');
+    background-position: top 30% right 10px, bottom 0 left 40px;
+    background-repeat: no-repeat;
+    background-size: 100px, 50px;
     border-radius: 2px;
     height: 100%;
-    padding: gutter();
+    overflow: hidden;
     position: relative;
-    transition: transform 300ms ease, opacity 300ms ease, ;
+    transition: transform 300ms ease, opacity 300ms ease;
     width: 100%;
     > header {
-      border-bottom: 1px solid $light-grey;
+      background-color: $blue;
       margin-bottom: gutter();
+      padding: gutter();
       position: relative;
       > button {
-        background-image: image-url('icons/close-menu-light-blue.svg');
+        background-color: transparent;
+        background-image: image-url('icons/close-menu.svg');
         border: none;
         cursor: pointer;
         display: block;
         height: gutter(1);
+        margin-right: gutter();
         position: absolute;
         right: 0;
-        top: 0;
+        top: 50%;
+        transform: translateY(-50%);
         width: gutter(1);
       }
       > h1 {
         @include type-golden(1);
-        color: $light-blue;
+        color: $white;
         font-weight: 600;
       }
     }
     > section {
+      padding: gutter();
       > h1 {
         @include type-golden(1);
         line-height: gutter(1);
-        margin-bottom: gutter();
+        margin: gutter() auto gutter();
+        max-width: 500px;
         padding: gutter();
         text-align: center;
       }
     }
-    > section:nth-of-type(2) {
+    > section:nth-of-type(1) {
       left: 50%;
       position: absolute;
       text-align: center;
       top: 50%;
-      transform: translate3d(-50%,calc(-50% + #{gutter(2)}),0);
+      transform: translate3d(-50%, -50%, 0);
       width: calc(100% - #{gutter()*2});
       > ul {
         display: inline-block;
@@ -107,7 +117,7 @@
             }
           }
           > button.star {
-            @include type-golden(-1);
+            @include type-golden(-0.6);
             background-image: image-url('icons/star.svg');
             background-position: center top;
             background-repeat: no-repeat;
@@ -116,6 +126,7 @@
             color: $light-blue;
             cursor: pointer;
             display: block;
+            font-weight: 600;
             height: 85px;
             position: relative;
             width: gutter(3);
@@ -124,6 +135,7 @@
             }
             > span {
               bottom: 0;
+              color: $black;
               left: 0;
               position: absolute;
               right: 0;
@@ -145,7 +157,7 @@
             position: relative;
             width: 75px;
             &.selected {
-              background-color: $light-blue;
+              background-color: $blue;
               background-image: image-url('icons/calendar-selected.svg');
               color: $white;
             }
@@ -171,8 +183,9 @@
             border: none;
             border-bottom: 3px solid $light-blue;
             border-radius: 2px;
-            color: $light-blue;
+            color: $blue;
             display: inline;
+            font-weight: 600;
             height: 100%;
             min-width: 50px;
             overflow: visible;
@@ -185,9 +198,10 @@
       }
     }
     > footer {
+      padding: gutter();
       > button {
         @include type-golden(0);
-        background-color: $light-blue;
+        background-color: $blue;
         border: none;
         border-radius: 100%;
         bottom: 0;
@@ -208,27 +222,26 @@
           text-decoration: none;
         }
         &:after {
+          background-repeat: no-repeat;
+          background-size: contain;
           content: '';
           display: inline-block;
-          height: 8px;
+          height: 100%;
           position: relative;
           top: -1px;
-          transform: rotateZ(-45deg);
           vertical-align: baseline;
-          width: 8px;
+          width: 100%;
         }
         &.previous {
           left: 0;
           &:after {
-            border-left: 3px solid $white;
-            border-top: 3px solid $white;
+            background-image: image-url('icons/arrow-left.svg');
           }
         }
         &.next {
           right: 0;
           &:after {
-            border-bottom: 3px solid $white;
-            border-right: 3px solid $white;
+            background-image: image-url('icons/arrow-right.svg');
           }
         }
       }
