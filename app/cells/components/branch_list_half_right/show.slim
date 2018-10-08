@@ -1,6 +1,6 @@
 div.branch-list-half-right-cell v-bind:class="{show: actions.show}"
   div
-    input placeholder="Buscar..." v-model="searchQuery" required="" :disabled="perform_search" ref="search" autofocus="true"
+    input type="text" placeholder="Buscar..." v-model="searchQuery" required="" :disabled="perform_search" ref="search" autofocus="true"
     a v-on:click="clearSearchClicked"
       = image_tag image_path("icons/cancel-search.svg")
   div v-if="!perform_search" v-on:scroll="scrollEnd"
