@@ -5,6 +5,8 @@ $search-bar-height: calc(66px);
   border-right: 1px solid color($light-grey, 0.5); // for right
   bottom: 0;
   left: 0%; // for left
+  overflow-x: hidden;
+  overflow-y: auto;
   padding: gutter(1) 0 gutter(1) gutter(1); // for left
   position: fixed;
   top: $search-bar-height;
@@ -91,50 +93,58 @@ $search-bar-height: calc(66px);
           > main {
             @include grid-container;
             min-height: 316px;
-              padding: 0 gutter();
+            padding: 0 gutter();
             > p {
               @include type-golden(0);
               font-weight: 300;
               padding: 0 gutter();
             }
-            > div:first-of-type {
-              > p {
-                @include type-golden(0);
-                font-weight: 300;
-                margin-bottom: gutter();
-                > strong {
-                  font-weight: 600;
-                }
-              }
-            }
-            > div:nth-of-type(2) {
-              @include grid-collapse;
-              overflow: hidden;
-              > div {
-                > div {
-                  > p {
-                    @include text-color($blue);
-                    border-bottom: 2px solid $blue;
-                    display: inline-block;
-                    max-width: 350px;
-                    width: 100%;
+            > div {
+              > div:first-of-type {
+                float: left;
+                width: 100%;
+                > p {
+                  @include type-golden(0);
+                  font-weight: 300;
+                  margin-bottom: gutter();
+                  > strong {
+                    font-weight: 600;
                   }
                 }
               }
-              &.horizontal {
+              > div + div {
+                float: left;
+                overflow: hidden;
                 > div {
                   > div {
-                    @include grid-column(1 of 2);
-                    margin-bottom: gutter();
+                    > p {
+                      @include text-color($blue);
+                      border-bottom: 2px solid $blue;
+                      display: inline-block;
+                      max-width: 350px;
+                      width: 100%;
+                    }
                   }
                 }
-              }
-              &.vertical {
-                > div {
-                  > div {
-                    @include grid-column(1 of 3);
-                    margin-bottom: gutter();
+                &.horizontal {
+                  width: 50%;
+                  &:nth-of-type(even) {
+                    > div {
+                      > div {
+                        padding-right: gutter()/2;
+                      }
+                    }
                   }
+                  &:nth-of-type(odd) {
+                    > div {
+                      > div {
+                        padding-left: gutter()/2;
+                      }
+                    }
+                  }
+                }
+                &.vertical {
+                  width: 50%;
                 }
               }
             }

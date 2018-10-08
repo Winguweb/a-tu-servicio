@@ -15,42 +15,28 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}"
               h1 = "Datos de la sede y el prestador"
           main
             div
-              p v-if="branch.address"
-                strong = "Dirección: "
-                | {{branch.address}}
-              p v-if="branch.town"
-                strong = "Localidad: "
-                | {{branch.town}}
-              p v-if="branch.provider.name"
-                strong = "Nombre del prestador: "
-                | {{branch.provider.name}}
-              p v-if="branch.provider.subnet"
-                strong = "Subred: "
-                | {{branch.provider.subnet}}
-              p v-if="branch.provider.address"
-                strong = "Dirección del prestador: "
-                | {{branch.provider.address}}
-              p v-if="branch.provider.website"
-                strong = "Sitio web: "
-                | {{branch.provider.website}}
-              p v-if="branch.provider.communication_services"
-                strong = "Para comunicarse con el prestador: "
-                | {{branch.provider.communication_services}}
-        / section
-          header
-            div
-              h1 = "Camas"
-          main v-if="branch.has_beds_information"
-            div
-              p = "Estos gráficos representan la cantidad de camas existentes por cada 10.000 pacientes, desagregado en áreas."
-            div.horizontal
               div
-                div v-for="bed in branch.beds"
-                  p
-                    | {{bed.area}}
-                  == cell('visualization_components/beds_visualization')
-          main v-else=""
-            p ="Sin información."
+                p v-if="branch.address"
+                  strong = "Dirección: "
+                  | {{branch.address}}
+                p v-if="branch.town"
+                  strong = "Localidad: "
+                  | {{branch.town}}
+                p v-if="branch.provider.name"
+                  strong = "Nombre del prestador: "
+                  | {{branch.provider.name}}
+                p v-if="branch.provider.subnet"
+                  strong = "Subred: "
+                  | {{branch.provider.subnet}}
+                p v-if="branch.provider.address"
+                  strong = "Dirección del prestador: "
+                  | {{branch.provider.address}}
+                p v-if="branch.provider.website"
+                  strong = "Sitio web: "
+                  | {{branch.provider.website}}
+                p v-if="branch.provider.communication_services"
+                  strong = "Para comunicarse con el prestador: "
+                  | {{branch.provider.communication_services}}
         section :class="colors.satisfactions"
           header :class="{percentage: branch.has_satisfaction_information}"
             div
@@ -61,12 +47,13 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}"
                   | {{toPercentage(branch.satisfaction)}}%
           main v-if="branch.has_satisfaction_information"
             div
-              p = "La satisfacción corresponde al grado de conformidad de los pacientes respecto al prestador de servicios de salud al que pertenece esta sede."
-              p = "El siguiente gráfico representa la satisfacción del prestador de servicios de salud en relación al que mejor satisface a los pacientes."
-            div.horizontal
               div
+                p = "La satisfacción corresponde al grado de conformidad de los pacientes respecto al prestador de servicios de salud al que pertenece esta sede."
+                p = "El siguiente gráfico representa la satisfacción del prestador de servicios de salud en relación al que mejor satisface a los pacientes."
+              div.horizontal
                 div
-                  == cell('visualization_components/satisfaction_visualization')
+                  div
+                    == cell('visualization_components/satisfaction_visualization')
           main v-else=""
             p ="Sin información."
         section :class="colors.waiting_times"
@@ -79,14 +66,21 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}"
                   | {{branch.waiting_times_average}} días
           main v-if="branch.has_waiting_times_information"
             div
-              p = "El tiempo de espera general para esta sede es de {{branch.waiting_times_average}} días."
-              p = "A continuación se muestran los tiempos de espera hasta ser atendido, desagregado por especialidad:"
-            div.horizontal
               div
-                div v-for="waiting_time in branch.waiting_times"
-                  p
-                    | {{waiting_time.name}}
-                  == cell('visualization_components/waiting_times_visualization')
+                p = "El tiempo de espera general para esta sede es de {{branch.waiting_times_average}} días."
+                p = "A continuación se muestran los tiempos de espera hasta ser atendido, desagregado por especialidad:"
+              div.horizontal
+                div
+                  div v-for="waiting_time in branch.waiting_times"
+                    p
+                      | {{waiting_time.name}}
+                    == cell('visualization_components/waiting_times_visualization')
+              div.horizontal
+                div
+                  div v-for="waiting_time in branch.waiting_times"
+                    p
+                      | {{waiting_time.name}}
+                    == cell('visualization_components/waiting_times_visualization')
           main v-else=""
             p ="Sin información."
         section
@@ -95,16 +89,17 @@ div.branch-detail-half-right-cell v-bind:class="{show: actions.show}"
               h1 = "Especialidades"
           main v-if="branch.has_specialities_information"
             div
-              p
-                = "Hay "
-                strong
-                  | {{branch.specialities_count}}
-                = " especialidades disponibles en esta sede:"
-            div.horizontal
               div
-                div v-for="speciality in branch.specialities"
-                  == cell('visualization_components/specialities_visualization')
+                p
+                  = "Hay "
+                  strong
+                    | {{branch.specialities_count}}
+                  = " especialidades disponibles en esta sede:"
+              div.horizontal
                 div
+                  div v-for="speciality in branch.specialities"
+                    == cell('visualization_components/specialities_visualization')
+                  div
           main v-else=""
             p ="Sin información."
 
