@@ -8,6 +8,15 @@ a:hover, a:focus {
   text-decoration: underline;
 }
 
+button,
+input {
+  background-color: transparent;
+}
+
+input[type="text"] {
+  border: 1px solid $light-grey;
+}
+
 .map-active-area {
   $padding: 20px;
   height: calc(100% - #{$padding*2});
