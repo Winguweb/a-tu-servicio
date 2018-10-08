@@ -27,7 +27,10 @@ namespace :import do
     puts 'Truncate State table...'
     ActiveRecord::Base.connection.execute("TRUNCATE #{State.table_name} RESTART IDENTITY")
 
-    imported_csv = File.read('./db/data/bogota.csv')
+    imported_csv = File.read('./db/data/bogota.tsv')
+    mostrar = 0
+    destacar = 0
+    totales = 0
     CSV.parse(imported_csv, headers: true, header_converters: :symbol, col_sep: "\t", :quote_char => "`") do |row|
       especialidad = row[:especialidades].split('-').last.titleize.strip
       lote_camas = {
@@ -45,8 +48,8 @@ namespace :import do
         :nombre => row[:prestador].titleize.strip,
         :tipo => row[:tipo_prestador],
         :website => row[:website],
-        :destacado => row[:destacado],
-        :mostrar => row[:mostrar],
+        :destacado => row[:destacado].present? && (row[:destacado] == 'x' || row[:destacado] == 'X'),
+        :mostrar => row[:mostrar].present? && (row[:mostrar] == 'x' || row[:mostrar] == 'X'),
         :email => row[:email],
         :comunicacion => row[:comunicacion].to_s,
         :localidad => row[:localidad_central],
@@ -70,7 +73,8 @@ namespace :import do
       end.first
 
       if prestador_existente.nil?
-        puts "New Provider: #{prestador[:nombre].titleize.strip}"
+        # puts "New Provider: #{prestador[:nombre].titleize.strip}"
+        printf "."
         prestadores << prestador
       else
         sede_existente = prestador_existente[:sedes].select do |s|
@@ -190,9 +194,15 @@ namespace :import do
         satisfactions: satisfactions,
         waiting_times: waiting_times,
       )
+      mostrar = mostrar + 1 if prestador[:mostrar]
+      destacar = destacar + 1 if prestador[:destacado]
+      totales = totales + 1
       provider.save
       percentage = ((actual+1)/total.to_f * 100).round(2)
       printf("\rCompleted: %.2f%", percentage)
+      printf(", Total: %d", totales)
+      printf(", Mostrar: %d", mostrar)
+      printf(", Destacar: %d", destacar)
     end
     puts "\n"
     puts 'Providers uploaded'
