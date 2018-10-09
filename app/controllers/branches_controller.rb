@@ -22,10 +22,7 @@ class BranchesController < ApplicationController
 
   def show
     @branch = Branch.includes(:provider, :specialities).find_by(id: params[:id])
-    @provider = @branch.provider
-    @waiting_times = @provider.waiting_times
-    @satisfactions = @provider.satisfactions
-    @specialities = @branch.specialities
+
     @base_response = BaseResponseService.call(@branch)
     @flag_response = FlagResponseService.call(@branch)
     @satisfaction_response = SatisfactionResponseService.call(@branch)
