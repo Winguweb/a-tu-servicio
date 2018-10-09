@@ -3,6 +3,7 @@ class SatisfactionResponseService
 
   def initialize(branch)
     @branch = branch
+    @satisfactions = @branch.provider.satisfactions
     @common_info = CommonInfoService.call
     @response = _response
   end
@@ -24,7 +25,6 @@ class SatisfactionResponseService
   end
 
   def _response
-    @satisfactions = @branch.provider.satisfactions
     {
       satisfaction: _satisfaction,
       satisfaction_from_best: _satisfaction_from_best,

@@ -1,6 +1,9 @@
 class FlagResponseService
   def initialize(branch)
     @branch = branch
+    @specialities = @branch.specialities
+    @satisfactions = @branch.provider.satisfactions
+    @waiting_times = @branch.provider.waiting_times
     @response = _response
   end
 
@@ -25,9 +28,6 @@ class FlagResponseService
   end
 
   def _response
-    @specialities = @branch.specialities
-    @satisfactions = @branch.provider.satisfactions
-    @waiting_times = @branch.provider.waiting_times
     {
       has_waiting_times_information: _has_waiting_times_information,
       has_satisfaction_information: _has_satisfaction_information,

@@ -3,6 +3,7 @@ class WaitingTimeResponseService
 
   def initialize(branch)
     @branch = branch
+    @waiting_times = @branch.provider.waiting_times
     @common_info = CommonInfoService.call
     @response = _response
   end
@@ -53,7 +54,6 @@ class WaitingTimeResponseService
   end
 
   def _response
-    @waiting_times = @branch.provider.waiting_times
     {
       waiting_times: _waiting_times_response,
       waiting_times_average: _waiting_times_average,

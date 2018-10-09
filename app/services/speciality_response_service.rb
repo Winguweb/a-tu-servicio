@@ -3,6 +3,7 @@ class SpecialityResponseService
 
   def initialize(branch)
     @branch = branch
+    @specialities = @branch.specialities
     @response = _response
   end
 
@@ -29,7 +30,6 @@ class SpecialityResponseService
   end
 
   def _response
-    @specialities = @branch.specialities
     {
       specialities: _specialities,
       specialities_count: _specialities_count
