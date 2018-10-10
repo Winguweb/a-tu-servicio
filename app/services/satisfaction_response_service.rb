@@ -17,7 +17,7 @@ class SatisfactionResponseService
   private
 
   def _satisfaction
-    @satisfactions.present? ? @satisfactions.first.percentage.to_f : 0.0
+    (@satisfactions.present? ? @satisfactions.first.percentage.to_f : 0.0).round(2)
   end
 
   def _satisfaction_from_best

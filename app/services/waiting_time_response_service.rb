@@ -27,7 +27,7 @@ class WaitingTimeResponseService
 
   # Used for percentage/volume bar width
   def _waiting_times_percentage_from_worst
-    _waiting_times_total / @common_info.worst_total_waiting_times.to_f
+    (_waiting_times_total.to_f / @common_info.worst_total_waiting_times.to_f).round(2)
   end
 
   def _waiting_time_from_best(waiting_time)
