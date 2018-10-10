@@ -1,12 +1,12 @@
 div.satisfaction-visualization-cell
   div
-    div v-for="i in toNOfTen(branch.satisfaction_from_best)"
+    div v-for="i in toNOfTen(branch.initial_source.satisfaction_from_best)"
       img :src="'/assets/icons/satisfaction.svg'"
-    div v-for="i in toNOfTenReverse(branch.satisfaction_from_best)"
+    div v-for="i in toNOfTenReverse(branch.initial_source.satisfaction_from_best)"
       img :src="'/assets/icons/satisfaction-empty.svg'"
   div
     p
       = "Los servicios del prestador de esta sede satisfacen al "
       strong
-        | {{toPercentage(branch.satisfaction)}}%
+        | {{toPercentage(branch.initial_source.satisfaction)}}%
       = " de los pacientes. "

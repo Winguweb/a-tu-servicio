@@ -56,7 +56,7 @@ class BaseResponseService
         address: _provider_address,
         website: _provider_website,
         communication_services: _provider_communication_services
-      }
+      },
     }
   end
 end

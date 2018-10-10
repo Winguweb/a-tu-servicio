@@ -26,8 +26,14 @@ class SatisfactionResponseService
 
   def _response
     {
-      satisfaction: _satisfaction,
-      satisfaction_from_best: _satisfaction_from_best,
+      initial_source: {
+        satisfaction: _satisfaction,
+        satisfaction_from_best: _satisfaction_from_best,
+      },
+      surveys_source: {
+        satisfaction: _satisfaction,
+        satisfaction_from_best: _satisfaction_from_best,
+      }
     }
   end
 end

@@ -55,9 +55,16 @@ class WaitingTimeResponseService
 
   def _response
     {
-      waiting_times: _waiting_times_response,
-      waiting_times_average: _waiting_times_average,
-      waiting_times_percentage_from_worst: _waiting_times_percentage_from_worst,
+      initial_source: {
+        waiting_times: _waiting_times_response,
+        waiting_times_average: _waiting_times_average,
+        waiting_times_percentage_from_worst: _waiting_times_percentage_from_worst,
+      },
+      surveys_source: {
+        waiting_times: _waiting_times_response,
+        waiting_times_average: _waiting_times_average,
+        waiting_times_percentage_from_worst: _waiting_times_percentage_from_worst,
+      }
     }
   end
 end

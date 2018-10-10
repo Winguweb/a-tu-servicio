@@ -40,13 +40,13 @@ class BranchesController < ApplicationController
     end
     # ==========================================================================
 
-    @response = {
-      **@base_response.response,
-      **@flag_response.response,
-      **@satisfaction_response.response,
-      **@speciality_response.response,
-      **@waiting_time_response.response,
-    }
+    @response = {}
+    @response.deep_merge!(@base_response.response)
+    @response.deep_merge!(@flag_response.response)
+    @response.deep_merge!(@satisfaction_response.response)
+    @response.deep_merge!(@speciality_response.response)
+    @response.deep_merge!(@waiting_time_response.response)
+
     render json: @response
   end
 

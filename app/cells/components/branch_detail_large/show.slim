@@ -46,9 +46,9 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
               div
                 h1 = "Satisfacción"
               div v-if="branch.has_satisfaction_information"
-                div :style="{width: toPercentage(branch.satisfaction) + '%'}"
+                div :style="{width: toPercentage(branch.initial_source.satisfaction) + '%'}"
                   span
-                    | {{toPercentage(branch.satisfaction)}}%
+                    | {{toPercentage(branch.initial_source.satisfaction)}}%
             main v-if="branch.has_satisfaction_information"
               div
                 div
@@ -65,23 +65,23 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
               div
                 h1 = "Tiempos de espera"
               div v-if="branch.has_waiting_times_information"
-                div :style="{width: toPercentage(branch.waiting_times_percentage_from_worst) + '%'}"
+                div :style="{width: toPercentage(branch.initial_source.waiting_times_percentage_from_worst) + '%'}"
                   span
-                    | {{branch.waiting_times_average}} días
+                    | {{branch.initial_source.waiting_times_average}} días
             main v-if="branch.has_waiting_times_information"
               div
                 div
-                  p = "El tiempo de espera general para esta sede es de {{branch.waiting_times_average}} días."
+                  p = "El tiempo de espera general para esta sede es de {{branch.initial_source.waiting_times_average}} días."
                   p = "A continuación se muestran los tiempos de espera hasta ser atendido, desagregado por especialidad:"
                 div.horizontal
                   div
-                    div v-for="waiting_time in branch.waiting_times"
+                    div v-for="waiting_time in branch.initial_source.waiting_times"
                       p
                         | {{waiting_time.name}}
                       == cell('visualization_components/waiting_times_visualization')
                 div.horizontal
                   div
-                    div v-for="waiting_time in branch.users_waiting_times"
+                    div v-for="waiting_time in branch.surveys_source.waiting_times"
                       p
                         | {{waiting_time.name}}
                       == cell('visualization_components/waiting_times_visualization')
@@ -97,11 +97,11 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                   p
                     = "Hay "
                     strong
-                      | {{branch.specialities_count}}
+                      | {{branch.initial_source.specialities_count}}
                     = " especialidades disponibles en esta sede:"
                 div.horizontal
                   div
-                    div v-for="speciality in branch.specialities"
+                    div v-for="speciality in branch.initial_source.specialities"
                       == cell('visualization_components/specialities_visualization')
                     div
             main v-else=""

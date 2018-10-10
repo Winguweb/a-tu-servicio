@@ -31,8 +31,14 @@ class SpecialityResponseService
 
   def _response
     {
-      specialities: _specialities,
-      specialities_count: _specialities_count
+      initial_source: {
+        specialities: _specialities,
+        specialities_count: _specialities_count
+      },
+      surveys_source: {
+        specialities: _specialities,
+        specialities_count: _specialities_count
+      }
     }
   end
 end

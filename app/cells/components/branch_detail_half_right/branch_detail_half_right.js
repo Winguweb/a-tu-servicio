@@ -27,7 +27,6 @@ ATSB.Components['components/branch-detail-half-right'] = function(options) {
         this.branch = response.data
         this.branch.loaded = true
         ATSB.pubSub.$emit('branch:compare:load:right', this.branch)
-        console.log(response.data)
       },
       branchFetchError: function() {
         console.warn('Cant reach branch')
