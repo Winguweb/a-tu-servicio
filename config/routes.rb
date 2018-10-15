@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
-  get '/' => 'home#index', as: :home
+  root to: 'home#show'
 
   scope '/api' do
     scope '/v1' do
       resources :branches, only: %i[index show]
       resources :surveys, only: %i[create]
-      # post '/surveys' => 'surveys#new'
     end
   end
   # ---
-  match '/(departamento/:departamento)' => 'home#index', via: :get
+  match '/(departamento/:departamento)' => 'home#show', via: :get
 
   get '/comparar' => 'compare#index'
   get '/comparar/:selected_providers' => 'compare#index', as: :compare

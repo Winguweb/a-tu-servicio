@@ -17,3 +17,25 @@
 .DS_Store
 config/atsb.yml
 ansible/
+
+# General private stuff
+*.local.*
+/config/deploy/files/**/*
+/config/deploy/production.rb
+/config/deploy/staging.rb
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+dump.rdb
+ehthumbs.db
+Thumbs.db
+
+# Other stuff
+.gs/
+coverage
+.idea

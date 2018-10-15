@@ -1,9 +1,9 @@
 header.site-header-cell
   div
-    = link_to home_path do
+    = link_to root_path do
       = image_tag image_path("logos/atsb-w.svg")
   div
-    = link_to 'Inicio', home_path, class: current_page?(:controller => 'home', :action => 'index') ? 'active' : ''
+    = link_to 'Inicio', root_path, class: current_page?(:controller => 'home', :action => 'show') ? 'active' : ''
     = link_to 'Mapa de Servicios', services_path, class: current_page?(:controller => 'home', :action => 'services') ? 'active' : ''
     = link_to 'El Proyecto', about_path, class: current_page?(:controller => 'home', :action => 'about') ? 'active' : ''
   div
