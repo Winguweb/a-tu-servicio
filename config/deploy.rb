@@ -91,6 +91,7 @@ namespace :deploy do
 
   before :starting,     :check_revision
   after  :starting,     'sidekiq:quiet'
+  after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
   after  :reverted,     'sidekiq:restart'
