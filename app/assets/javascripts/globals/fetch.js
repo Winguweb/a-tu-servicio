@@ -10,7 +10,6 @@
         var cb = cb || ATSB.Utils.fn
         var err = err || ATSB.Utils.out
         ATSB.Indexes.branch.search(searchParams).then(cb).catch(err)
-        // axios.get("/api/v1/branches?q=" + query)
       },
       branchId: function(id, cb, err) {
         var cb = cb || ATSB.Utils.fn
