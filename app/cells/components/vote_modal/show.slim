@@ -1,13 +1,14 @@
 div.vote-modal-cell v-bind:class="{show: actions.show}"
-  transition name="swipe"
-    section v-if="showForm"
+  transition-group name="swipe"
+    section key="main-section" v-if="showForm"
       header
         button @click="componentClose()"
         h1 = "Reporte ciudadano"
       section
+
         h1 = "{{getActualStep().question}}"
         ul
-          li v-for="answer in getActualStep().answers" :class="{large: answer.type == 'option'}"
+          li :key="answer.id" v-for="answer in getActualStep().answers" :class="{large: answer.type == 'option'}"
 
             button.cuckoo v-if="answer.type == 'cuckoo'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.value}}"
 
@@ -25,14 +26,16 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
             button.option v-if="answer.type == 'option'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.value}}"
       footer
         button.navigation.previous v-if="getActualStep().previous_step" @click="previousStep()"
-        transition name="next"
-          button.navigation.next v-if="getActualStep().next_step && getActualAnswer()" @click="nextStep()"
-          button.back v-if="getActualStep().next_step == null" @click="backToProvider()"
+        transition-group name="next"
+          button.navigation.next key="NextButton" v-if="getActualStep().next_step && getActualAnswer()" @click="nextStep()"
+          #google_recaptcha.g-recaptcha key="recaptcha" data-sitekey="#{RECAPTCHA_SITEKEY}" data-size="invisible"
+          button.back key="BackButton" v-if="getActualStep().next_step == null" @click="backToProvider()"
             span = "Volver al prestador"
             img :src="'/assets/icons/arrow-right.svg'"
 javascript:
     $(function() {ATSB.Components['components/vote-modal']({
       steps: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json},
-      client_id: "#{SecureRandom.urlsafe_base64(40, false)}"
+      client_id: "#{SecureRandom.urlsafe_base64(40, false)}",
+      recaptchaSitekey: "#{RECAPTCHA_SITEKEY}"
     })});
 

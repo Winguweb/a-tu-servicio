@@ -1,5 +1,7 @@
 class SurveysController < ApplicationController
   def create
+    return error_message unless recaptcha_was_verified? || recaptcha_verified?
+
     @survey = Survey.find_or_initialize_by(survey_find_params)
     @survey.assign_attributes(survey_params)
 
@@ -8,6 +10,30 @@ class SurveysController < ApplicationController
   end
 
   private
+
+  def error_message
+    render json: {status: 429, message: 'recaptcha failed'}, status: 429
+  end
+
+  def recaptcha_was_verified?
+    session[:recaptcha_success].present?
+  end
+
+  def recaptcha_verified?
+    request = Typhoeus::Request.new(
+      RECAPTCHA_VERIFY_URL,
+      method: :post,
+      params: {
+        secret: RECAPTCHA_SECRETKEY,
+        response: params[:token]
+      }
+    )
+
+    request.run
+    response = request.response
+    success = JSON.parse(response.options[:response_body])['success']
+    session[:recaptcha_success] = success
+  end
 
   def survey_params
     params.require(:vote).permit(
