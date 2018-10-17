@@ -1,8 +1,9 @@
 class SurveysController < ApplicationController
   def create
     return error_message unless recaptcha_was_verified? || recaptcha_verified?
+    multi_response = params[:vote][:multi_response]
 
-    @survey = Survey.find_or_initialize_by(survey_find_params)
+    @survey = getExistingOrNewSurvey(multi_response)
     @survey.assign_attributes(survey_params)
 
     return render json: @survey if @survey.save
@@ -10,6 +11,11 @@ class SurveysController < ApplicationController
   end
 
   private
+
+  def getExistingOrNewSurvey(multi_response)
+    return Survey.find_or_initialize_by(survey_find_params) unless multi_response
+    return Survey.new if multi_response
+  end
 
   def error_message
     render json: {status: 429, message: 'recaptcha failed'}, status: 429

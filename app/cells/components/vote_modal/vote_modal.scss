@@ -279,17 +279,19 @@
             }
           }
         }
-        button.back {
+        button.back,
+        button.loop {
           @include type-golden(0);
           background-color: $blue;
           border: none;
           border-radius: 2px;
-          bottom: gutter();
+          bottom: 0;
           box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
           cursor: pointer;
           display: inline-block;
           font-weight: 600;
           height: 44px;
+          margin-bottom: gutter();
           padding: gutter(-1) gutter();
           position: absolute;
           right: gutter();
@@ -308,6 +310,19 @@
             position: relative;
             text-transform: uppercase;
             top: -6px;
+          }
+        }
+        button.loop {
+          background-color: $light-blue;
+          right: #{gutter()*2 + gutter(2)};
+          img {
+            height: 100%;
+            margin-left: 0;
+            margin-right: gutter();
+            padding: 0;
+          }
+          span {
+            // color: $light-blue;
           }
         }
       }
@@ -330,19 +345,29 @@
     transform: translateY(5px);
   }
 
-  .navigation.next-enter-active {
+  .animated-button {
+    transition: opacity ease 300ms, bottom ease 300ms;
+  }
+
+  @for $i from 1 through 10 {
+  .animated-button:nth-of-type(#{$i}) {
+      transition-delay: #{100*$i}ms;
+    }
+  }
+
+  .animated-button.next-enter-active {
     bottom: 0;
     opacity: 1;
   }
-  .navigation.next-leave-active {
+  .animated-button.next-leave-active {
     bottom: -10px;
     opacity: 0;
   }
-  .navigation.next-enter {
+  .animated-button.next-enter {
     bottom: -10px;
     opacity: 0;
   }
-  .navigation.next-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  .animated-button.next-leave-to /* .fade-leave-active below version 2.1.8 */ {
     bottom: -10px;
     opacity: 0;
   }
