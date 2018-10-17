@@ -109,48 +109,48 @@
     value: "Muy Bueno"
   previous_step: null
   next_step:
-    1: 6
-    2: 6
-    3: 6
-    4: 6
-    5: 6
+    1: 5
+    2: 5
+    3: 5
+    4: 5
+    5: 5
   answer: null
-# - id: 5
-#   question: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
-#   answers:
-#   - id: 1
-#     type: "icon"
-#     value: "Menos de 1 día"
-#     display: "-1"
-#   - id: 2
-#     type: "icon"
-#     value: "De 3 a 4 días"
-#     display: "3-4"
-#   - id: 3
-#     type: "icon"
-#     value: "Más de 5 días"
-#     display: "+5"
-#   - id: 4
-#     type: "icon"
-#     value: "Otro"
-#     display: "?"
-#   previous_step: null
-#   next_step:
-#     1: 7
-#     2: 7
-#     3: 7
-#     4: 6
-#   answer: null
-- id: 6
+- id: 5
   question: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
   answers:
   - id: 1
-    type: "input"
-    value: "Entre 6 y 8 días"
+    type: "icon"
+    value: "Menos de 1 día"
+    display: "-1"
+  - id: 2
+    type: "icon"
+    value: "De 3 a 4 días"
+    display: "3-4"
+  - id: 3
+    type: "icon"
+    value: "Más de 5 días"
+    display: "+5"
+  # - id: 4
+  #   type: "icon"
+  #   value: "Otro"
+  #   display: "?"
   previous_step: null
   next_step:
     1: 7
+    2: 7
+    3: 7
+    # 4: 7
   answer: null
+# - id: 6
+#   question: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
+#   answers:
+#   - id: 1
+#     type: "input"
+#     value: "Entre 6 y 8 días"
+#   previous_step: null
+#   next_step:
+#     1: 7
+#   answer: null
 - id: 7
   question: "¿Cómo calificas la atención recibida?"
   answers:
