@@ -1,18 +1,23 @@
 ---
 - id: 1
   question: "¿Qué tipo de usuario eres?"
+  multi_response: false
   answers:
   - id: 1
     type: "cuckoo"
+    auto_submit: true
     value: "No asegurado"
   - id: 2
     type: "cuckoo"
+    auto_submit: true
     value: "Subsidiado"
   - id: 3
     type: "cuckoo"
+    auto_submit: true
     value: "Contributivo"
   - id: 4
     type: "cuckoo"
+    auto_submit: true
     value: "Particular"
   previous_step: null
   next_step:
@@ -23,151 +28,243 @@
   answer: null
 - id: 2
   question: "Selecciona el servicio para el cual solicitaste la cita"
+  multi_response: false
   answers:
   - id: 1
     type: "cuckoo"
+    auto_submit: true
     value: "Pediatría"
   - id: 2
     type: "cuckoo"
+    auto_submit: true
     value: "Medicina Interna"
   - id: 3
     type: "cuckoo"
+    auto_submit: true
     value: "Odontología"
   - id: 4
     type: "cuckoo"
+    auto_submit: true
     value: "Medicina General"
   - id: 5
     type: "cuckoo"
+    auto_submit: true
     value: "Ginecología"
   - id: 6
     type: "cuckoo"
+    auto_submit: true
     value: "Obstetricia"
   - id: 7
     type: "cuckoo"
+    auto_submit: true
     value: "Cirujía General"
   - id: 8
     type: "cuckoo"
+    auto_submit: true
     value: "Laboratorio"
   - id: 9
     type: "cuckoo"
+    auto_submit: true
     value: "Radiología"
   previous_step: null
   next_step:
-    1: 3
-    2: 3
-    3: 3
-    4: 3
-    5: 3
-    6: 3
-    7: 3
-    8: 3
-    9: 3
+    1: 5
+    2: 5
+    3: 5
+    4: 5
+    5: 5
+    6: 5
+    7: 5
+    8: 5
+    9: 5
   answer: null
-- id: 3
-  question: "¿Cómo calificas el tiempo para obtener la cita?"
-  answers:
-  - id: 1
-    type: "star"
-    value: "Muy Malo"
-  - id: 2
-    type: "star"
-    value: "Malo"
-  - id: 3
-    type: "star"
-    value: "Aceptable"
-  - id: 4
-    type: "star"
-    value: "Bueno"
-  - id: 5
-    type: "star"
-    value: "Muy Bueno"
-  previous_step: null
-  next_step:
-    1: 4
-    2: 4
-    3: 4
-    4: 4
-    5: 4
-  answer: null
-- id: 4
-  question: "¿Cómo calificas el tiempo desde la asignación de la cita hasta que te atendieron?"
-  answers:
-  - id: 1
-    type: "star"
-    value: "Muy Malo"
-  - id: 2
-    type: "star"
-    value: "Malo"
-  - id: 3
-    type: "star"
-    value: "Aceptable"
-  - id: 4
-    type: "star"
-    value: "Bueno"
-  - id: 5
-    type: "star"
-    value: "Muy Bueno"
-  previous_step: null
-  next_step:
-    1: 6
-    2: 6
-    3: 6
-    4: 6
-    5: 6
-  answer: null
-# - id: 5
-#   question: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
-#   answers:
-#   - id: 1
-#     type: "icon"
-#     value: "Menos de 1 día"
-#     display: "-1"
-#   - id: 2
-#     type: "icon"
-#     value: "De 3 a 4 días"
-#     display: "3-4"
-#   - id: 3
-#     type: "icon"
-#     value: "Más de 5 días"
-#     display: "+5"
-#   - id: 4
-#     type: "icon"
-#     value: "Otro"
-#     display: "?"
-#   previous_step: null
-#   next_step:
-#     1: 7
-#     2: 7
-#     3: 7
-#     4: 6
-#   answer: null
-- id: 6
+- id: 5
   question: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
+  multi_response: false
+  depends_on: 2
   answers:
-  - id: 1
-    type: "input"
-    value: "Entre 6 y 8 días"
+    - depends_on_id: 1
+      answers:
+        - id: 1
+          type: "icon"
+          auto_submit: true
+          value: "Entre 1 y 7 días"
+          display: "1-7"
+        - id: 2
+          type: "icon"
+          auto_submit: true
+          value: "Entre 8 y 15 días"
+          display: "8-15"
+        - id: 3
+          type: "icon"
+          auto_submit: true
+          value: "Entre 16 días o más"
+          display: "+16"
+    - depends_on_id: 2
+      answers:
+        - id: 1
+          type: "icon"
+          auto_submit: true
+          value: "Entre 1 y 15 días"
+          display: "1-15"
+        - id: 2
+          type: "icon"
+          auto_submit: true
+          value: "Entre 16 y 29 días"
+          display: "16-29"
+        - id: 3
+          type: "icon"
+          auto_submit: true
+          value: "Entre 30 días o más"
+          display: "+30"
+    - depends_on_id: 3
+      answers:
+        - id: 1
+          type: "icon"
+          auto_submit: true
+          value: "Entre 1 y 2 días"
+          display: "1-2"
+        - id: 2
+          type: "icon"
+          auto_submit: true
+          value: "Entre 3 y 4 días"
+          display: "3-4"
+        - id: 3
+          type: "icon"
+          auto_submit: true
+          value: "5 días o más"
+          display: "+5"
+    - depends_on_id: 4
+      answers:
+        - id: 1
+          type: "icon"
+          auto_submit: true
+          value: "Entre 1 y 2 días"
+          display: "1-2"
+        - id: 2
+          type: "icon"
+          auto_submit: true
+          value: "Entre 3 y 4 días"
+          display: "3-4"
+        - id: 3
+          type: "icon"
+          auto_submit: true
+          value: "5 días o más"
+          display: "+5"
+    - depends_on_id: 5
+      answers:
+        - id: 1
+          type: "icon"
+          auto_submit: true
+          value: "Entre 1 y 7 días"
+          display: "1-7"
+        - id: 2
+          type: "icon"
+          auto_submit: true
+          value: "Entre 8 y 15 días"
+          display: "8-15"
+        - id: 3
+          type: "icon"
+          auto_submit: true
+          value: "Entre 16 días o más"
+          display: "+16"
+    - depends_on_id: 6
+      answers:
+        - id: 1
+          type: "icon"
+          auto_submit: true
+          value: "Entre 1 y 2 días"
+          display: "1-2"
+        - id: 2
+          type: "icon"
+          auto_submit: true
+          value: "Entre 3 y 4 días"
+          display: "3-4"
+        - id: 3
+          type: "icon"
+          auto_submit: true
+          value: "5 días o más"
+          display: "+5"
+    - depends_on_id: 7
+      answers:
+        - id: 1
+          type: "icon"
+          auto_submit: true
+          value: "Entre 1 a 10 días"
+          display: "1-10"
+        - id: 2
+          type: "icon"
+          auto_submit: true
+          value: "Entre 11 a 19 días"
+          display: "11-19"
+        - id: 3
+          type: "icon"
+          auto_submit: true
+          value: "Entre 20 días y más"
+          display: "+20"
+    - depends_on_id: 8
+      answers:
+        - id: 1
+          type: "icon"
+          auto_submit: true
+          value: "Menos de 1 día"
+          display: "-1"
+        - id: 2
+          type: "icon"
+          auto_submit: true
+          value: "1 día"
+          display: "1"
+        - id: 3
+          type: "icon"
+          auto_submit: true
+          value: "2 días o más"
+          display: "+2"
+    - depends_on_id: 9
+      answers:
+        - id: 1
+          type: "icon"
+          auto_submit: true
+          value: "Menos de 1 día"
+          display: "-1"
+        - id: 2
+          type: "icon"
+          auto_submit: true
+          value: "1 día"
+          display: "1"
+        - id: 3
+          type: "icon"
+          auto_submit: true
+          value: "3 días o más"
+          display: "+3"
   previous_step: null
   next_step:
     1: 7
+    2: 7
+    3: 7
   answer: null
 - id: 7
   question: "¿Cómo calificas la atención recibida?"
+  multi_response: false
   answers:
   - id: 1
     type: "star"
+    auto_submit: true
     value: "Muy Mala"
   - id: 2
     type: "star"
+    auto_submit: true
     value: "Mala"
   - id: 3
     type: "star"
+    auto_submit: true
     value: "Aceptable"
   - id: 4
     type: "star"
+    auto_submit: true
     value: "Buena"
   - id: 5
     type: "star"
+    auto_submit: true
     value: "Muy Buena"
   previous_step: null
   next_step:
@@ -179,21 +276,27 @@
   answer: null
 - id: 8
   question: "¿Cómo calificas tu experiencia en el servicio de urgencia?"
+  multi_response: false
   answers:
   - id: 1
     type: "star"
+    auto_submit: true
     value: "Muy Mala"
   - id: 2
     type: "star"
+    auto_submit: true
     value: "Mala"
   - id: 3
     type: "star"
+    auto_submit: true
     value: "Aceptable"
   - id: 4
     type: "star"
+    auto_submit: true
     value: "Buena"
   - id: 5
     type: "star"
+    auto_submit: true
     value: "Muy Buena"
   previous_step: null
   next_step:
@@ -205,28 +308,40 @@
   answer: null
 - id: 9
   question: "¿Cuál fue el motivo de tu mala experiencia?"
+  multi_response: false
   answers:
   - id: 1
     type: "option"
+    auto_submit: true
     value: "El tiempo de espera hasta que me evaluaron fue excesivamente largo"
   - id: 2
     type: "option"
+    auto_submit: true
     value: "No había donde sentarse en la sala de espera"
   - id: 3
     type: "option"
+    auto_submit: true
     value: "El tiempo entre la evaluación previa y la atención fue exesivamente largo"
   - id: 4
     type: "option"
+    auto_submit: true
     value: "No encontré solución para mi motivo de consulta"
   - id: 5
     type: "option"
+    auto_submit: true
     value: "El personal médico y de enfermería no prestó un servicio adecuado"
   - id: 6
     type: "option"
+    auto_submit: true
     value: "El personal administrativo no prestó un servicio adecuado"
   - id: 7
     type: "option"
+    auto_submit: true
     value: "No había disponibilidad de camilla de observación ni sillones reclinables"
+  - id: 8
+    type: "option"
+    auto_submit: true
+    value: "Otro"
   previous_step: null
   next_step:
     1: 11
@@ -236,25 +351,48 @@
     5: 11
     6: 11
     7: 11
+    8: 19
+  answer: null
+- id: 19
+  question: "¿Cuál fue el motivo de tu mala experiencia?"
+  multi_response: false
+  answers:
+  - id: 1
+    type: "text"
+    auto_submit: false
+    value: "Otros"
+  previous_step: null
+  next_step:
+    1: 11
   answer: null
 - id: 10
   question: "¿Qué valoras de tu experiencia en el servicio de urgencia?"
+  multi_response: false
   answers:
   - id: 1
     type: "option"
+    auto_submit: true
     value: "El tiempo de espera hasta que me evaluaron fue corto"
   - id: 2
     type: "option"
+    auto_submit: true
     value: "La sala de espera se encontraba en condiciones óptimas"
   - id: 3
     type: "option"
+    auto_submit: true
     value: "El tiempo entre la evaluación previa y la atención fue corto"
   - id: 4
     type: "option"
+    auto_submit: true
     value: "La atención médica fue resolutiva"
   - id: 5
     type: "option"
+    auto_submit: true
     value: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis espectativas"
+  - id: 6
+    type: "option"
+    auto_submit: true
+    value: "Otro"
   previous_step: null
   next_step:
     1: 11
@@ -262,45 +400,71 @@
     3: 11
     4: 11
     5: 11
+    6: 20
+  answer: null
+- id: 20
+  question: "¿Qué valoras de tu experiencia en el servicio de urgencia?"
+  multi_response: false
+  answers:
+  - id: 1
+    type: "text"
+    auto_submit: false
+    value: "Otros"
+  previous_step: null
+  next_step:
+    1: 11
   answer: null
 - id: 11
   question: "Selecciona el servicio para el cual solicitaste la cita"
+  multi_response: true
   answers:
   - id: 1
     type: "cuckoo"
+    auto_submit: true
     value: "De apoyo"
   - id: 2
     type: "cuckoo"
+    auto_submit: true
     value: "Administrativo"
   - id: 3
     type: "cuckoo"
+    auto_submit: true
     value: "Enfermería"
   - id: 4
     type: "cuckoo"
+    auto_submit: true
     value: "Medicina General"
   - id: 5
     type: "cuckoo"
+    auto_submit: true
     value: "Medicina Especializada"
   - id: 6
     type: "cuckoo"
+    auto_submit: true
     value: "Odontología"
   - id: 7
     type: "cuckoo"
+    auto_submit: true
     value: "Psicología"
   - id: 8
     type: "cuckoo"
+    auto_submit: true
     value: "Terapia Ocupacional"
   - id: 9
     type: "cuckoo"
+    auto_submit: true
     value: "Fonoaudiología"
   - id: 10
     type: "cuckoo"
+    auto_submit: true
     value: "Bacteriología"
   - id: 11
     type: "cuckoo"
+    auto_submit: true
     value: "Nutrición"
   - id: 12
     type: "cuckoo"
+    auto_submit: true
     value: "Fisioterapia"
   previous_step: null
   next_step:
@@ -319,21 +483,27 @@
   answer: null
 - id: 12
   question: "¿Cómo califica la atención recibida por parte del personal?"
+  multi_response: true
   answers:
   - id: 1
     type: "star"
+    auto_submit: true
     value: "Muy Mala"
   - id: 2
     type: "star"
+    auto_submit: true
     value: "Mala"
   - id: 3
     type: "star"
+    auto_submit: true
     value: "Aceptable"
   - id: 4
     type: "star"
+    auto_submit: true
     value: "Buena"
   - id: 5
     type: "star"
+    auto_submit: true
     value: "Muy Buena"
   previous_step: null
   next_step:
@@ -345,21 +515,28 @@
   answer: null
 - id: 13
   question: "¿Cuál fue el motivo la mala atención?"
+  multi_response: true
+  loop_from: 11
   answers:
   - id: 1
     type: "option"
+    auto_submit: false
     value: "No se presentó amabilidad y calidéz por parte de los funcionarios"
   - id: 2
     type: "option"
+    auto_submit: false
     value: "No le demostraron interés o voluntad en ayudarlo"
   - id: 3
     type: "option"
+    auto_submit: false
     value: "No tuvo privacidad para contar su caso"
   - id: 4
     type: "option"
+    auto_submit: false
     value: "La explicación o información que le brindaron no fue confiable"
   - id: 5
     type: "option"
+    auto_submit: true
     value: "Otros"
   previous_step: null
   next_step:
@@ -367,25 +544,45 @@
     2: 15
     3: 15
     4: 15
-    5: 15
+    5: 21
+  answer: null
+- id: 21
+  question: "¿Cuál fue el motivo la mala atención?"
+  multi_response: true
+  loop_from: 11
+  answers:
+  - id: 1
+    type: "text"
+    auto_submit: false
+    value: "Otros"
+  previous_step: null
+  next_step:
+    1: 15
   answer: null
 - id: 14
   question: "¿Qué valoras de la atención recibida?"
+  multi_response: true
+  loop_from: 11
   answers:
   - id: 1
     type: "option"
+    auto_submit: false
     value: "Se presentó amabilidad y calidéz por parte de los funcionarios"
   - id: 2
     type: "option"
+    auto_submit: false
     value: "Le demostraron interés y voluntad en ayudarlo"
   - id: 3
     type: "option"
+    auto_submit: false
     value: "La privacidad para contar su caso"
   - id: 4
     type: "option"
+    auto_submit: false
     value: "La explicación o información que le brindaron fue confiable"
   - id: 5
     type: "option"
+    auto_submit: true
     value: "Otros"
   previous_step: null
   next_step:
@@ -393,25 +590,44 @@
     2: 15
     3: 15
     4: 15
-    5: 15
+    5: 22
+  answer: null
+- id: 22
+  question: "¿Qué valoras de la atención recibida?"
+  multi_response: true
+  loop_from: 11
+  answers:
+  - id: 1
+    type: "text"
+    auto_submit: false
+    value: "Otros"
+  previous_step: null
+  next_step:
+    1: 15
   answer: null
 - id: 15
   question: "¿Cuál es su nivel de satisfacción con la calidad el servicio de salud?"
+  multi_response: false
   answers:
   - id: 1
     type: "star"
+    auto_submit: true
     value: "Muy Mala"
   - id: 2
     type: "star"
+    auto_submit: true
     value: "Mala"
   - id: 3
     type: "star"
+    auto_submit: true
     value: "Aceptable"
   - id: 4
     type: "star"
+    auto_submit: true
     value: "Buena"
   - id: 5
     type: "star"
+    auto_submit: true
     value: "Muy Buena"
   previous_step: null
   next_step:
@@ -423,21 +639,27 @@
   answer: null
 - id: 16
   question: "¿Cuál fue el motivo la mala atención?"
+  multi_response: false
   answers:
   - id: 1
     type: "option"
+    auto_submit: true
     value: "No hubo coherencia o relación entre la atención y su necesidad"
   - id: 2
     type: "option"
+    auto_submit: true
     value: "No hay tranquilidad y comodidad del punto de atención"
   - id: 3
     type: "option"
+    auto_submit: true
     value: "No hubo respeto a la dignidad y la condición humana"
   - id: 4
     type: "option"
+    auto_submit: true
     value: "No se resolvió su necesidad"
   - id: 5
     type: "option"
+    auto_submit: true
     value: "Otros"
   previous_step: null
   next_step:
@@ -445,32 +667,67 @@
     2: 18
     3: 18
     4: 18
-    5: 18
+    5: 23
+  answer: null
+- id: 23
+  question: "¿Cuál fue el motivo la mala atención?"
+  multi_response: false
+  answers:
+  - id: 1
+    type: "text"
+    auto_submit: false
+    value: "Otros"
+  previous_step: null
+  next_step:
+    1: 18
   answer: null
 - id: 17
   question: "¿Qué valoras de la calidad del servicio de salud?"
+  multi_response: false
   answers:
   - id: 1
     type: "option"
+    auto_submit: true
     value: "Hubo coherencia o relación entre la atención y su necesidad"
   - id: 2
     type: "option"
+    auto_submit: true
     value: "Hubo tranquilidad y comodidad del punto de atención"
   - id: 3
     type: "option"
+    auto_submit: true
     value: "Hubo respeto a la dignidad y condición humana"
   - id: 4
     type: "option"
+    auto_submit: true
     value: "Se resolvió su necesidad"
+  - id: 5
+    type: "option"
+    auto_submit: true
+    value: "Otros"
   previous_step: null
   next_step:
     1: 18
     2: 18
     3: 18
     4: 18
+    5: 24
+  answer: null
+- id: 24
+  question: "¿Qué valoras de la calidad del servicio de salud?"
+  multi_response: false
+  answers:
+  - id: 1
+    type: "text"
+    auto_submit: false
+    value: "Otros"
+  previous_step: null
+  next_step:
+    1: 18
   answer: null
 - id: 18
   question: "¡Gracias por contestar la encuesta!"
+  multi_response: false
   answers: null
   previous_step: null
   next_step: null

@@ -2,20 +2,17 @@ class CommonInfoService
   include Singleton
 
   def initialize
-    @beds = Bed.all
     @branches = Branch.all
     @providers = Provider.all
     @satisfactions = Satisfaction.where("percentage IS NOT NULL")
     @specialities = Speciality.all
     @waiting_times = WaitingTime.all
 
-    @total_beds = _total_beds
     @total_branches = _total_branches
     @total_providers = _total_providers
     @total_satisfaction = _total_satisfaction
     @total_private_providers = _total_private_providers
     @total_public_providers = _total_public_providers
-    @best_beds = _best_beds
     @best_satisfaction = _best_satisfaction
     @best_waiting_times = _best_waiting_times
     @worst_total_waiting_times = _worst_total_waiting_times
@@ -28,7 +25,7 @@ class CommonInfoService
     return self.instance
   end
 
-  attr_reader :total_beds, :best_beds
+  attr_reader :total_branches, :total_providers
   attr_reader :total_branches, :total_providers
   attr_reader :best_waiting_times, :worst_total_waiting_times
   attr_reader :total_satisfaction, :best_satisfaction
@@ -37,24 +34,8 @@ class CommonInfoService
 
   private
 
-  def _best_beds
-    # Output:
-    # {"Adultos"=>470, "Salud Mental"=>177, ...}
-    # Returns the best (high) beds' quantity for each area
-    # Get all beds ordered by quantity (descending), then group all by area
-    @ordered_by_area = {}
-    @beds.order(quantity: :desc).group_by(&:area).map {|area| area[1].first}.each do |bed|
-      @ordered_by_area[bed.area] = bed.quantity
-    end
-    @ordered_by_area
-  end
-
   def _total_branches
     @branches.count.to_i
-  end
-
-  def _total_beds
-    @beds.reduce(0) {|last, bed| last += bed[:quantity]}
   end
 
   def _total_providers

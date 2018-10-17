@@ -124,41 +124,55 @@ $search-bar-height: calc(66px);
                 padding: 0 gutter();
               }
               padding: 0 gutter();
-              > div:first-of-type {
-                float: left;
-                width: 50%;
-                > p {
-                  @include type-golden(0);
-                  font-weight: 300;
-                  margin-bottom: gutter();
-                  > strong {
-                    font-weight: 600;
-                  }
-                }
-              }
-              > div:last-of-type {
-                float: right;
-                overflow: hidden;
-                @include grid-collapse;
-                > div {
-                  > div {
-                    > p {
-                      @include text-color($blue);
-                      border-bottom: 2px solid $blue;
-                      display: inline-block;
-                      max-width: 350px;
-                      width: 100%;
+              > div {
+                > div:first-of-type {
+                  float: left;
+                  width: 100%;
+                  > p {
+                    @include type-golden(0);
+                    font-weight: 300;
+                    margin-bottom: gutter();
+                    > strong {
+                      font-weight: 600;
                     }
                   }
                 }
-                &.horizontal {
-                  width: 50%;
-                }
-                &.vertical {
+                > div + div {
+                  float: left;
+                  overflow: hidden;
                   > div {
                     > div {
-                      @include grid-column(1 of 3);
-                      margin-bottom: gutter();
+                      > p {
+                        @include text-color($blue);
+                        border-bottom: 2px solid $blue;
+                        display: inline-block;
+                        width: 100%;
+                      }
+                    }
+                  }
+                  &.horizontal {
+                  width: 50%;
+                  &:nth-of-type(even) {
+                    > div {
+                      > div {
+                        padding-right: gutter()/2;
+                      }
+                    }
+                  }
+                  &:nth-of-type(odd) {
+                    > div {
+                      > div {
+                        padding-left: gutter()/2;
+                      }
+                    }
+                  }
+                }
+                  &.vertical {
+                    > div {
+                      > div {
+                        @include grid-column(1 of 3);
+                        margin-bottom: gutter();
+                      }
                     }
                   }
                 }
@@ -167,8 +181,7 @@ $search-bar-height: calc(66px);
           }
           > section:first-of-type {
             > main {
-              @include grid-column(1 of 1);
-              clear: both;
+
             }
           }
           > section:last-of-type {
@@ -184,7 +197,6 @@ $search-bar-height: calc(66px);
                   > div {
                     > div {
                       @include grid-column(1 of 2);
-                      // margin-bottom: gutter();
                     }
                   }
                 }
