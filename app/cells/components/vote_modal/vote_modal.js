@@ -49,10 +49,25 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.actions.show = true
       },
       getActualAnswer: function() {
-        return this.getActualStep().answer
+        actualStep = this.getActualStep().answer
+        return isNaN(actualStep) ? 1 : actualStep
       },
       getActualStep: function() {
         return this.getStepById(this.actualStep)
+      },
+      getActualStepAnswers: function() {
+        var actualStep = this.getActualStep()
+        var answers = actualStep.depends_on
+          ? this.getDependentAnswer(actualStep.answers, actualStep.depends_on)
+          : actualStep.answers
+        return answers
+      },
+      getDependentAnswer: function(answers, depends_on) {
+        var _this = this
+        console.log(answers)
+        return answers.filter(function(answer) {
+          return _this.getStepById(depends_on).answer == answer.depends_on_id
+        })[0].answers
       },
       isFirstStep: function() {
         return this.getActualStep().id === 1
@@ -83,7 +98,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
         client_id = this.clientId
         branch_id = this.branchId
         step_id = actualStep.id
-        answer_id = isNaN(actualAnswerId) ? null : actualAnswerId
+        answer_id = actualAnswerId
         answerString = this.getAnswerById(this.getActualStep().answer).value
         answer_value = this.inputValue ? this.inputValue : answerString
         question_value = this.getActualStep().question
@@ -112,7 +127,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
       preloadInputValue: function() {
         this.inputValue = ""
         var actualStep = this.getActualStep()
-        if(actualStep.answers && actualStep.answers[0].type == "input") {
+        if(this.isInputComponent()) {
           this.inputValue = actualStep.answer
         }
       },
@@ -135,10 +150,15 @@ ATSB.Components['components/vote-modal'] = function(options) {
       },
       setAnswer: function() {
         var actualStep = this.getActualStep()
-        if(actualStep.answers && actualStep.answers[0].type == "input") {
+        if(this.isInputComponent()) {
           this.getStepById(this.actualStep).answer = this.inputValue
         }
       },
+      isInputComponent: function() {
+        var actualStep = this.getActualStep()
+        var inputs = ["input", "text", "number"]
+        return actualStep.answers && inputs.indexOf(actualStep.answers[0].type) > -1
+      }
     }
   })
 }

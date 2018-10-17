@@ -29,7 +29,6 @@
         } else {
           axios.post("/api/v1/surveys", payload).then(success).catch(fail)
         }
-
       },
     }
   })

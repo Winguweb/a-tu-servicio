@@ -69,6 +69,7 @@
         width: calc(100% - #{gutter()*2});
         > ul {
           display: inline-block;
+          width: 75%;
           > li {
             display: inline-block;
             margin: gutter(-2);
@@ -150,7 +151,7 @@
               background-image: image-url('icons/calendar.svg');
               background-position: center top 6px;
               background-repeat: no-repeat;
-              background-size: 80%;
+              background-size: 60%;
               border: none;
               border-radius: 2px;
               color: $light-blue;
@@ -158,7 +159,7 @@
               display: block;
               height: 105px;
               position: relative;
-              width: 95px;
+              width: 130px;
               &.selected {
                 background-color: $blue;
                 background-image: image-url('icons/calendar-selected.svg');
@@ -209,6 +210,20 @@
                 overflow: visible;
                 text-align: center;
                 width: 50px;
+              }
+            }
+            > div {
+              height: 250px;
+              > textarea {
+                @include type-golden(0);
+                border: 1px solid $light-blue;
+                border-radius: 2px;
+                color: $light-blue;
+                display: block;
+                height: 100%;
+                padding: gutter(-2) gutter();
+                resize: none;
+                width: 100%;
               }
             }
           }

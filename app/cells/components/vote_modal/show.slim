@@ -8,11 +8,17 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
 
         h1 = "{{getActualStep().question}}"
         ul
-          li :key="answer.id" v-for="answer in getActualStep().answers" :class="{large: answer.type == 'option'}"
+          li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
 
             button.cuckoo v-if="answer.type == 'cuckoo'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.value}}"
 
             label v-if="answer.type == 'input'"
+              input type="text" v-model="inputValue" placeholder=""
+
+            div v-if="answer.type == 'text'"
+              textarea v-model="inputValue" placeholder="Escriba aquí..."
+
+            label v-if="answer.type == 'number'"
               input type="number" size="1" min="0" v-model="inputValue" placeholder="-"
               span = " días"
 
