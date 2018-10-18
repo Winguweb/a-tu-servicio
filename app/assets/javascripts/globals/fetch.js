@@ -16,11 +16,19 @@
         var err = err || ATSB.Utils.out
         axios.get("/api/v1/branches/" + id).then(cb).catch(err)
       },
-      voteSend: function(vote, cb, err) {
-        var cb = cb || ATSB.Utils.fn
-        var err = err || ATSB.Utils.out
-        payload = {vote: vote}
-        axios.post("/api/v1/surveys", payload).then(cb).catch(err)
+      voteSend: function(vote, needsReacaptcha, success, fail) {
+        var payload = {vote: vote}
+        if (needsReacaptcha) {
+          grecaptcha.ready(function() {
+            grecaptcha.execute(ATSB.recaptchaSitekey, {action: 'action_name'})
+            .then(function(token) {
+              payload.token = token
+              axios.post("/api/v1/surveys", payload).then(success).catch(fail)
+            })
+          })
+        } else {
+          axios.post("/api/v1/surveys", payload).then(success).catch(fail)
+        }
       },
     }
   })
