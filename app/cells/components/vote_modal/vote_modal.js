@@ -162,7 +162,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.inputValue = ""
         var actualStep = this.getActualStep()
         if(this.isInputComponent()) {
-          this.inputValue = actualStep.answer
+          this.inputValue = actualStep.answer || ""
         }
       },
       previousStep: function() {
