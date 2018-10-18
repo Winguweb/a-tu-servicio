@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get '/sobre-el-proyecto' => 'home#about', as: :about
   get '/mapa-de-servicios' => 'home#services', as: :services
-  get '/datos/descarga/:model', action: :download, controller: :home, as: :donations_download, constraints: { model: /(Branch|Provider)/ }
+  get '/datos/descarga/:model', action: :download, controller: :home, as: :donations_download, constraints: { model: /(Branch|Provider|Satisfaction)/ }
    
 
   get '/apple-touch-icon-precomposed.png', to: redirect('/assets/apple-touch-icon-precomposed.png')
