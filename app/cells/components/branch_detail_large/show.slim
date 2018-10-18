@@ -10,7 +10,7 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
           h2
             | {{branch.provider.name}}
           button @click="openVoteModal()"
-            img :src="'/assets/icons/rating.svg'"
+            = image_tag asset_path('icons/rating.svg')
             span = "Calificar"
         main
           section

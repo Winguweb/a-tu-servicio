@@ -5,7 +5,6 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
       branches: [],
       searchQuery: "",
       actions: {show: false},
-      suggestions: "",
       page: 1,
       perform_search: true,
       perform_lazy: false,
@@ -39,7 +38,6 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
       },
       branchesFetchSuccess: function(response) {
         this.branches = this.transformHitsToResults(response.hits)
-        this.suggestions = response.data.suggestions
         this.perform_search = false
         this.focusSearch()
       },
@@ -51,7 +49,6 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
           return
         }
         this.branches = this.branches.concat(results)
-        this.suggestions = response.data.suggestions
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
         this.perform_search = false
         this.perform_lazy = false
@@ -96,8 +93,8 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
           var coordinates = [ hitData._geoloc.lat, hitData._geoloc.lng ]
           return {
             id: hitData.objectID,
-            name: hitData.name,
-            provider_name: hitData.provider_name,
+            name: hitData._highlightResult.name.value,
+            provider_name: hitData._highlightResult.provider_name.value,
             coordinates: coordinates
           }
         })

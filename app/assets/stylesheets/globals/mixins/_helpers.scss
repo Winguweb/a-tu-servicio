@@ -2,8 +2,11 @@
 
 @mixin ellipsis {
   -moz-binding: url("/xml/ellipsis.xml#ellipsis");
-  overflow: hidden !important;
-  padding-right: $gutter/2;
+  overflow-x: hidden !important;
+  padding-right: gutter();
   white-space: nowrap;
-  @include prefixer(text-overflow, ellipsis, o ms spec);
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  -spec-text-overflow: ellipsis;
 }

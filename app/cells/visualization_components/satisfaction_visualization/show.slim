@@ -1,9 +1,9 @@
 div.satisfaction-visualization-cell
   div
     div v-for="i in toNOfTen(branch.satisfaction_from_best)"
-      img :src="'/assets/icons/satisfaction.svg'"
+      = image_tag asset_path('icons/satisfaction.svg')
     div v-for="i in toNOfTenReverse(branch.satisfaction_from_best)"
-      img :src="'/assets/icons/satisfaction-empty.svg'"
+      = image_tag asset_path('icons/satisfaction-empty.svg')
   div
     p
       = "Los servicios del prestador de esta sede satisfacen al "

@@ -29,7 +29,7 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
           button.navigation.next v-if="getActualStep().next_step && getActualAnswer()" @click="nextStep()"
           button.back v-if="getActualStep().next_step == null" @click="backToProvider()"
             span = "Volver al prestador"
-            img :src="'/assets/icons/arrow-right.svg'"
+            = image_tag asset_path('icons/arrow-right.svg')
 javascript:
     $(function() {ATSB.Components['components/vote-modal']({
       steps: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json},
