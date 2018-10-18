@@ -10,7 +10,7 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
         ul
           li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
 
-            button.cuckoo v-if="answer.type == 'cuckoo'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.value}}"
+            button.cuckoo v-if="answer.type == 'cuckoo'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
 
             label v-if="answer.type == 'input'"
               input type="text" v-model="inputValue" placeholder=""
@@ -24,13 +24,13 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
               span = " días"
 
             button.star v-if="answer.type == 'star'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}"
-              span = "{{answer.value}}"
+              span = "{{answer.data.label}}"
 
             button.icon v-if="answer.type == 'icon'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}"
               span = "{{answer.display}}"
-              span = "{{answer.value}}"
+              span = "{{answer.data.label}}"
 
-            button.option v-if="answer.type == 'option'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.value}}"
+            button.option v-if="answer.type == 'option'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
       footer
         button.navigation.previous.animated-button v-if="getActualStep().previous_step" @click="previousStep()"
         transition-group name="next"
@@ -44,7 +44,7 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
             img :src="'/assets/icons/arrow-right.svg'"
 javascript:
     $(function() {ATSB.Components['components/vote-modal']({
-      steps: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json},
+      form: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json},
       client_id: "#{SecureRandom.urlsafe_base64(40, false)}",
       recaptchaSitekey: "#{RECAPTCHA_SITEKEY}"
     })});
