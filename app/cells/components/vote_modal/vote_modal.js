@@ -2,18 +2,18 @@ ATSB.Components['components/vote-modal'] = function(options) {
   new Vue({
     el: '.vote-modal-cell',
     data: {
-      branchId: 1,
       actions: {show: false},
-      steps: options.steps,
-      actualStepId: 1,
-      inputValue: "",
-      showForm: true,
+      actualStepId: 19,
+      branchId: 1,
       clientId: null,
-      recaptchaSitekey: options.recaptchaSitekey
+      inputValue: "",
+      inputValueSizeLimit: 200,
+      recaptchaSitekey: options.recaptchaSitekey,
+      showForm: true,
+      steps: options.steps,
     },
     created: function() {
       var _this = this
-      var NEEDS_RECAPTCHA = true
       ATSB.recaptchaSitekey = this.recaptchaSitekey
       ATSB.pubSub.$on('vote:open', this.componentOpen)
       ATSB.pubSub.$on('vote:close', this.componentClose)
@@ -23,6 +23,11 @@ ATSB.Components['components/vote-modal'] = function(options) {
       inputValue: function(val) {
         this.setAnswer(val)
       }
+    },
+    computed: {
+      inputValueLength: function () {
+        return this.inputValueSizeLimit - this.inputValue.length
+      },
     },
     methods: {
       resetForm: function() {

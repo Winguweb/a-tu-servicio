@@ -16,7 +16,8 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
               input type="text" v-model="inputValue" placeholder=""
 
             div v-if="answer.type == 'text'"
-              textarea v-model="inputValue" placeholder="Escriba aquí..."
+              i v-text="inputValueLength"
+              textarea v-model="inputValue" placeholder="Escriba aquí..." :maxlength="inputValueSizeLimit"
 
             label v-if="answer.type == 'number'"
               input type="number" size="1" min="0" v-model="inputValue" placeholder="-"

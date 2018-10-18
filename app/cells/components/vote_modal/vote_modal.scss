@@ -213,11 +213,24 @@
               }
             }
             > div {
+              border: 1px solid $light-blue;
+              border-radius: 2px;
               height: 250px;
+              padding-bottom: gutter(1);
+              position: relative;
+              > i {
+                @include type-golden(0);
+                background: color($white, 0.5);
+                border: 1px solid $light-blue;
+                bottom: -1px;
+                display: block;
+                position: absolute;
+                right: -1px;
+                width: 100px;
+              }
               > textarea {
                 @include type-golden(0);
-                border: 1px solid $light-blue;
-                border-radius: 2px;
+                border: none;
                 color: $light-blue;
                 display: block;
                 height: 100%;
