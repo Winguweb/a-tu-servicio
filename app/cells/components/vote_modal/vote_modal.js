@@ -5,7 +5,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
       branchId: 1,
       actions: {show: false},
       steps: options.steps,
-      actualStepId: 11,
+      actualStepId: 1,
       inputValue: "",
       showForm: true,
       clientId: null,
@@ -40,6 +40,18 @@ ATSB.Components['components/vote-modal'] = function(options) {
         ATSB.pubSub.$emit('branch:compare:set', this.branchId)
         ATSB.pubSub.$emit('branch:compare:button:show')
       },
+      clearDataBetweenLooped: function(loopStartId, loopEndId) {
+        var _this = this
+        var actualStep = this.getStepById(loopStartId)
+        var nextSteps = actualStep.next_step
+        actualStep.answer = null
+        Object.keys(nextSteps).forEach(function(index) {
+          var actualStepId = nextSteps[index]
+          if (actualStepId == loopEndId) return
+          if (_this.getStepById(actualStepId).answer == null) return
+          _this.clearDataBetweenLooped(actualStepId, loopEndId)
+        })
+      },
       componentClose: function() {
         this.actions.show = false
         this.resetForm()
@@ -68,9 +80,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
           return _this.getStepById(depends_on).answer == answer.depends_on_id
         })[0].answers
       },
-      isFirstStep: function() {
-        return this.getActualStep().id === 1
-      },
       getAnswerById: function(id) {
         var answers = this.getActualStepAnswers()
         var answer = answers.filter(function(answer) {
@@ -87,6 +96,23 @@ ATSB.Components['components/vote-modal'] = function(options) {
           return step.id == id
         })
         return step && step[0]
+      },
+      goToLoop: function() {
+        var loopStartId = this.getStepById(this.actualStepId).loop_from
+        var loopEndId = this.getActualStep().next_step['1']
+        this.nextStep({loopTo: loopStartId})
+        this.clearDataBetweenLooped(loopStartId, loopEndId)
+      },
+      isFirstStep: function() {
+        return this.getActualStep().id === 1
+      },
+      isInputComponent: function() {
+        var actualStep = this.getActualStep()
+        var inputs = ["input", "text", "number"]
+        return actualStep.answers && inputs.indexOf(actualStep.answers[0].type) > -1
+      },
+      isMultiResponse: function() {
+        return !!this.getStepById(this.actualStepId).multi_response
       },
       nextStep: function(options) {
         var _this = this
@@ -158,34 +184,8 @@ ATSB.Components['components/vote-modal'] = function(options) {
           this.getStepById(this.actualStepId).answer = this.inputValue
         }
       },
-      isInputComponent: function() {
-        var actualStep = this.getActualStep()
-        var inputs = ["input", "text", "number"]
-        return actualStep.answers && inputs.indexOf(actualStep.answers[0].type) > -1
-      },
       stepIsLooped: function() {
         return !!this.getStepById(this.actualStepId).loop_from
-      },
-      goToLoop: function() {
-        var loopStartId = this.getStepById(this.actualStepId).loop_from
-        var loopEndId = this.getActualStep().next_step['1']
-        this.nextStep({loopTo: loopStartId})
-        this.clearDataBetweenLooped(loopStartId, loopEndId)
-      },
-      clearDataBetweenLooped: function(loopStartId, loopEndId) {
-        var _this = this
-        var actualStep = this.getStepById(loopStartId)
-        var nextSteps = actualStep.next_step
-        actualStep.answer = null
-        Object.keys(nextSteps).forEach(function(index) {
-          var actualStepId = nextSteps[index]
-          if (actualStepId == loopEndId) return
-          if (_this.getStepById(actualStepId).answer == null) return
-          _this.clearDataBetweenLooped(actualStepId, loopEndId)
-        })
-      },
-      isMultiResponse: function() {
-        return !!this.getStepById(this.actualStepId).multi_response
       },
     }
   })
