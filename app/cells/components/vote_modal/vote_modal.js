@@ -3,7 +3,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
     el: '.vote-modal-cell',
     data: {
       actions: {show: false},
-      actualStepId: 19,
+      actualStepId: 1,
       branchId: 1,
       clientId: null,
       inputValue: "",
