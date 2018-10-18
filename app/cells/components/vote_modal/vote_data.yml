@@ -66,6 +66,10 @@
     type: "cuckoo"
     auto_submit: true
     value: "Radiología"
+  - id: 10
+    type: "cuckoo"
+    auto_submit: true
+    value: "Urgencia"
   previous_step: null
   next_step:
     1: 5
@@ -77,6 +81,7 @@
     7: 5
     8: 5
     9: 5
+    10: 7
   answer: null
 - id: 5
   question: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
@@ -415,29 +420,29 @@
     1: 11
   answer: null
 - id: 11
-  question: "Selecciona el servicio para el cual solicitaste la cita"
+  question: "Escoja el personal por el cual fue atendido"
   multi_response: true
   answers:
   - id: 1
     type: "cuckoo"
     auto_submit: true
-    value: "De apoyo"
+    value: "Personal de apoyo"
   - id: 2
     type: "cuckoo"
     auto_submit: true
-    value: "Administrativo"
+    value: "Personal administrativo"
   - id: 3
     type: "cuckoo"
     auto_submit: true
-    value: "Enfermería"
+    value: "Personal de enfermería"
   - id: 4
     type: "cuckoo"
     auto_submit: true
-    value: "Medicina General"
+    value: "Médico(a)"
   - id: 5
     type: "cuckoo"
     auto_submit: true
-    value: "Medicina Especializada"
+    value: "Médico(a) especialista"
   - id: 6
     type: "cuckoo"
     auto_submit: true
@@ -445,27 +450,31 @@
   - id: 7
     type: "cuckoo"
     auto_submit: true
-    value: "Psicología"
+    value: "Odontólogo(a)"
   - id: 8
     type: "cuckoo"
     auto_submit: true
-    value: "Terapia Ocupacional"
+    value: "Psicólogo(a)"
   - id: 9
     type: "cuckoo"
     auto_submit: true
-    value: "Fonoaudiología"
+    value: "Fisioterapeuta"
   - id: 10
     type: "cuckoo"
     auto_submit: true
-    value: "Bacteriología"
+    value: "Terapeuta Ocupacional"
   - id: 11
     type: "cuckoo"
     auto_submit: true
-    value: "Nutrición"
+    value: "Fonoaudiólogo(a)"
   - id: 12
     type: "cuckoo"
     auto_submit: true
-    value: "Fisioterapia"
+    value: "Bacteriólogo(a)"
+  - id: 13
+    type: "cuckoo"
+    auto_submit: true
+    value: "Nutricionista"
   previous_step: null
   next_step:
     1: 12
@@ -480,9 +489,10 @@
     10: 12
     11: 12
     12: 12
+    13: 12
   answer: null
 - id: 12
-  question: "¿Cómo califica la atención recibida por parte del personal?"
+  question: "¿Cómo califica el trato del personal que lo atendio?"
   multi_response: true
   answers:
   - id: 1

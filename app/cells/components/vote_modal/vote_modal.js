@@ -5,7 +5,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
       branchId: 1,
       actions: {show: false},
       steps: options.steps,
-      actualStepId: 1,
+      actualStepId: 11,
       inputValue: "",
       showForm: true,
       clientId: null,
@@ -167,7 +167,22 @@ ATSB.Components['components/vote-modal'] = function(options) {
         return !!this.getStepById(this.actualStepId).loop_from
       },
       goToLoop: function() {
-        this.nextStep({loopTo: this.getStepById(this.actualStepId).loop_from})
+        var loopStartId = this.getStepById(this.actualStepId).loop_from
+        var loopEndId = this.getActualStep().next_step['1']
+        this.nextStep({loopTo: loopStartId})
+        this.clearDataBetweenLooped(loopStartId, loopEndId)
+      },
+      clearDataBetweenLooped: function(loopStartId, loopEndId) {
+        var _this = this
+        var actualStep = this.getStepById(loopStartId)
+        var nextSteps = actualStep.next_step
+        actualStep.answer = null
+        Object.keys(nextSteps).forEach(function(index) {
+          var actualStepId = nextSteps[index]
+          if (actualStepId == loopEndId) return
+          if (_this.getStepById(actualStepId).answer == null) return
+          _this.clearDataBetweenLooped(actualStepId, loopEndId)
+        })
       },
       isMultiResponse: function() {
         return !!this.getStepById(this.actualStepId).multi_response
