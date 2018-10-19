@@ -48,7 +48,7 @@ class SurveysController < ApplicationController
       :step_id,
       :answer_id,
       :question_value,
-      :answer_value,
+      answer_data: [:label, :value],
     )
   end
 
