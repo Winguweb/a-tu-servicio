@@ -9,9 +9,6 @@ gem 'acts-as-taggable-on'
 gem 'slim'
 gem 'uglifier'
 gem 'sass-rails'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-# Use jquery as the JavaScript library
 gem 'neat' # A lightweight and flexible Sass grid
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -23,12 +20,6 @@ gem 'cells-rails'
 gem 'cells-slim', git: "git@github.com:trailblazer/cells-slim", branch: :master
 gem 'sidekiq'
 gem 'typhoeus'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :development, :test do
   gem 'pry'
