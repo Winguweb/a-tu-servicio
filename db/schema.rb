@@ -296,7 +296,7 @@ ActiveRecord::Schema.define(version: 2018_10_18_215358) do
 
   create_table "waiting_times", force: :cascade do |t|
     t.string "name"
-    t.decimal "days", precision: 4, scale: 2
+    t.decimal "days", precision: 6, scale: 3
     t.integer "provider_id", null: false
     t.index ["provider_id"], name: "index_waiting_times_on_provider_id"
   end
