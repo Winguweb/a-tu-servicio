@@ -1,7 +1,119 @@
 ---
+# Representation: Defines the way the surveys and initial data is represented
+representation:
+  waiting_times:
+    - speciality: "Pediatría"
+      mappings:
+      - label: "Entre 1 y 7 días"
+        value: 1
+        range: {min: 1 , max: 7}
+      - label: "Entre 8 y 15 días"
+        value: 2
+        range: {min: 8 , max: 15}
+      - label: "Entre 16 días o más"
+        value: 3
+        range: {min: 16 , max: Infinity}
+
+    - speciality: "Medicina Interna"
+      mappings:
+      - label: "Entre 1 y 15 días"
+        value: 1
+        range: {min: 1 , max: 15}
+      - label: "Entre 16 y 29 días"
+        value: 2
+        range: {min: 16 , max: 29}
+      - label: "Entre 30 días o más"
+        value: 3
+        range: {min: 30 , max: Infinity}
+
+    - speciality: "Odontología"
+      mappings:
+      - label: "Entre 1 y 2 días"
+        value: 1
+        range: {min: 1 , max: 2}
+      - label: "Entre 3 y 4 días"
+        value: 2
+        range: {min: 3 , max: 4}
+      - label: "5 días o más"
+        value: 3
+        range: {min: 5, max: Infinity}
+
+    - speciality: "Medicina General"
+      mappings:
+      - label: "Entre 1 y 2 días"
+        value: 1
+        range: {min: 1 , max: 2}
+      - label: "Entre 3 y 4 días"
+        value: 2
+        range: {min: 3 , max: 4}
+      - label: "5 días o más"
+        value: 3
+        range: {min: 5, max: Infinity}
+
+    - speciality: "Ginecología"
+      mappings:
+      - label: "Entre 1 y 7 días"
+        value: 1
+        range: {min: 1 , max: 7}
+      - label: "Entre 8 y 15 días"
+        value: 2
+        range: {min: 8 , max: 15}
+      - label: "Entre 16 días o más"
+        value: 3
+        range: {min: 16 , max: Infinity}
+
+    - speciality: "Obstetricia"
+      mappings:
+      - label: "Entre 1 y 2 días"
+        value: 1
+        range: {min: 1 , max: 2}
+      - label: "Entre 3 y 4 días"
+        value: 2
+        range: {min: 3 , max: 4}
+      - label: "5 días o más"
+        value: 3
+        range: {min: 5, max: Infinity}
+
+    - speciality: "Cirugía General"
+      mappings:
+      - label: "Entre 1 a 10 días"
+        value: 1
+        range: {min: 1 , max: 10}
+      - label: "Entre 11 a 19 días"
+        value: 2
+        range: {min: 11 , max: 19}
+      - label: "Entre 20 días y más"
+        value: 3
+        range: {min: 20 , max: Infinity}
+
+    - speciality: "Laboratorio"
+      mappings:
+      - label: "Menos de 1 día"
+        value: 1
+        range: {min: 0, max: 1}
+      - label: "Entre 1 día y 2 días"
+        value: 2
+        range: {min: 1, max: 2}
+      - label: "2 días o más"
+        value: 3
+        range: {min: 2, max: Infinity}
+
+    - speciality: "Radiología"
+      mappings:
+      - label: "Menos de 1 día"
+        value: 1
+        range: {min: 0, max: 1}
+      - label: "Entre 1 día y 3 días"
+        value: 2
+        range: {min: 1, max: 3}
+      - label: "3 días o más"
+        value: 3
+        range: {min: 3, max: Infinity}
+
+
 # Structure: Defines the relations between steps
 structure:
-  waiting_times: [2, 5]
+  speciality_waiting_times: [2, 5]
   speciality_satisfaction: [2, 7]
   b: [8, 9, 19, 10, 20]
   c: [11, 12, 13, 21, 14, 22]
@@ -88,8 +200,8 @@ steps:
       type: "cuckoo"
       auto_submit: true
       data:
-        label: "Cirujía General"
-        value: "Cirujía General"
+        label: "Cirugía General"
+        value: "Cirugía General"
     - id: 8
       type: "cuckoo"
       auto_submit: true
@@ -300,9 +412,9 @@ steps:
             type: "icon"
             auto_submit: true
             data:
-              label: "1 día"
+              label: "Entre 1 día y 2 días"
               value: 2
-            display: "1"
+            display: "1-2"
           - id: 3
             type: "icon"
             auto_submit: true
@@ -323,9 +435,9 @@ steps:
             type: "icon"
             auto_submit: true
             data:
-              label: "1 día"
+              label: "Entre 1 día y 3 días"
               value: 2
-            display: "1"
+            display: "1-3"
           - id: 3
             type: "icon"
             auto_submit: true

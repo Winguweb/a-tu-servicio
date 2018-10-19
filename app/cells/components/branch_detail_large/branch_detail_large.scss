@@ -151,22 +151,27 @@ $search-bar-height: calc(66px);
                     }
                   }
                   &.horizontal {
-                  width: 50%;
-                  &:nth-of-type(even) {
+                    width: 50%;
                     > div {
                       > div {
-                        padding-right: gutter()/2;
+                        min-height: 105px;
+                      }
+                    }
+                    &:nth-of-type(even) {
+                      > div {
+                        > div {
+                          padding-right: gutter()/2;
+                        }
+                      }
+                    }
+                    &:nth-of-type(odd) {
+                      > div {
+                        > div {
+                          padding-left: gutter()/2;
+                        }
                       }
                     }
                   }
-                  &:nth-of-type(odd) {
-                    > div {
-                      > div {
-                        padding-left: gutter()/2;
-                      }
-                    }
-                  }
-                }
                   &.vertical {
                     > div {
                       > div {

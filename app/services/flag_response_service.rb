@@ -29,9 +29,9 @@ class FlagResponseService
 
   def _response
     {
-      has_waiting_times_information: _has_waiting_times_information,
-      has_satisfaction_information: _has_satisfaction_information,
-      has_specialities_information: _has_specialities_information,
+      # has_waiting_times_information: _has_waiting_times_information,
+      # has_satisfaction_information: _has_satisfaction_information,
+      # has_specialities_information: _has_specialities_information,
     }
   end
 end

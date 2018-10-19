@@ -18,7 +18,9 @@ ATSB.Components['components/branch-detail-half-right'] = function(options) {
     },
     methods: {
       toPercentage: ATSB.Helpers.numbers.toPercentage,
+      toNOf: ATSB.Helpers.numbers.toNOf,
       toNOfTen: ATSB.Helpers.numbers.toNOfTen,
+      toNOfReverse: ATSB.Helpers.numbers.toNOfReverse,
       toNOfTenReverse: ATSB.Helpers.numbers.toNOfTenReverse,
       branchFetch: function(id) {
         ATSB.pubSub.$emit('fetch:branch:id', id, this.branchFetchSuccess, this.branchFetchError)
