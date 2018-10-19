@@ -36,12 +36,12 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
         transition-group name="next"
           button.navigation.next.animated-button key="NextButton" v-if="getActualStep().next_step && getActualAnswer()" @click="nextStep()"
           button.loop.animated-button key="LoopButton" v-if="stepIsLooped() && getActualStep().next_step && getActualAnswer()" @click="goToLoop()"
-            img :src="'/assets/icons/star-white.svg'"
+            = image_tag asset_path('icons/star-white.svg')
             span = "Calificar otro"
           #google_recaptcha.g-recaptcha key="recaptcha" data-sitekey="#{RECAPTCHA_SITEKEY}" data-size="invisible"
           button.back.animated-button key="BackButton" v-if="getActualStep().next_step == null" @click="backToProvider()"
             span = "Volver al prestador"
-            img :src="'/assets/icons/arrow-right.svg'"
+            = image_tag asset_path('icons/arrow-right.svg')
 javascript:
     $(function() {ATSB.Components['components/vote-modal']({
       form: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json},

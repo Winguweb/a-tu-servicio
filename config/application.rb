@@ -24,6 +24,9 @@ module AtuservicioRails
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Do not automatically include the all the helpers on the controllers
+    config.action_controller.include_all_helpers = false
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.exceptions_app = self.routes
 

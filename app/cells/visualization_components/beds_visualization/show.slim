@@ -1,9 +1,9 @@
 div.beds-visualization-cell
   div
     div v-for="i in toNOfTen(bed.from_best)"
-      img :src="'/assets/icons/bed.svg'" class='beds-filled'
+      = image_tag asset_path('icons/bed.svg'), class: 'beds-filled'
     div v-for="i in toNOfTenReverse(bed.from_best)"
-      img :src="'/assets/icons/bed-empty.svg'" class='beds-empty'
+      = image_tag asset_path('icons/bed-empty.svg'), class: 'beds-empty'
   div
     p
       = "Hay "

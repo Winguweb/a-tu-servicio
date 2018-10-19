@@ -1,9 +1,9 @@
 div.satisfaction-visualization-cell
   div
     div v-for="i in toNOfTen(branch.satisfaction)"
-      img :src="'/assets/icons/satisfaction.svg'"
+      = image_tag asset_path('icons/satisfaction.svg')
     div v-for="i in toNOfTenReverse(branch.satisfaction)"
-      img :src="'/assets/icons/satisfaction-empty.svg'"
+      = image_tag asset_path('icons/satisfaction-empty.svg')
   div
     p
       span v-if="branch.source == 'initial'"

@@ -2,8 +2,8 @@ aside.m-drawer-cell v-bind:class="{show: actions.show}"
   div v-on:click="backgroundClick"
   div
     ul
-      li class="#{current_page?(:controller => 'home', :action => 'index') ? 'active' : ''}"
-        = link_to 'Inicio', home_path
+      li class="#{current_page?(:controller => 'home', :action => 'show') ? 'active' : ''}"
+        = link_to 'Inicio', root_path
       li class="#{current_page?(:controller => 'home', :action => 'services') ? 'active' : ''}"
         = link_to 'Mapa de Servicios', services_path
       li class="#{current_page?(:controller => 'home', :action => 'about') ? 'active' : ''}"

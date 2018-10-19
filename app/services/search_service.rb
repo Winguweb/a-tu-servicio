@@ -10,22 +10,6 @@ class SearchService
   end
 
   def search(query, page = 1)
-    Branch.search(query, {
-      includes: [:provider],
-      where: {
-        georeference: {not: nil},
-        show: true,
-      },
-      match: :word_start,
-      misspellings: {
-        edit_distance: 2
-      },
-      fields: [:name, :provider_name, :address, :specialities],
-      order: {name: :asc},
-      page: page,
-      per_page: 50
-    })
+    Branch.search(query)
   end
-
-  private
 end
