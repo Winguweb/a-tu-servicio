@@ -49,12 +49,12 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                 div :style="{width: toPercentage(branch.initial_source.satisfaction) + '%'}"
                   span
                     | {{toPercentage(branch.initial_source.satisfaction)}}%
-            main v-if="branch.has_satisfaction_information"
+            main
               div
                 div
                   p = "La satisfacción corresponde al grado de conformidad de los pacientes respecto al prestador de servicios de salud al que pertenece esta sede."
                   p = "El siguiente gráfico representa la satisfacción del prestador de servicios de salud en relación al que mejor satisface a los pacientes."
-                div.horizontal
+                div.horizontal v-for="branch in [branch.initial_source, branch.surveys_source]" v-if="branch.has_satisfaction_information"
                   div
                     div
                       == cell('visualization_components/satisfaction_visualization')

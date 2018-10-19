@@ -1,12 +1,18 @@
 div.satisfaction-visualization-cell
   div
-    div v-for="i in toNOfTen(branch.initial_source.satisfaction_from_best)"
+    div v-for="i in toNOfTen(branch.satisfaction)"
       img :src="'/assets/icons/satisfaction.svg'"
-    div v-for="i in toNOfTenReverse(branch.initial_source.satisfaction_from_best)"
+    div v-for="i in toNOfTenReverse(branch.satisfaction)"
       img :src="'/assets/icons/satisfaction-empty.svg'"
   div
     p
-      = "Los servicios del prestador de esta sede satisfacen al "
+      span v-if="branch.source == 'initial'"
+        = "Según el relevamiento"
+      span v-if="branch.source == 'surveys'"
+        = "Según la participación ciudadana"
+
+      = ", los servicios del prestador de esta sede satisfacen al "
+
       strong
-        | {{toPercentage(branch.initial_source.satisfaction)}}%
+        | {{toPercentage(branch.satisfaction)}}%
       = " de los pacientes. "

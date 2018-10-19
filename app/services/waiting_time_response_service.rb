@@ -2,6 +2,8 @@ class WaitingTimeResponseService
   include Singleton
 
   def initialize(branch)
+    @surveys_structure = YAML.load_file(File.join(Rails.root, "app", "cells", "components", "vote_modal", "vote_data.yml"))
+    @surveys_representation = @surveys_structure['representation']['waiting_times']
     @branch = branch
     @waiting_times = @branch.provider.waiting_times
     @common_info = CommonInfoService.call
@@ -39,7 +41,15 @@ class WaitingTimeResponseService
   end
 
   def _waiting_time_days(waiting_time)
-    waiting_time.days.to_f
+    waiting_time_representation = @surveys_representation.detect do | representation |
+      representation["speciality"] == waiting_time[:name]
+    end
+    waiting_time_mappings = waiting_time_representation["mappings"].pluck("value", "range")
+    range = waiting_time_mappings.detect do | mapping |
+      waiting_time[:days] > mapping.second["min"] && waiting_time[:days] <= mapping.second["max"]
+    end
+    range.first
+    # waiting_time.days.to_f
   end
 
   def _waiting_times_response
