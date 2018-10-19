@@ -58,8 +58,6 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                   div
                     div
                       == cell('visualization_components/satisfaction_visualization')
-            main v-else=""
-              p ="Sin información."
           section
             header :class="{percentage: branch.has_waiting_times_information}"
               div
@@ -68,30 +66,22 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                 div :style="{width: toPercentage(branch.initial_source.waiting_times_percentage_from_worst) + '%'}"
                   span
                     | {{branch.initial_source.waiting_times_average}} días
-            main v-if="branch.has_waiting_times_information"
+            main
               div
                 div
                   p = "El tiempo de espera general para esta sede es de {{branch.initial_source.waiting_times_average}} días."
                   p = "A continuación se muestran los tiempos de espera hasta ser atendido, desagregado por especialidad:"
-                div.horizontal
+                div.horizontal v-for="branch in [branch.initial_source, branch.surveys_source]" v-if="branch.has_waiting_times_information"
                   div
-                    div v-for="waiting_time in branch.initial_source.waiting_times"
+                    div v-for="waiting_time in branch.waiting_times_by_speciality"
                       p
                         | {{waiting_time.name}}
                       == cell('visualization_components/waiting_times_visualization')
-                div.horizontal
-                  div
-                    div v-for="waiting_time in branch.surveys_source.waiting_times"
-                      p
-                        | {{waiting_time.name}}
-                      == cell('visualization_components/waiting_times_visualization')
-            main v-else=""
-              p ="Sin información."
           section
             header
               div
                 h1 = "Especialidades"
-            main v-if="branch.has_specialities_information"
+            main v-if="branch.initial_source.has_specialities_information"
               div
                 div
                   p

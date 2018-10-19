@@ -79,6 +79,18 @@ class SatisfactionResponseService
     @surveys_source_satisfactions
   end
 
+  def _surveys_source_satisfaction_by_speciality
+    satisfaction_by_speciality = {}
+    @surveys_source_satisfactions.each do | speciality, score |
+      satisfaction_by_speciality[speciality] = [] if satisfaction_by_speciality[speciality].nil?
+      satisfaction_by_speciality[speciality] << score
+    end
+
+    satisfaction_by_speciality = satisfaction_by_speciality.map do | speciality, satisfaction |
+      {name: speciality, score: satisfaction.sum / satisfaction.size}
+    end
+  end
+
   def _has_initial_source_satisfaction_information
     @branch.provider.satisfactions.present?
   end

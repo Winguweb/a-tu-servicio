@@ -1,15 +1,17 @@
 div.waiting-times-visualization-cell
   div
-    div v-for="i in toNOfTen(waiting_time.from_best)"
+    div v-for="i in toNOf(3, waiting_time.score)"
       = image_tag asset_path('icons/clock.svg')
-    div v-for="i in toNOfTenReverse(waiting_time.from_best)"
+    div v-for="i in toNOfReverse(3, waiting_time.score)"
       = image_tag asset_path('icons/clock-empty.svg')
   div
     p
-      = "Pasan "
+      span v-if="branch.source == 'initial'"
+        = "Según el relevamiento"
+      span v-if="branch.source == 'surveys'"
+        = "Según la participación ciudadana"
+
+      = ", el tiempo esperado hasta la visita es "
       strong
-        | {{waiting_time.days}}
-      span v-if="waiting_time.days > 1"
-        = " días hasta ser atendido por el especialista."
-      span v-else=""
-        = " día hasta ser atendido por el especialista."
+        | {{['Malo', 'Aceptable', 'Bueno'][waiting_time.score-1]}}
+
