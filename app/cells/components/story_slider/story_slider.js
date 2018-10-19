@@ -2,7 +2,7 @@ ATSB.Components['components/story-slider'] = Backbone.View.extend({
   initialize: function(options) {
     _.bindAll(
       this,
-      'links',
+      'links'
     )
     this.links()
   },
@@ -15,6 +15,6 @@ ATSB.Components['components/story-slider'] = Backbone.View.extend({
         $parent.animate({
             scrollTop: $article[0].offsetTop - $margin_bottom
         }, 500)
-    });
-  },
+    })
+  }
 })

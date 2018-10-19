@@ -2,11 +2,10 @@ ATSB.Components['components/branch-list-large'] = function(options) {
   new Vue({
     el: '.branch-list-large-cell',
     data: {
-      branches: options.branches,
+      branches: [],
       searchQuery: "",
       actions: {show: false},
-      suggestions: "",
-      page: 1,
+      page: 0,
       perform_search: false,
       perform_lazy: false,
       end_of_lazy: false,
@@ -15,14 +14,13 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:list:large:open', this.componentOpen)
       ATSB.pubSub.$on('branch:list:large:close', this.componentClose)
-      // ATSB.pubSub.$emit('fetch:branch:search', '', this.branchesFetchSuccess, this.branchesFetchError)
     },
     watch: {
       searchQuery: _.debounce(function(){
-        this.page = 1
+        this.page = 0
         this.end_of_lazy = false
         this.searchQueryChanged()
-      }, 1000)
+      }, 200)
     },
     methods: {
       branchClicked: function(id) {
@@ -40,20 +38,19 @@ ATSB.Components['components/branch-list-large'] = function(options) {
         this.searchQuery = ''
       },
       branchesFetchSuccess: function(response) {
-        this.branches = response.data.results
-        this.suggestions = response.data.suggestions
+        this.branches = this.transformHitsToResults(response.hits)
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
         this.perform_search = false
         this.focusSearch()
       },
       branchesFetchSuccessAppend: function(response) {
-        if (response.data.results.length == 0) {
+        var results = this.transformHitsToResults(response.hits)
+        if (results.length == 0) {
           this.end_of_lazy = true
           this.perform_lazy = false
           return
         }
-        this.branches = this.branches.concat(response.data.results)
-        this.suggestions = response.data.suggestions
+        this.branches = this.branches.concat(results)
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
         this.perform_search = false
         this.perform_lazy = false
@@ -74,7 +71,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
         this.actions.show = true
         ATSB.pubSub.$emit('map:centered', false)
         ATSB.pubSub.$emit('map:activearea', "small")
-        ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
+        ATSB.pubSub.$emit('fetch:branch:search', this.searchParams(this.searchQuery, this.page), this.branchesFetchSuccess, this.branchesFetchError)
         this.focusSearch()
       },
       focusSearch: function() {
@@ -82,8 +79,8 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       },
       searchQueryChanged: function(append) {
         var branchesFetchSuccess = append ? this.branchesFetchSuccessAppend : this.branchesFetchSuccess
-        var query = this.searchQuery + "&page=" + this.page
-        ATSB.pubSub.$emit('fetch:branch:search', query, branchesFetchSuccess, this.branchesFetchError)
+        // var query = this.searchQuery + "&page=" + this.page
+        ATSB.pubSub.$emit('fetch:branch:search', this.searchParams(this.searchQuery, this.page), branchesFetchSuccess, this.branchesFetchError)
         this.perform_search = !append
         this.perform_lazy = append
       },
@@ -98,8 +95,35 @@ ATSB.Components['components/branch-list-large'] = function(options) {
             this.page++
             this.searchQueryChanged(true)
             this.$nextTick(function() {element.scrollTop = element.scrollHeight}.bind(this))
-          }.bind(this), 300)()
+          }.bind(this), 100)()
         }
+      },
+      searchParams: function(query, page){
+        return {
+          query: query,
+          highlightPreTag: '<em class="search-highlight">',
+          highlightPostTag: '</em>',
+          getRankingInfo: true,
+          facets: [ "specialities_names" ],
+          page: page
+        }
+      },
+      transformHitsToResults: function(hits){
+        return _(hits).map(function(hitData){
+          var coordinates = [ hitData._geoloc.lat, hitData._geoloc.lng ]
+          var matched_specialties = _.compact(_(hitData._highlightResult.specialities_names).map(function(data){
+            if (data.matchLevel != 'none'){
+              return data.value
+            }
+          }))
+          return {
+            id: hitData.objectID,
+            name: hitData._highlightResult.name.value,
+            provider_name: hitData._highlightResult.provider_name.value,
+            coordinates: coordinates,
+            matched_specialties: matched_specialties
+          }
+        })
       }
     }
   })

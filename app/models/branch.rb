@@ -1,34 +1,69 @@
 class Branch < ActiveRecord::Base
-  searchkick word_start: [:name, :provider_name, :address, :specialities], language: "spanish" , suggest: [:name, :provider_name, :specialities]
+  include AlgoliaSearch
+
+  acts_as_taggable_on :levels, :categories
+
   has_many :specialities, dependent: :delete_all
   has_many :beds, dependent: :delete_all
-  acts_as_taggable_on :levels, :categories
   belongs_to :state, optional: true
   belongs_to :provider
-  default_scope { order(name: :asc) }
 
-  def search_data
-    {
-      address: address,
-      georeference: georeference,
-      name: name,
-      town: town,
-      provider_name: provider.name,
-      show: provider.show,
-      specialities: specialities.map(&:name),
-      subnet_name: provider.subnet
-    }
+  default_scope ->{ order(name: :asc) }
+
+  algoliasearch per_environment: true, if: :should_index? do
+    attribute :address,
+      :name,
+      :town,
+      :provider_name,
+      :show,
+      :specialities_names,
+      :subnet_name
+
+    searchableAttributes %w[
+      unordered(name)
+      unordered(provider_name)
+      specialities_names
+      unordered(address)
+    ]
+
+    attributesForFaceting %i[ specialities_names ]
+
+    geoloc :lat, :lng
+  end
+
+  def latlng
+    return [ nil, nil ] unless georeference
+
+    georeference.coordinates.reverse
+  end
+
+  private
+
+  def lat
+    latlng[0]
+  end
+
+  def lng
+    latlng[1]
   end
 
   def should_index?
-    self.provider.show
+    provider.show?
+  end
+
+  def provider_name
+    provider.name
+  end
+
+  def show
+    provider.show
+  end
+
+  def specialities_names
+    specialities.map(&:name)
+  end
+
+  def subnet_name
+    provider.subnet
   end
 end
-
-#If indices are blocked
-#**********************
-#Try running Job.search_index.clean_indices in the console first and see if that helps.
-#If you still get that error, you could also try adding the following to your searchkick config in the Job model and reindexing (although it shouldn't really be necessary):
-#searchkick settings: {blocks: {read_only: false}}
-#If you are still getting the error, then the final thing you could try would be to delete the existing index first by running Job.search_index.delete and then reindexing to create a new index.
-

@@ -26,6 +26,10 @@ class Provider < ActiveRecord::Base
     nombre_abreviado.include?('ASSE')
   end
 
+  def show?
+    !!show
+  end
+
   # What coverage type exists by state
   def coverage_by_state(state, type)
     sites.where(state: state, nivel: type).count

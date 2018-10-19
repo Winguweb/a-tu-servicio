@@ -7,7 +7,6 @@ include ImporterHelper
 namespace :import do
   desc 'Import From Excel Data'
   task :all => [:environment] do
-    Searchkick.disable_callbacks
     prestadores = []
     puts 'Importing csv from Excel data'
     puts 'Truncate Provider table...'
@@ -32,20 +31,20 @@ namespace :import do
     destacar = 0
     totales = 0
     CSV.parse(imported_csv, headers: true, header_converters: :symbol, col_sep: "\t", :quote_char => "`") do |row|
-      especialidad = row[:especialidades].split('-').last.titleize.strip
+      especialidad = row[:especialidades].split('-').drop(1).map(&:strip).join(' - ')
       lote_camas = {
         :area => row[:area],
         :cantidad => row[:camas],
       }
       sede = {
-        :nombre => row[:nombre_sede].titleize.strip,
+        :nombre => row[:nombre_sede].strip,
         :direccion => row[:direccion_sede],
         :localidad => row[:localidad_sede],
         :especialidades => [],
         :camas => []
       }
       prestador = {
-        :nombre => row[:prestador].titleize.strip,
+        :nombre => row[:prestador].strip,
         :tipo => row[:tipo_prestador],
         :website => row[:website],
         :destacado => row[:destacado].present? && (row[:destacado] == 'x' || row[:destacado] == 'X'),
@@ -53,7 +52,7 @@ namespace :import do
         :email => row[:email],
         :comunicacion => row[:comunicacion].to_s,
         :localidad => row[:localidad_central],
-        :subred => row[:subred].titleize.strip,
+        :subred => row[:subred].strip,
         :direccion => row[:direccion_central],
         :satisfaccion => row[:satisfaccion],
         :tiempo_espera_cirugia_general => row[:tiempo_espera_cirugia_general],
@@ -68,28 +67,32 @@ namespace :import do
       sede[:especialidades] << especialidad
       sede[:camas] << lote_camas
       prestador[:sedes] << sede
-      prestador_existente = prestadores.select do |p|
-        p[:nombre] == prestador[:nombre]
-      end.first
+
+      prestador_existente = prestadores.detect do |p|
+        p[:nombre].downcase == prestador[:nombre].downcase
+      end
 
       if prestador_existente.nil?
-        # puts "New Provider: #{prestador[:nombre].titleize.strip}"
+        # puts "New Provider: #{prestador[:nombre].strip}"
         printf "."
         prestadores << prestador
       else
-        sede_existente = prestador_existente[:sedes].select do |s|
-          s[:nombre] == sede[:nombre]
-        end.first
+        sede_existente = prestador_existente[:sedes].detect do |s|
+          s[:nombre].downcase == sede[:nombre].downcase
+        end
+
         if sede_existente.nil?
-          sede[:especialidades] << especialidad
           prestador_existente[:sedes] << sede
           sede_existente = sede
         else
-          sede_existente[:especialidades] << especialidad
+          unless sede_existente[:especialidades].map(&:downcase).include?(especialidad.downcase)
+            sede_existente[:especialidades] << especialidad
+          end
         end
-        cama_existente = sede_existente[:camas].select do |c|
-          c[:area] == lote_camas[:area]
-        end.first
+
+        cama_existente = sede_existente[:camas].detect do |c|
+          c[:area].try(:downcase) == lote_camas[:area].try(:downcase)
+        end
         if cama_existente.nil?
           sede_existente[:camas] << lote_camas
         end
@@ -197,7 +200,9 @@ namespace :import do
       mostrar = mostrar + 1 if prestador[:mostrar]
       destacar = destacar + 1 if prestador[:destacado]
       totales = totales + 1
-      provider.save
+      Branch.without_auto_index do
+        provider.save
+      end
       percentage = ((actual+1)/total.to_f * 100).round(2)
       printf("\rCompleted: %.2f%", percentage)
       printf(", Total: %d", totales)
@@ -207,17 +212,13 @@ namespace :import do
     puts "\n"
     puts 'Providers uploaded'
     puts "\n"
-    Searchkick.enable_callbacks
     puts 'Indexing branches'
     puts "\n"
-    Branch.reindex
+    Branch.reindex!
     puts 'Indexing completed!'
     puts
     Rake::Task["import:resolveGeolocation"].execute
   end
-end
-
-namespace :import do
 
   desc 'Resolve geolocation from addresses'
   task :resolveGeolocation => [:environment] do
@@ -235,7 +236,7 @@ namespace :import do
     # 3. Clear 'Dead' jobs statistics
     Sidekiq::DeadSet.new.clear
 
-    branches = Branch.joins(:provider).where({providers: {show: true}})
+    branches = Branch.joins(:provider).where(providers: { show: true })
     branches.each do |branch|
       GeolocationWorker.perform_async(branch.id)
     end

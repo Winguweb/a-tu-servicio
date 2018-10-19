@@ -2,7 +2,7 @@ ATSB.Components['visualization-components/in-hundreed-visualization'] = Backbone
   initialize: function(options) {
     _.bindAll(
       this,
-      'links',
+      'links'
     )
     this.links()
   },

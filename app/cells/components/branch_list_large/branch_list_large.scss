@@ -16,8 +16,8 @@ $search-bar-height: calc(66px);
     transition: transform 300ms ease 300ms;
   }
   > div:first-of-type {
-    height: 66px;
-    overflow: auto;
+    // height: 66px;
+    // overflow: auto;
     position: relative;
     > input {
       @include type-golden(0);
@@ -40,6 +40,20 @@ $search-bar-height: calc(66px);
       }
       > img {
         height: 100%;
+      }
+    }
+    .explain{
+      font-family: "PT Sans";
+      @include type-golden(0);
+      color: $blue;
+      line-height: gutter($phi - 1);
+      padding: gutter()/2;
+      margin-bottom: gutter()/2;
+      border-bottom: 1px solid $light-grey;
+      strong{
+        font-weight: bold;
+        font-family: "Montserrat", Helvetica, Arial, sans-serif;
+        margin-right: gutter()/2;
       }
     }
     input:invalid ~ a {
@@ -112,6 +126,9 @@ $search-bar-height: calc(66px);
                 @include type-golden(0);
                 @include text-color($blue, 1);
                 line-height: gutter();
+                em {
+                  background-color: rgba($light-blue, .6);
+                }
               }
             }
             > main {
@@ -119,6 +136,33 @@ $search-bar-height: calc(66px);
                 @include type-golden(-1);
                 @include text-color($grey, 1);
                 text-transform: uppercase;
+                em {
+                  background-color: rgba($light-grey, .6);
+                }
+              }
+              .specialties-wrapper{
+                @include ellipsis;
+                overflow-x: hidden;
+                overflow-y: auto;
+                overflow: -moz-scrollbars-none;  // Firefox
+                -ms-overflow-style: none;  // IE 10+
+                &::-webkit-scrollbar {
+                  display: none;  // Safari and Chrome
+                }
+                padding: gutter()/4;
+                span {
+                  font-family: "PT Sans";
+                  @include type-golden(-1);
+                  color: $blue;
+                  padding: gutter()/4 gutter()/2;
+                  margin-right: gutter()/2;
+                  border-radius: 10px;
+                  border: 1px solid $blue;
+                  white-space:nowrap;
+                  em {
+                    background-color: rgba($light-blue, .4);
+                  }
+                }
               }
             }
           }

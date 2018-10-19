@@ -12,14 +12,16 @@ class GeocoderService
     request = Typhoeus.get(url)
     body = JSON.parse(request.body)
 
-    location = body["results"].first["geometry"]["location"]
-    formatted_address = body["results"].first["formatted_address"]
-    point = "POINT(#{location['lng']} #{location['lat']})"
-    puts "\nFormatted Address:\n\n--> #{formatted_address}"
+    if body["results"].present?
+      location = body["results"].first["geometry"]["location"]
+      formatted_address = body["results"].first["formatted_address"]
+      point = "POINT(#{location['lng']} #{location['lat']})"
+      puts "\nFormatted Address:\n\n--> #{formatted_address}"
 
-    branch.georeference = point
-    branch.save
-    location
+      branch.georeference = point
+      branch.save
+      location
+    end
   end
 
   def self.normalize_address(address)
