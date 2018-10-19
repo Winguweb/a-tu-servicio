@@ -13,6 +13,7 @@
     Views: {},
     Routers: {},
     Models: {},
+    Indexes: {},
   })
 
   // Send token on every ajax call that is not a GET

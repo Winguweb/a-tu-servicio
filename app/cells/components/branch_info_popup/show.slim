@@ -5,30 +5,30 @@ div.branch-info-popup-cell v-bind:class="{show: actions.show}" v-bind:style="pos
       span = "{{branch.provider_name}}"
     section
       button @click="openVoteModal()"
-        img :src="'/assets/icons/rating.svg'"
+        = image_tag asset_path('icons/rating.svg')
         span = "Calificar"
 
     / section
     /   ul
     /     li
     /       a
-    /         img :src="'/assets/icons/star.svg'"
+    /         = image_tag asset_path('icons/star.svg')
     /         span = "Muy Malo"
     /     li
     /       a
-    /         img :src="'/assets/icons/star.svg'"
+    /         = image_tag asset_path('icons/star.svg')
     /         span = "Malo"
     /     li
     /       a
-    /         img :src="'/assets/icons/star.svg'"
+    /         = image_tag asset_path('icons/star.svg')
     /         span = "Regular"
     /     li
     /       a
-    /         img :src="'/assets/icons/star.svg'"
+    /         = image_tag asset_path('icons/star.svg')
     /         span = "Bueno"
     /     li
     /       a
-    /         img :src="'/assets/icons/star.svg'"
+    /         = image_tag asset_path('icons/star.svg')
     /         span = "Muy Bueno"
 
 javascript:

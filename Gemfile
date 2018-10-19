@@ -1,31 +1,25 @@
 source 'https://rubygems.org'
-ruby '2.4.1'
+ruby '~> 2.4.0'
 
 gem 'rails', '~> 5.2.0'
 gem 'activerecord-postgis-adapter'
 gem 'pg'
-gem 'searchkick'
+gem 'algoliasearch-rails'
 gem 'acts-as-taggable-on'
 gem 'slim'
 gem 'uglifier'
 gem 'sass-rails'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-# Use jquery as the JavaScript library
 gem 'neat' # A lightweight and flexible Sass grid
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails-jquery-autocomplete'
 gem 'puma'
+gem 'redis-namespace'
 gem 'rollbar'
 gem 'cells-rails'
 gem 'cells-slim', git: "git@github.com:trailblazer/cells-slim", branch: :master
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'sidekiq'
+gem 'typhoeus'
 
 group :development, :test do
   gem 'pry'
@@ -38,12 +32,16 @@ group :development, :test do
   gem 'capybara'
   gem 'active_record_query_trace'
   gem 'derailed'
-  gem 'typhoeus'
-  gem 'redis-rails'
-  gem 'redis-namespace'
-  gem 'sidekiq'
 end
 
 group :production do
   gem 'rails_12factor'
+end
+
+group :development do
+  gem 'capistrano',             require: false
+  gem 'capistrano-bundler',     require: false
+  gem 'capistrano3-puma',       require: false
+  gem 'capistrano-rails',       require: false
+  gem 'capistrano-maintenance', require: false
 end

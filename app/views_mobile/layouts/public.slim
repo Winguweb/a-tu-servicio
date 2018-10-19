@@ -28,13 +28,21 @@ html.desktop.no-js lang=I18n.locale.to_s xmlns="http://www.w3.org/1999/xhtml" xm
 
     = csrf_meta_tags
 
-
     = javascript_include_tag 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js'
+    = javascript_include_tag 'https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js'
+
     = javascript_include_tag 'https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'
     = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.3/leaflet.markercluster.js'
     = javascript_include_tag 'https://cdn.jsdelivr.net/npm/leaflet-active-area@1.0.2/src/leaflet.activearea.min.js'
     = javascript_include_tag 'https://unpkg.com/axios/dist/axios.min.js'
     = javascript_include_tag 'application'
+
+    javascript:
+      $(function() {
+        ATSB.search = algoliasearch('#{ALGOLIA_APP_ID}', '#{ALGOLIA_SEARCH_API_KEY}')
+        ATSB.Indexes.branch = ATSB.search.initIndex('Branch_#{Rails.env}')
+      });
+
     = javascript_include_tag "https://www.google.com/recaptcha/api.js?render=#{RECAPTCHA_SITEKEY}", async:"async", defer:"defer"
 
     body id=body_id class="#{body_class} mobile small-reference-map"

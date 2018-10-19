@@ -16,8 +16,8 @@ $search-bar-height: calc(66px);
     transition: transform 300ms ease 300ms;
   }
   > div:first-of-type {
-    height: 66px;
-    overflow: auto;
+    // height: 66px;
+    // overflow: auto;
     position: relative;
     > input {
       @include type-golden(0);
@@ -40,6 +40,20 @@ $search-bar-height: calc(66px);
       }
       > img {
         height: 100%;
+      }
+    }
+    .explain{
+      font-family: "PT Sans";
+      @include type-golden(0);
+      color: $blue;
+      line-height: gutter($phi - 1);
+      padding: gutter()/2;
+      margin-bottom: gutter()/2;
+      border-bottom: 1px solid $light-grey;
+      strong{
+        font-weight: bold;
+        font-family: "Montserrat", Helvetica, Arial, sans-serif;
+        margin-right: gutter()/2;
       }
     }
     input:invalid ~ a {

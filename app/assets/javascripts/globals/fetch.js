@@ -6,10 +6,10 @@
       ATSB.pubSub.$on('vote:send', this.voteSend)
     },
     methods: {
-      branchAll: function(query, cb, err) {
+      branchAll: function(searchParams, cb, err) {
         var cb = cb || ATSB.Utils.fn
         var err = err || ATSB.Utils.out
-        axios.get("/api/v1/branches?q=" + query).then(cb).catch(err)
+        ATSB.Indexes.branch.search(searchParams).then(cb).catch(err)
       },
       branchId: function(id, cb, err) {
         var cb = cb || ATSB.Utils.fn

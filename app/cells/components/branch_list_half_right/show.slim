@@ -3,17 +3,19 @@ div.branch-list-half-right-cell v-bind:class="{show: actions.show}"
     input type="text" placeholder="Buscar..." v-model="searchQuery" required="" :disabled="perform_search" ref="search" autofocus="true"
     a v-on:click="clearSearchClicked"
       = image_tag image_path("icons/cancel-search.svg")
+    div.explain
+      strong
+        | Tip:
+      | Puedes buscar la sede por su nombre, el nombre de la prestador a la pertenece, o una especialidad
   div v-if="!perform_search" v-on:scroll="scrollEnd"
     ul
       li v-for="branch in branches"
         a v-on:click="branchClicked(branch.id)"
           article
             header
-              h1
-                | {{branch.name}}
+              h1 v-html="branch.name"
             main
-              p
-                | {{branch.provider_name}}
+              p v-html="branch.provider_name"
       li v-if="perform_lazy"
         == cell('components/progress_circle', 'static')
   div v-if="perform_search"
