@@ -10,7 +10,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
       inputValueSizeLimit: 200,
       recaptchaSitekey: options.recaptchaSitekey,
       showForm: true,
-      steps: options.steps,
+      steps: options.form.steps,
     },
     created: function() {
       var _this = this
@@ -132,8 +132,8 @@ ATSB.Components['components/vote-modal'] = function(options) {
         var branch_id = this.branchId
         var step_id = actualStep.id
         var answer_id = actualAnswerId
-        var answerString = this.getAnswerById(actualAnswerId).value
-        var answer_value = this.inputValue ? this.inputValue : answerString
+        var answer_data = this.getAnswerById(actualAnswerId).data
+            answer_data.value = this.inputValue || answer_data.value
         var question_value = this.getActualStep().question
 
         this.showForm = false
@@ -144,7 +144,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
           step_id: step_id,
           answer_id: answer_id,
           question_value: question_value,
-          answer_value: answer_value,
+          answer_data: answer_data,
           multi_response: this.isMultiResponse(),
         }, needsRecaptcha, function success() {
           var nextStep = loopTo || actualStep.next_step[actualAnswerId] || actualStep.id+1

@@ -29,11 +29,16 @@ class SpecialityResponseService
     { name: speciality.name }
   end
 
+  def _has_specialities_information
+    @specialities.present?
+  end
+
   def _response
     {
       initial_source: {
         specialities: _specialities,
-        specialities_count: _specialities_count
+        specialities_count: _specialities_count,
+        has_specialities_information: _has_specialities_information,
       },
       surveys_source: {
         specialities: _specialities,
