@@ -22,7 +22,7 @@ ansible/
 *.local.*
 /config/deploy/files/**/*
 /config/deploy/production.rb
-/config/deploy/staging.rb
+# /config/deploy/staging.rb
 
 # OS generated files #
 ######################
