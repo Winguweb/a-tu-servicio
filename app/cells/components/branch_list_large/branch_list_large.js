@@ -16,7 +16,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       ATSB.pubSub.$on('branch:list:large:close', this.componentClose)
     },
     watch: {
-      searchQuery: _.debounce(function(){
+      searchQuery: _.debounce(function() {
         this.page = 0
         this.end_of_lazy = false
         this.searchQueryChanged()
@@ -91,14 +91,14 @@ ATSB.Components['components/branch-list-large'] = function(options) {
         var element = evt.currentTarget
         if(element.offsetHeight + element.scrollTop > element.scrollHeight - 10) {
           if (this.perform_lazy || this.end_of_lazy) return
-          _.debounce(function(){
+          _.debounce(function() {
             this.page++
             this.searchQueryChanged(true)
             this.$nextTick(function() {element.scrollTop = element.scrollHeight}.bind(this))
           }.bind(this), 100)()
         }
       },
-      searchParams: function(query, page){
+      searchParams: function(query, page) {
         return {
           query: query,
           highlightPreTag: '<em class="search-highlight">',
@@ -108,11 +108,11 @@ ATSB.Components['components/branch-list-large'] = function(options) {
           page: page
         }
       },
-      transformHitsToResults: function(hits){
-        return _(hits).map(function(hitData){
+      transformHitsToResults: function(hits) {
+        return _(hits).map(function(hitData) {
           var coordinates = [ hitData._geoloc.lat, hitData._geoloc.lng ]
-          var matched_specialties = _.compact(_(hitData._highlightResult.specialities_names).map(function(data){
-            if (data.matchLevel != 'none'){
+          var matched_specialties = _.compact(_(hitData._highlightResult.specialities_names).map(function(data) {
+            if (data.matchLevel != 'none') {
               return data.value
             }
           }))

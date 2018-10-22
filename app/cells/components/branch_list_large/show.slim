@@ -17,7 +17,8 @@ div.branch-list-large-cell v-bind:class="{show: actions.show}"
             main
               p v-html="branch.provider_name"
               div class='specialties-wrapper' v-if="branch.matched_specialties.length > 0"
-                span v-for="specialty_name in branch.matched_specialties" v-html="specialty_name"
+                div v-for="specialty_name in branch.matched_specialties"
+                  span v-html="specialty_name"
 
       li v-if="perform_lazy"
         == cell('components/progress_circle', 'static')

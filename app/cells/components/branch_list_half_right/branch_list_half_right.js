@@ -16,7 +16,7 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
       ATSB.pubSub.$emit('fetch:branch:search', { query: this.searchQuery }, this.branchesFetchSuccess, this.branchesFetchError)
     },
     watch: {
-      searchQuery: _.debounce(function(){
+      searchQuery: _.debounce(function() {
         this.page = 1
         this.end_of_lazy = false
         this.searchQueryChanged()
@@ -73,7 +73,7 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
       searchQueryChanged: function(append) {
         var branchesFetchSuccess = append ? this.branchesFetchSuccessAppend : this.branchesFetchSuccess
         // var query = this.searchQuery + "&page=" + this.page
-        ATSB.pubSub.$emit('fetch:branch:search', { query: this.searchQuery, page: this.page }, branchesFetchSuccess, this.branchesFetchError)
+        ATSB.pubSub.$emit('fetch:branch:search', this.searchParams(this.searchQuery, this.page), branchesFetchSuccess, this.branchesFetchError)
         this.perform_search = !append
         this.perform_lazy = append
       },
@@ -81,21 +81,37 @@ ATSB.Components['components/branch-list-half-right'] = function(options) {
         var element = evt.currentTarget
         if(element.offsetHeight + element.scrollTop > element.scrollHeight - 10) {
           if (this.perform_lazy || this.end_of_lazy) return
-          _.debounce(function(){
+          _.debounce(function() {
             this.page++
             this.searchQueryChanged(true)
             this.$nextTick(function() {element.scrollTop = element.scrollHeight}.bind(this))
           }.bind(this), 100)()
         }
       },
-      transformHitsToResults: function(hits){
-        return _(hits).map(function(hitData){
+      searchParams: function(query, page) {
+        return {
+          query: query,
+          highlightPreTag: '<em class="search-highlight">',
+          highlightPostTag: '</em>',
+          getRankingInfo: true,
+          facets: [ "specialities_names" ],
+          page: page
+        }
+      },
+      transformHitsToResults: function(hits) {
+        return _(hits).map(function(hitData) {
           var coordinates = [ hitData._geoloc.lat, hitData._geoloc.lng ]
+          var matched_specialties = _.compact(_(hitData._highlightResult.specialities_names).map(function(data) {
+            if (data.matchLevel != 'none') {
+              return data.value
+            }
+          }))
           return {
             id: hitData.objectID,
             name: hitData._highlightResult.name.value,
             provider_name: hitData._highlightResult.provider_name.value,
-            coordinates: coordinates
+            coordinates: coordinates,
+            matched_specialties: matched_specialties
           }
         })
       }
