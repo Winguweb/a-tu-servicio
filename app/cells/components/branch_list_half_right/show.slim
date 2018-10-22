@@ -1,6 +1,6 @@
 div.branch-list-half-right-cell v-bind:class="{show: actions.show}"
   div
-    input type="text" placeholder="Buscar..." v-model="searchQuery" required="" :disabled="perform_search" ref="search" autofocus="true"
+    input type="text" placeholder="Buscar sede..." v-model="searchQuery" required="" :disabled="perform_search" ref="search" autofocus="true"
     a v-on:click="clearSearchClicked"
       = image_tag image_path("icons/cancel-search.svg")
     div.explain
@@ -16,6 +16,10 @@ div.branch-list-half-right-cell v-bind:class="{show: actions.show}"
               h1 v-html="branch.name"
             main
               p v-html="branch.provider_name"
+              div class='specialties-wrapper' v-if="branch.matched_specialties.length > 0"
+                div v-for="specialty_name in branch.matched_specialties"
+                  span v-html="specialty_name"
+
       li v-if="perform_lazy"
         == cell('components/progress_circle', 'static')
   div v-if="perform_search"

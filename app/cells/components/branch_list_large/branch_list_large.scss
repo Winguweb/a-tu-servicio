@@ -23,6 +23,7 @@ $search-bar-height: calc(66px);
       @include type-golden(0);
       float: left;
       height: 44px;
+      margin-bottom: gutter();
       padding: gutter() gutter(2) gutter() gutter();
       width: 100%;
     }
@@ -42,17 +43,17 @@ $search-bar-height: calc(66px);
         height: 100%;
       }
     }
-    .explain{
-      font-family: "PT Sans";
+    .explain {
       @include type-golden(0);
+      border: 1px dotted $light-grey;
       color: $blue;
+      font-family: "PT Sans";
       line-height: gutter($phi - 1);
-      padding: gutter()/2;
-      margin-bottom: gutter()/2;
-      border-bottom: 1px solid $light-grey;
+      margin-bottom: gutter();
+      padding: gutter(-1);
       strong{
-        font-weight: bold;
         font-family: "Montserrat", Helvetica, Arial, sans-serif;
+        font-weight: bold;
         margin-right: gutter()/2;
       }
     }
@@ -85,7 +86,7 @@ $search-bar-height: calc(66px);
     }
   }
   > div:nth-of-type(2) {
-    height: calc(100% - #{$search-bar-height});
+    height: calc(100% - #{$search-bar-height} - 82px);
     overflow: auto;
     position: relative;
     width: 100%;
@@ -102,11 +103,32 @@ $search-bar-height: calc(66px);
               > header {
                 > h1 {
                   color: $white;
+                  > em {
+                    background-color: transparent;
+                    font-weight: 800;
+                  }
                 }
               }
               > main {
                 > p {
                   color: $white;
+                }
+                em {
+                  background-color: transparent;
+                  font-weight: 800;
+                }
+                .specialties-wrapper {
+                  > div {
+                    background-color: $white;
+                    > span {
+                      border: none;
+                      color: $light-blue;
+                      > em {
+                        background-color: $highlight;
+                        color: $black;
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -125,9 +147,9 @@ $search-bar-height: calc(66px);
               > h1 {
                 @include type-golden(0);
                 @include text-color($blue, 1);
-                line-height: gutter();
+                line-height: gutter(1);
                 em {
-                  background-color: rgba($light-blue, .6);
+                  background-color: $highlight;
                 }
               }
             }
@@ -137,30 +159,45 @@ $search-bar-height: calc(66px);
                 @include text-color($grey, 1);
                 text-transform: uppercase;
                 em {
-                  background-color: rgba($light-grey, .6);
+                  background-color: $highlight;
                 }
               }
-              .specialties-wrapper{
-                @include ellipsis;
-                overflow-x: hidden;
-                overflow-y: auto;
-                overflow: -moz-scrollbars-none;  // Firefox
-                -ms-overflow-style: none;  // IE 10+
+              .specialties-wrapper {
+                padding-top: gutter(-1);
                 &::-webkit-scrollbar {
                   display: none;  // Safari and Chrome
                 }
-                padding: gutter()/4;
-                span {
-                  font-family: "PT Sans";
-                  @include type-golden(-1);
-                  color: $blue;
-                  padding: gutter()/4 gutter()/2;
-                  margin-right: gutter()/2;
+                > div {
+                  background-color: $light-blue;
                   border-radius: 10px;
-                  border: 1px solid $blue;
-                  white-space:nowrap;
-                  em {
-                    background-color: rgba($light-blue, .4);
+                  box-shadow: 0 2px 3px -2px rgba(112, 112, 112, 0.5);
+                  display: inline-block;
+                  line-height: 0;
+                  margin-right: gutter()/2;
+                  max-width: 100%;
+                  > span {
+                    @include ellipsis;
+                    @include type-golden(-1);
+                    border: none;
+                    color: $white;
+                    display: inline-block;
+                    font-family: "PT Sans";
+                    font-weight: 600;
+                    line-height: gutter(-1);
+                    overflow: -moz-scrollbars-none;  // Firefox
+                    -ms-overflow-style: none;  // IE 10+
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    padding: gutter()/4 gutter()/2;
+                    position: relative;
+                    text-transform: uppercase;
+                    top: 1px;
+                    white-space: nowrap;
+                    width: 100%;
+                    > em {
+                      background-color: $highlight;
+                      color: $black;
+                    }
                   }
                 }
               }
