@@ -123,7 +123,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
         var _this = this
         var options = options || {}
         var needsRecaptcha = this.isFirstStep()
-        var loopTo = options.loopTo
         var actualStep = this.getActualStep()
         var actualAnswerId = this.getActualAnswer()
         if (actualAnswerId == null) { return }
@@ -136,27 +135,22 @@ ATSB.Components['components/vote-modal'] = function(options) {
             answer_data.value = this.inputValue || answer_data.value
         var question_value = this.getActualStep().question
 
+        this.loopTo = options.loopTo
         this.showForm = false
 
-        this.sendVote({
-          client_id: client_id,
-          branch_id: branch_id,
-          step_id: step_id,
-          answer_id: answer_id,
-          question_value: question_value,
-          answer_data: answer_data,
-          multi_response: this.isMultiResponse(),
-        }, needsRecaptcha, function success() {
-          var nextStep = loopTo || actualStep.next_step[actualAnswerId] || actualStep.id+1
-          _this.getStepById(nextStep).previous_step = actualStep.id
-          _this.inputValue = ""
-          _this.actualStepId = +nextStep
-          _this.preloadInputValue()
-          setTimeout(function() {_this.showForm = true}, 300)
-        }, function fail() {
-          alert('error en recaptcha')
-          setTimeout(function() {_this.showForm = true}, 300)
-        })
+        if (this.shouldSaveVote()) {
+          this.sendVote({
+            client_id: client_id,
+            branch_id: branch_id,
+            step_id: step_id,
+            answer_id: answer_id,
+            question_value: question_value,
+            answer_data: answer_data,
+            multi_response: this.isMultiResponse(),
+          }, needsRecaptcha, this.sendVoteSuccess, this.sendVoteFail)
+          return;
+        }
+        this.sendVoteSuccess()
       },
       preloadInputValue: function() {
         this.inputValue = ""
@@ -173,6 +167,28 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.preloadInputValue()
         this.showForm = false
         setTimeout(function() {_this.showForm = true}, 300)
+      },
+      sendVoteFail: function() {
+        var _this = this
+        alert('error en recaptcha')
+        setTimeout(function() {_this.showForm = true}, 300)
+      },
+      sendVoteSuccess: function() {
+        var _this = this
+        var actualStep = this.getActualStep()
+        var actualAnswerId = this.getActualAnswer()
+        var nextStep = this.loopTo || actualStep.next_step[actualAnswerId] || actualStep.id+1
+        this.loopTo = null
+        this.getStepById(nextStep).previous_step = actualStep.id
+        this.inputValue = ""
+        this.actualStepId = +nextStep
+        this.preloadInputValue()
+        setTimeout(function() {_this.showForm = true}, 300)
+      },
+      shouldSaveVote: function() {
+        var actualAnswerId = this.getActualAnswer()
+        var actualAnswer = this.getAnswerById(actualAnswerId)
+        return !!actualAnswer.should_save
       },
       selectAnswer: function(id) {
         this.getStepById(this.actualStepId).answer = id
