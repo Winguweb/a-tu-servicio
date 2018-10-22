@@ -128,24 +128,28 @@ steps:
     - id: 1
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "No asegurado"
         value: "No asegurado"
     - id: 2
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Subsidiado"
         value: "Subsidiado"
     - id: 3
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Contributivo"
         value: "Contributivo"
     - id: 4
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Particular"
         value: "Particular"
@@ -163,60 +167,70 @@ steps:
     - id: 1
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Pediatría"
         value: "Pediatría"
     - id: 2
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Medicina Interna"
         value: "Medicina Interna"
     - id: 3
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Odontología"
         value: "Odontología"
     - id: 4
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Medicina General"
         value: "Medicina General"
     - id: 5
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Ginecología"
         value: "Ginecología"
     - id: 6
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Obstetricia"
         value: "Obstetricia"
     - id: 7
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Cirugía General"
         value: "Cirugía General"
     - id: 8
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Laboratorio"
         value: "Laboratorio"
     - id: 9
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Radiología"
         value: "Radiología"
     - id: 10
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Urgencia"
         value: "Urgencia"
@@ -243,6 +257,7 @@ steps:
           - id: 1
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 1 y 7 días"
               value: 1
@@ -250,6 +265,7 @@ steps:
           - id: 2
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 8 y 15 días"
               value: 2
@@ -257,6 +273,7 @@ steps:
           - id: 3
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 16 días o más"
               value: 3
@@ -266,6 +283,7 @@ steps:
           - id: 1
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 1 y 15 días"
               value: 1
@@ -273,6 +291,7 @@ steps:
           - id: 2
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 16 y 29 días"
               value: 2
@@ -280,6 +299,7 @@ steps:
           - id: 3
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 30 días o más"
               value: 3
@@ -289,6 +309,7 @@ steps:
           - id: 1
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 1 y 2 días"
               value: 1
@@ -296,6 +317,7 @@ steps:
           - id: 2
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 3 y 4 días"
               value: 2
@@ -303,6 +325,7 @@ steps:
           - id: 3
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "5 días o más"
               value: 3
@@ -312,6 +335,7 @@ steps:
           - id: 1
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 1 y 2 días"
               value: 1
@@ -319,6 +343,7 @@ steps:
           - id: 2
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 3 y 4 días"
               value: 2
@@ -326,6 +351,7 @@ steps:
           - id: 3
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "5 días o más"
               value: 3
@@ -335,6 +361,7 @@ steps:
           - id: 1
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 1 y 7 días"
               value: 1
@@ -342,6 +369,7 @@ steps:
           - id: 2
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 8 y 15 días"
               value: 2
@@ -349,6 +377,7 @@ steps:
           - id: 3
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 16 días o más"
               value: 3
@@ -358,6 +387,7 @@ steps:
           - id: 1
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 1 y 2 días"
               value: 1
@@ -365,6 +395,7 @@ steps:
           - id: 2
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 3 y 4 días"
               value: 2
@@ -372,6 +403,7 @@ steps:
           - id: 3
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "5 días o más"
               value: 3
@@ -381,6 +413,7 @@ steps:
           - id: 1
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 1 a 10 días"
               value: 1
@@ -388,6 +421,7 @@ steps:
           - id: 2
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 11 a 19 días"
               value: 2
@@ -395,6 +429,7 @@ steps:
           - id: 3
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 20 días y más"
               value: 3
@@ -404,6 +439,7 @@ steps:
           - id: 1
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Menos de 1 día"
               value: 1
@@ -411,6 +447,7 @@ steps:
           - id: 2
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 1 día y 2 días"
               value: 2
@@ -418,6 +455,7 @@ steps:
           - id: 3
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "2 días o más"
               value: 3
@@ -427,6 +465,7 @@ steps:
           - id: 1
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Menos de 1 día"
               value: 1
@@ -434,6 +473,7 @@ steps:
           - id: 2
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "Entre 1 día y 3 días"
               value: 2
@@ -441,6 +481,7 @@ steps:
           - id: 3
             type: "icon"
             auto_submit: true
+            should_save: true
             data:
               label: "3 días o más"
               value: 3
@@ -458,30 +499,35 @@ steps:
     - id: 1
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Muy Mala"
         value: 1
     - id: 2
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Mala"
         value: 2
     - id: 3
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Aceptable"
         value: 3
     - id: 4
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Buena"
         value: 4
     - id: 5
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Muy Buena"
         value: 5
@@ -500,30 +546,35 @@ steps:
     - id: 1
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Muy Mala"
         value: 1
     - id: 2
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Mala"
         value: 2
     - id: 3
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Aceptable"
         value: 3
     - id: 4
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Buena"
         value: 4
     - id: 5
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Muy Buena"
         value: 5
@@ -542,48 +593,56 @@ steps:
     - id: 1
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "El tiempo de espera hasta que me evaluaron fue excesivamente largo"
         value: "El tiempo de espera hasta que me evaluaron fue excesivamente largo"
     - id: 2
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "No había donde sentarse en la sala de espera"
         value: "No había donde sentarse en la sala de espera"
     - id: 3
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "El tiempo entre la evaluación previa y la atención fue exesivamente largo"
         value: "El tiempo entre la evaluación previa y la atención fue exesivamente largo"
     - id: 4
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "No encontré solución para mi motivo de consulta"
         value: "No encontré solución para mi motivo de consulta"
     - id: 5
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "El personal médico y de enfermería no prestó un servicio adecuado"
         value: "El personal médico y de enfermería no prestó un servicio adecuado"
     - id: 6
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "El personal administrativo no prestó un servicio adecuado"
         value: "El personal administrativo no prestó un servicio adecuado"
     - id: 7
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "No había disponibilidad de camilla de observación ni sillones reclinables"
         value: "No había disponibilidad de camilla de observación ni sillones reclinables"
     - id: 8
       type: "option"
       auto_submit: true
+      should_save: false
       data:
         label: "Otro"
         value: "Otro"
@@ -605,6 +664,7 @@ steps:
     - id: 1
       type: "text"
       auto_submit: false
+      should_save: true
       data:
         label: "Otros"
         value: "Otros"
@@ -619,36 +679,42 @@ steps:
     - id: 1
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "El tiempo de espera hasta que me evaluaron fue corto"
         value: "El tiempo de espera hasta que me evaluaron fue corto"
     - id: 2
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "La sala de espera se encontraba en condiciones óptimas"
         value: "La sala de espera se encontraba en condiciones óptimas"
     - id: 3
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "El tiempo entre la evaluación previa y la atención fue corto"
         value: "El tiempo entre la evaluación previa y la atención fue corto"
     - id: 4
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "La atención médica fue resolutiva"
         value: "La atención médica fue resolutiva"
     - id: 5
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis espectativas"
         value: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis espectativas"
     - id: 6
       type: "option"
       auto_submit: true
+      should_save: false
       data:
         label: "Otro"
         value: "Otro"
@@ -668,6 +734,7 @@ steps:
     - id: 1
       type: "text"
       auto_submit: false
+      should_save: true
       data:
         label: "Otros"
         value: "Otros"
@@ -682,78 +749,91 @@ steps:
     - id: 1
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Personal de apoyo"
         value: "Personal de apoyo"
     - id: 2
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Personal administrativo"
         value: "Personal administrativo"
     - id: 3
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Personal de enfermería"
         value: "Personal de enfermería"
     - id: 4
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Médico(a)"
         value: "Médico(a)"
     - id: 5
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Médico(a) especialista"
         value: "Médico(a) especialista"
     - id: 6
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Odontología"
         value: "Odontología"
     - id: 7
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Odontólogo(a)"
         value: "Odontólogo(a)"
     - id: 8
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Psicólogo(a)"
         value: "Psicólogo(a)"
     - id: 9
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Fisioterapeuta"
         value: "Fisioterapeuta"
     - id: 10
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Terapeuta Ocupacional"
         value: "Terapeuta Ocupacional"
     - id: 11
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Fonoaudiólogo(a)"
         value: "Fonoaudiólogo(a)"
     - id: 12
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Bacteriólogo(a)"
         value: "Bacteriólogo(a)"
     - id: 13
       type: "cuckoo"
       auto_submit: true
+      should_save: true
       data:
         label: "Nutricionista"
         value: "Nutricionista"
@@ -780,30 +860,35 @@ steps:
     - id: 1
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Muy Mala"
         value: 1
     - id: 2
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Mala"
         value: 2
     - id: 3
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Aceptable"
         value: 3
     - id: 4
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Buena"
         value: 4
     - id: 5
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Muy Buena"
         value: 5
@@ -823,30 +908,35 @@ steps:
     - id: 1
       type: "option"
       auto_submit: false
+      should_save: true
       data:
         label: "No se presentó amabilidad y calidéz por parte de los funcionarios"
         value: "No se presentó amabilidad y calidéz por parte de los funcionarios"
     - id: 2
       type: "option"
       auto_submit: false
+      should_save: true
       data:
         label: "No le demostraron interés o voluntad en ayudarlo"
         value: "No le demostraron interés o voluntad en ayudarlo"
     - id: 3
       type: "option"
       auto_submit: false
+      should_save: true
       data:
         label: "No tuvo privacidad para contar su caso"
         value: "No tuvo privacidad para contar su caso"
     - id: 4
       type: "option"
       auto_submit: false
+      should_save: true
       data:
         label: "La explicación o información que le brindaron no fue confiable"
         value: "La explicación o información que le brindaron no fue confiable"
     - id: 5
       type: "option"
       auto_submit: true
+      should_save: false
       data:
         label: "Otros"
         value: "Otros"
@@ -866,6 +956,7 @@ steps:
     - id: 1
       type: "text"
       auto_submit: false
+      should_save: true
       data:
         label: "Otros"
         value: "Otros"
@@ -881,30 +972,35 @@ steps:
     - id: 1
       type: "option"
       auto_submit: false
+      should_save: true
       data:
         label: "Se presentó amabilidad y calidéz por parte de los funcionarios"
         value: "Se presentó amabilidad y calidéz por parte de los funcionarios"
     - id: 2
       type: "option"
       auto_submit: false
+      should_save: true
       data:
         label: "Le demostraron interés y voluntad en ayudarlo"
         value: "Le demostraron interés y voluntad en ayudarlo"
     - id: 3
       type: "option"
       auto_submit: false
+      should_save: true
       data:
         label: "La privacidad para contar su caso"
         value: "La privacidad para contar su caso"
     - id: 4
       type: "option"
       auto_submit: false
+      should_save: true
       data:
         label: "La explicación o información que le brindaron fue confiable"
         value: "La explicación o información que le brindaron fue confiable"
     - id: 5
       type: "option"
       auto_submit: true
+      should_save: false
       data:
         label: "Otros"
         value: "Otros"
@@ -924,6 +1020,7 @@ steps:
     - id: 1
       type: "text"
       auto_submit: false
+      should_save: true
       data:
         label: "Otros"
         value: "Otros"
@@ -938,30 +1035,35 @@ steps:
     - id: 1
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Muy Mala"
         value: 1
     - id: 2
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Mala"
         value: 2
     - id: 3
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Aceptable"
         value: 3
     - id: 4
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Buena"
         value: 4
     - id: 5
       type: "star"
       auto_submit: true
+      should_save: true
       data:
         label: "Muy Buena"
         value: 5
@@ -980,30 +1082,35 @@ steps:
     - id: 1
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "No hubo coherencia o relación entre la atención y su necesidad"
         value: "No hubo coherencia o relación entre la atención y su necesidad"
     - id: 2
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "No hay tranquilidad y comodidad del punto de atención"
         value: "No hay tranquilidad y comodidad del punto de atención"
     - id: 3
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "No hubo respeto a la dignidad y la condición humana"
         value: "No hubo respeto a la dignidad y la condición humana"
     - id: 4
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "No se resolvió su necesidad"
         value: "No se resolvió su necesidad"
     - id: 5
       type: "option"
       auto_submit: true
+      should_save: false
       data:
         label: "Otros"
         value: "Otros"
@@ -1022,6 +1129,7 @@ steps:
     - id: 1
       type: "text"
       auto_submit: false
+      should_save: true
       data:
         label: "Otros"
         value: "Otros"
@@ -1036,30 +1144,35 @@ steps:
     - id: 1
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "Hubo coherencia o relación entre la atención y su necesidad"
         value: "Hubo coherencia o relación entre la atención y su necesidad"
     - id: 2
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "Hubo tranquilidad y comodidad del punto de atención"
         value: "Hubo tranquilidad y comodidad del punto de atención"
     - id: 3
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "Hubo respeto a la dignidad y condición humana"
         value: "Hubo respeto a la dignidad y condición humana"
     - id: 4
       type: "option"
       auto_submit: true
+      should_save: true
       data:
         label: "Se resolvió su necesidad"
         value: "Se resolvió su necesidad"
     - id: 5
       type: "option"
       auto_submit: true
+      should_save: false
       data:
         label: "Otros"
         value: "Otros"
@@ -1078,6 +1191,7 @@ steps:
     - id: 1
       type: "text"
       auto_submit: false
+      should_save: true
       data:
         label: "Otros"
         value: "Otros"
