@@ -62,9 +62,11 @@
       }
       > section:nth-of-type(1) {
         left: 50%;
+        max-height: calc(100% - 73px);
+        overflow-y: scroll;
         position: absolute;
         text-align: center;
-        top: 50%;
+        top: calc(36px + 50%);
         transform: translate3d(-50%, -50%, 0);
         width: calc(100% - #{gutter()*2});
         > ul {
@@ -387,7 +389,24 @@
 }
 
 @mixin mobile-vote-modal() {
-
+  padding: 0;
+  > span {
+    > section {
+      background-position: top 15% right 10px, bottom 0 left 20px;
+      background-size: 50px, 25px;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      > section:nth-of-type(1) {
+        left: 0;
+        right: 0;
+        transform: translate3d(0, -50%, 0);
+        width: 100%;
+      }
+    }
+  }
 }
 
 .vote-modal-cell {
