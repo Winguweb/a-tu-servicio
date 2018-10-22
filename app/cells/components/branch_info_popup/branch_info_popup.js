@@ -27,8 +27,8 @@ ATSB.Components['components/branch-info-popup'] = function(options) {
       },
       positionToCss: function(position) {
         return {
-          left: '${position.left}px',
-          top: '${position.top}px'
+          left: position.left+'px',
+          top: position.top+'px'
         }
       }
     }
