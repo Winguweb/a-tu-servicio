@@ -6,7 +6,7 @@ div.branch-list-large-cell v-bind:class="{show: actions.show}"
     div.explain
       strong
         | Tip:
-      | Puedes buscar la sede por su nombre, el nombre de la prestador a la pertenece, o una especialidad
+      | Puedes buscar la sede por su nombre, o el nombre del prestador a la que pertenece, o una especialidad
   div v-if="!perform_search" v-on:scroll="scrollEnd"
     ul
       li v-for="branch in branches"

@@ -112,8 +112,6 @@ ATSB.Components['components/reference-map'] = function(options) {
       addMapEvents: function() {
         var _this = this
         this.map.on('click', function(evt) {
-          console.log(_this.selectedBranch.length)
-          // ATSB.pubSub.$emit('map:activearea', "")
           if (_this.selectedBranch.length == 1) {
             ATSB.pubSub.$emit('all:slides:close')
             ATSB.pubSub.$emit('branch:list:large:open')
@@ -121,7 +119,6 @@ ATSB.Components['components/reference-map'] = function(options) {
             ATSB.pubSub.$emit('header:action:set', 'close')
           }
         })
-        this.map.on('dragend', this.searchOnBoundaries)
       },
       getBranchById: function(id) {
         branch = this.branches.filter(function(branch) {
@@ -131,26 +128,6 @@ ATSB.Components['components/reference-map'] = function(options) {
       },
       setCentered: function(value) {
         this.centered = value
-      },
-      searchOnBoundaries: function(){
-        var center = this.map.getCenter()
-        var radius = Math.round(window.map.getBounds().getSouthWest().distanceTo(center) * 0.6)
-        // console.log(radius)
-        // if (this.searchCircle !== undefined) {
-        //   window.map.removeLayer(this.searchCircle);
-        // }
-        // this.searchCircle = L.circle(center, {radius: radius}).addTo(window.map);
-        var searchParams = {
-          query: '',
-          facets: [ "specialities_names" ],
-          aroundLatLng: center.lat + ', ' + center.lng,
-          aroundRadius: radius
-        }
-
-        ATSB.pubSub.$emit('fetch:branch:search', searchParams, function(response){
-          var ids = _(response.hits).map(function(hit){ return hit.objectID })
-          ATSB.pubSub.$emit('branch:selected', ids)
-        }, function(){console.warn(arguments)})
       }
     }
   })

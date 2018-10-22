@@ -2,15 +2,16 @@ class Components::ReferenceMapCell < Cell::ViewModel
 
   private
 
-  def features
+  def branches
     return [] if model.blank?
+
     model.map do |branch|
       {
         id: branch.id.to_s,
         name: branch.name,
         coordinates: branch.latlng,
         provider_name: branch.provider.name,
-        featured: branch.provider.featured,
+        featured: branch.provider.featured
       }
     end.to_json
   end
