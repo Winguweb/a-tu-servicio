@@ -1305,7 +1305,7 @@ steps:
       1: 15
     answer: null
   - id: 15
-    question: "¿Cuál es su nivel de satisfacción con la calidad el servicio de salud?"
+    question: "¿Cuál es su nivel de satisfacción con la calidad del servicio de salud?"
     multi_response: false
     answers:
     - id: 1

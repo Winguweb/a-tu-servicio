@@ -37,6 +37,13 @@ class Branch < ActiveRecord::Base
     georeference.coordinates.reverse
   end
 
+  def quality
+    quality = Survey.where(branch_id: id, step_id: 15)
+    count = quality.size
+    total = quality.pluck("answer_data").pluck("value").sum
+    total / count if count > 0
+  end
+
   private
 
   def lat

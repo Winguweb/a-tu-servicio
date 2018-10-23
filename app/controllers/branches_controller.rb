@@ -13,7 +13,8 @@ class BranchesController < ApplicationController
           :name => branch.name,
           :address => branch.address,
           :provider_name => branch.provider.name,
-          :featured => branch.provider.featured
+          :featured => branch.provider.featured,
+          :quality => branch.quality
         }
       end
     }
