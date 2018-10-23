@@ -8,6 +8,9 @@ div.branch-detail-half-left-cell v-bind:class="{show: actions.show}"
           | {{branch.name}}
         h2
           | {{branch.provider.name}}
+        ul v-if="branch.quality > 0"
+          li v-for="i in branch.quality" = image_tag asset_path('icons/star-golden-hover.svg')
+          li v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-golden.svg')
       main
         section
           header

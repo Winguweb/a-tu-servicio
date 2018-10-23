@@ -1305,7 +1305,7 @@ steps:
       1: 15
     answer: null
   - id: 15
-    question: "¿Cuál es su nivel de satisfacción con la calidad el servicio de salud?"
+    question: "¿Cuál es su nivel de satisfacción con la calidad del servicio de salud?"
     multi_response: false
     answers:
     - id: 1
@@ -1478,7 +1478,13 @@ steps:
   - id: 18
     question: "¡Gracias por contestar la encuesta!"
     multi_response: false
-    answers: null
+    answers:
+    - id: 1
+      type: "link"
+      auto_submit: false
+      should_save: false
+      data:
+        html: "Para realizar un reclamo formal ingrese a <a noopener noreferrer target='_blank' href='https://www.bogota.gov.co/sdqs'>https://www.bogota.gov.co/sdqs</a>"
     previous_step: null
     next_step: null
     answer: null

@@ -11,7 +11,8 @@ class Components::ReferenceMapCell < Cell::ViewModel
         name: branch.name,
         coordinates: branch.latlng,
         provider_name: branch.provider.name,
-        featured: branch.provider.featured
+        featured: branch.provider.featured,
+        quality: branch.quality
       }
     end.to_json
   end

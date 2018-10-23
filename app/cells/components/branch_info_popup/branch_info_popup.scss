@@ -8,7 +8,7 @@
   margin-top: -21px;
   max-width: 400px;
   min-height: 50px;
-  min-width: 300px;
+  min-width: 330px;
   padding: gutter(-1) gutter();
   position: absolute;
   top: 0;
@@ -62,22 +62,25 @@
       }
     }
     > section {
+      width: 50%;
       > p {
         @include type-golden(0);
         color: $blue;
       }
     }
-    > section {
+    > section:last-of-type {
+      float: right;
+      text-align: right;
       button {
         @include type-golden(0);
-            background-color: $blue;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            display: inline-block;
-            font-weight: 600;
-            height: 44px;
-            padding: gutter(-1) gutter();
+        background-color: $blue;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        height: 44px;
+        padding: gutter(-1) gutter();
         img {
           height: 100%;
           margin-right: gutter(-1);
@@ -92,27 +95,14 @@
         }
       }
     }
-    > section {
+    > section:first-of-type {
+      float: left;
       > ul {
-        display: flex;
         > li {
-          flex-grow: 1;
+          display: inline-block;
+          padding-right: gutter(-2);
           text-align: center;
-          > a {
-            display: block;
-            &:hover {
-              text-decoration: none;
-            }
-            > img {
-              display: block;
-              margin: 0 auto;
-              width: gutter(2);
-            }
-            > span {
-              @include type-golden(-2);
-              color: $grey;
-            }
-          }
+          width: gutter(1);
         }
       }
     }
