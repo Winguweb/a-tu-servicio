@@ -1,7 +1,7 @@
 #home-datasets > main {
   > section {
     font-weight: 300;
-    min-height: calc(100% - #{$header-height});
+    min-height: calc(100% - 5rem);
     padding: gutter(2);
     > h1, h2 {
       @include type-golden(1);
