@@ -5,10 +5,11 @@ div.splash-cell v-bind:class="{show: actions.show}"
         span = "Visualiza, compara y califica los prestadores de salud de Bogotá (IPS)"
         span = "Conoce información oficial sobre los prestadores de salud (IPS) de Bogotá y califica los servicios recibidos para contribuir a mejorar la toma de decisiones"
 
-    div
-      = link_to services_path
-        = 'Conocer más'
-  == cell('components/city_image')
+  div
+    = link_to services_path
+      = 'Conocer más'
+  div :style="{transform: this.isMobile && `translateX(${displacement}px)`}"
+    == cell('components/city_image')
 
 javascript:
   $(function() {
