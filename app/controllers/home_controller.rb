@@ -1,6 +1,9 @@
 # coding: utf-8
 class HomeController < ApplicationController
   before_action :check_for_mobile
+  include HomeHelper
+  include Reporting::Streamable
+
 
   def show;end
 
@@ -11,4 +14,14 @@ class HomeController < ApplicationController
   end
 
   def about;end
+
+  def download
+    if params[:model].present?
+      exporter_options = {
+        data: params[:model].singularize.classify.constantize.all ,
+      }
+      reporter = "Reporting::#{params[:model]}Exporter".singularize.classify.constantize
+      stream_csv(reporter, **exporter_options )
+    end
+  end
 end
