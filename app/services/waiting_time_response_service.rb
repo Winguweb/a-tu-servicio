@@ -84,7 +84,7 @@ class WaitingTimeResponseService
       days = BigDecimal(waiting_time[:days])
       min_days = BigDecimal(mapping.second["min"])
       max_days = BigDecimal(mapping.second["max"])
-      days > min_days && days <= max_days
+      days >= min_days && days <= max_days
     end
     return range.first if range.present?
   end

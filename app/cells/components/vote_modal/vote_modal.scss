@@ -159,9 +159,9 @@
               color: $light-blue;
               cursor: pointer;
               display: block;
-              height: 105px;
+              height: 115px;
               position: relative;
-              width: 130px;
+              width: 140px;
               &.selected {
                 background-color: $blue;
                 background-image: image-url('icons/calendar-selected.svg');
@@ -180,7 +180,7 @@
               }
               > span:first-of-type {
                 @include type-golden(0);
-                bottom: 38px;
+                bottom: 43px;
                 font-weight: 800;
                 left: 0;
                 position: absolute;
