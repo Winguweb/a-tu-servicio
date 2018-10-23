@@ -28,3 +28,6 @@ input[type="text"] {
   &.small { right: calc(61.803398875% + #{$padding}); }
  }
 
+.grecaptcha-badge {
+  display: none;
+}

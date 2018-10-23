@@ -21,7 +21,6 @@
     width: 70%;
     z-index: 1;
     > ul {
-      height: 100px;
       margin-bottom: gutter(2);
       position: relative;
       > li {
@@ -50,49 +49,69 @@
         }
       }
     }
-    > div {
-      > a {
-        @include type-golden(0);
-        background-color: $light-blue;
-        border: none;
-        border-radius: 2px;
-        box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
-        color: $white;
-        cursor: pointer;
-        display: block;
-        margin: 0 auto;
-        padding: gutter(-1);
-        text-align: center;
-        width: 200px;
-        &:active {
-          position: relative;
-          top: 1px;
-        }
-        &:hover {
-          text-decoration: none;
-        }
-        &:after {
-          border-bottom: 3px solid $white;
-          border-right: 3px solid $white;
-          content: '';
-          display: inline-block;
-          height: 8px;
-          left: 5px;
-          position: relative;
-          transform: rotateZ(-45deg);
-          vertical-align: baseline;
-          width: 8px;
-        }
+  }
+  > div:nth-of-type(2) {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    > a {
+      @include type-golden(0);
+      background-color: $light-blue;
+      border: none;
+      border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
+      color: $white;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+      padding: gutter(-1);
+      text-align: center;
+      width: 200px;
+      &:active {
+        position: relative;
+        top: 1px;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+      &:after {
+        border-bottom: 3px solid $white;
+        border-right: 3px solid $white;
+        content: '';
+        display: inline-block;
+        height: 8px;
+        left: 5px;
+        position: relative;
+        transform: rotateZ(-45deg);
+        vertical-align: baseline;
+        width: 8px;
       }
     }
   }
 }
 
 @mixin mobile-splash() {
+  height: 100%;
+  position: relative;
   > div:first-of-type {
+    padding: 0 gutter();
+    width: 100%;
     > ul {
       margin-bottom: gutter(3);
     }
+  }
+  > div:nth-of-type(2) {
+    bottom: 30%;
+    position: absolute;
+    top: auto;
+    transform: translate3d(-50%, 0, 0);
+  }
+  > div:nth-of-type(3) {
+    height: 100%;
+    pointer-events: none;
+    position: relative;
+    width: 100%;
   }
 }
 

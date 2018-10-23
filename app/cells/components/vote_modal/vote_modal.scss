@@ -62,9 +62,11 @@
       }
       > section:nth-of-type(1) {
         left: 50%;
+        max-height: calc(100% - 73px);
+        overflow-y: scroll;
         position: absolute;
         text-align: center;
-        top: 50%;
+        top: calc(36px + 50%);
         transform: translate3d(-50%, -50%, 0);
         width: calc(100% - #{gutter()*2});
         > ul {
@@ -157,9 +159,9 @@
               color: $light-blue;
               cursor: pointer;
               display: block;
-              height: 105px;
+              height: 115px;
               position: relative;
-              width: 130px;
+              width: 140px;
               &.selected {
                 background-color: $blue;
                 background-image: image-url('icons/calendar-selected.svg');
@@ -178,7 +180,7 @@
               }
               > span:first-of-type {
                 @include type-golden(0);
-                bottom: 38px;
+                bottom: 43px;
                 font-weight: 800;
                 left: 0;
                 position: absolute;
@@ -387,7 +389,24 @@
 }
 
 @mixin mobile-vote-modal() {
-
+  padding: 0;
+  > span {
+    > section {
+      background-position: top 15% right 10px, bottom 0 left 20px;
+      background-size: 50px, 25px;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      > section:nth-of-type(1) {
+        left: 0;
+        right: 0;
+        transform: translate3d(0, -50%, 0);
+        width: 100%;
+      }
+    }
+  }
 }
 
 .vote-modal-cell {

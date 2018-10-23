@@ -125,6 +125,7 @@ $search-bar-height: calc(66px);
 
 @mixin mobile-general-info() {
   display: none;
+  min-width: auto;
   width: 100%;
   &.show {
     display: block;
