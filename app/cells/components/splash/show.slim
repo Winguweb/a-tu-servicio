@@ -2,8 +2,16 @@ div.splash-cell v-bind:class="{show: actions.show}"
   div
     ul
       li
-        span = "Visualiza, compara y califica los prestadores de salud de Bogotá (IPS)"
-        span = "Conoce información oficial sobre los prestadores de salud (IPS) de Bogotá y califica los servicios recibidos para contribuir a mejorar la toma de decisiones"
+        div
+          p
+            | En A Tu Servicio Bogotá puedes conocer la calificación del centro de salud al que asistes.
+          p
+            | Además puedes contarnos tu experiencia para contribuir a la toma de decisiones para mejorar la calidad del servicio de salud
+        div
+          p
+            | ¿Quieres averiguar la calidad de los servicios de un centro de salud antes de asistir? En A Tu Servicio puedes conocer cuáles son oficiales y además calificar la atención que recibas.
+          p
+            | ¡Participar es mejorar la calidad!
 
   div
     = link_to services_path

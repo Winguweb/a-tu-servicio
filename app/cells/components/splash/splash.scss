@@ -16,7 +16,7 @@
     max-width: 500px;
     padding: gutter();
     position: absolute;
-    top: 25%;
+    top: 20%;
     transform: translate3d(-50%, -50%, 0);
     width: 70%;
     z-index: 1;
@@ -27,8 +27,8 @@
         left: 0;
         position: absolute;
         right: 0;
-        top: 25%;
-        > span {
+        top: 20%;
+        > div {
           @include type-golden(0);
           display: block;
           font-weight: 600;
@@ -45,6 +45,9 @@
           }
           &:last-of-type {
             animation-delay: 7s;
+          }
+          > p:first-of-type {
+            margin-bottom: gutter();
           }
         }
       }
