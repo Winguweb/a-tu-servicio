@@ -2,19 +2,23 @@ div.general-info-cell v-bind:class="{show: actions.show}"
   section
     header
       h1
-        span = "A tu servicio"
+        span = "A Tu Servicio"
         strong = "Bogotá"
     article
-      p = "Conoce información oficial sobre los prestadores de salud (IPS) de Bogotá y califica los servicios recibidos para contribuir a mejorar la toma de decisiones."
+      p
+        | ¡Pasemos a la acción! Explora los 300 centros de salud principales de Bogotá, reporta tu experiencia y ayúdanos a mejorar la calidad de los servicios en la ciudad
       ul
         li
-          p = "Explora el mapa y ubica tu prestador"
+          p
+            | Explora el mapa y ubica tu centro de salud
         li
-          p = "Puedes utilizar los filtros para una mejor experiencia"
+          p
+            | Busca el nombre del centro de salud y/o la especialidad
         li
-          p = "Califica los servicios recibidos"
+          p
+            | Califica tu experiencia y sé parte del cambio
       a.search-info-button v-on:click="actionClicked"
-        = "Buscar"
+        | Buscar
 
 
 javascript:
