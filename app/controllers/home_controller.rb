@@ -14,6 +14,10 @@ class HomeController < ApplicationController
   end
 
   def about;end
+  
+  def datasets
+    @models = ["Branch","Provider","Satisfaction","Speciality","WaitingTime","Survey"]
+  end
 
   def download
     if params[:model].present?

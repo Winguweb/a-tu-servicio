@@ -1,0 +1,8 @@
+section
+  h1 = "Datasts disponibles"
+
+  ul
+    -@models.each do |model|
+      li
+        = link_to "Descargar  dataset #{model}", data_download_path(model)
+== cell('components/site_footer')
