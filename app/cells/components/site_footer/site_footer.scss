@@ -8,7 +8,7 @@
       > li {
         display: inline-block;
         height: 40px;
-        > a {
+        > a, > span {
           display: inline-block;
           > img {
             height: 40px;
@@ -17,6 +17,17 @@
             vertical-align: middle;
             &.fundacion-corona {
               top: 5px;
+            }
+            &.asi-vamos-en-salud {
+              height: 21px;
+              top: 3px;
+            }
+            &.avina {
+              height: 24px;
+            }
+            &.wingu {
+              height: 24px;
+              top: 3px;
             }
             &.alcaldia {
               top: 3px;
@@ -47,7 +58,7 @@
         margin: gutter() 0;
         text-align: center;
         width: 50%;
-        > a {
+        > a, > span {
           display: inline-block;
           > img {
             height: 40px;
@@ -56,6 +67,17 @@
             vertical-align: middle;
             &.fundacion-corona {
               top: 5px;
+            }
+            &.asi-vamos-en-salud {
+              height: 21px;
+              top: 3px;
+            }
+            &.avina {
+              height: 24px;
+            }
+            &.wingu {
+              height: 24px;
+              top: 3px;
             }
             &.alcaldia {
               top: 3px;
