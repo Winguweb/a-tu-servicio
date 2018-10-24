@@ -8,7 +8,7 @@
       > li {
         display: inline-block;
         height: 40px;
-        > a {
+        > a, > span {
           display: inline-block;
           > img {
             height: 40px;
@@ -58,7 +58,7 @@
         margin: gutter() 0;
         text-align: center;
         width: 50%;
-        > a {
+        > a, > span {
           display: inline-block;
           > img {
             height: 40px;

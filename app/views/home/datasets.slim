@@ -5,4 +5,4 @@ section
     - @models.each do |model|
       li
         = link_to "Descargar dataset #{model}", data_download_path(model)
-== cell('components/site_footer')
+== cell('components/site_footer', { active_links: true })
