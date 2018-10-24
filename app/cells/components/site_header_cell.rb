@@ -1,8 +1,6 @@
 class Components::SiteHeaderCell < Cell::ViewModel
-
-  def current_user
-    UserSession.find
-  end
+  include ActionController::Helpers
+  include UserSessionator
 
   private
 
