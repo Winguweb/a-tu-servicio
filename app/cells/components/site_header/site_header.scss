@@ -23,7 +23,14 @@
     height: 100%;
     text-align: right;
     width: calc(100% - 206px - 68px);
-    > a {
+    > form {
+      display: inline-block;
+      > input {
+        border: none;
+        font-family: $font-sans;
+      }
+    }
+    > a, > form > input {
       @include type-golden(0);
       border-bottom: 2px solid transparent;
       color: $blue;
@@ -37,6 +44,12 @@
         text-decoration: none;
       }
       &:focus {text-decoration: none;}
+    }
+    > form {
+      > input {
+        cursor: pointer;
+        line-height: 10px;
+      }
     }
   }
   > div:nth-of-type(3) {

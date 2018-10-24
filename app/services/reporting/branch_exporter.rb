@@ -3,7 +3,7 @@ module Reporting
     
     HEADER = ["name", "address","georeference","provider"].freeze
 
-    def initialize(options = {})
+    def initialize(user,options = {})
       @branchs = options[:data]
     end
 

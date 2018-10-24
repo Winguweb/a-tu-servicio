@@ -44,9 +44,16 @@
         &.active {
           background-color: $light-grey;
         }
-        > a {
+        > a, > form > input {
+          @include type-golden(0);
+          border: none;
+          color: $blue;
+          cursor: pointer;
           display: block;
+          font-family: $font-sans;
           padding: gutter();
+          text-align: left;
+          width: 100%;
           &:hover, &:focus {
             color: $blue;
             text-decoration: none;

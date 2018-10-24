@@ -3,10 +3,10 @@ module Reporting
   module Streamable
     include ActiveSupport::Concern
 
-    def stream_csv(exporter, *args)
+    def stream_csv(exporter,user, *args)
       raise MistypeError.new(self, Exporter, __method__) unless exporter.ancestors.include? Exporter
-
-      exporter = exporter.new(*args)
+      
+      exporter = exporter.new(user,*args)
 
       set_file_headers(exporter.filename)
       set_streaming_headers

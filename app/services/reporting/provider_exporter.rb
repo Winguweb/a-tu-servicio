@@ -4,7 +4,7 @@ module Reporting
   
     HEADER = ["name","address","subnet","website","email","communication_services", "is_private", "state_id"].freeze
 
-    def initialize(options = {})
+    def initialize(user,options = {})
       @providers = options[:data]
     end
 

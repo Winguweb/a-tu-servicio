@@ -3,7 +3,7 @@ module Reporting
 
     HEADER = ["name","days","provider"].freeze
 
-    def initialize(options = {})
+    def initialize(user,options = {})
       @waiting_times = options[:data]
     end
 

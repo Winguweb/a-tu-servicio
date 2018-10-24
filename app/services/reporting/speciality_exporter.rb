@@ -1,9 +1,9 @@
 module Reporting
   class SpecialityExporter < Exporter
 
-    HEADER = ["name","branch"].freeze
+    HEADER = ["provider","specialities"].freeze
 
-    def initialize(options = {})
+    def initialize(user,options = {})
       @specialities = options[:data]
     end
 
@@ -52,16 +52,19 @@ module Reporting
     end
 
     def yielder
-      @specialities.each do |speciality|
-        yield row_data(speciality)
+      @specialities.pluck(:branch_id).uniq.each do |branch_id|
+       yield row_data(Branch.find(branch_id).name,  Speciality.where(branch: Branch.find(branch_id)).pluck(:name))
       end
+      # @specialities.each do |speciality|
+      #   yield row_data(speciality)
+      # end
     end
 
 
-    def row_data(speciality)
+    def row_data(provider , specialities)
       [
-        speciality.name,
-        print_branch_name(speciality.branch_id),
+        provider,
+        specialities
       ]
     end
 

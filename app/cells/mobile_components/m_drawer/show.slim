@@ -12,6 +12,9 @@ aside.m-drawer-cell v-bind:class="{show: actions.show}"
         = link_to 'Blog', 'https://medium.com/@atuserviciobogota', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank'
       li class="#{current_page?(:controller => 'home', :action => 'datasets') ? 'active' : ''}"
         = link_to 'Datos abiertos', datasets_path
+      - if current_user
+        li
+          = button_to 'Cerrar Sesión', sign_out_path, method: 'delete'
 
 javascript:
   $(function() {
