@@ -8,6 +8,10 @@ aside.m-drawer-cell v-bind:class="{show: actions.show}"
         = link_to 'Mapa de Servicios', services_path
       li class="#{current_page?(:controller => 'home', :action => 'about') ? 'active' : ''}"
         = link_to 'El Proyecto', about_path
+      li
+        = link_to 'Blog', 'https://medium.com/@atuserviciobogota', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank'
+      li class="#{current_page?(:controller => 'home', :action => 'datasets') ? 'active' : ''}"
+        = link_to 'Datos abiertos', datasets_path
 
 javascript:
   $(function() {

@@ -31,6 +31,8 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
               span = "{{answer.data.label}}"
 
             button.option v-if="answer.type == 'option'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
+
+            p.link v-if="answer.type == 'link'" v-html="answer.data.html"
       footer
         button.navigation.previous.animated-button v-if="getActualStep().previous_step" @click="previousStep()"
         transition-group name="next"

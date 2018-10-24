@@ -25,6 +25,10 @@ class BaseResponseService
     @branch.address
   end
 
+  def _quality
+    @branch.quality
+  end
+
   def _provider_name
     @branch.provider.name
   end
@@ -50,6 +54,7 @@ class BaseResponseService
       id: _id,
       name: _name,
       address: _address,
+      quality: _quality,
       provider: {
         name: _provider_name,
         subnet: _provider_subnet,

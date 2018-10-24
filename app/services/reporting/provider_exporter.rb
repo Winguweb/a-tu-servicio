@@ -2,7 +2,7 @@ module Reporting
   class ProviderExporter < Exporter
     
   
-    HEADER = ["name","address","subnet","abbreviation","website","email", "affiliations", "financed_affiliations", "communication_services", "logo_url", "is_private", "show", "featured", "state_id"].freeze
+    HEADER = ["name","address","subnet","website","email","communication_services", "is_private", "state_id"].freeze
 
     def initialize(options = {})
       @providers = options[:data]
@@ -63,16 +63,10 @@ module Reporting
         provider.name,
         provider.address,
         provider.subnet,
-        provider.abbreviation,
         provider.website,
         provider.email,
-        provider.affiliations,
-        provider.financed_affiliations,
         provider.communication_services,
-        provider.logo_url,
         provider.is_private,
-        provider.show,
-        provider.featured,
         provider.state_id
       ]
     end

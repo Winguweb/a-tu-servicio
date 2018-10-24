@@ -4,32 +4,14 @@ div.branch-info-popup-cell v-bind:class="{show: actions.show}" v-bind:style="pos
       h1 = "{{branch.name}}"
       span = "{{branch.provider_name}}"
     section
+      ul v-if="branch.quality > 0"
+        li v-for="i in branch.quality" = image_tag asset_path('icons/star-golden-hover.svg')
+        li v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-golden.svg')
+    section
       button @click="openVoteModal()"
         = image_tag asset_path('icons/rating.svg')
         span = "Calificar"
 
-    / section
-    /   ul
-    /     li
-    /       a
-    /         = image_tag asset_path('icons/star.svg')
-    /         span = "Muy Malo"
-    /     li
-    /       a
-    /         = image_tag asset_path('icons/star.svg')
-    /         span = "Malo"
-    /     li
-    /       a
-    /         = image_tag asset_path('icons/star.svg')
-    /         span = "Regular"
-    /     li
-    /       a
-    /         = image_tag asset_path('icons/star.svg')
-    /         span = "Bueno"
-    /     li
-    /       a
-    /         = image_tag asset_path('icons/star.svg')
-    /         span = "Muy Bueno"
 
 javascript:
     $(function() {ATSB.Components['components/branch-info-popup']()});

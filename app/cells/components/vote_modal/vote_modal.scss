@@ -79,6 +79,11 @@
             &.large {
               display: block;
             }
+            > p.link {
+              > a {
+                text-decoration: underline;
+              }
+            }
             > button.cuckoo {
               @include type-golden(0);
               border: 1px solid $light-blue;
@@ -404,6 +409,9 @@
         right: 0;
         transform: translate3d(0, -50%, 0);
         width: 100%;
+        > ul {
+          width: 100%;
+        }
       }
     }
   }

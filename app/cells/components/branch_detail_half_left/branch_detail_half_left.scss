@@ -24,7 +24,7 @@ $search-bar-height: calc(66px);
       > header {
         border-bottom: 1px solid $blue;
         margin-bottom: gutter();
-        min-height: 76px;
+        min-height: 126px;
         > h1 {
           @include text-color($blue, 1);
           @include type-golden(1);
@@ -36,6 +36,14 @@ $search-bar-height: calc(66px);
           @include text-color($grey, 1);
           @include type-golden(0);
           text-align: left;  // for left
+        }
+        > ul {
+          > li {
+            display: inline-block;
+            padding-right: gutter(-2);
+            text-align: center;
+            width: gutter(1);
+          }
         }
       }
       > main {

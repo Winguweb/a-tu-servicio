@@ -1,7 +1,7 @@
 module Reporting
   class BranchExporter < Exporter
     
-    HEADER = ["name", "address","georeference","town","provider","state_id"].freeze
+    HEADER = ["name", "address","georeference","provider"].freeze
 
     def initialize(options = {})
       @branchs = options[:data]
@@ -62,9 +62,7 @@ module Reporting
         branch.name,
         branch.address,
         branch.georeference,
-        branch.town,
         print_provider_name(branch.provider_id),
-        branch.state_id,
       ]
     end
 

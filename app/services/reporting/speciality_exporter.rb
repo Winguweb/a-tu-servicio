@@ -1,7 +1,7 @@
 module Reporting
   class SpecialityExporter < Exporter
 
-    HEADER = ["name","professionals_count","branch"].freeze
+    HEADER = ["name","branch"].freeze
 
     def initialize(options = {})
       @specialities = options[:data]
@@ -61,7 +61,6 @@ module Reporting
     def row_data(speciality)
       [
         speciality.name,
-        speciality.professionals_count,
         print_branch_name(speciality.branch_id),
       ]
     end
