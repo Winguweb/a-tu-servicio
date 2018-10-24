@@ -1,11 +1,15 @@
 module Reporting
   class SurveyExporter < Exporter
+
+    include HomeHelper
     HEADER =  ["¿Qué tipo de usuario eres?", "Selecciona el servicio para el cual solicitaste la cita", "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?", "¿Cómo calificas la atención recibida?","Urgencias", "servicio de salud", "Evaluacion de personal"]
     #HEADER =  ["¿Qué tipo de usuario eres?", "Selecciona el servicio para el cual solicitaste la cita", "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?", "¿Cómo calificas la atención recibida?", "¿Cómo calificas tu experiencia en el servicio de urgencia?", "¿Qué valoras de tu experiencia en el servicio de urgencia?", "¿Qué valoras de tu experiencia en el servicio de urgencia?", "Escoja el personal por el cual fue atendido", "¿Cómo califica el trato del personal que lo atendio?", "¿Qué valoras de la atención recibida?", "¿Qué valoras de la atención recibida?", "¿Cuál es su nivel de satisfacción con la calidad el servicio de salud?", "¿Qué valoras de la calidad del servicio de salud?", "¿Qué valoras de la calidad del servicio de salud?"]
     # HEADER = Survey.all.pluck(:question_value).uniq.freeze
 
-    def initialize(options = {})
+    def initialize(user,options = {})
       @surveys = options[:data]
+      @user = user
+
     end
 
     def filename
@@ -77,34 +81,39 @@ module Reporting
 
         if answer[2] ==  11 #"Escoja el personal por el cual fue atendido"
           json = Hash.new
-          json[answer[1]] = answer[0]["label"]
-          json[filter_data[index +1][1]] = filter_data[index +1][0]["label"]
-          json[filter_data[index +2][1]] = filter_data[index +2][0]["label"]
+          json[answer[1]] = get_others_value(answer[0]) 
+          json[filter_data[index +1][1]] =  get_others_value( filter_data[index +1][0])
+          json[filter_data[index +2][1]] = get_others_value(filter_data[index +2][0])
           personal_data << json
         elsif answer[2] == 8 # "¿Cómo calificas tu experiencia en el servicio de urgencia?" 
           urgency_json = Hash.new
-          urgency_json[answer[1]] = answer[0]["label"]
-          urgency_json[filter_data[index +1][1]] = filter_data[index +1][0]["label"]
+          urgency_json[answer[1]] = get_others_value(answer[0]) 
+          urgency_json[filter_data[index +1][1]] =  get_others_value(filter_data[index +1][0])
           urgency_data << urgency_json
           answers << urgency_data
         elsif answer[2] == 15 #"¿Cuál es su nivel de satisfacción con la calidad el servicio de salud?"
          
           service_json = Hash.new
-          service_json[answer[1]] = answer[0]["label"] 
-          service_json[filter_data[index +1][1]] = filter_data[index +1][0]["label"] 
+          service_json[answer[1]] = get_others_value(answer[0]) 
+          service_json[filter_data[index +1][1]] = get_others_value(filter_data[index +1][0])
           service_data << service_json
         
           answers<< service_data
         elsif  ["¿Qué valoras de tu experiencia en el servicio de urgencia?" , "¿Cuál fue el motivo de tu mala experiencia?","¿Qué valoras de tu experiencia en el servicio de urgencia?", "¿Cómo califica el trato del personal que lo atendio?", "¿Qué valoras de la atención recibida?"].include?(answer[1]) || [13,21,16,17,24,23].include?(answer[2]) 
           next
         else
-          answers << answer[0]["label"] 
+          answers << get_others_value(answer[0]) 
         end
          
       }
       answers << personal_data
       answers.uniq
       
+    end
+
+    def get_others_value(answer)
+      return answer["label"] if !@user || !["Otro", "Otros"].include?(answer["label"]) 
+      answer["value"]
     end
 
 

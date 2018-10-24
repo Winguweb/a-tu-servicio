@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   before_action :check_for_mobile
   include HomeHelper
   include Reporting::Streamable
-
+  include UserSessionator
 
   def show;end
 
@@ -20,12 +20,13 @@ class HomeController < ApplicationController
   end
 
   def download
+
     if params[:model].present?
       exporter_options = {
         data: params[:model].singularize.classify.constantize.all ,
       }
       reporter = "Reporting::#{params[:model]}Exporter".singularize.classify.constantize
-      stream_csv(reporter, **exporter_options )
+      stream_csv(reporter, logged_in?, **exporter_options )
     end
   end
 end
