@@ -1,0 +1,66 @@
+#user_sessions-new {
+  > main {
+    > section {
+      border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
+      margin: gutter(2) auto;
+      max-width: 600px;
+      padding: gutter() gutter(1);
+      width: 100%;
+
+      > div {
+        > h1 {
+          @include type-golden(1);
+          margin-bottom: gutter(2);
+        }
+      }
+      > form {
+        > div {
+          margin-bottom: gutter(1);
+          > label {
+            display: block;
+          }
+          > input {
+            @include type-golden(0);
+            border: 1px solid $light-grey;
+            padding: gutter(-1);
+            width: 100%;
+          }
+        }
+        > input {
+          @include type-golden(0);
+          background-color: $light-blue;
+          border: none;
+          border-radius: 2px;
+          box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
+          color: $white;
+          cursor: pointer;
+          display: inline-block;
+          font-weight: 600;
+          padding: gutter(-1) gutter();
+          text-align: center;
+          width: 100px;
+          &:before {
+            border-left: 3px solid $white;
+            border-top: 3px solid $white;
+            content: '';
+            display: inline-block;
+            height: 8px;
+            left: -5px;
+            position: relative;
+            transform: rotateZ(-45deg);
+            vertical-align: baseline;
+            width: 8px;
+          }
+          &:active {
+            position: relative;
+            top: 1px;
+          }
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

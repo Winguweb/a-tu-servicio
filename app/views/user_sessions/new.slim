@@ -1,0 +1,18 @@
+section
+  .page-header
+    h1 Ingreso
+  = form_for @user_session do |f|
+
+    - if @user_session.errors.any?
+    .panel.panel-warning.errors
+      ul.panel-body
+        - @user_session.errors.full_messages.each do |msg|
+          li= msg
+
+    .form-group
+      = f.label :email
+      = f.email_field :email, class: 'form-control'
+    .form-group
+      = f.label :password
+      = f.password_field :password, class: 'form-control'
+    = f.submit "Ingresar", class: 'btn btn-primary btn-lg'
