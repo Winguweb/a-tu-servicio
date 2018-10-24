@@ -2,8 +2,7 @@
 class GeolocationWorker
   include Sidekiq::Worker
 
-  def perform(*args)
-    branch_id = args[0]
+  def perform(branch_id)
     branch = Branch.find_by(id: branch_id)
     puts "\n=================================================================="
     puts "\nAddress lookup for #{branch.name}"
@@ -20,10 +19,13 @@ class GeolocationWorker
       return
     end
     if branch.address
-      location = GeocoderService.call(branch)
-      puts "\nResolved:\n(#{location['lat']}, #{location['lng']})\n\n"
+      if location = GeocoderService.call(branch)
+        puts "\nResolved:\n(#{location['lat']}, #{location['lng']})\n\n"
+      else
+        puts "\nCould not resolved branch ID #{branch_id}\n\n"
+      end
       puts "\n=================================================================="
-      sleep(5.seconds)
+      sleep(1.seconds)
     end
   end
 
