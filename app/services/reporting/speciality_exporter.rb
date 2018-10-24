@@ -3,7 +3,7 @@ module Reporting
 
     HEADER = ["provider","specialities"].freeze
 
-    def initialize(options = {})
+    def initialize(user,options = {})
       @specialities = options[:data]
     end
 
