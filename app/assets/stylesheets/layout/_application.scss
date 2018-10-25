@@ -54,3 +54,7 @@ a {
 .leaflet-marker-icon:hover {
   z-index: 1001 !important;
 }
+
+body.mobile .leaflet-control-zoom {
+  display: none;
+}
