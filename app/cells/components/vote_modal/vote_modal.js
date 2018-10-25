@@ -4,7 +4,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
     data: {
       actions: {show: false},
       actualStepId: 1,
-      branchId: 1,
+      branchId: null,
       clientId: null,
       inputValue: "",
       inputValueSizeLimit: 200,

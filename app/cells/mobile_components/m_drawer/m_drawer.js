@@ -10,7 +10,6 @@ ATSB.Components['mobile-components/m-drawer'] = function(options) {
     },
     methods: {
       componentOpen: function() {
-        console.log('opened')
         this.actions.show = true
       },
       componentClose: function() {

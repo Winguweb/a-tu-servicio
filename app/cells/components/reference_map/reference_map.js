@@ -79,7 +79,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         }.bind(this))
       },
       getSelectedBranch: function(branch) {
-        return this.selectedBranch.indexOf(branch.id) > -1
+        return this.selectedBranch.indexOf(+branch.id) > -1
       },
       setSelectedBranch: function(ids) {
         this.selectedBranch = ids
