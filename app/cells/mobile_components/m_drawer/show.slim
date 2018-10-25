@@ -5,11 +5,11 @@ aside.m-drawer-cell v-bind:class="{show: actions.show}"
       li class="#{current_page?(:controller => 'home', :action => 'show') ? 'active' : ''}"
         = link_to 'Inicio', root_path
       li class="#{current_page?(:controller => 'home', :action => 'services') ? 'active' : ''}"
-        = link_to 'Mapa de Servicios', services_path
+        = link_to 'Explora y califica', services_path
       li class="#{current_page?(:controller => 'home', :action => 'about') ? 'active' : ''}"
-        = link_to 'El Proyecto', about_path
+        = link_to 'El proyecto', about_path
       li
-        = link_to 'Blog', 'https://medium.com/@atuserviciobogota', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank'
+        = link_to 'Te respondemos', 'https://medium.com/@atuserviciobogota', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank'
       li class="#{current_page?(:controller => 'home', :action => 'datasets') ? 'active' : ''}"
         = link_to 'Datos abiertos', datasets_path
       - if current_user
