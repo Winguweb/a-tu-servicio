@@ -1,13 +1,13 @@
 div.branch-list-large-cell v-bind:class="{show: actions.show}"
   div
-    input type="text" placeholder="Buscar sede..." v-model="searchQuery" required="" :disabled="perform_search" ref="search" autofocus="true"
+    input type="text" placeholder="Buscar sede..." required="" :disabled="performingSearch" ref="search" autofocus="true" v-on:keyup="performSearch" v-on:keyup.enter="closeMobileKeyboard()"
     a v-on:click="clearSearchClicked"
       = image_tag image_path("icons/cancel-search.svg")
     div.explain
       strong
         | Tip:
       | Puedes buscar el centro de salud por su nombre, o el nombre del prestador a la que pertenece, o una especialidad (Ejemplo: pediatría, medicina general, enfermería)
-  div v-if="!perform_search" v-on:scroll="scrollEnd"
+  div v-if="!performingSearch" v-on:scroll="scrollEnd"
     ul
       li v-for="branch in branches"
         a v-on:click="branchClicked(branch.id)"
@@ -20,9 +20,9 @@ div.branch-list-large-cell v-bind:class="{show: actions.show}"
                 div v-for="specialty_name in branch.matched_specialties"
                   span v-html="specialty_name"
 
-      li v-if="perform_lazy"
+      li v-if="performLazy"
         == cell('components/progress_circle', 'static')
-  div v-if="perform_search"
+  div v-if="performingSearch"
     == cell('components/progress_circle')
 
 javascript:

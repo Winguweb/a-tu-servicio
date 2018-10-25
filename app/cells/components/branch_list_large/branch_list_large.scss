@@ -30,12 +30,13 @@ $search-bar-height: calc(66px);
     > a {
       cursor: pointer;
       display: block;
-      height: 16px;
+      height: 44px;
       opacity: 0.6;
+      padding: gutter(-1);
       position: absolute;
-      right: gutter();
-      top: 14px;
-      width: 16px;
+      right: 0;
+      top: 0;
+      width: 44px;
       &:hover {
         opacity: 1;
       }
