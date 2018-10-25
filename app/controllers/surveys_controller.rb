@@ -6,20 +6,11 @@ class SurveysController < ApplicationController
     @survey = get_existing_or_new_survey(multi_response)
     @survey.assign_attributes(survey_params)
 
-    if @survey.save
-      update_quality(@survey)
-      return render json: @survey
-    end
-
+    return render json: @survey if @survey.save
     return render json: errors.add_multiple_errors(@neighborhood.errors.messages), status: :failed_dependency
   end
 
   private
-
-  def update_quality(survey)
-    return unless survey.step_id == 15
-    CalculateQualityWorker.perform_async(survey.branch_id)
-  end
 
   def get_existing_or_new_survey(multi_response)
     return Survey.find_or_initialize_by(survey_find_params) unless multi_response
