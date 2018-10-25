@@ -3,11 +3,10 @@ header.site-header-cell
     = link_to root_path do
       = image_tag image_path("logos/atsb-w.svg")
   div
-    = link_to 'Inicio', root_path, class: current_page?(:controller => 'home', :action => 'show') ? 'active' : ''
-    = link_to 'Mapa de Servicios', services_path, class: current_page?(:controller => 'home', :action => 'services') ? 'active' : ''
-    = link_to 'El Proyecto', about_path, class: current_page?(:controller => 'home', :action => 'about') ? 'active' : ''
-    = link_to 'Blog', 'https://medium.com/@atuserviciobogota', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank'
-    = link_to 'Datos Abiertos', datasets_path, class: current_page?(:controller => 'home', :action => 'datasets') ? 'active' : ''
+    = link_to 'Explora tu centro de salud', services_path, class: current_page?(:controller => 'home', :action => 'services') ? 'active' : ''
+    = link_to 'Sobre el proyecto', about_path, class: current_page?(:controller => 'home', :action => 'about') ? 'active' : ''
+    = link_to 'Te respondemos ', 'https://medium.com/@atuserviciobogota', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank'
+    = link_to 'Datos abiertos', datasets_path, class: current_page?(:controller => 'home', :action => 'datasets') ? 'active' : ''
     - if current_user
       = button_to 'Cerrar Sesión', sign_out_path, method: 'delete'
   div

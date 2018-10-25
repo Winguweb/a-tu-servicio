@@ -6,7 +6,7 @@ div.branch-list-half-right-cell v-bind:class="{show: actions.show}"
     div.explain
       strong
         | Tip:
-      | Puedes buscar la sede por su nombre, o el nombre del prestador a la que pertenece, o una especialidad
+      | Puedes buscar el centro de salud por su nombre, o el nombre del prestador a la que pertenece, o una especialidad (Ejemplo: pediatría, medicina general, enfermería)
   div v-if="!perform_search" v-on:scroll="scrollEnd"
     ul
       li v-for="branch in branches"
