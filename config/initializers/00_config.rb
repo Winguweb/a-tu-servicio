@@ -9,6 +9,7 @@ ALGOLIA_ADMIN_API_KEY = algolia['admin_api_key'].freeze
 ALGOLIA_SEARCH_API_KEY = algolia['search_api_key'].freeze
 
 google = APP_CONFIG[env]['google'].freeze
+ANALYTICS_TRACKING_ID = google['analytics'].freeze
 GEOCODING_API_KEY = google['geocoding']['api_key']
 RECAPTCHA_SITEKEY = google['recaptcha']['sitekey']
 RECAPTCHA_SECRETKEY = google['recaptcha']['secretkey']

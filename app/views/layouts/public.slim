@@ -28,6 +28,8 @@ html.desktop.no-js lang=I18n.locale.to_s xmlns="http://www.w3.org/1999/xhtml" xm
 
     = csrf_meta_tags
 
+    = render partial: 'partials/google_analytics'
+
     = javascript_include_tag "#{VUEJS_CDN_URL}"
     = javascript_include_tag 'https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js'
 

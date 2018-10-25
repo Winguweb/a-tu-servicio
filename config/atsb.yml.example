@@ -5,6 +5,7 @@ development: &app_config
     search_api_key:
 
   google:
+    analytics:
     geocoding:
       api_key:
     recaptcha:
