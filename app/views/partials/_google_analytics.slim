@@ -1,0 +1,8 @@
+- if ANALYTICS_TRACKING_ID.present?
+    = javascript_include_tag "https://www.googletagmanager.com/gtag/js?id=#{ANALYTICS_TRACKING_ID}", async: true
+    javascript:
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '#{ANALYTICS_TRACKING_ID}');
