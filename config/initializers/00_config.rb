@@ -1,5 +1,8 @@
 env = ENV['RAILS_ENV'] || Rails.env
 
+vuejs = APP_CONFIG[env]['vuejs'].freeze
+VUEJS_CDN_URL = vuejs['cdn_url']
+
 algolia = APP_CONFIG[env]['algolia'].freeze
 ALGOLIA_APP_ID = algolia['application_id'].freeze
 ALGOLIA_ADMIN_API_KEY = algolia['admin_api_key'].freeze
