@@ -9,19 +9,18 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       performingSearch: false,
       performLazy: false,
       endOfLazy: false,
+      performSearchDebounceTime: 100
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:list:large:open', this.componentOpen)
       ATSB.pubSub.$on('branch:list:large:close', this.componentClose)
 
-      var performSearchDebounceTime = this.isMobile() ? 600 : 300
-
       this.$watch('searchQuery', _.debounce(function() {
         this.page = 0
         this.endOfLazy = false
         this.searchQueryChanged()
-      }, performSearchDebounceTime))
+      }, this.performSearchDebounceTime))
     },
     methods: {
       branchClicked: function(id) {
