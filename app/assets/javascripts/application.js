@@ -1,20 +1,29 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives.
-//
+// VENDOR LIBS
 //= require jquery
-//= require jquery-ui/widgets/autocomplete
-//= require bootstrap.min
-//= require intro
-//= require home
-//= require modals
-//= require comparar
-//= require autocomplete-rails
+//= require underscore
+//= require backbone
+
+// APP SETUP
+//= require globals/base
+//= require helpers/url
+//= require helpers/numbers
+
+// CELLS
+//= require branch_detail_half_left
+//= require branch_detail_half_right
+//= require branch_detail_large
+//= require branch_info_popup
+//= require branch_list_half_right
+//= require branch_list_large
+//= require compare_branch_button
+//= require general_info
+//= require m_drawer
+//= require m_site_header
+//= require reference_map
+//= require site_header
+//= require splash
+//= require story_slider
+//= require vote_modal
+
+// VISUALIZATION CELLS
+//= require in_hundreed_visualization

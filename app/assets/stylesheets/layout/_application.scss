@@ -1,0 +1,56 @@
+$development: false;
+
+html, body {
+  font-family: $font-sans;
+  height: 100%;
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
+body {
+  @include type-setting(0);
+  @include text-color($blue);
+
+  @if $development { @include grid-visual };
+
+  * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+  > main {
+    height: calc(100% - #{$header-height});
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+  &.comparing {
+    overflow-x: auto;
+    .branch-detail-half-right-cell,
+    .branch-detail-half-left-cell {
+      bottom: initial;
+      height: auto;
+      position: absolute;
+      top: 0;
+    }
+  }
+}
+
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+
+/* LEAFLET SETTINGS */
+.leaflet-div-icon {
+  background-color: transparent;
+  border: none;
+}
+
+.leaflet-marker-icon:hover {
+  z-index: 1001 !important;
+}

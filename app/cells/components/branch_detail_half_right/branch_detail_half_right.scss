@@ -1,0 +1,268 @@
+$search-button-width: gutter(1.5);
+$search-bar-height: calc(66px);
+@mixin branch-detail-half-right() {
+  background-color: $white;
+  border-left: 1px solid color($light-grey, 0.5); // for right
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: gutter(1) gutter(1) gutter(1) 0; // for right
+  position: fixed;
+  right: 0; // for right
+  top: $search-bar-height;
+  transform: translateX(100%); // for right
+  transition: transform 300ms ease 0ms;
+  width: 50%;
+  will-change: transform;
+  z-index: 1000;
+  &.show {
+    transform: translateX(0); // for right
+    transition: transform 300ms ease 300ms;
+  }
+  > div {
+    > article {
+      > header {
+        border-bottom: 1px solid $blue;
+        margin-bottom: gutter();
+        min-height: 126px;
+        > h1 {
+          @include text-color($blue, 1);
+          @include type-golden(1);
+          line-height: gutter(1);
+          padding-left: gutter(1); // for right
+          text-align: right;  // for right
+        }
+        > h2 {
+          @include text-color($grey, 1);
+          @include type-golden(0);
+          text-align: right;  // for right
+        }
+        > ul {
+          text-align: right;
+          > li {
+            display: inline-block;
+            padding-right: gutter(-2);
+            text-align: center;
+            width: gutter(1);
+          }
+        }
+      }
+      > main {
+        @include grid-column(1 of 1);
+        > section {
+          @include grid-collapse;
+          clear: both;
+          margin-bottom: gutter(2);
+          &.red > header.percentage > div:last-of-type {border-color: $red;}
+          &.red > header.percentage > div:last-of-type > div {background-color: $red;}
+          &.green > header.percentage > div:last-of-type  {border-color: $green;}
+          &.green > header.percentage > div:last-of-type > div {background-color: $green;}
+          > header {
+            background-color: $light-blue;
+            height: 53px;
+            margin-bottom: gutter();
+            overflow: hidden;
+            position: relative;
+            > div:first-of-type {
+              float: right;  // for right
+              padding: gutter();
+              > h1 {
+                @include text-color($white, 1);
+                @include type-golden(0);
+                text-align: right;  // for right
+              }
+            }
+            &.percentage {
+              > div:first-of-type {
+                width: calc(100% - 100% / 1.61803398875);
+              }
+              > div:last-of-type {
+                border-bottom: 2px solid $blue;
+                float: left;  // for right
+                width: calc(100% / 1.61803398875);
+                &.low { border-bottom-color: $red; > div {background-color: $red;}}
+                &.high { border-bottom-color: $light-blue; > div {background-color: $light-blue;}}
+                > div {
+                  background-color: $blue;
+                  float: left;  // for right
+                  height: 100%;
+                  padding: gutter();
+                  > span {
+                    @include text-color($white);
+                    @include type-golden(1);
+                    float: left;  // for right
+                    height: 19px;
+                    line-height: 19px;
+                    white-space: nowrap;
+                  }
+                }
+              }
+            }
+          }
+          > main {
+            @include grid-container;
+            min-height: 316px;
+            padding: 0 gutter();
+            > p {
+              @include type-golden(0);
+              font-weight: 300;
+              padding: 0 gutter();
+            }
+            > div {
+              > div:first-of-type {
+                float: left;
+                width: 100%;
+                > p {
+                  @include type-golden(0);
+                  font-weight: 300;
+                  margin-bottom: gutter();
+                  > strong {
+                    font-weight: 600;
+                  }
+                }
+              }
+              > div + div {
+                float: left;
+                overflow: hidden;
+                > div {
+                  > div {
+                    > p {
+                      @include text-color($blue);
+                      border-bottom: 2px solid $blue;
+                      display: inline-block;
+                      max-width: 350px;
+                      width: 100%;
+                    }
+                  }
+                }
+                &.horizontal {
+                  width: 50%;
+                  &:nth-of-type(even) {
+                    > div {
+                      > div {
+                        padding-right: gutter()/2;
+                      }
+                    }
+                  }
+                  &:nth-of-type(odd) {
+                    > div {
+                      > div {
+                        padding-left: gutter()/2;
+                      }
+                    }
+                  }
+                }
+                &.vertical {
+                  width: 50%;
+                }
+              }
+            }
+          }
+        }
+        > section:first-of-type {
+          > main {
+            clear: both;
+            min-height: 316px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin mobile-branch-detail-half-right() {
+  padding: 0;
+  > div {
+    > article {
+      > header {
+        min-height: 150px;
+        > h1 {
+          @include type-golden(0);
+          padding: gutter(-1);
+        }
+        > h2 {
+          @include type-golden(-1);
+          padding: gutter(-1);
+        }
+      }
+      > main {
+        @include grid-column(1 of 1);
+        > section {
+          > header {
+            > div:first-of-type {
+              > h1 {
+                @include type-golden(-1);
+              }
+            }
+            &.percentage {
+              > div:first-of-type {
+                width: calc(100% / 1.61803398875);
+              }
+              > div:last-of-type {
+                width: calc(100% - 100% / 1.61803398875);
+                > div {
+                  > span {
+                    @include type-golden(0);
+                  }
+                }
+              }
+            }
+          }
+          > main {
+            @include grid-container;
+            max-height: 300px;
+            min-height: 300px;
+            overflow: -moz-scrollbars-none;  // Firefox
+            -ms-overflow-style: none;  // IE 10+
+            overflow-x: hidden;
+            overflow-y: auto;
+            &::-webkit-scrollbar {
+              display: none;  // Safari and Chrome
+            }
+            > p {
+              @include type-golden(-1);
+            }
+            > div:first-of-type {
+              > p {
+                @include type-golden(-1);
+                > strong {
+                }
+              }
+            }
+            > div:last-of-type {
+              > div {
+                > div {
+                  > p {
+                    max-width: initial;
+                  }
+                }
+              }
+              &.horizontal {
+                > div {
+                  > div {
+                    @include grid-column(1 of 1);
+                  }
+                }
+              }
+              &.vertical {
+                > div {
+                  > div {
+                    @include grid-column(1 of 1);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.branch-detail-half-right-cell {
+  @include branch-detail-half-right;
+}
+
+.mobile .branch-detail-half-right-cell {
+  @include mobile-branch-detail-half-right;
+}

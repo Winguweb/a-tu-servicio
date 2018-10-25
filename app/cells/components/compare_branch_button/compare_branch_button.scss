@@ -1,0 +1,79 @@
+@mixin compare-branch-button() {
+  background-color: $white;
+  border-radius: 55px;
+  bottom: gutter();
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: gutter();
+  transform: scale(0.75);
+  transition: transform 300ms ease, opacity 300ms ease;
+  will-change: opacity, transform;
+  z-index: 2002;
+  &.show {
+    opacity: 1;
+    pointer-events: initial;
+    transform: scale(1);
+  }
+  > button {
+    @include type-golden(0);
+    @include text-color($white);
+    background: $blue;
+    border: none;
+    border-radius: 55px;
+    box-shadow: 0 3px 5px -1px color($black, 0.2), 0 6px 10px 0 color($black, 0.14), 0 1px 18px 0 color($black, 0.12);
+    cursor: pointer;
+    height: 55px;
+    padding: gutter();
+    transition: all 300ms ease;
+    width: auto;
+    &:hover {
+      background: color($blue, 0.8);
+      box-shadow: 0 5px 5px -3px color($black, 0.2), 0 8px 10px 1px color($black, 0.14), 0 3px 14px 2px color($black, 0.12);
+    }
+    &:active, &:focus {
+      border: none;
+      outline: none;
+    }
+    > img {
+      margin-right: 2px;
+      margin-right: gutter(-1);
+      position: relative;
+      top: -1px;
+      vertical-align: middle;
+      width: 21px;
+      &.icon-close {
+        width: 13px;
+      }
+    }
+    > span {
+      font-weight: 400;
+      margin-right: 10px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+@mixin mobile-compare-branch-button() {
+  > button {
+    width: 55px;
+    &:hover {
+      background: color($blue, 1);
+      box-shadow: 0 3px 5px -1px color($black, 0.2), 0 6px 10px 0 color($black, 0.14), 0 1px 18px 0 color($black, 0.12);
+    }
+    > img {
+      margin: 0;
+    }
+    > span {
+      display: none;
+    }
+  }
+}
+
+.compare-branch-button-cell {
+  @include compare-branch-button;
+}
+
+.mobile .compare-branch-button-cell {
+  @include mobile-compare-branch-button;
+}

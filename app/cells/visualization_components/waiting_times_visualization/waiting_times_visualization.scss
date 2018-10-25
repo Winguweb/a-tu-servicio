@@ -1,0 +1,46 @@
+@mixin waiting-times-visualization() {
+  $aspect-ratio: 64/34;
+  margin: gutter(0) 0;
+  > div {
+    margin-bottom: gutter(-1);
+    max-width: 350px;
+    > div {
+      display: block;
+      float: left;
+      width: calc(10%);
+      > img {
+        $width: calc(100% - #{gutter(-2)});
+        display: block;
+        margin-right: gutter(-2);
+        width: $width;
+      }
+      &:last-of-type {
+        > img {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  > div:nth-of-type(2) {
+    > p {
+      @include type-golden(-1);
+      > strong {
+        font-weight: 800;
+      }
+    }
+  }
+}
+
+@mixin mobile-waiting-times-visualization() {
+  > div {
+    max-width: initial;
+  }
+}
+
+.waiting-times-visualization-cell{
+  @include waiting-times-visualization;
+}
+
+.mobile .waiting-times-visualization-cell{
+  @include mobile-waiting-times-visualization;
+}

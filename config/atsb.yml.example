@@ -1,0 +1,27 @@
+development: &app_config
+  algolia:
+    admin_api_key:
+    application_id:
+    search_api_key:
+
+  google:
+    geocoding:
+      api_key:
+    recaptcha:
+      secretkey:
+      sitekey:
+      verifyUrl:
+
+  mapbox:
+    token:
+
+  redis:
+    host: 'localhost'
+    port: 6379
+    db:   0
+
+production:
+  <<: *app_config
+
+test:
+  <<: *app_config

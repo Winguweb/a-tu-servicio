@@ -1,0 +1,97 @@
+@mixin reference-map() {
+  height: 100%;
+  width: 100%;
+  > div {
+    height: 100%;
+    width: 100%;
+  }
+
+  .reference-map--marker {
+    background-color: $light-blue;
+    border: none;
+    border-radius: 100%;
+    box-shadow: 2px 2px 4px color($black, 0.8);
+    height: 35px;
+    overflow: hidden;
+    position: relative;
+    width: 35px;
+
+    &:hover {
+      overflow: visible;
+      > p {
+        box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
+        opacity: 1;
+      }
+    }
+
+
+    &.marker-featured {
+      background-color: $yellow;
+      > i {
+        background-image: image-url("icons/featured-marker.svg");
+      }
+    }
+    > i {
+      background-image: image-url("icons/marker.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: 1002;
+    }
+    > p {
+      @include type-setting(-2);
+      background-color: color($white, 0.9);
+      left: -#{gutter(-1)};
+      line-height: 12px;
+      opacity: 0;
+      padding: gutter(0.5) gutter(0.5) gutter(0.5) gutter(2.5);
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      z-index: 1001;
+    }
+    &:hover {
+      background-color: $blue;
+      i {
+        background-image: image-url("icons/marker-hover.svg");
+      }
+    }
+  }
+  .reference-map--cluster {
+    background-color: $blue;
+    border-radius: 30px;
+    height: 30px;
+    opacity: 0.5;
+    text-align: center;
+    transform: translate3d(50%, 50%, 0);
+    width: 30px;
+    &:hover {
+      background-color: $yellow;
+      opacity: 1;
+    }
+    > span {
+      color: $white;
+      font-size: 12px;
+      font-weight: 400;
+      position: relative;
+      top: 5px;
+    }
+  }
+
+}
+
+@mixin mobile-reference-map() {
+  height: 75%;
+}
+
+.reference-map-cell {
+  @include reference-map;
+}
+
+.mobile.small-reference-map .reference-map-cell {
+  @include mobile-reference-map;
+}

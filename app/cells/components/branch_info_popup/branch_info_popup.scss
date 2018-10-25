@@ -1,0 +1,122 @@
+@mixin branch-info-popup() {
+  background-color: $white;
+  border-radius: 2px;
+  box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+  display: none;
+  left: 0;
+  margin-left: 35px;
+  margin-top: -21px;
+  max-width: 400px;
+  min-height: 50px;
+  min-width: 330px;
+  padding: gutter(-1) gutter();
+  position: absolute;
+  top: 0;
+  z-index: 3000;
+  &.show {
+    display: block;
+  }
+  &:hover {
+    display: block;
+  }
+  &:before {
+    background-color: $white;
+    content: '';
+    display: block;
+    height: 35px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    z-index: 2;
+  }
+  &:after {
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px color($black, 0.5);
+    content: '';
+    height: 10px;
+    left: -4px;
+    position: absolute;
+    top: 18px;
+    transform: rotateZ(45deg);
+    width: 10px;
+    z-index: 1;
+  }
+  > article {
+    > header {
+      border-bottom: 1px solid $light-grey;
+      margin-bottom: gutter();
+      padding-bottom: gutter(-4);
+      > h1 {
+        @include type-golden(0);
+        color: $blue;
+        font-weight: 600;
+        line-height: gutter();
+      }
+      > span {
+        @include type-golden(-1);
+        color: $grey;
+        line-height: gutter();
+        text-transform: uppercase;
+      }
+    }
+    > section {
+      width: 50%;
+      > p {
+        @include type-golden(0);
+        color: $blue;
+      }
+    }
+    > section:last-of-type {
+      float: right;
+      text-align: right;
+      button {
+        @include type-golden(0);
+        background-color: $blue;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        height: 44px;
+        padding: gutter(-1) gutter();
+        img {
+          height: 100%;
+          margin-right: gutter(-1);
+        }
+        span {
+          @include type-golden(0);
+          color: $white;
+          font-weight: 300;
+          position: relative;
+          text-transform: uppercase;
+          top: -6px;
+        }
+      }
+    }
+    > section:first-of-type {
+      float: left;
+      > ul {
+        > li {
+          display: inline-block;
+          padding-right: gutter(-2);
+          text-align: center;
+          width: gutter(1);
+        }
+      }
+    }
+  }
+}
+
+@mixin mobile-branch-info-popup() {
+
+}
+
+.branch-info-popup-cell {
+  @include branch-info-popup;
+}
+
+.mobile .branch-info-popup-cell {
+  @include mobile-branch-info-popup;
+}

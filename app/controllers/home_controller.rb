@@ -1,29 +1,32 @@
 # coding: utf-8
 class HomeController < ApplicationController
-  layout 'atuservicio'
+  before_action :check_for_mobile
+  include HomeHelper
+  include Reporting::Streamable
+  include UserSessionator
 
-  def index
-    # Get the ProviderMaximum object which contains all the maximum
-    # values to compare in the graphs in the home view.
-    @provider_maximums = ProviderMaximum.first
+  def show;end
 
-    @title = 'Inicio'
-    @description = 'Toda la información e indicadores de todos los prestadores de Salud de Uruguay para elegir informado o conocer a fondo los indicadores de tu servicio de salud.'
-
-    # Get the selected state if we want to have the providers for a
-    # given state
-    @selected_state = params['departamento']
-
-    @sel_providers = if @selected_state && @selected_state != 'todos'
-                       state = State.find_by_name(@selected_state)
-                       raise ActionController::RoutingError.new('No se encontró el departamento') unless state
-                       state.providers.includes(:states).order(:private_insurance).order(:nombre_abreviado).uniq
-                     else
-                       @providers.order(:private_insurance).order(:nombre_abreviado)
-                     end
+  def services
+    search_service = SearchService.call
+    @all_branches = Branch.includes(:provider).where.not(georeference: nil).where(providers: { show: true })
+    @common_info = CommonInfoService.call
   end
 
-  def about
-    @title = 'Sobre el proyecto'
+  def about;end
+  
+  def datasets
+    @models = ["Branch","Provider","Satisfaction","Speciality","WaitingTime","Survey"]
+  end
+
+  def download
+
+    if params[:model].present?
+      exporter_options = {
+        data: params[:model].singularize.classify.constantize.all ,
+      }
+      reporter = "Reporting::#{params[:model]}Exporter".singularize.classify.constantize
+      stream_csv(reporter, logged_in?, **exporter_options )
+    end
   end
 end

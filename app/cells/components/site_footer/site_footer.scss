@@ -1,0 +1,101 @@
+@mixin site-footer() {
+  background-color: $white;
+  box-shadow: 0 2px 4px color($black, 0.5);
+  padding: gutter() gutter(1);
+  > div {
+    > ul {
+      text-align: right;
+      > li {
+        display: inline-block;
+        height: 40px;
+        > a, > span {
+          display: inline-block;
+          > img {
+            height: 40px;
+            max-width: 120px;
+            position: relative;
+            vertical-align: middle;
+            &.fundacion-corona {
+              top: 5px;
+            }
+            &.asi-vamos-en-salud {
+              height: 21px;
+              top: 3px;
+            }
+            &.avina {
+              height: 24px;
+            }
+            &.wingu {
+              height: 21px;
+              top: 3px;
+            }
+            &.alcaldia {
+              top: 3px;
+            }
+          }
+        }
+      }
+      > li + li:before {
+        @include type-golden(2);
+        color: $light-grey;
+        content: '•';
+        display: inline-block;
+        line-height: 0;
+        margin: 0 gutter();
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+@mixin mobile-site-footer() {
+  > div {
+    > ul {
+      text-align: center;
+      > li {
+        display: inline-block;
+        height: 50px;
+        margin: gutter() 0;
+        text-align: center;
+        width: 50%;
+        > a, > span {
+          display: inline-block;
+          > img {
+            height: 40px;
+            max-width: 120px;
+            position: relative;
+            vertical-align: middle;
+            &.fundacion-corona {
+              top: 5px;
+            }
+            &.asi-vamos-en-salud {
+              height: 21px;
+              top: 3px;
+            }
+            &.avina {
+              height: 24px;
+            }
+            &.wingu {
+              height: 21px;
+              top: 3px;
+            }
+            &.alcaldia {
+              top: 3px;
+            }
+          }
+        }
+      }
+      > li:before {
+        display: none;
+      }
+    }
+  }
+}
+
+.site-footer-cell{
+  @include site-footer;
+}
+
+.mobile .site-footer-cell{
+  @include mobile-site-footer;
+}

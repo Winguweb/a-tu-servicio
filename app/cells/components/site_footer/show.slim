@@ -1,0 +1,31 @@
+footer.site-footer-cell
+  div
+    ul
+      // TO-DO: Properly fix this approach, as it looks reeeaaally weird and ugly
+      - if active_links?
+        li
+          = link_to '//www.fundacioncorona.org', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank' do
+            = image_tag asset_path("logos/fundacion-corona.svg"), class: 'fundacion-corona'
+        li
+          = link_to '//www.asivamosensalud.org', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank' do
+            = image_tag asset_path("logos/asi-vamos-en-salud.svg"), class: 'asi-vamos-en-salud'
+        li
+          = link_to '//www.avina.net/avina/', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank' do
+            = image_tag asset_path("logos/avina.svg"), class: 'avina'
+        li
+          = link_to '//www.winguweb.org', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank' do
+            = image_tag asset_path("logos/wingu.svg"), class: 'wingu'
+        li
+          = link_to '//www.saludcapital.gov.co', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank' do
+            = image_tag asset_path("logos/alcaldia.svg"), class: 'alcaldia'
+      - else
+        li
+          span= image_tag asset_path("logos/fundacion-corona.svg"), class: 'fundacion-corona'
+        li
+          span= image_tag asset_path("logos/asi-vamos-en-salud.svg"), class: 'asi-vamos-en-salud'
+        li
+          span= image_tag asset_path("logos/avina.svg"), class: 'avina'
+        li
+          span= image_tag asset_path("logos/wingu.svg"), class: 'wingu'
+        li
+          span= image_tag asset_path("logos/alcaldia.svg"), class: 'alcaldia'

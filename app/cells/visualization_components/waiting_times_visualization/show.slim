@@ -1,0 +1,17 @@
+div.waiting-times-visualization-cell
+  div
+    div v-for="i in toNOf(3, waiting_time.score)"
+      = image_tag asset_path('icons/clock.svg')
+    div v-for="i in toNOfReverse(3, waiting_time.score)"
+      = image_tag asset_path('icons/clock-empty.svg')
+  div
+    p
+      span v-if="branch.source == 'initial'"
+        = "Según el relevamiento"
+      span v-if="branch.source == 'surveys'"
+        = "Según la participación ciudadana"
+
+      = ", el tiempo esperado hasta la visita es "
+      strong
+        | {{['Malo', 'Aceptable', 'Bueno'][waiting_time.score-1]}}
+

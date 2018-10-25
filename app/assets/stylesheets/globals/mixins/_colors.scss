@@ -1,0 +1,20 @@
+@mixin background-color($color, $alpha: 1) {
+  background-color: color($color, $alpha);
+}
+
+@mixin text-color($color, $alpha: 1) {
+  color: color($color, $alpha);
+}
+
+@mixin shadow($color, $size) {
+  box-shadow: 0 0 8px $color;
+}
+
+@mixin shadow-down($color, $size) {
+  box-shadow: 0 2px 11px 1px $color;
+
+}
+
+@function color($color, $alpha: 1){
+  @return rgba($color, $alpha);
+}

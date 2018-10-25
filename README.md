@@ -65,3 +65,13 @@ Archivos PNG nombre sólo letras (sin acentos ni símbolos) y separado del ID de
 ## Dependencias
 
 Ver COPYRIGHT.md
+
+# REDIS
+```bash
+curl -X GET "localhost:9200/_cat/indices?v"
+
+curl -XPUT -H "Content-Type: application/json" http://localhost:9200/_all/_settings -d '{"index.blocks.read_only_allow_delete": null}'
+
+curl -Ss -H 'Content-Type: application/json' -XPUT 'http://localhost:9200/_cluster/settings' -d '{"transient": {"cluster.routing.allocation.disk.watermark.flood_stage":"2gb", "cluster.routing.allocation.disk.watermark.low": "10gb", "cluster.routing.allocation.disk.watermark.high": "5gb"}}'
+
+```

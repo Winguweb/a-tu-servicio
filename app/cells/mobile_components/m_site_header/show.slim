@@ -1,0 +1,16 @@
+header.m-site-header-cell
+  div
+    a.site-menu-button v-on:click="actionClicked"
+      i :class="action"
+  div
+    = link_to root_path do
+      = image_tag image_path("logos/atsb-w.svg")
+  div
+    - if current_page?(:controller => 'home', :action => 'services')
+      a.site-menu-button v-on:click="searchClicked"
+        i.search
+
+javascript:
+  $(function() {
+    ATSB.Components['mobile-components/m-site-header']()
+  });

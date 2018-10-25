@@ -1,4 +1,4 @@
-class AddAppointmentRequestToProvider < ActiveRecord::Migration
+class AddAppointmentRequestToProvider < ActiveRecord::Migration[5.2]
   def change
     add_column :providers, :reserva_presencial, :string
     add_column :providers, :reserva_telefonica, :string

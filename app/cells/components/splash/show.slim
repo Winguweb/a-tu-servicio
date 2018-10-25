@@ -1,0 +1,25 @@
+div.splash-cell v-bind:class="{show: actions.show}"
+  div
+    ul
+      li
+        div
+          p
+            | En A Tu Servicio Bogotá puedes conocer la calificación del centro de salud al que asistes.
+          p
+            | Además puedes contarnos tu experiencia para contribuir a la toma de decisiones para mejorar la calidad del servicio de salud
+        div
+          p
+            | ¿Quieres averiguar la calidad de los servicios de un centro de salud antes de asistir? En A Tu Servicio puedes conocer cuáles son oficiales y además calificar la atención que recibas.
+          p
+            | ¡Participar es mejorar la calidad!
+
+  div
+    = link_to services_path
+      = 'Conocer más'
+  div :style="{transform: this.isMobile && `translateX(${displacement}px)`}"
+    == cell('components/city_image')
+
+javascript:
+  $(function() {
+    ATSB.Components['components/splash']({})
+  });
