@@ -20,6 +20,9 @@ development: &app_config
     port: 6379
     db:   0
 
+  vuejs:
+    cdn_url:
+
 production:
   <<: *app_config
 

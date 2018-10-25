@@ -45,6 +45,18 @@
       }
       &:focus {text-decoration: none;}
     }
+    @media (max-width: 1024px) {
+      overflow: hidden;
+      > a, > form > input {
+        // FIXME: I could not found a level for the type-golden() Mixin that
+        //        wasn't so small. I don't like this approach so much, maybe
+        //        make more sense to arrange the $base-font-size variable
+        //        for this media query, not sure.
+        font-size: 0.9rem;
+        line-height: 2.5rem;
+        padding: gutter(0);
+      }
+    }
     > form {
       > input {
         cursor: pointer;

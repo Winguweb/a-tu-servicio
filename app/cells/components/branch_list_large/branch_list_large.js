@@ -6,21 +6,21 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       searchQuery: "",
       actions: {show: false},
       page: 0,
-      perform_search: false,
-      perform_lazy: false,
-      end_of_lazy: false,
+      performingSearch: false,
+      performLazy: false,
+      endOfLazy: false,
+      performSearchDebounceTime: 100
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:list:large:open', this.componentOpen)
       ATSB.pubSub.$on('branch:list:large:close', this.componentClose)
-    },
-    watch: {
-      searchQuery: _.debounce(function() {
+
+      this.$watch('searchQuery', _.debounce(function() {
         this.page = 0
-        this.end_of_lazy = false
+        this.endOfLazy = false
         this.searchQueryChanged()
-      }, 200)
+      }, this.performSearchDebounceTime))
     },
     methods: {
       branchClicked: function(id) {
@@ -31,36 +31,36 @@ ATSB.Components['components/branch-list-large'] = function(options) {
         ATSB.pubSub.$emit('branch:compare:set', id)
         ATSB.pubSub.$emit('branch:compare:button:show')
       },
-      suggestionClicked: function(suggestion) {
-        this.searchQuery = suggestion
-      },
-      clearSearchClicked: function() {
-        this.searchQuery = ''
-      },
       branchesFetchSuccess: function(response) {
         this.branches = this.transformHitsToResults(response.hits)
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
-        this.perform_search = false
+        this.performingSearch = false
         this.focusSearch()
       },
       branchesFetchSuccessAppend: function(response) {
         var results = this.transformHitsToResults(response.hits)
         if (results.length == 0) {
-          this.end_of_lazy = true
-          this.perform_lazy = false
+          this.endOfLazy = true
+          this.performLazy = false
           return
         }
         this.branches = this.branches.concat(results)
         ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
-        this.perform_search = false
-        this.perform_lazy = false
-        this.focusSearch()
+        this.performingSearch = false
+        this.performLazy = false
+        if(this.isMobile() == false) { this.focusSearch() }
       },
       branchesFetchError: function() {
-        this.perform_search = false
-        this.perform_lazy = false
+        this.performingSearch = false
+        this.performLazy = false
         this.focusSearch()
         console.warn()
+      },
+      clearSearchClicked: function() {
+        this.$refs.search.value = this.searchQuery = ''
+      },
+      closeMobileKeyboard: function() {
+        this.$refs.search.blur()
       },
       componentClose: function() {
         this.actions.show = false
@@ -77,20 +77,26 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       focusSearch: function() {
         this.actions.show && this.$nextTick(function() {this.$refs.search.focus()}.bind(this))
       },
+      isMobile: function() {
+        return $('body').hasClass('mobile')
+      },
       searchQueryChanged: function(append) {
         var branchesFetchSuccess = append ? this.branchesFetchSuccessAppend : this.branchesFetchSuccess
         // var query = this.searchQuery + "&page=" + this.page
         ATSB.pubSub.$emit('fetch:branch:search', this.searchParams(this.searchQuery, this.page), branchesFetchSuccess, this.branchesFetchError)
-        this.perform_search = !append
-        this.perform_lazy = append
+        this.performingSearch = !append
+        this.performLazy = append
       },
       getBranchesIds: function() {
         return this.branches.map(function(branch) {return branch.id})
       },
+      performSearch: function(evt) {
+        this.searchQuery = evt.target.value
+      },
       scrollEnd: function(evt) {
         var element = evt.currentTarget
         if(element.offsetHeight + element.scrollTop > element.scrollHeight - 10) {
-          if (this.perform_lazy || this.end_of_lazy) return
+          if (this.performLazy || this.endOfLazy) return
           _.debounce(function() {
             this.page++
             this.searchQueryChanged(true)
@@ -107,6 +113,9 @@ ATSB.Components['components/branch-list-large'] = function(options) {
           facets: [ "specialities_names" ],
           page: page
         }
+      },
+      suggestionClicked: function(suggestion) {
+        this.searchQuery = suggestion
       },
       transformHitsToResults: function(hits) {
         return _(hits).map(function(hitData) {

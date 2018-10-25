@@ -28,6 +28,8 @@ ATSB.Components['components/reference-map'] = function(options) {
         this.map.setActiveArea("map-active-area " + name)
       },
       centerMap: function() {
+        /* This prevents errors for algolia and pg data differences */
+        if (this.baseGeometryFeature.getLayers().length == 0) { return }
         this.map.fitBounds(this.baseGeometryFeature.getBounds(), {animate: true});
       },
       createMap: function() {
@@ -77,7 +79,11 @@ ATSB.Components['components/reference-map'] = function(options) {
         }.bind(this))
       },
       getSelectedBranch: function(branch) {
-        return this.selectedBranch.indexOf(branch.id) > -1
+        var castedSelectedBranchIds = this.selectedBranch.map(function(branchId) {
+          return branchId.toString()
+        })
+
+        return castedSelectedBranchIds.indexOf(branch.id.toString()) > -1
       },
       setSelectedBranch: function(ids) {
         this.selectedBranch = ids

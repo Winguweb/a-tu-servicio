@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
     return error_message unless recaptcha_was_verified? || recaptcha_verified?
     multi_response = params[:vote][:multi_response]
 
-    @survey = getExistingOrNewSurvey(multi_response)
+    @survey = get_existing_or_new_survey(multi_response)
     @survey.assign_attributes(survey_params)
 
     return render json: @survey if @survey.save
@@ -12,7 +12,7 @@ class SurveysController < ApplicationController
 
   private
 
-  def getExistingOrNewSurvey(multi_response)
+  def get_existing_or_new_survey(multi_response)
     return Survey.find_or_initialize_by(survey_find_params) unless multi_response
     return Survey.new if multi_response
   end
