@@ -242,13 +242,22 @@ $search-bar-height: calc(66px);
           padding: gutter(1) gutter(0) gutter(0) gutter(0);
           > h1 {
             @include type-golden(1);
+            line-height: gutter(1);
+            margin-bottom: gutter();
+            max-width: initial;
             padding-left: 0;
             text-align: left;
           }
           > h2 {
             @include type-golden(0);
+            line-height: gutter();
+            margin-bottom: gutter();
+            max-width: initial;
             padding: 0;
             text-align: left;
+          }
+          > ul {
+            padding: 0;
           }
         }
         > main {
@@ -311,7 +320,6 @@ $search-bar-height: calc(66px);
           }
           > section:first-of-type {
             > main {
-              @include grid-column(1 of 1);
               clear: both;
             }
           }
