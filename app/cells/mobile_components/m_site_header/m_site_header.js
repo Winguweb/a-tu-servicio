@@ -15,8 +15,6 @@ ATSB.Components['mobile-components/m-site-header'] = function(options) {
     },
     methods: {
       actionClicked: function() {
-        console.log(this.action)
-        console.log(this.events[this.action])
         ATSB.pubSub.$emit(this.events[this.action])
       },
       searchClicked: function() {
