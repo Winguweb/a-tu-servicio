@@ -38,13 +38,14 @@ class Branch < ActiveRecord::Base
   end
 
   def quality
-    quality = Survey.where(branch_id: id, step_id: 15)
-    count = quality.size
-    total = quality.pluck("answer_data").pluck("value").sum
-    total / count if count > 0
+    redis.get("quality/branch/#{id}").to_i
   end
 
   private
+
+  def redis
+    $redis
+  end
 
   def lat
     latlng[0]
