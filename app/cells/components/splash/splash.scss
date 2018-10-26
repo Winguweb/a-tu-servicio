@@ -60,6 +60,7 @@
     position: absolute;
     top: 43%;
     transform: translate3d(-50%, -50%, 0);
+    z-index: 100;
     > a {
       @include type-golden(0);
       background-color: $light-blue;
