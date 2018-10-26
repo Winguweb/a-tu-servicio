@@ -1,7 +1,7 @@
 header.site-header-cell
   div
     = link_to root_path do
-      = image_tag image_path("logos/atsb-w.svg")
+      = image_tag image_path("logos/atsb.svg")
   div
     = link_to 'Explora y califica', services_path, class: current_page?(:controller => 'home', :action => 'services') ? 'active' : ''
     = link_to 'El proyecto', about_path, class: current_page?(:controller => 'home', :action => 'about') ? 'active' : ''
