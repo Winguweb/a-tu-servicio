@@ -4,7 +4,7 @@ header.m-site-header-cell
       i :class="action"
   div
     = link_to root_path do
-      = image_tag image_path("logos/atsb-w.svg")
+      = image_tag image_path("logos/atsb.svg")
   div
     - if current_page?(:controller => 'home', :action => 'services')
       a.site-menu-button v-on:click="searchClicked"
