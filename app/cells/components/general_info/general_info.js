@@ -6,6 +6,7 @@ ATSB.Components['components/general-info'] = function(options) {
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
+      ATSB.pubSub.$on('general:info:open', this.componentOpen)
     },
     methods: {
       componentClose: function() {

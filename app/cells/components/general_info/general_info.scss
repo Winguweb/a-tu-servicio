@@ -1,66 +1,95 @@
 $search-button-width: gutter(1.5);
 $search-bar-height: calc(66px);
-@mixin general-info() {
+
+@mixin general-info {
   background-color: $white;
-  background-image: image-url('baloon.svg');
+  background-image: image-url("baloon.svg");
   background-position: bottom 0 right gutter(1);
   background-repeat: no-repeat;
   background-size: 48px 116px;
-  border-left: 1px solid color($light-grey, 0.5); // for right
+  border-left: 1px solid color($light-grey, 0.5);
+
+  // for right
   bottom: 0;
   min-width: 400px;
   overflow: auto;
-  padding: gutter(1) 0; // for right
+  padding: gutter(1) 0;
+
+  // for right
   position: fixed;
-  right: 0; // for right
+  right: 0;
+
+  // for right
   top: $search-bar-height;
-  transform: translateX(100%); // for right
+  transform: translateX(100%);
+
+  // for right
   transition: transform 300ms ease 0ms;
   width: calc(100% - 100% / 1.61803398875);
   will-change: transform;
   z-index: 1000;
+
   &.show {
-    transform: translateX(0); // for right
+    transform: translateX(0);
+
+    // for right
     transition: transform 300ms ease 300ms;
   }
+
   > section {
     padding: 0 gutter(2);
     position: relative;
+
     > header {
       margin-bottom: gutter(1);
       margin-top: gutter();
+
       > h1 {
         @include type-golden(2);
+
         font-weight: 700;
         letter-spacing: -2px;
         line-height: gutter(2);
+
         > span {
           color: $blue;
           display: block;
         }
+
         > strong {
           color: $light-blue;
           font-weight: 800;
         }
       }
     }
+
     > article {
       font-family: "PT Sans";
+
       > p {
         @include type-golden(0);
+
         color: $blue;
         line-height: gutter($phi - 1);
-        margin-bottom: gutter()*3;
+        margin-bottom: gutter();
         text-align: justify;
+
+        & + p {
+          margin-bottom: gutter() * 3;
+        }
       }
+
       > ul {
         margin-bottom: gutter(2);
+
         > li {
           height: 42px;
           margin-bottom: gutter();
           position: relative;
+
           &:before {
             @include type-golden(1);
+
             background-color: $light-blue;
             border-radius: 100%;
             color: $white;
@@ -74,9 +103,19 @@ $search-bar-height: calc(66px);
             text-align: center;
             width: 42px;
           }
-          &:nth-of-type(1):before {content: '1'}
-          &:nth-of-type(2):before {content: '2'}
-          &:nth-of-type(3):before {content: '3'}
+
+          &:nth-of-type(1):before {
+            content: '1';
+          }
+
+          &:nth-of-type(2):before {
+            content: '2';
+          }
+
+          &:nth-of-type(3):before {
+            content: '3';
+          }
+
           p {
             color: $blue;
             left: calc(42px + #{gutter()});
@@ -86,8 +125,10 @@ $search-bar-height: calc(66px);
           }
         }
       }
+
       > a {
         @include type-golden(0);
+
         background-color: $light-blue;
         border: none;
         border-radius: 2px;
@@ -99,6 +140,7 @@ $search-bar-height: calc(66px);
         padding: gutter(-1) gutter();
         text-align: center;
         width: 100px;
+
         &:before {
           border-left: 3px solid $white;
           border-top: 3px solid $white;
@@ -111,10 +153,12 @@ $search-bar-height: calc(66px);
           vertical-align: baseline;
           width: 8px;
         }
+
         &:active {
           position: relative;
           top: 1px;
         }
+
         &:hover {
           text-decoration: none;
         }
@@ -123,10 +167,11 @@ $search-bar-height: calc(66px);
   }
 }
 
-@mixin mobile-general-info() {
+@mixin mobile-general-info {
   display: none;
   min-width: auto;
   width: 100%;
+
   &.show {
     display: block;
     position: static;
