@@ -23,6 +23,24 @@ div.branch-full-detail-cell.show v-bind:class="{show: actions.show}"
 
     h2 = "Voto alto"
     == cell('visualization_components/full_detail_bar', [{color: '#92c461', percentage: 80 }])
+
+  section
+    h1 = "Votaciones de opción"
+
+    h2 = "Voto opción negativa"
+    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 15, text: 'Esta es la primera opción buena que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 10, text: 'Esta es la segunda, despues de la primera, opción buena que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 59, text: 'Esta es la #3 opción buena que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 11, text: 'Esta es la cuarta opción buena que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 5, text: 'Esta es la quinta y última opción buena que ha sido votada' })
+
+    h2 = "Voto opción positiva"
+    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 20, text: 'Esta es la #1 opción mala que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 2, text: 'Esta es la #2 opción mala que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 28, text: 'Esta es la tercera opción mala que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 1, text: 'Esta es la cuarta y anteúltima opción mala que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 49, text: 'Esta es la #5 opción mala que ha sido votada' })
+
 javascript:
   $(function() {ATSB.Components['components/branch-full-detail']({
 

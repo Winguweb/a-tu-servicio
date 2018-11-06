@@ -11,12 +11,14 @@
 
       &:before,
       &:after {
+        $height: 34;
+
         background-color: $white;
         content: '';
-        height: 34%;
-        left: gutter() / 3;
+        height: #{$height + "%"};
+        left: gutter() * $height / 100;
         position: absolute;
-        right: gutter() / 3;
+        right: gutter() * $height / 100;
         z-index: 1;
       }
 

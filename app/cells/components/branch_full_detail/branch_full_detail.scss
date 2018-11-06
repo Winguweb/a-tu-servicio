@@ -5,6 +5,7 @@ $search-bar-height: calc(66px);
   bottom: 0;
   display: none;
   left: 0;
+  overflow-y: auto;
   padding: gutter();
   position: fixed;
   right: 0;
