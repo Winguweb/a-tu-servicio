@@ -1,0 +1,29 @@
+$search-bar-height: calc(66px);
+
+@mixin branch-full-detail {
+  background-color: $white;
+  bottom: 0;
+  display: none;
+  left: 0;
+  padding: gutter();
+  position: fixed;
+  right: 0;
+  top: $search-bar-height;
+  z-index: 4000;
+
+  &.show {
+    display: block;
+  }
+}
+
+@mixin mobile-branch-full-detail {
+  padding: 0;
+}
+
+.branch-full-detail-cell {
+  @include branch-full-detail;
+}
+
+.mobile .branch-full-detail-cell {
+  @include mobile-branch-full-detail;
+}

@@ -1,7 +1,7 @@
 /* ====================
   CSS RESET - MEYERWEB
 ==================== */
-@import 'globals/reset';
+@import "globals/reset";
 
 /* ====================
   Bourbon Neat Grid
@@ -11,41 +11,41 @@
 /* ====================
   UTILS
 ==================== */
-@import 'globals/mixins/utils';
+@import "globals/mixins/utils";
 
 /* ====================
   VARIABLES
 ==================== */
-@import 'globals/variables';
+@import "globals/variables";
 
 /* ====================
   COLORS
 ==================== */
-@import 'globals/colors';
+@import "globals/colors";
 
 /* ====================
   FONTS
 ==================== */
-@import 'globals/fonts';
+@import "globals/fonts";
 
 /* ===============================
   CUSTOM MIXINS
 =============================== */
-@import 'globals/mixins/colors';
-@import 'globals/mixins/typography';
-@import 'globals/mixins/helpers';
+@import "globals/mixins/colors";
+@import "globals/mixins/typography";
+@import "globals/mixins/helpers";
 
 /* ===============================
   BASE STYLES
 =============================== */
-@import 'globals/base';
+@import "globals/base";
 
 /* ===============================
   PAGE STYLES
 =============================== */
-@import 'globals/views/about';
-@import 'globals/views/datasets';
-@import 'globals/views/user_sessions/new';
+@import "globals/views/about";
+@import "globals/views/datasets";
+@import "globals/views/user_sessions/new";
 
 /* ===================
   CELLS UI
@@ -56,6 +56,7 @@
 @import "branch_detail_half_right";
 @import "branch_detail_large";
 @import "branch_info_popup";
+@import "branch_full_detail";
 @import "branch_list_half_right";
 @import "branch_list_large";
 @import "compare_branch_button";
