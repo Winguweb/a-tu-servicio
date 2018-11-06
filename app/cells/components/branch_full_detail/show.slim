@@ -1,7 +1,32 @@
 div.branch-full-detail-cell.show v-bind:class="{show: actions.show}"
 
-javascript:
-    $(function() {ATSB.Components['components/branch-full-detail']({
+  section
+    h1 = "Rango de valores"
+    == cell('visualization_components/full_detail_bar', [{color: '#FF3E25', percentage: 20 }, {color: '#FFC649', percentage: 35 }, {color: '#92c461', percentage: 45 }])
 
-    })});
+  section
+    h1 = "Votaciones cualitativas"
+
+    h2 = "Votos negativos"
+    == cell('visualization_components/full_detail_bar', [{color: '#FF3E25', percentage: 45 }])
+
+    h2 = "Votos positivos"
+    == cell('visualization_components/full_detail_bar', [{color: '#92c461', percentage: 45 }])
+
+  section
+    h1 = "Votaciones cuantitativas"
+    h2 = "Voto bajo"
+    == cell('visualization_components/full_detail_bar', [{color: '#FF3E25', percentage: 20 }])
+
+    h2 = "Voto medio"
+    == cell('visualization_components/full_detail_bar', [{color: '#FFC649', percentage: 50 }])
+
+    h2 = "Voto alto"
+    == cell('visualization_components/full_detail_bar', [{color: '#92c461', percentage: 80 }])
+javascript:
+  $(function() {ATSB.Components['components/branch-full-detail']({
+
+  })});
+
+
 

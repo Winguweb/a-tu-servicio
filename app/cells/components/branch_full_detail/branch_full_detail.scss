@@ -14,6 +14,14 @@ $search-bar-height: calc(66px);
   &.show {
     display: block;
   }
+
+  > section {
+    margin-bottom: gutter();
+
+    > h2 {
+      @include type-golden(-1);
+    }
+  }
 }
 
 @mixin mobile-branch-full-detail {

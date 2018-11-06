@@ -1,0 +1,8 @@
+div.full-detail-bar-cell
+  div
+    div
+      - for range in ranges
+        div style="background-color: #{range[:color]}; width: #{range[:percentage]}%"
+  div
+    - for range in ranges
+      span class="#{'single' if ranges.size == 1}" style="color: #{range[:color]}; width: #{range[:percentage]}%" = "#{range[:percentage]}%"
