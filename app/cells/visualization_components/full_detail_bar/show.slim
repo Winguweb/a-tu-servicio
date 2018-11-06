@@ -3,6 +3,6 @@ div.full-detail-bar-cell
     div
       - for range in ranges
         div style="background-color: #{range[:color]}; width: #{range[:percentage]}%"
-  div
+  div class="#{'single' if ranges.size == 1} #{layout}"
     - for range in ranges
-      span class="#{'single' if ranges.size == 1}" style="color: #{range[:color]}; width: #{range[:percentage]}%" = "#{range[:percentage]}%"
+      span style="color: #{range[:color]}; width: #{range[:percentage]}%" = "#{range[:percentage]}%"

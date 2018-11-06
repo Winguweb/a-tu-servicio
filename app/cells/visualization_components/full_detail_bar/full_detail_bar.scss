@@ -3,7 +3,6 @@
 
   > div {
     height: gutter();
-    max-width: 50%;
     position: relative;
 
     &:first-of-type {
@@ -36,8 +35,12 @@
 
       display: inline-block;
       vertical-align: top;
+    }
 
-      &.single {
+    &.layout.single {
+      height: 0;
+
+      > span {
         position: relative;
         text-align: right;
         top: -#{gutter() * 2};

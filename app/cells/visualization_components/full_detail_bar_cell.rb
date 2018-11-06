@@ -7,4 +7,8 @@ class VisualizationComponents::FullDetailBarCell < Cell::ViewModel
     model || []
   end
 
+  def layout
+    'layout' if options[:layout]
+  end
+
 end

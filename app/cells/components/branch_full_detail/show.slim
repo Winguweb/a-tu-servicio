@@ -1,7 +1,17 @@
 div.branch-full-detail-cell.show v-bind:class="{show: actions.show}"
 
   section
+    h1 = "Segmentación"
+    h2 = "Segmento #1"
+    == cell('visualization_components/full_detail_bar', [{color: '#3fa6c9', percentage: 30 }], layout: true)
+    h2 = "Segmento #2"
+    == cell('visualization_components/full_detail_bar', [{color: '#3fa6c9', percentage: 20 }], layout: true)
+    h2 = "Segmento #3"
+    == cell('visualization_components/full_detail_bar', [{color: '#3fa6c9', percentage: 60 }], layout: true)
+
+  section
     h1 = "Rango de valores"
+    h2 = "Rangos #1, #2 y #3"
     == cell('visualization_components/full_detail_bar', [{color: '#FF3E25', percentage: 20 }, {color: '#FFC649', percentage: 35 }, {color: '#92c461', percentage: 45 }])
 
   section
@@ -28,18 +38,18 @@ div.branch-full-detail-cell.show v-bind:class="{show: actions.show}"
     h1 = "Votaciones de opción"
 
     h2 = "Voto opción negativa"
-    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 15, text: 'Esta es la primera opción buena que ha sido votada' })
-    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 10, text: 'Esta es la segunda, despues de la primera, opción buena que ha sido votada' })
-    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 59, text: 'Esta es la #3 opción buena que ha sido votada' })
-    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 11, text: 'Esta es la cuarta opción buena que ha sido votada' })
-    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 5, text: 'Esta es la quinta y última opción buena que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 15, text: 'Esta es la primera opción negativa que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 10, text: 'Esta es la segunda, despues de la primera, opción negativa que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 59, text: 'Esta es la #3 opción negativa que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 11, text: 'Esta es la cuarta opción negativa que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#FF3E25', percentage: 5, text: 'Esta es la quinta y última opción negativa que ha sido votada' })
 
     h2 = "Voto opción positiva"
-    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 20, text: 'Esta es la #1 opción mala que ha sido votada' })
-    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 2, text: 'Esta es la #2 opción mala que ha sido votada' })
-    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 28, text: 'Esta es la tercera opción mala que ha sido votada' })
-    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 1, text: 'Esta es la cuarta y anteúltima opción mala que ha sido votada' })
-    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 49, text: 'Esta es la #5 opción mala que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 20, text: 'Esta es la #1 opción positiva que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 2, text: 'Esta es la #2 opción positiva que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 28, text: 'Esta es la tercera opción positiva que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 1, text: 'Esta es la cuarta y anteúltima opción positiva que ha sido votada' })
+    == cell('visualization_components/full_detail_bar_text', {color: '#92c461', percentage: 49, text: 'Esta es la #5 opción positiva que ha sido votada' })
 
 javascript:
   $(function() {ATSB.Components['components/branch-full-detail']({

@@ -2,11 +2,15 @@
   margin-bottom: gutter(-1);
 
   > div {
-    max-width: 50%;
-
     > div:first-of-type {
       background-color: $light-grey;
       position: relative;
+
+      &:hover {
+        > div:first-of-type {
+          opacity: 0.8;
+        }
+      }
 
       > div:first-of-type {
         height: 100%;
@@ -26,8 +30,14 @@
           background-color: color($blue, 0.2);
           color: $white;
           display: inline-block;
-          margin: gutter(-3);
+          margin: gutter() * 0.34;
           padding: gutter(-4) gutter(-3);
+        }
+
+        &:hover {
+          span {
+            background-color: color($blue, 0.8);
+          }
         }
       }
     }
