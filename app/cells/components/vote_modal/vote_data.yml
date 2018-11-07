@@ -949,7 +949,7 @@ steps:
       1: 11
     answer: null
   - id: 10
-    question: "¿Qué valoras de tu experiencia en el servicio de urgencia?"
+    question: "¿Qué valoras de tu experiencia en el servicio?"
     multi_response: false
     answers:
     - id: 1
@@ -1004,7 +1004,7 @@ steps:
       6: 20
     answer: null
   - id: 20
-    question: "¿Qué valoras de tu experiencia en el servicio de urgencia?"
+    question: "¿Qué valoras de tu experiencia en el servicio?"
     multi_response: false
     answers:
     - id: 1
