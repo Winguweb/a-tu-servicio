@@ -809,59 +809,59 @@ steps:
         value: 5
     previous_step: null
     next_step:
-      1: 8
-      2: 8
-      3: 8
-      4: 8
-      5: 8
-    answer: null
-  - id: 8
-    question: "¿Cómo calificas tu experiencia en el servicio de urgencia?"
-    multi_response: false
-    answers:
-    - id: 1
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Muy Mala"
-        value: 1
-    - id: 2
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Mala"
-        value: 2
-    - id: 3
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Aceptable"
-        value: 3
-    - id: 4
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Buena"
-        value: 4
-    - id: 5
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Muy Buena"
-        value: 5
-    previous_step: null
-    next_step:
       1: 9
       2: 9
       3: 10
       4: 10
       5: 10
     answer: null
+  # - id: 8
+  #   question: "¿Cómo calificas tu experiencia en el servicio de urgencia?"
+  #   multi_response: false
+  #   answers:
+  #   - id: 1
+  #     type: "star"
+  #     auto_submit: true
+  #     should_save: true
+  #     data:
+  #       label: "Muy Mala"
+  #       value: 1
+  #   - id: 2
+  #     type: "star"
+  #     auto_submit: true
+  #     should_save: true
+  #     data:
+  #       label: "Mala"
+  #       value: 2
+  #   - id: 3
+  #     type: "star"
+  #     auto_submit: true
+  #     should_save: true
+  #     data:
+  #       label: "Aceptable"
+  #       value: 3
+  #   - id: 4
+  #     type: "star"
+  #     auto_submit: true
+  #     should_save: true
+  #     data:
+  #       label: "Buena"
+  #       value: 4
+  #   - id: 5
+  #     type: "star"
+  #     auto_submit: true
+  #     should_save: true
+  #     data:
+  #       label: "Muy Buena"
+  #       value: 5
+  #   previous_step: null
+  #   next_step:
+  #     1: 9
+  #     2: 9
+  #     3: 10
+  #     4: 10
+  #     5: 10
+  #   answer: null
   - id: 9
     question: "¿Cuál fue el motivo de tu mala experiencia?"
     multi_response: false
