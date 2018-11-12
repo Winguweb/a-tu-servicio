@@ -44,6 +44,9 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                   p v-if="branch.provider.communication_services"
                     strong = "Para comunicarse con el prestador: "
                     | {{branch.provider.communication_services}}
+                  button @click="openDetailsModal()"
+                    = image_tag asset_path('icons/details.svg')
+                    span = "Más detalles"
           section
             header :class="{percentage: branch.has_satisfaction_information}"
               div

@@ -23,6 +23,7 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
       branchFetchSuccess: function(response) {
         this.branch = response.data
         this.branch.loaded = true
+        this.openDetailsModal()
       },
       branchFetchError: function() {
         console.warn('Cant reach branch')
@@ -37,6 +38,11 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
         ATSB.pubSub.$emit('map:centered', false)
         ATSB.pubSub.$emit('map:activearea', "small")
         ATSB.pubSub.$emit('header:action:set', 'back')
+      },
+      openDetailsModal: function() {
+        ATSB.pubSub.$emit('branch:full:detail:data', this.branch)
+        ATSB.pubSub.$emit('branch:full:detail:open')
+        ATSB.pubSub.$emit('header:action:set', 'closeDetails')
       },
       openVoteModal: function() {
         ATSB.pubSub.$emit('vote:open', this.branch.id)

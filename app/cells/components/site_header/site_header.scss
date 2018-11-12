@@ -106,6 +106,10 @@
             background-image: image-url("icons/close-menu-light-blue.svg");
           }
 
+          &.closeDetails {
+            background-image: image-url("icons/close-menu-light-blue.svg");
+          }
+
           &.back {
             background-image: image-url("icons/arrow-right-light-blue.svg");
           }
@@ -118,6 +122,10 @@
         }
 
         &.close {
+          background-image: image-url("icons/close-menu.svg");
+        }
+
+        &.closeDetails {
           background-image: image-url("icons/close-menu.svg");
         }
 

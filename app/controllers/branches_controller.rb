@@ -29,6 +29,7 @@ class BranchesController < ApplicationController
     @satisfaction_response = SatisfactionResponseService.call(@branch)
     @speciality_response = SpecialityResponseService.call(@branch)
     @waiting_time_response = WaitingTimeResponseService.call(@branch)
+    @details_users_response = DetailsUsersResponseService.call(@branch)
 
     # TODO: WIP
     # ==========================================================================
@@ -47,6 +48,7 @@ class BranchesController < ApplicationController
     @response.deep_merge!(@satisfaction_response.response)
     @response.deep_merge!(@speciality_response.response)
     @response.deep_merge!(@waiting_time_response.response)
+    @response.deep_merge!(@details_users_response.response)
 
     render json: @response
   end
