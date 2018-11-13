@@ -63,19 +63,12 @@ class DetailsSpecialitySatisfactionResponseService
      _get_speciality_satisfaction_count_by_speciality[speciality][:ratings].values.sum
   end
 
-  def _get_total_explanations(explanations)
-     explanations.sum do | explanation |
-      explanation.second
-     end
-  end
-
   def _get_speciality_satisfaction_count_over_total
     _get_speciality_satisfaction_count_by_speciality.map do | speciality_satisfaction |
       speciality = speciality_satisfaction.first
       return {
         name: speciality,
-        percentage: 0,
-        explanations: [],
+        percentage: 0
       } if _get_total_speciality_satisfaction(speciality) == 0
       {
         name: speciality,
@@ -85,13 +78,7 @@ class DetailsSpecialitySatisfactionResponseService
           acceptable: (speciality_satisfaction.second[:ratings][:acceptable].to_f / _get_total_speciality_satisfaction(speciality) * 100).round(2),
           good: (speciality_satisfaction.second[:ratings][:good].to_f / _get_total_speciality_satisfaction(speciality) * 100).round(2),
           very_good: (speciality_satisfaction.second[:ratings][:very_good].to_f / _get_total_speciality_satisfaction(speciality) * 100).round(2),
-        },
-        explanation: speciality_satisfaction.second[:explanations].map do | explanation |
-          {
-            name: explanation.first,
-            percentage: (explanation.second.to_f / _get_total_explanations(speciality_satisfaction.second[:explanations]) * 100).round(2)
-          }
-        end
+        }
       }
     end
   end
