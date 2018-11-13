@@ -54,6 +54,7 @@ module AtuservicioRails
       visualization_components/in_hundreed_visualization_cell
       visualization_components/full_detail_bar_cell
       visualization_components/full_detail_bar_text_cell
+      visualization_components/full_detail_splitted_bar_cell
       visualization_components/people_visualization_cell
       visualization_components/satisfaction_visualization_cell
       visualization_components/specialities_visualization_cell

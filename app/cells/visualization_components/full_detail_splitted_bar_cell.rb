@@ -1,4 +1,4 @@
-class VisualizationComponents::FullDetailBarCell < Cell::ViewModel
+class VisualizationComponents::FullDetailSplittedBarCell < Cell::ViewModel
   # include StatisticsHelper
 
   private

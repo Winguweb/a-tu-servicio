@@ -1,11 +1,26 @@
-div.branch-full-detail-cell v-bind:class="{show: actions.show}"
+div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.details"
 
-  section.single-bars v-if="branch.details"
+  section
     h1 = "Tipo de usuarios"
     div v-for="user_type in branch.details.user_types"
       h2 = "{{user_type.name}}"
-      == cell('visualization_components/full_detail_bar')
+      == cell('visualization_components/full_detail_bar', 'user_type.percentage')
 
+  section
+    h1 = "Tiempos de espera"
+    div v-for="waiting_time in branch.details.waiting_times"
+      h2 = "{{waiting_time.name}}"
+      == cell('visualization_components/full_detail_splitted_bar', 'waiting_time.percentage')
+
+  section
+    h1 = "Satisfacción por especialidad"
+    div v-for="satisfaction in branch.details.speciality_satisfaction"
+      h2 = "{{satisfaction.name}}"
+      == cell('visualization_components/full_detail_splitted_bar', 'satisfaction.percentage' )
+      div v-for="speciality in branch.details.speciality_satisfaction_explanations" v-if="speciality.name == satisfaction.name"
+        div v-for="(explanation_types, type) in speciality.explanations"
+          div v-for="explanation in explanation_types"
+            == cell('visualization_components/full_detail_bar_text', 'explanation' )
 
 javascript:
   $(function() {ATSB.Components['components/branch-full-detail']({})});

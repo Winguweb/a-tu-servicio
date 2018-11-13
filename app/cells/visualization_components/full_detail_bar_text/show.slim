@@ -1,8 +1,8 @@
-div.full-detail-bar-text-cell
+div.full-detail-bar-text-cell v-if="#{explanation}.name"
   div
     div
-      div style="background-color: #{range[:color]}; width: #{range[:percentage]}%"
+      div :style="{backgroundColor: barColors.explanations[type], width: #{explanation}.percentage + '%'}"
       div
-        span = range[:text]
+        span = "{{#{explanation}.name}}"
     div
-      span style="color: #{range[:color]}" = "#{range[:percentage]}%"
+      span :style="{color: barColors.explanations[type], width: #{explanation}.percentage + '%'}" = "{{#{explanation}.percentage}}%"

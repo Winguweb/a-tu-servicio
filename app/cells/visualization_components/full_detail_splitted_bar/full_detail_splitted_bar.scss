@@ -1,4 +1,4 @@
-@mixin full-detail-bar {
+@mixin full-detail-splitted-bar {
   margin-bottom: gutter();
 
   > div {
@@ -38,6 +38,10 @@
       vertical-align: top;
     }
 
+    &.layout {
+      height: auto;
+    }
+
     .single-bars &.layout {
       height: 0;
 
@@ -62,6 +66,6 @@
   }
 }
 
-.full-detail-bar-cell {
-  @include full-detail-bar;
+.full-detail-splitted-bar-cell {
+  @include full-detail-splitted-bar;
 }

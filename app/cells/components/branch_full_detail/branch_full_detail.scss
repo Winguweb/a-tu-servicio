@@ -24,6 +24,12 @@ $search-bar-height: calc(66px);
       > h2 {
         @include type-golden(-1);
       }
+
+      > div {
+        > h2 {
+          @include type-golden(-1);
+        }
+      }
     }
   }
 }

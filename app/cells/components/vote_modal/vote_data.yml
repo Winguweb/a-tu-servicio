@@ -189,6 +189,7 @@ structure:
   user_type: [1]
   speciality_waiting_times: [2, 5]
   speciality_satisfaction: [2, 7]
+  speciality_satisfaction_explanation: [2, 9, 10]
   b: [8, 9, 19, 10, 20]
   c: [11, 12, 13, 21, 14, 22]
   d: [15, 16, 23, 17, 24]
@@ -950,7 +951,7 @@ steps:
       1: 11
     answer: null
   - id: 10
-    question: "¿Qué valoras de tu experiencia en el servicio de urgencia?"
+    question: "¿Qué valoras de tu experiencia con el servicio prestado?"
     multi_response: false
     answers:
     - id: 1
@@ -1005,7 +1006,7 @@ steps:
       6: 20
     answer: null
   - id: 20
-    question: "¿Qué valoras de tu experiencia en el servicio de urgencia?"
+    question: "¿Qué valoras de tu experiencia con el servicio prestado?"
     multi_response: false
     answers:
     - id: 1

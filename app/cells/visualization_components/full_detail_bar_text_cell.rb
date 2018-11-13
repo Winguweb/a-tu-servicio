@@ -3,7 +3,7 @@ class VisualizationComponents::FullDetailBarTextCell < Cell::ViewModel
 
   private
 
-  def range
+  def explanation
     model || []
   end
 

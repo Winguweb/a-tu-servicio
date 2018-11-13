@@ -1,0 +1,9 @@
+div.full-detail-splitted-bar-cell
+  div
+    div
+      div v-for="(percentage, key) in #{percentage}" :style="{backgroundColor: barColors.waiting_times[key], width: percentage + '%'}" v-if="percentage > 0"
+  div.layout
+    span v-for="(percentage, key) in #{percentage}" :style="{color: barColors.waiting_times[key], width: percentage + '%'}" v-if="percentage > 0"
+      = "{{percentage}}%"
+      br
+      = "{{legends[key]}}"
