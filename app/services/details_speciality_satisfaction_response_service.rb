@@ -66,18 +66,19 @@ class DetailsSpecialitySatisfactionResponseService
   def _get_speciality_satisfaction_count_over_total
     _get_speciality_satisfaction_count_by_speciality.map do | speciality_satisfaction |
       speciality = speciality_satisfaction.first
+      total_speciality_satisfaction = _get_total_speciality_satisfaction(speciality)
       return {
         name: speciality,
         percentage: 0
-      } if _get_total_speciality_satisfaction(speciality) == 0
+      } if total_speciality_satisfaction == 0
       {
         name: speciality,
         percentage: {
-          very_bad: (speciality_satisfaction.second[:ratings][:very_bad].to_f / _get_total_speciality_satisfaction(speciality) * 100).round(2),
-          bad: (speciality_satisfaction.second[:ratings][:bad].to_f / _get_total_speciality_satisfaction(speciality) * 100).round(2),
-          acceptable: (speciality_satisfaction.second[:ratings][:acceptable].to_f / _get_total_speciality_satisfaction(speciality) * 100).round(2),
-          good: (speciality_satisfaction.second[:ratings][:good].to_f / _get_total_speciality_satisfaction(speciality) * 100).round(2),
-          very_good: (speciality_satisfaction.second[:ratings][:very_good].to_f / _get_total_speciality_satisfaction(speciality) * 100).round(2),
+          very_bad: (speciality_satisfaction.second[:ratings][:very_bad].to_f / total_speciality_satisfaction * 100).round(2),
+          bad: (speciality_satisfaction.second[:ratings][:bad].to_f / total_speciality_satisfaction * 100).round(2),
+          acceptable: (speciality_satisfaction.second[:ratings][:acceptable].to_f / total_speciality_satisfaction * 100).round(2),
+          good: (speciality_satisfaction.second[:ratings][:good].to_f / total_speciality_satisfaction * 100).round(2),
+          very_good: (speciality_satisfaction.second[:ratings][:very_good].to_f / total_speciality_satisfaction * 100).round(2),
         }
       }
     end

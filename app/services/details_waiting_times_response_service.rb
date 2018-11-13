@@ -61,16 +61,17 @@ class DetailsWaitingTimesResponseService
 
     _get_waiting_times_count_by_speciality.map do | waiting_times |
       speciality = waiting_times.first
+      total_waiting_times = _get_total_waiting_times(speciality)
       return {
         name: speciality,
         percentage: 0
-      } if _get_total_waiting_times(speciality) == 0
+      } if total_waiting_times == 0
       {
         name: speciality,
         percentage: {
-          bad: (waiting_times.second[:bad].to_f / _get_total_waiting_times(speciality) * 100).round(2),
-          acceptable: (waiting_times.second[:acceptable].to_f / _get_total_waiting_times(speciality) * 100).round(2),
-          good: (waiting_times.second[:good].to_f / _get_total_waiting_times(speciality) * 100).round(2),
+          bad: (waiting_times.second[:bad].to_f / total_waiting_times * 100).round(2),
+          acceptable: (waiting_times.second[:acceptable].to_f / total_waiting_times * 100).round(2),
+          good: (waiting_times.second[:good].to_f / total_waiting_times * 100).round(2),
         }
       }
     end
