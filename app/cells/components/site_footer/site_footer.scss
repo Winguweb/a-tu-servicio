@@ -1,42 +1,65 @@
-@mixin site-footer() {
+@mixin site-footer {
   background-color: $white;
   box-shadow: 0 2px 4px color($black, 0.5);
   padding: gutter() gutter(1);
+
   > div {
     > ul {
       text-align: right;
+
       > li {
         display: inline-block;
         height: 40px;
+
         > a, > span {
           display: inline-block;
+
           > img {
             height: 40px;
             max-width: 120px;
             position: relative;
             vertical-align: middle;
+
             &.fundacion-corona {
               top: 5px;
             }
+
             &.asi-vamos-en-salud {
               height: 21px;
               top: 3px;
             }
+
             &.avina {
               height: 24px;
             }
+
+            &.caf {
+              height: 22px;
+              top: 2px;
+            }
+
             &.wingu {
               height: 21px;
               top: 3px;
             }
+
             &.alcaldia {
+              border-right: 2px solid #00a7ee;
+              padding-right: gutter(-1);
+              top: 3px;
+            }
+
+            &.bogotamejor {
+              padding-left: gutter(-1);
               top: 3px;
             }
           }
         }
       }
+
       > li + li:before {
         @include type-golden(2);
+
         color: $light-grey;
         content: '•';
         display: inline-block;
@@ -48,43 +71,52 @@
   }
 }
 
-@mixin mobile-site-footer() {
+@mixin mobile-site-footer {
   > div {
     > ul {
       text-align: center;
+
       > li {
         display: inline-block;
         height: 50px;
         margin: gutter() 0;
         text-align: center;
         width: 50%;
+
         > a, > span {
           display: inline-block;
+
           > img {
             height: 40px;
             max-width: 120px;
             position: relative;
             vertical-align: middle;
+
             &.fundacion-corona {
               top: 5px;
             }
+
             &.asi-vamos-en-salud {
               height: 21px;
               top: 3px;
             }
+
             &.avina {
               height: 24px;
             }
+
             &.wingu {
               height: 21px;
               top: 3px;
             }
+
             &.alcaldia {
               top: 3px;
             }
           }
         }
       }
+
       > li:before {
         display: none;
       }
@@ -92,10 +124,10 @@
   }
 }
 
-.site-footer-cell{
+.site-footer-cell {
   @include site-footer;
 }
 
-.mobile .site-footer-cell{
+.mobile .site-footer-cell {
   @include mobile-site-footer;
 }
