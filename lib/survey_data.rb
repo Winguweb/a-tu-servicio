@@ -1,7 +1,5 @@
 # To be use in an initialize as a singleton
 class SurveyData
-  Step = Struct.new(:id, :question, :multi_response, :answers)
-  Answer = Struct.new(:id, :label, :value)
 
   RESPONSE_STRUCTURE_KEYS = [
     {
@@ -59,11 +57,11 @@ class SurveyData
 
   def process_answers_with_detail(node_id, detail_ids)
     @steps_by_id[node_id][:answers].each_with_object({}) do |answer_data, _hash|
-      answer = Answer.new(answer_data[:id], answer_data[:label], answer_data[:value])
+      answer_id = answer_data[:id]
 
-      _hash[answer.id] = {
+      _hash[answer_id] = {
         counter: 0,
-        percentage: (rand * rand(100)).round(2),
+        percentage: 0.0,
         detail: process_detail_for(detail_ids)
       }
     end
@@ -80,9 +78,9 @@ class SurveyData
     end
 
     answers_data.each_with_object({}) do |answer_data, _hash|
-      answer = Answer.new(answer_data[:id], answer_data[:data][:label], answer_data[:data][:value])
+      answer_id = answer_data[:id]
 
-      _hash[answer.id] = { counter: 0, percentage: (rand * rand(100)).round(2) }
+      _hash[answer_id] = { counter: 0, percentage: 0.0 }
     end
   end
 
