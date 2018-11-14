@@ -1,48 +1,77 @@
 $search-button-width: gutter(1.5);
 $search-bar-height: calc(66px);
-@mixin branch-detail-large() {
+
+@mixin branch-detail-large {
   background-color: $white;
-  border-left: 1px solid color($light-grey, 0.5); // for right
+  border-left: 1px solid color($light-grey, 0.5);
+
+  // for right
   bottom: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: gutter(1) gutter(1) gutter(1) 0; // for right
+  padding: gutter(1) gutter(1) gutter(1) 0;
+
+  // for right
   position: fixed;
-  right: 0; // for right
+  right: 0;
+
+  // for right
   top: $search-bar-height;
-  transform: translateX(100%); // for right
+  transform: translateX(100%);
+
+  // for right
   transition: transform 300ms ease 0ms;
   width: calc(100% / 1.61803398875);
   will-change: transform;
   z-index: 2000;
 
   &.show {
-    transform: translateX(0); // for right
+    transform: translateX(0);
+
+    // for right
     transition: transform 300ms ease 300ms;
   }
+
   > div {
     > div {
       > article {
         > header {
           border-bottom: 1px solid $blue;
           margin-bottom: gutter();
+
           > h1 {
             @include text-color($blue, 1);
             @include type-golden(1);
+
             line-height: gutter(1);
             max-width: calc(100% - 135px);
-            padding: 0 gutter(1) 0 gutter(); // for right
-            text-align: left;  // for right
+            padding: 0 gutter(1) 0 gutter();
+
+            // for right
+            text-align: left;
+
+            // for right
+
           }
+
           > h2 {
             @include text-color($grey, 1);
             @include type-golden(0);
+
             max-width: calc(100% - 135px);
-            padding: 0 gutter(1) 0 gutter(); // for right
-            text-align: left;  // for right
+            padding: 0 gutter(1) 0 gutter();
+
+            // for right
+            text-align: left;
+
+            // for right
+
           }
+
           > ul {
-            padding: 0 gutter(1) 0 gutter(); // for right
+            padding: 0 gutter(1) 0 gutter();
+
+            // for right
             > li {
               display: inline-block;
               padding-right: gutter(-2);
@@ -50,8 +79,10 @@ $search-bar-height: calc(66px);
               width: gutter(1);
             }
           }
+
           button {
             @include type-golden(0);
+
             background-color: $blue;
             border: none;
             border-radius: 2px;
@@ -63,12 +94,15 @@ $search-bar-height: calc(66px);
             position: absolute;
             right: gutter(1);
             top: gutter();
+
             img {
               height: 100%;
               margin-right: gutter(-1);
             }
+
             span {
               @include type-golden(0);
+
               color: $white;
               font-weight: 300;
               position: relative;
@@ -77,46 +111,83 @@ $search-bar-height: calc(66px);
             }
           }
         }
+
         > main {
           @include grid-column(1 of 1);
+
           > section {
             @include grid-collapse;
+
             clear: both;
             margin-bottom: gutter(2);
+
             > header {
               background-color: $light-blue;
               height: 53px;
               margin-bottom: gutter();
               overflow: hidden;
               position: relative;
+
               > div:first-of-type {
-                float: right;  // for right
+                float: right;
+
+                // for right
                 padding: gutter();
+
                 > h1 {
                   @include text-color($white, 1);
                   @include type-golden(0);
-                  text-align: right;  // for right
+
+                  text-align: right;
+
+                  // for right
+
                 }
               }
+
               &.percentage {
                 > div:first-of-type {
                   width: calc(100% - 100% / 1.61803398875);
                 }
+
                 > div:last-of-type {
                   border-bottom: 2px solid $blue;
-                  float: right;  // for right
+                  float: right;
+
+                  // for right
                   width: calc(100% / 1.61803398875);
-                  &.low { border-bottom-color: $red; > div {background-color: $red;}}
-                  &.high { border-bottom-color: $light-blue; > div {background-color: $light-blue;}}
+
+                  &.low {
+                    border-bottom-color: $red;
+
+                    > div {
+                      background-color: $red;
+                    }
+                  }
+
+                  &.high {
+                    border-bottom-color: $light-blue;
+
+                    > div {
+                      background-color: $light-blue;
+                    }
+                  }
+
                   > div {
                     background-color: $blue;
-                    float: left;  // for right
+                    float: left;
+
+                    // for right
                     height: 100%;
                     padding: gutter();
+
                     > span {
                       @include text-color($white);
                       @include type-golden(1);
-                      float: left;  // for right
+
+                      float: left;
+
+                      // for right
                       height: 19px;
                       line-height: 19px;
                       white-space: nowrap;
@@ -125,66 +196,112 @@ $search-bar-height: calc(66px);
                 }
               }
             }
+
             > main {
               @include grid-container;
+
               > p {
                 @include type-golden(0);
+
                 font-weight: 300;
                 padding: 0 gutter();
               }
+
               padding: 0 gutter();
+
               > div {
                 > div:first-of-type {
                   float: left;
                   width: 100%;
+
                   > p {
                     @include type-golden(0);
+
                     font-weight: 300;
                     margin-bottom: gutter();
+
                     > strong {
                       font-weight: 600;
                     }
                   }
+
+                  button {
+                    @include type-golden(0);
+
+                    background-color: $blue;
+                    border: none;
+                    border-radius: 2px;
+                    cursor: pointer;
+                    display: inline-block;
+                    font-weight: 600;
+                    height: 44px;
+                    margin-bottom: gutter();
+                    padding: gutter(-1) gutter();
+
+                    img {
+                      height: 100%;
+                      margin-right: gutter(-1);
+                    }
+
+                    span {
+                      @include type-golden(0);
+
+                      color: $white;
+                      font-weight: 300;
+                      position: relative;
+                      text-transform: uppercase;
+                      top: -6px;
+                    }
+                  }
                 }
+
                 > div + div {
                   float: left;
                   overflow: hidden;
+
                   > div {
                     > div {
                       > p {
                         @include text-color($blue);
+
                         border-bottom: 2px solid $blue;
                         display: inline-block;
                         width: 100%;
                       }
                     }
                   }
+
                   &.horizontal {
                     width: 50%;
+
                     > div {
                       > div {
                         min-height: 105px;
                       }
                     }
+
                     &:nth-of-type(even) {
                       > div {
                         > div {
-                          padding-right: gutter()/2;
+                          padding-right: gutter() / 2;
                         }
                       }
                     }
+
                     &:nth-of-type(odd) {
                       > div {
                         > div {
-                          padding-left: gutter()/2;
+                          padding-left: gutter() / 2;
                         }
                       }
                     }
                   }
+
                   &.vertical {
                     > div {
                       > div {
                         @include grid-column(1 of 3);
+
                         margin-bottom: gutter();
                       }
                     }
@@ -193,21 +310,24 @@ $search-bar-height: calc(66px);
               }
             }
           }
-          > section:first-of-type {
-            > main {
 
-            }
+          > section:first-of-type {
+            > main {}
           }
+
           > section:last-of-type {
             > main {
               > div:first-of-type {
                 float: none;
                 width: 100%;
               }
+
               > div:last-of-type {
                 float: none;
+
                 &.horizontal {
                   width: 100%;
+
                   > div {
                     > div {
                       @include grid-column(1 of 2);
@@ -223,74 +343,96 @@ $search-bar-height: calc(66px);
   }
 }
 
-@mixin mobile-branch-detail-large() {
+@mixin mobile-branch-detail-large {
   background-color: transparent;
   padding: 60vh 0 0 0;
-  transform: translateY(100%); // for right
+  transform: translateY(100%);
+
+  // for right
   width: 100%;
+
   &.show {
-    transform: translateX(0); // for right
+    transform: translateX(0);
+
+    // for right
     transition: transform 300ms ease 300ms;
   }
+
   > div {
     background-color: $white;
     overflow: auto;
+
     > div {
       > article {
         > header {
           border-bottom: none;
           padding: gutter(1) gutter(0) gutter(0) gutter(0);
+
           > h1 {
             @include type-golden(1);
+
             line-height: gutter(1);
             margin-bottom: gutter();
             max-width: initial;
             padding-left: 0;
             text-align: left;
           }
+
           > h2 {
             @include type-golden(0);
+
             line-height: gutter();
             margin-bottom: gutter();
             max-width: initial;
             padding: 0;
             text-align: left;
           }
+
           > ul {
             padding: 0;
           }
         }
+
         > main {
           > section {
             margin-bottom: 0;
+
             > header {
               > div:first-of-type {
                 > h1 {
                   @include type-golden(0);
+
                   text-align: right;
                 }
               }
+
               &.percentage {
                 > div:first-of-type {
                   width: calc(100% / 1.61803398875);
                 }
+
                 > div:last-of-type {
                   width: calc(100% - 100% / 1.61803398875);
                 }
               }
             }
+
             > main {
               > p {
                 @include type-golden(0);
+
                 margin-bottom: gutter();
                 padding: 0 gutter();
               }
+
               padding: 0 gutter();
+
               > div:first-of-type {
                 > p {
                   @include type-golden(0);
                 }
               }
+
               > div:last-of-type {
                 > div {
                   > div {
@@ -299,18 +441,22 @@ $search-bar-height: calc(66px);
                     }
                   }
                 }
+
                 &.horizontal {
                   > div {
                     > div {
                       @include grid-column(1 of 1);
+
                       margin-bottom: gutter();
                     }
                   }
                 }
+
                 &.vertical {
                   > div {
                     > div {
                       @include grid-column(1 of 1);
+
                       margin-bottom: gutter();
                     }
                   }
@@ -318,6 +464,7 @@ $search-bar-height: calc(66px);
               }
             }
           }
+
           > section:first-of-type {
             > main {
               clear: both;
@@ -332,6 +479,7 @@ $search-bar-height: calc(66px);
 .branch-detail-large-cell {
   @include branch-detail-large;
 }
+
 .mobile .branch-detail-large-cell {
   @include mobile-branch-detail-large;
 }

@@ -1,52 +1,69 @@
-@mixin site-header() {
+@mixin site-header {
   background-color: $white;
   box-shadow: 0 2px 4px color($black, 0.5);
   height: $header-height;
   position: relative;
-  z-index: 2001;
-  @media (max-width: 720px) { display: none; }
+  z-index: 5001;
+
+  @media (max-width: 720px) {
+    display: none;
+  }
+
   > div:first-of-type {
     float: left;
     height: 100%;
     width: 206px;
+
     > a {
       display: inline-block;
       height: 100%;
       padding: 0.7rem gutter();
+
       > img {
         height: 100%;
       }
     }
   }
+
   > div:nth-of-type(2) {
     float: left;
     height: 100%;
     text-align: right;
     width: calc(100% - 206px - 68px);
+
     > form {
       display: inline-block;
+
       > input {
         border: none;
         font-family: $font-sans;
       }
     }
+
     > a, > form > input {
       @include type-golden(0);
+
       border-bottom: 2px solid transparent;
       color: $blue;
       display: inline-block;
       height: 100%;
       line-height: 19px;
       padding: gutter(1);
+
       &.active, &:hover {
         border-bottom-color: $light-blue;
         color: $light-blue;
         text-decoration: none;
       }
-      &:focus {text-decoration: none;}
+
+      &:focus {
+        text-decoration: none;
+      }
     }
+
     @media (max-width: 1024px) {
       overflow: hidden;
+
       > a, > form > input {
         // FIXME: I could not found a level for the type-golden() Mixin that
         //        wasn't so small. I don't like this approach so much, maybe
@@ -57,6 +74,7 @@
         padding: gutter(0);
       }
     }
+
     > form {
       > input {
         cursor: pointer;
@@ -64,27 +82,57 @@
       }
     }
   }
+
   > div:nth-of-type(3) {
     float: right;
     height: 100%;
+
     > a {
       background-color: $light-blue;
       cursor: pointer;
       display: block;
       height: 100%;
       padding: gutter(-1);
+
       &:hover {
         background-color: transparent;
+
         > i {
-          &.open {background-image: image-url('icons/search-light-blue.svg');}
-          &.close {background-image: image-url('icons/close-menu-light-blue.svg');}
-          &.back {background-image: image-url('icons/arrow-right-light-blue.svg');}
+          &.open {
+            background-image: image-url("icons/search-light-blue.svg");
+          }
+
+          &.close {
+            background-image: image-url("icons/close-menu-light-blue.svg");
+          }
+
+          &.closeDetails {
+            background-image: image-url("icons/close-menu-light-blue.svg");
+          }
+
+          &.back {
+            background-image: image-url("icons/arrow-right-light-blue.svg");
+          }
         }
       }
+
       > i {
-        &.open {background-image: image-url('icons/search.svg');}
-          &.close {background-image: image-url('icons/close-menu.svg');}
-          &.back {background-image: image-url('icons/arrow-right.svg');}
+        &.open {
+          background-image: image-url("icons/search.svg");
+        }
+
+        &.close {
+          background-image: image-url("icons/close-menu.svg");
+        }
+
+        &.closeDetails {
+          background-image: image-url("icons/close-menu.svg");
+        }
+
+        &.back {
+          background-image: image-url("icons/arrow-right.svg");
+        }
+
         background-size: cover;
         display: block;
         height: 20px;
@@ -95,6 +143,6 @@
   }
 }
 
-.site-header-cell{
+.site-header-cell {
   @include site-header;
 }

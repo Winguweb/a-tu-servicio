@@ -6,7 +6,8 @@ ATSB.Components['components/site-header'] = function(options) {
       events: {
         open: [['all:slides:close'], ['branch:list:large:open'], ['branch:compare:button:hide'], ['header:action:set', 'close']],
         close: [['all:slides:close'], ['general:info:open'], ['branch:compare:button:hide'], ['header:action:set', 'open'], ['map:activearea']],
-        back: [['branch:detail:large:close'], ['branch:list:large:open'], ['branch:compare:button:hide'], ['header:action:set', 'close']]
+        back: [['branch:detail:large:close'], ['branch:list:large:open'], ['branch:compare:button:hide'], ['header:action:set', 'close']],
+        closeDetails: [['branch:full:detail:close'], ['header:action:set', 'back']]
       }
     },
     created: function() {

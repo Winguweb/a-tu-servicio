@@ -185,6 +185,7 @@ representation:
 
 # Structure: Defines the relations between steps
 structure:
+  user_type: [1]
   speciality_waiting_times: [2, 5]
   speciality_satisfaction: [2, 7]
   b: [8, 9, 19, 10, 20]
