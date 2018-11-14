@@ -12,6 +12,7 @@
   padding: gutter(-1) gutter();
   position: absolute;
   top: 0;
+  transform: translate3d(-25px, -20px, 0);
   z-index: 3000;
 
   &.show {

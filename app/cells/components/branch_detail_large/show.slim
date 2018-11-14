@@ -92,7 +92,7 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                     strong
                       | {{branch.initial_source.specialities_count}}
                     = " especialidades disponibles en esta sede:"
-                div.horizontal
+                div
                   div
                     div v-for="speciality in branch.initial_source.specialities"
                       == cell('visualization_components/specialities_visualization')
