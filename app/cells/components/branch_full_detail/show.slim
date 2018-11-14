@@ -1,11 +1,32 @@
-div.branch-full-detail-cell v-bind:class="{show: actions.show}"
-
-  section.single-bars v-if="branch.details"
+div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.details"
+  header
+    h1
+      | {{branch.name}}
+    h2
+      | {{branch.provider.name}}
+  section
     h1 = "Tipo de usuarios"
-    div v-for="user_type in branch.details.user_types"
-      h2 = "{{user_type.name}}"
-      == cell('visualization_components/full_detail_bar')
+    div v-for="(user_type, nameId) in branch.details[1].answers"
+      h2 = "{{labels[1][nameId]}}"
+      == cell('visualization_components/full_detail_bar', 'user_type.percentage')
 
+  section
+    h1 = "Tiempos de espera"
+    div v-for="(waiting_times, nameId) in branch.details[2]"
+      h2 = "{{labels[2][nameId]}}"
+      == cell('visualization_components/full_detail_splitted_bar', 'waiting_times.detail[5].answers', label: 'labels[5]')
+
+  section
+    h1 = "Satisfacción por especialidad"
+    div v-for="(satisfactions, nameId) in branch.details[2]"
+      h2 = "{{labels[2][nameId]}}"
+      == cell('visualization_components/full_detail_splitted_bar', 'satisfactions.detail[7].answers', label: 'labels[7]' )
+      div v-for="(speciality, nameId) in satisfactions.detail[9].answers"
+        == cell('visualization_components/full_detail_bar_text', 'speciality', label: 'labels[9]', color: 'barColors.explanations.bad' )
+      hr
+      div v-for="(speciality, nameId) in satisfactions.detail[10].answers"
+        == cell('visualization_components/full_detail_bar_text', 'speciality', label: 'labels[10]', color: 'barColors.explanations.good' )
+      hr
 
 javascript:
   $(function() {ATSB.Components['components/branch-full-detail']({})});

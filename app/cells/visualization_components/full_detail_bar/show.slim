@@ -1,6 +1,6 @@
 div.full-detail-bar-cell
   div
     div
-      div :style="{backgroundColor: barColors.users_types, width: user_type.percentage + '%'}"
+      div :style="{backgroundColor: barColors.users_types, width: #{percentage} + '%'}"
   div.layout
-    span :style="{color: barColors.users_types, width: user_type.percentage + '%'}" = "{{user_type.percentage}}%"
+    span :style="{color: barColors.users_types, width: #{percentage} + '%'}" = "{{#{percentage}}}%"

@@ -6,7 +6,7 @@ $search-bar-height: calc(66px);
   display: none;
   left: 0;
   overflow-y: auto;
-  padding: gutter();
+  padding: gutter(1);
   position: fixed;
   right: 0;
   top: $search-bar-height;
@@ -16,13 +16,51 @@ $search-bar-height: calc(66px);
     display: block;
   }
 
+  > header {
+    border-bottom: 1px solid $blue;
+    margin-bottom: gutter();
+
+    > h1 {
+      @include text-color($blue, 1);
+      @include type-golden(1);
+
+      line-height: gutter(1);
+      max-width: calc(100% - 135px);
+      padding-right: gutter(1);
+      text-align: left;
+    }
+
+    > h2 {
+      @include text-color($grey, 1);
+      @include type-golden(0);
+
+      max-width: calc(100% - 135px);
+      padding-right: gutter(1);
+      text-align: left;
+    }
+  }
+
   > section {
+    border: 1px solid $light-grey;
     margin-bottom: gutter(2);
+    padding: gutter(1);
     width: 50%;
+
+    hr {
+      border: none;
+      border-top: 1px solid $light-grey;
+      margin: gutter(1);
+    }
 
     > div {
       > h2 {
         @include type-golden(-1);
+      }
+
+      > div {
+        > h2 {
+          @include type-golden(-1);
+        }
       }
     }
   }

@@ -3,12 +3,8 @@ class VisualizationComponents::FullDetailBarCell < Cell::ViewModel
 
   private
 
-  def ranges
+  def percentage
     model || []
-  end
-
-  def layout
-    'layout' if options[:layout]
   end
 
 end

@@ -1,4 +1,4 @@
-class VisualizationComponents::FullDetailBarTextCell < Cell::ViewModel
+class VisualizationComponents::FullDetailSplittedBarCell < Cell::ViewModel
   # include StatisticsHelper
 
   private
@@ -9,10 +9,6 @@ class VisualizationComponents::FullDetailBarTextCell < Cell::ViewModel
 
   def label
     options[:label]
-  end
-
-  def color
-    options[:color]
   end
 
 end

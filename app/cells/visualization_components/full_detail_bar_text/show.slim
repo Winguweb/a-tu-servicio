@@ -1,8 +1,8 @@
 div.full-detail-bar-text-cell
   div
     div
-      div style="background-color: #{range[:color]}; width: #{range[:percentage]}%"
+      div :style="{backgroundColor: #{color}, width: #{percentage}.percentage + '%'}"
       div
-        span = range[:text]
+        span = "{{#{label}[nameId]}}"
     div
-      span style="color: #{range[:color]}" = "#{range[:percentage]}%"
+      span :style="{color: #{color}, width: #{percentage}.percentage + '%'}" = "{{#{percentage}.percentage}}%"
