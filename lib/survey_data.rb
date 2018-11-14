@@ -3,8 +3,6 @@ class SurveyData
   Step = Struct.new(:id, :question, :multi_response, :answers)
   Answer = Struct.new(:id, :label, :value)
 
-  attr_reader :response_structure
-
   RESPONSE_STRUCTURE_KEYS = [
     {
       id: 1
@@ -17,7 +15,8 @@ class SurveyData
     {
       id: 11,
       keys: 'answers',
-      detail_ids: [12, 13, 14]
+      detail_ids: [12, 13, 14],
+      multiple: true
     },
     {
       id: 15,
@@ -26,10 +25,18 @@ class SurveyData
   ].freeze
   private_constant :RESPONSE_STRUCTURE_KEYS
 
+  def self.response_structure_keys
+    RESPONSE_STRUCTURE_KEYS
+  end
+
   def initialize(steps:)
     @steps_by_id = steps.index_by{|s| s[:id]}
     @response_structure = {}
     process_response_structure
+  end
+
+  def response_structure
+    @response_structure.deep_dup
   end
 
   private
@@ -56,7 +63,7 @@ class SurveyData
 
       _hash[answer.id] = {
         counter: 0,
-        percentage: 0.0,
+        percentage: (rand * rand(100)).round(2),
         detail: process_detail_for(detail_ids)
       }
     end
@@ -65,7 +72,7 @@ class SurveyData
   def process_answers_of(node_id)
     answers_data = @steps_by_id[node_id][:answers]
 
-    # TO-DO: Review this id vote_data.yml file change. Because I need to do
+    # TO-DO: Review this if the vote_data.yml file change. Because I need to do
     # this only because of the step 5 that has different answers depending on
     # the id of the previous step
     if node_id == 5
@@ -75,7 +82,7 @@ class SurveyData
     answers_data.each_with_object({}) do |answer_data, _hash|
       answer = Answer.new(answer_data[:id], answer_data[:data][:label], answer_data[:data][:value])
 
-      _hash[answer.id] = { counter: 0, percentage: 0.0 }
+      _hash[answer.id] = { counter: 0, percentage: (rand * rand(100)).round(2) }
     end
   end
 
