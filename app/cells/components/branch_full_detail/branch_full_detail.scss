@@ -52,6 +52,10 @@ $search-bar-height: calc(66px);
       margin: gutter(1);
     }
 
+    > h1 {
+      margin-bottom: gutter();
+    }
+
     > div {
       > h2 {
         @include type-golden(-1);

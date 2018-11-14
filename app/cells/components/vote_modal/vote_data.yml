@@ -183,7 +183,6 @@ representation:
         value: 3
         range: {min: 2, max: Infinity}
 
-
 # Structure: Defines the relations between steps
 structure:
   user_type: [1]
@@ -600,7 +599,6 @@ steps:
               label: "3 días o más"
               value: 3
             display: "+3"
-
       - depends_on_id: 10
         answers:
           - id: 1
@@ -627,7 +625,6 @@ steps:
               label: "1 minuto o más"
               value: 3
             display: "+1"
-
       - depends_on_id: 11
         answers:
           - id: 1
@@ -654,7 +651,6 @@ steps:
               label: "8 días o más"
               value: 3
             display: "+8"
-
       - depends_on_id: 12
         answers:
           - id: 1
@@ -681,7 +677,6 @@ steps:
               label: "Entre 8 días o más"
               value: 3
             display: "+8"
-
       - depends_on_id: 13
         answers:
           - id: 1
@@ -708,7 +703,6 @@ steps:
               label: "Entre 30 días o más"
               value: 3
             display: "+30"
-
       - depends_on_id: 14
         answers:
           - id: 1
@@ -735,7 +729,6 @@ steps:
               label: "Entre 20 días o más"
               value: 3
             display: "+20"
-
       - depends_on_id: 15
         answers:
           - id: 1

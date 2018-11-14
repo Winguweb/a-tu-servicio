@@ -1,9 +1,9 @@
 div.full-detail-splitted-bar-cell
   div
     div
-      div v-for="(data, nameId) in #{percentage}" :style="{backgroundColor: barColors.waiting_times[nameId], width: data.percentage + '%'}" v-if="data.percentage > 0"
+      div v-for="(data, nameId) in #{percentage}" :style="{backgroundColor: barColors.waiting_times[nameId], width: data.percentage + '%'}"
   div.layout
-    span v-for="(data, nameId) in #{percentage}" :style="{color: barColors.waiting_times[nameId], width: data.percentage + '%'}" v-if="data.percentage > 0"
+    span v-for="(data, nameId) in #{percentage}" :style="{color: barColors.waiting_times[nameId], width: data.percentage + '%'}"
       = "{{data.percentage}}%"
       br
       = "{{#{label}[nameId]}}"
