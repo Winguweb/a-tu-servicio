@@ -235,6 +235,7 @@ $search-bar-height: calc(66px);
                     display: inline-block;
                     font-weight: 600;
                     height: 44px;
+                    margin-bottom: gutter();
                     padding: gutter(-1) gutter();
 
                     img {

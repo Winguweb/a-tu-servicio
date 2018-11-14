@@ -23,7 +23,6 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
       branchFetchSuccess: function(response) {
         this.branch = response.data
         this.branch.loaded = true
-        this.openDetailsModal()
       },
       branchFetchError: function() {
         console.warn('Cant reach branch')

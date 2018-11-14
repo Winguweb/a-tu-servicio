@@ -6,7 +6,7 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
       | {{branch.provider.name}}
 
   div
-    section.left
+    section
       h1 = "Tipo de usuarios"
       div v-for="(user_type, nameId) in branch.metrics[1].answers"
         h2 = "{{labels[1][nameId]}}"
@@ -26,6 +26,8 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
         strong = "Particular:"
         = "Es el ciudadano que puede estar dentro del sistema en el régimen contributivo pero que, adicionalmente quiere realizar una consulta y pagarla de forma independiente."
 
+  hr
+
   div
     section
       h1 = "Tiempos de espera"
@@ -36,18 +38,24 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
     section
       p = "Esta dimensión expresa el tiempo de espera en días calendario, que trascurre entre el primer contacto con la IPS/EAPB para la asignación de la cita de primera vez y la fecha en que es asignada la cita."
 
+  hr
+
   div
     section
       h1 = "Satisfacción por especialidad"
       div v-for="(satisfactions, nameId) in branch.metrics[2]"
         h2 = "{{labels[2][nameId]}}"
         == cell('visualization_components/full_detail_splitted_bar', 'satisfactions.detail[7].answers', label: 'labels[7]' )
-        div v-for="(explanation, nameId) in satisfactions.detail[9].answers"
-          == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[9]', color: 'barColors.explanations.bad' )
-        hr
-        div v-for="(explanation, nameId) in satisfactions.detail[10].answers"
-          == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[10]', color: 'barColors.explanations.good' )
-        hr
+        button @click="showMoreDetails('2_' + nameId)" = "Ver detalles"
+        div v-show="showStatuses['2_' + nameId]"
+          h2 = "La BUENA experiencia está relacionada con:"
+          div v-for="(explanation, nameId) in satisfactions.detail[9].answers"
+            == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[9]', color: 'barColors.explanations.bad' )
+          hr
+          h2 = "La MALA experiencia está relacionada con:"
+          div v-for="(explanation, nameId) in satisfactions.detail[10].answers"
+            == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[10]', color: 'barColors.explanations.good' )
+          hr
 
     section
       p = "Se refiere al grado en que un sistema organiza sus funciones de acuerdo a las necesidades del paciente/usuario en lo que refiere a la prestación de servicios de salud y, a menudo se evalúa en términos de la experiencia durante su atención."
@@ -58,31 +66,43 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
         strong = "La mala experiencia está relaciona con:"
         = "Se refiere aquellos aspectos negativos en que el usuario calificó la prestación del servicio como: sintió que no se resolvió su necesidad, no hubo coherencia entre la atención que le brindaron y lo que manifestó en su consulta, no se respetó su dignidad, etc."
 
+  hr
+
   div
     section
       h1 = "Humanización"
       div v-for="(personnel, nameId) in branch.metrics[11]"
         h2 = "{{labels[11][nameId]}}"
         == cell('visualization_components/full_detail_splitted_bar', 'personnel.detail[12].answers', label: 'labels[12]' )
-        div v-for="(explanation, nameId) in personnel.detail[13].answers"
-          == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[13]', color: 'barColors.explanations.bad' )
-        hr
-        div v-for="(explanation, nameId) in personnel.detail[14].answers"
-          == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[14]', color: 'barColors.explanations.good' )
-        hr
+        button @click="showMoreDetails('11_' + nameId)" = "Ver detalles"
+        div v-show="showStatuses['11_' + nameId]"
+          h2 = "La BUENA experiencia está relacionada con:"
+          div v-for="(explanation, nameId) in personnel.detail[13].answers"
+            == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[13]', color: 'barColors.explanations.bad' )
+          hr
+          h2 = "La MALA experiencia está relacionada con:"
+          div v-for="(explanation, nameId) in personnel.detail[14].answers"
+            == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[14]', color: 'barColors.explanations.good' )
+          hr
 
     section
+
+  hr
 
   div
     section
       h1 = "Satisfacción"
       == cell('visualization_components/full_detail_splitted_bar', 'branch.metrics[15].answers', label: 'labels[15]' )
-      div v-for="(explanation, nameId) in branch.metrics[15].detail[16].answers"
-        == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[16]', color: 'barColors.explanations.bad' )
-      hr
-      div v-for="(explanation, nameId) in branch.metrics[15].detail[17].answers"
-        == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[17]', color: 'barColors.explanations.good' )
-      hr
+      button @click="showMoreDetails('15_1')" = "Ver detalles"
+      div v-show="showStatuses['15_1']"
+        h2 = "La BUENA experiencia está relacionada con:"
+        div v-for="(explanation, nameId) in branch.metrics[15].detail[16].answers"
+          == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[16]', color: 'barColors.explanations.bad' )
+        hr
+        h2 = "La MALA experiencia está relacionada con:"
+        div v-for="(explanation, nameId) in branch.metrics[15].detail[17].answers"
+          == cell('visualization_components/full_detail_bar_text', 'explanation', label: 'labels[17]', color: 'barColors.explanations.good' )
+        hr
 
     section
 

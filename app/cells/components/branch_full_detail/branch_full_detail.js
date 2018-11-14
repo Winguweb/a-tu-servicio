@@ -4,6 +4,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
     data: {
       branch: {loaded: false},
       actions: {show: false},
+      showStatuses: {},
       barColors: {
         users_types: "#3fa6c9",
         waiting_times: {
@@ -115,6 +116,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
       }
     },
     created: function() {
+      ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:full:detail:open', this.componentOpen)
       ATSB.pubSub.$on('branch:full:detail:close', this.componentClose)
       ATSB.pubSub.$on('branch:full:detail:data', this.branchData)
@@ -129,6 +131,12 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
       branchData: function(branch) {
         this.branch = branch
       },
+      showMoreDetails: function(name) {
+        if (this.showStatuses[name] === undefined) {
+          this.$set(this.showStatuses, name, false)
+        }
+        this.showStatuses[name] = !this.showStatuses[name]
+      }
     }
   })
 }

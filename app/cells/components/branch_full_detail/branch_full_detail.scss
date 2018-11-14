@@ -4,7 +4,6 @@ $search-bar-height: calc(66px);
   background-color: $white;
   bottom: 0;
   display: none;
-  display: flex;
   left: 0;
   overflow-y: auto;
   padding: gutter(1);
@@ -41,16 +40,30 @@ $search-bar-height: calc(66px);
     }
   }
 
+  hr {
+    border: none;
+    border-top: 1px solid $light-grey;
+    margin-bottom: gutter(1);
+    margin-top: 0;
+  }
+
   > div {
     clear: both;
+    display: flex;
+    flex-direction: row;
     overflow: auto;
+
+    > hr {
+      margin-top: gutter(1);
+    }
 
     > section {
       border: 1px solid $light-grey;
-      float: left;
-      margin-bottom: gutter(2);
+      flex-basis: 0;
+      flex-grow: 1;
+      margin-bottom: gutter(1);
+      overflow: auto;
       padding: gutter(1);
-      width: 50%;
 
       &:last-of-type {
         border: none;
@@ -66,12 +79,6 @@ $search-bar-height: calc(66px);
         }
       }
 
-      hr {
-        border: none;
-        border-top: 1px solid $light-grey;
-        margin: gutter(1);
-      }
-
       > h1 {
         margin-bottom: gutter();
       }
@@ -79,12 +86,40 @@ $search-bar-height: calc(66px);
       > div {
         > h2 {
           @include type-golden(-1);
+
+          margin-bottom: gutter();
         }
 
         > div {
           > h2 {
             @include type-golden(-1);
+
+            margin-bottom: gutter();
           }
+        }
+      }
+
+      > div {
+        clear: both;
+        overflow: auto;
+      }
+
+      > button,
+      > div > button {
+        background-color: $light-grey;
+        border: none;
+        color: $light-blue;
+        cursor: pointer;
+        float: right;
+        margin-bottom: gutter();
+        padding: gutter(-1);
+
+        & + div {
+          $factor: 34;
+
+          border-right: #{gutter() * $factor / 100} solid $blue;
+          clear: both;
+          padding-right: #{gutter() * $factor / 100};
         }
       }
     }
@@ -92,7 +127,36 @@ $search-bar-height: calc(66px);
 }
 
 @mixin mobile-branch-full-detail {
-  padding: 0;
+  &.show {
+    display: block;
+  }
+
+  > header {
+    > h1 {
+      @include type-golden(1);
+
+      line-height: gutter(1);
+      margin-bottom: gutter();
+      max-width: initial;
+      padding-left: 0;
+      text-align: left;
+    }
+
+    > h2 {
+      @include type-golden(0);
+
+      line-height: gutter();
+      margin-bottom: gutter();
+      max-width: initial;
+      padding: 0;
+      text-align: left;
+    }
+  }
+
+  > div {
+    display: block;
+    padding: 0;
+  }
 }
 
 .branch-full-detail-cell {
