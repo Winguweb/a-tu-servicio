@@ -4,6 +4,7 @@ $search-bar-height: calc(66px);
   background-color: $white;
   bottom: 0;
   display: none;
+  display: flex;
   left: 0;
   overflow-y: auto;
   padding: gutter(1);
@@ -40,30 +41,40 @@ $search-bar-height: calc(66px);
     }
   }
 
-  > section {
-    border: 1px solid $light-grey;
-    margin-bottom: gutter(2);
-    padding: gutter(1);
-    width: 50%;
+  > div {
+    clear: both;
+    overflow: auto;
 
-    hr {
-      border: none;
-      border-top: 1px solid $light-grey;
-      margin: gutter(1);
-    }
+    > section {
+      border: 1px solid $light-grey;
+      float: left;
+      margin-bottom: gutter(2);
+      padding: gutter(1);
+      width: 50%;
 
-    > h1 {
-      margin-bottom: gutter();
-    }
+      &:last-of-type {
+        border: none;
+      }
 
-    > div {
-      > h2 {
-        @include type-golden(-1);
+      hr {
+        border: none;
+        border-top: 1px solid $light-grey;
+        margin: gutter(1);
+      }
+
+      > h1 {
+        margin-bottom: gutter();
       }
 
       > div {
         > h2 {
           @include type-golden(-1);
+        }
+
+        > div {
+          > h2 {
+            @include type-golden(-1);
+          }
         }
       }
     }
