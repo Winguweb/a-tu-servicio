@@ -13,17 +13,18 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
         == cell('visualization_components/full_detail_bar', 'user_type.percentage')
 
     section
-      ul
-        li
-          p = "No asegurado: Es el ciudadano que no se encuentra en ninguno de los dos regímenes."
-        li
-          p = "Subsidiado: Es el ciudadano que se encuentra afiliado al Sistema General de Seguridad Social en Salud gracias a los aportes realizados por los afiliados con capacidad de pago."
-        li
-          p = "Contributivo: Es el ciudadano con capacidad de pago, ya sea empleado o independiente, que contribuye económicamente con su aporte para pertenecer al Sistema General de Seguridad Social en Salud."
-        li
-          p = "Prepagada: Es el ciudadano que tiene la capacidad de pagar el servicio opcional de medicina prepagada dentro del régimen contributivo."
-        li
-          p = "Particular: Es el ciudadano que puede estar dentro del sistema en el régimen contributivo pero que, adicionalmente quiere realizar una consulta y pagarla de forma independiente."
+      p
+        strong = "No asegurado:"
+        = "Es el ciudadano que no se encuentra en ninguno de los dos regímenes."
+      p
+        strong = "Subsidiado:"
+        = "Es el ciudadano que se encuentra afiliado al Sistema General de Seguridad Social en Salud gracias a los aportes realizados por los afiliados con capacidad de pago."
+      p
+        strong = "Contributivo:"
+        = "Es el ciudadano con capacidad de pago, ya sea empleado o independiente, que contribuye económicamente con su aporte para pertenecer al Sistema General de Seguridad Social en Salud."
+      p
+        strong = "Particular:"
+        = "Es el ciudadano que puede estar dentro del sistema en el régimen contributivo pero que, adicionalmente quiere realizar una consulta y pagarla de forma independiente."
 
   div
     section
@@ -33,6 +34,7 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
         == cell('visualization_components/full_detail_splitted_bar', 'waiting_times.detail[5].answers', label: 'labels[5]')
 
     section
+      p = "Esta dimensión expresa el tiempo de espera en días calendario, que trascurre entre el primer contacto con la IPS/EAPB para la asignación de la cita de primera vez y la fecha en que es asignada la cita."
 
   div
     section
@@ -48,6 +50,13 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
         hr
 
     section
+      p = "Se refiere al grado en que un sistema organiza sus funciones de acuerdo a las necesidades del paciente/usuario en lo que refiere a la prestación de servicios de salud y, a menudo se evalúa en términos de la experiencia durante su atención."
+      p
+        strong = "La buena experiencia está relaciona con:"
+        = "Se refiere aquellos aspectos positivos en que el usuario calificó la prestación del servicio como: sintió que se resolvió su necesidad, hubo coherencia entre la atención que le brindaron y lo que manifestó en su consulta, se respetó su dignidad, etc."
+      p
+        strong = "La mala experiencia está relaciona con:"
+        = "Se refiere aquellos aspectos negativos en que el usuario calificó la prestación del servicio como: sintió que no se resolvió su necesidad, no hubo coherencia entre la atención que le brindaron y lo que manifestó en su consulta, no se respetó su dignidad, etc."
 
   div
     section

@@ -54,6 +54,16 @@ $search-bar-height: calc(66px);
 
       &:last-of-type {
         border: none;
+
+        > p {
+          font-weight: 300;
+          margin-bottom: gutter();
+
+          > strong {
+            display: block;
+            font-weight: 600;
+          }
+        }
       }
 
       hr {
