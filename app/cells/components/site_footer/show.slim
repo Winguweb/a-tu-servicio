@@ -13,11 +13,15 @@ footer.site-footer-cell
           = link_to '//www.avina.net/avina/', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank' do
             = image_tag asset_path("logos/avina.svg"), class: 'avina'
         li
+          = link_to '//www.caf.com', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank' do
+            = image_tag asset_path("logos/caf.svg"), class: 'caf'
+        li
           = link_to '//www.winguweb.org', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank' do
             = image_tag asset_path("logos/wingu.svg"), class: 'wingu'
         li
           = link_to '//www.saludcapital.gov.co', noopener: 'noopener', noreferrer: 'noreferrer', target: '_blank' do
             = image_tag asset_path("logos/alcaldia.svg"), class: 'alcaldia'
+            = image_tag asset_path("logos/bogota-mejor.svg"), class: 'bogotamejor'
       - else
         li
           span= image_tag asset_path("logos/fundacion-corona.svg"), class: 'fundacion-corona'
