@@ -66,11 +66,12 @@ ATSB.Components['components/reference-map'] = function(options) {
         var filtered = this.selectedBranch.length ? branches.filter(this.getSelectedBranch) : branches
         filtered.forEach(function(branch) {
           var featured = branch.featured ? 'marker-featured' : ''
+          var size = branch.featured ? {width: 35, height: 35} : {width: 25, height: 25}
           var marker = new L.Marker(branch.coordinates, {
             icon: new L.divIcon({
               html: '<div class="reference-map--marker ' + featured + '"><i></i></div>',
-              iconAnchor: [8, 15],
-              iconSize: [15, 15],
+              iconAnchor: [size.width, size.height],
+              iconSize: [size.width, size.height],
             }),
             id: branch.id
           })
