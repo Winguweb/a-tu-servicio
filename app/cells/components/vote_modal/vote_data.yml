@@ -979,8 +979,8 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis espectativas"
-        value: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis espectativas"
+        label: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis expectativas"
+        value: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis expectativas"
     - id: 6
       type: "option"
       auto_submit: true
@@ -1124,7 +1124,7 @@ steps:
       13: 12
     answer: null
   - id: 12
-    question: "¿Cómo califica el trato del personal que lo atendio?"
+    question: "¿Cómo califica el trato del personal que lo atendió?"
     multi_response: true
     answers:
     - id: 1
@@ -1171,7 +1171,7 @@ steps:
       5: 14
     answer: null
   - id: 13
-    question: "¿Cuál fue el motivo la mala atención?"
+    question: "¿Cuál fue el motivo de la mala atención?"
     multi_response: true
     loop_from: 11
     answers:
@@ -1180,8 +1180,8 @@ steps:
       auto_submit: false
       should_save: true
       data:
-        label: "No se presentó amabilidad y calidéz por parte de los funcionarios"
-        value: "No se presentó amabilidad y calidéz por parte de los funcionarios"
+        label: "No se presentó amabilidad y calidez por parte de los funcionarios"
+        value: "No se presentó amabilidad y calidez por parte de los funcionarios"
     - id: 2
       type: "option"
       auto_submit: false
@@ -1219,7 +1219,7 @@ steps:
       5: 21
     answer: null
   - id: 21
-    question: "¿Cuál fue el motivo la mala atención?"
+    question: "¿Cuál fue el motivo de la mala atención?"
     multi_response: true
     loop_from: 11
     answers:
@@ -1244,8 +1244,8 @@ steps:
       auto_submit: false
       should_save: true
       data:
-        label: "Se presentó amabilidad y calidéz por parte de los funcionarios"
-        value: "Se presentó amabilidad y calidéz por parte de los funcionarios"
+        label: "Se presentó amabilidad y calidez por parte de los funcionarios"
+        value: "Se presentó amabilidad y calidez por parte de los funcionarios"
     - id: 2
       type: "option"
       auto_submit: false
@@ -1346,7 +1346,7 @@ steps:
       5: 17
     answer: null
   - id: 16
-    question: "¿Cuál fue el motivo la mala atención?"
+    question: "¿Cuál fue el motivo de la mala atención?"
     multi_response: false
     answers:
     - id: 1
@@ -1393,7 +1393,7 @@ steps:
       5: 23
     answer: null
   - id: 23
-    question: "¿Cuál fue el motivo la mala atención?"
+    question: "¿Cuál fue el motivo de la mala atención?"
     multi_response: false
     answers:
     - id: 1
