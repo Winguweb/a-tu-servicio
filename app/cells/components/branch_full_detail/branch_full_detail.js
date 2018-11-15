@@ -37,7 +37,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
           11: "Psiquiatría",
           12: "Gastroenterología",
           13: "Radiología",
-          14: "Urgencias (Triage 2)",
+          14: "Urgencias",
           15: "Toma de muestras en laboratorio"
         },
         5: {
@@ -67,7 +67,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
         11: {
           1: "Personal de apoyo",
           2: "Personal administrativo",
-          3: "Personal de enfermería",
+          3: "Enfermero(a)",
           4: "Médico(a)",
           5: "Médico(a) especialista",
           6: "Odontología",

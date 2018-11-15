@@ -159,7 +159,7 @@ representation:
         range: {min: 3, max: Infinity}
 
 
-    - speciality: "Urgencias (Triage 2)"
+    - speciality: "Urgencias"
       mappings:
       - label: "Entre 1 y 30 minutos"
         value: 1
@@ -313,8 +313,8 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "Urgencias (Triage 2)"
-        value: "Urgencias (Triage 2)"
+        label: "Urgencias"
+        value: "Urgencias"
     - id: 11
       type: "cuckoo"
       auto_submit: true
@@ -817,7 +817,7 @@ steps:
     next_step:
       1: 9
       2: 9
-      3: 10
+      3: 9
       4: 10
       5: 10
     answer: null
@@ -1047,8 +1047,8 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "Personal de enfermería"
-        value: "Personal de enfermería"
+        label: "Enfermero(a)"
+        value: "Enfermero(a)"
     - id: 4
       type: "cuckoo"
       auto_submit: true
@@ -1171,7 +1171,7 @@ steps:
     next_step:
       1: 13
       2: 13
-      3: 14
+      3: 13
       4: 14
       5: 14
     answer: null
@@ -1346,7 +1346,7 @@ steps:
     next_step:
       1: 16
       2: 16
-      3: 17
+      3: 16
       4: 17
       5: 17
     answer: null
