@@ -2,9 +2,7 @@ module Reporting
   class SurveyExporter < Exporter
 
     include HomeHelper
-    HEADER =  ["¿Qué tipo de usuario eres?", "Selecciona el servicio para el cual solicitaste la cita", "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?", "¿Cómo calificas la atención recibida?","Urgencias", "servicio de salud", "Evaluacion de personal"]
-    #HEADER =  ["¿Qué tipo de usuario eres?", "Selecciona el servicio para el cual solicitaste la cita", "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?", "¿Cómo calificas la atención recibida?", "¿Cómo calificas tu experiencia en el servicio de urgencia?", "¿Qué valoras de tu experiencia en el servicio de urgencia?", "¿Qué valoras de tu experiencia en el servicio de urgencia?", "Escoja el personal por el cual fue atendido", "¿Cómo califica el trato del personal que lo atendio?", "¿Qué valoras de la atención recibida?", "¿Qué valoras de la atención recibida?", "¿Cuál es su nivel de satisfacción con la calidad el servicio de salud?", "¿Qué valoras de la calidad del servicio de salud?", "¿Qué valoras de la calidad del servicio de salud?"]
-    # HEADER = Survey.all.pluck(:question_value).uniq.freeze
+    HEADER =  ["¿Qué tipo de usuario eres?", "Selecciona el servicio para el cual solicitaste la cita", "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?", "¿Cómo calificas la atención recibida?", "servicio de salud", "Evaluacion de personal"]
 
     def initialize(user,options = {})
       @surveys = options[:data]
@@ -86,11 +84,11 @@ module Reporting
           json[filter_data[index +2][1]] = get_others_value(filter_data[index +2][0])
           personal_data << json
         elsif answer[2] == 8 # "¿Cómo calificas tu experiencia en el servicio de urgencia?" 
-          urgency_json = Hash.new
-          urgency_json[answer[1]] = get_others_value(answer[0]) 
-          urgency_json[filter_data[index +1][1]] =  get_others_value(filter_data[index +1][0])
-          urgency_data << urgency_json
-          answers << urgency_data
+          # urgency_json = Hash.new
+          # urgency_json[answer[1]] = get_others_value(answer[0]) 
+          # urgency_json[filter_data[index +1][1]] =  get_others_value(filter_data[index +1][0])
+          # urgency_data << urgency_json
+          # answers << urgency_data
         elsif answer[2] == 15 #"¿Cuál es su nivel de satisfacción con la calidad el servicio de salud?"
          
           service_json = Hash.new

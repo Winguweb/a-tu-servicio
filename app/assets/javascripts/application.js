@@ -13,6 +13,7 @@
 //= require branch_detail_half_right
 //= require branch_detail_large
 //= require branch_info_popup
+//= require branch_full_detail
 //= require branch_list_half_right
 //= require branch_list_large
 //= require compare_branch_button

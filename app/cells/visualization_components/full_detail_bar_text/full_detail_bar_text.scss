@@ -1,0 +1,58 @@
+@mixin full-detail-bar-text {
+  margin-bottom: gutter(-1);
+
+  > div {
+    > div:first-of-type {
+      background-color: $light-grey;
+      position: relative;
+
+      &:hover {
+        > div:first-of-type {
+          opacity: 0.8;
+        }
+      }
+
+      > div:first-of-type {
+        height: 100%;
+        left: 0;
+        opacity: 0.5;
+        position: absolute;
+        top: 0;
+      }
+
+      > div:last-of-type {
+        position: relative;
+        z-index: 1;
+
+        > span {
+          @include type-golden(-1);
+
+          background-color: color($blue, 0.2);
+          color: $white;
+          display: inline-block;
+          margin: gutter() * 0.34;
+          padding: gutter(-4) gutter(-3);
+        }
+
+        &:hover {
+          span {
+            background-color: color($blue, 0.8);
+          }
+        }
+      }
+    }
+
+    > div:last-of-type {
+      > span {
+        @include type-golden(-1);
+
+        display: block;
+        vertical-align: top;
+      }
+    }
+  }
+}
+
+.full-detail-bar-text-cell {
+  @include full-detail-bar-text;
+}

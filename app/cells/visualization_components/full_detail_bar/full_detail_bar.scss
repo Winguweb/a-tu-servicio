@@ -1,0 +1,67 @@
+@mixin full-detail-bar {
+  margin-bottom: gutter();
+
+  > div {
+    height: gutter();
+    position: relative;
+    white-space: nowrap;
+
+    &:first-of-type {
+      background-color: $light-grey;
+
+      &:before,
+      &:after {
+        $height: 34;
+
+        background-color: $white;
+        content: '';
+        height: #{$height + "%"};
+        left: gutter() * $height / 100;
+        position: absolute;
+        right: gutter() * $height / 100;
+        z-index: 1;
+      }
+
+      &:before {
+        top: 0;
+      }
+
+      &:after {
+        bottom: 0;
+      }
+    }
+
+    > span {
+      @include type-golden(-1);
+
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .single-bars &.layout {
+      height: 0;
+
+      > span {
+        position: relative;
+        text-align: right;
+        top: -#{gutter() * 2};
+        width: 100% !important;
+      }
+    }
+
+    > div {
+      height: 100%;
+      white-space: nowrap;
+
+      > div {
+        display: inline-block;
+        height: 100%;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+.full-detail-bar-cell {
+  @include full-detail-bar;
+}

@@ -1,39 +1,70 @@
-@mixin m-site-header() {
+@mixin m-site-header {
   background-color: $white;
   box-shadow: 0 2px 4px color($black, 0.5);
   height: $header-height;
   position: relative;
   z-index: 2001;
-  @media (min-width: 720px) { display: none; }
+
+  @media (min-width: 720px) {
+    display: none;
+  }
+
   > div:nth-of-type(2) {
     float: left;
     height: 100%;
     text-align: center;
     width: calc(100% - 68px - 68px);
+
     > a {
       display: inline-block;
       height: 100%;
       padding: 0.7rem gutter();
+
       > img {
         height: 100%;
       }
     }
   }
-  > div:nth-of-type(1) {float: left;}
-  > div:nth-of-type(3) {float: right;}
+
+  > div:nth-of-type(1) {
+    float: left;
+  }
+
+  > div:nth-of-type(3) {
+    float: right;
+  }
+
   > div:nth-of-type(1),
   > div:nth-of-type(3) {
     height: 100%;
+
     > a {
       cursor: pointer;
       display: block;
       height: 100%;
       padding: gutter(-1);
+
       > i {
-        &.menu {background-image: image-url('icons/menu.svg');}
-        &.search {background-image: image-url('icons/search-mobile.svg');}
-        &.close {background-image: image-url('icons/arrow-left-mobile.svg');}
-        &.back {background-image: image-url('icons/arrow-left-mobile.svg');}
+        &.menu {
+          background-image: image-url("icons/menu.svg");
+        }
+
+        &.search {
+          background-image: image-url("icons/search-mobile.svg");
+        }
+
+        &.close {
+          background-image: image-url("icons/arrow-left-mobile.svg");
+        }
+
+        &.back {
+          background-image: image-url("icons/arrow-left-mobile.svg");
+        }
+
+        &.closeDetails {
+          background-image: image-url("icons/close-menu-light-blue.svg");
+        }
+
         background-size: cover;
         display: block;
         height: 20px;
@@ -44,6 +75,6 @@
   }
 }
 
-.m-site-header-cell{
+.m-site-header-cell {
   @include m-site-header;
 }

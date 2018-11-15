@@ -1,0 +1,99 @@
+@mixin full-detail-splitted-bar {
+  > div {
+    height: gutter();
+    position: relative;
+    white-space: nowrap;
+
+    &:first-of-type {
+      background-color: $light-grey;
+
+      &:before,
+      &:after {
+        $height: 34;
+
+        background-color: $white;
+        content: '';
+        height: #{$height + "%"};
+        left: gutter() * $height / 100;
+        position: absolute;
+        right: gutter() * $height / 100;
+        z-index: 1;
+      }
+
+      &:before {
+        top: 0;
+      }
+
+      &:after {
+        bottom: 0;
+      }
+    }
+
+    &:last-of-type {
+      display: flex;
+      flex-direction: row;
+
+      > span {
+        @include type-golden(-1);
+
+        display: inline-block;
+        flex-grow: 1;
+        padding: gutter(-1) 0;
+        text-align: center;
+        vertical-align: top;
+      }
+    }
+
+    &.layout {
+      height: auto;
+    }
+
+    .single-bars &.layout {
+      height: 0;
+
+      > span {
+        position: relative;
+        text-align: right;
+        top: -#{gutter() * 2};
+        width: 100% !important;
+      }
+    }
+
+    > div {
+      height: 100%;
+      white-space: nowrap;
+
+      > div {
+        display: inline-block;
+        height: 100%;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+@mixin mobile-full-detail-splitted-bar {
+  > div {
+    &:last-of-type {
+      display: block;
+
+      > span {
+        display: block;
+        padding: 0;
+        text-align: left;
+
+        &:last-of-type {
+          margin-bottom: gutter();
+        }
+      }
+    }
+  }
+}
+
+.full-detail-splitted-bar-cell {
+  @include full-detail-splitted-bar;
+}
+
+.mobile .full-detail-splitted-bar-cell {
+  @include mobile-full-detail-splitted-bar;
+}

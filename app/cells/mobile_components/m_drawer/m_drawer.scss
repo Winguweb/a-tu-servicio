@@ -1,4 +1,4 @@
-@mixin m-drawer() {
+@mixin m-drawer {
   bottom: 0;
   box-shadow: 0 2px 4px color($black, 0.5);
   left: 0;
@@ -8,23 +8,27 @@
   transition: background-color 300ms ease, transform 0ms ease 300ms;
   width: 100%;
   z-index: 2001;
+
   &.show {
     background-color: #22222299;
     transform: translateX(0%);
     transition: background-color 300ms ease, transform 0ms ease;
+
     > div:last-of-type {
       transform: translateX(0%);
     }
   }
+
   > div:first-of-type {
     background-color: #22222200;
-    bottom:0;
+    bottom: 0;
     left: 0;
     position: absolute;
     right: 0;
     top: 0;
     z-index: -1;
   }
+
   > div:last-of-type {
     background-color: $white;
     border-top: 1px solid $light-grey;
@@ -38,14 +42,18 @@
     transition: transform 300ms;
     width: calc(100% / 1.61803398875);
     will-change: transform;
+
     > ul {
       > li {
         padding: 0 gutter();
+
         &.active {
           background-color: $light-grey;
         }
+
         > a, > form > input {
-          @include type-golden(0);
+          @include type-golden(-1);
+
           border: none;
           color: $blue;
           cursor: pointer;
@@ -54,6 +62,7 @@
           padding: gutter();
           text-align: left;
           width: 100%;
+
           &:hover, &:focus {
             color: $blue;
             text-decoration: none;
@@ -64,6 +73,6 @@
   }
 }
 
-.m-drawer-cell{
+.m-drawer-cell {
   @include m-drawer;
 }

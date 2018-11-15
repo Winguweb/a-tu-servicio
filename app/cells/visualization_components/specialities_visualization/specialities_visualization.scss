@@ -1,24 +1,25 @@
-@mixin specialities-visualization() {
+@mixin specialities-visualization {
   border-radius: 2px;
   padding: gutter(-1);
+
   > img {
     display: inline-block;
     margin-right: 5px;
     vertical-align: top;
     width: 30px;
   }
+
   > span {
     display: inline-block;
     font-size: .85rem;
     font-weight: 300;
     line-height: 1.2rem;
-    margin-top: 1px;
+    margin-top: 6px;
     vertical-align: top;
-    width: calc(100% - 40px);
   }
 }
 
-@mixin mobile-specialities-visualization() {
+@mixin mobile-specialities-visualization {
   height: auto;
 }
 

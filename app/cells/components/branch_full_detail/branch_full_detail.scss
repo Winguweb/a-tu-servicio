@@ -1,0 +1,168 @@
+$search-bar-height: calc(66px);
+
+@mixin branch-full-detail {
+  background-color: $white;
+  bottom: 0;
+  display: none;
+  left: 0;
+  overflow-y: auto;
+  padding: gutter(1);
+  position: fixed;
+  right: 0;
+  top: $search-bar-height;
+  z-index: 4000;
+
+  &.show {
+    display: block;
+  }
+
+  > header {
+    border-bottom: 1px solid $blue;
+    margin-bottom: gutter();
+
+    > h1 {
+      @include text-color($blue, 1);
+      @include type-golden(1);
+
+      line-height: gutter(1);
+      max-width: calc(100% - 135px);
+      padding-right: gutter(1);
+      text-align: left;
+    }
+
+    > h2 {
+      @include text-color($grey, 1);
+      @include type-golden(0);
+
+      max-width: calc(100% - 135px);
+      padding-right: gutter(1);
+      text-align: left;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid $light-grey;
+    margin-bottom: gutter(1);
+    margin-top: 0;
+  }
+
+  > div {
+    clear: both;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+
+    > hr {
+      margin-top: gutter(1);
+    }
+
+    > section {
+      border: 1px solid $light-grey;
+      flex-basis: 0;
+      flex-grow: 1;
+      margin-bottom: gutter(1);
+      overflow: auto;
+      padding: gutter(1);
+
+      &:last-of-type {
+        border: none;
+
+        > p {
+          font-weight: 300;
+          margin-bottom: gutter();
+
+          > strong {
+            display: block;
+            font-weight: 600;
+          }
+        }
+      }
+
+      > h1 {
+        margin-bottom: gutter();
+      }
+
+      > div {
+        > h2 {
+          @include type-golden(-1);
+
+          margin-bottom: gutter();
+        }
+
+        > div {
+          > h2 {
+            @include type-golden(-1);
+
+            margin-bottom: gutter();
+          }
+        }
+      }
+
+      > div {
+        clear: both;
+        overflow: auto;
+      }
+
+      > button,
+      > div > button {
+        background-color: $light-grey;
+        border: none;
+        color: $light-blue;
+        cursor: pointer;
+        float: right;
+        margin-bottom: gutter();
+        padding: gutter(-1);
+
+        & + div {
+          $factor: 34;
+
+          border-right: #{gutter() * $factor / 100} solid $blue;
+          clear: both;
+          padding-right: #{gutter() * $factor / 100};
+        }
+      }
+    }
+  }
+}
+
+@mixin mobile-branch-full-detail {
+  &.show {
+    display: block;
+  }
+
+  > header {
+    > h1 {
+      @include type-golden(1);
+
+      line-height: gutter(1);
+      margin-bottom: gutter();
+      max-width: initial;
+      padding-left: 0;
+      text-align: left;
+    }
+
+    > h2 {
+      @include type-golden(0);
+
+      line-height: gutter();
+      margin-bottom: gutter();
+      max-width: initial;
+      padding: 0;
+      text-align: left;
+    }
+  }
+
+  > div {
+    display: block;
+    padding: 0;
+  }
+}
+
+.branch-full-detail-cell {
+  @include branch-full-detail;
+}
+
+.mobile .branch-full-detail-cell {
+  @include mobile-branch-full-detail;
+}

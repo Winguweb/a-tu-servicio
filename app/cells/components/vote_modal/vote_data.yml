@@ -159,7 +159,7 @@ representation:
         range: {min: 3, max: Infinity}
 
 
-    - speciality: "Urgencias (Triage 2)"
+    - speciality: "Urgencias"
       mappings:
       - label: "Entre 1 y 30 minutos"
         value: 1
@@ -167,7 +167,7 @@ representation:
       - label: "Entre 31 y 60 minutos"
         value: 2
         range: {min: 0.02152777777, max: 0.04166666666}
-      - label: "1 minuto o más"
+      - label: "Más de 60 minutos"
         value: 3
         range: {min: 0.04236111111, max: Infinity}
 
@@ -183,9 +183,9 @@ representation:
         value: 3
         range: {min: 2, max: Infinity}
 
-
 # Structure: Defines the relations between steps
 structure:
+  user_type: [1]
   speciality_waiting_times: [2, 5]
   speciality_satisfaction: [2, 7]
   b: [8, 9, 19, 10, 20]
@@ -219,6 +219,13 @@ steps:
       data:
         label: "Contributivo"
         value: "Contributivo"
+    - id: 5
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Prepagada"
+        value: "Prepagada"
     - id: 4
       type: "cuckoo"
       auto_submit: true
@@ -232,6 +239,7 @@ steps:
       2: 2
       3: 2
       4: 2
+      5: 2
     answer: null
   - id: 2
     question: "Selecciona el servicio para el cual solicitaste la cita"
@@ -305,8 +313,8 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "Urgencias (Triage 2)"
-        value: "Urgencias (Triage 2)"
+        label: "Urgencias"
+        value: "Urgencias"
     - id: 11
       type: "cuckoo"
       auto_submit: true
@@ -361,7 +369,11 @@ steps:
       15: 5
     answer: null
   - id: 5
-    question: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
+    question:
+      - depends_on_id: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15]
+        label: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
+      - depends_on_id: [10]
+        label: "¿Cuánto tiempo pasó desde que llegó al servicio de urgencias, hasta que lo atendieron?"
     multi_response: false
     depends_on: 2
     answers:
@@ -599,7 +611,6 @@ steps:
               label: "3 días o más"
               value: 3
             display: "+3"
-
       - depends_on_id: 10
         answers:
           - id: 1
@@ -623,10 +634,9 @@ steps:
             auto_submit: true
             should_save: true
             data:
-              label: "1 minuto o más"
+              label: "Más de 60 minutos"
               value: 3
-            display: "+1"
-
+            display: "+60"
       - depends_on_id: 11
         answers:
           - id: 1
@@ -653,7 +663,6 @@ steps:
               label: "8 días o más"
               value: 3
             display: "+8"
-
       - depends_on_id: 12
         answers:
           - id: 1
@@ -680,7 +689,6 @@ steps:
               label: "Entre 8 días o más"
               value: 3
             display: "+8"
-
       - depends_on_id: 13
         answers:
           - id: 1
@@ -707,7 +715,6 @@ steps:
               label: "Entre 30 días o más"
               value: 3
             display: "+30"
-
       - depends_on_id: 14
         answers:
           - id: 1
@@ -734,7 +741,6 @@ steps:
               label: "Entre 20 días o más"
               value: 3
             display: "+20"
-
       - depends_on_id: 15
         answers:
           - id: 1
@@ -809,59 +815,59 @@ steps:
         value: 5
     previous_step: null
     next_step:
-      1: 8
-      2: 8
-      3: 8
-      4: 8
-      5: 8
-    answer: null
-  - id: 8
-    question: "¿Cómo calificas tu experiencia en el servicio de urgencia?"
-    multi_response: false
-    answers:
-    - id: 1
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Muy Mala"
-        value: 1
-    - id: 2
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Mala"
-        value: 2
-    - id: 3
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Aceptable"
-        value: 3
-    - id: 4
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Buena"
-        value: 4
-    - id: 5
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Muy Buena"
-        value: 5
-    previous_step: null
-    next_step:
       1: 9
       2: 9
-      3: 10
+      3: 9
       4: 10
       5: 10
     answer: null
+  # - id: 8
+  #   question: "¿Cómo calificas tu experiencia en el servicio de urgencia?"
+  #   multi_response: false
+  #   answers:
+  #   - id: 1
+  #     type: "star"
+  #     auto_submit: true
+  #     should_save: true
+  #     data:
+  #       label: "Muy Mala"
+  #       value: 1
+  #   - id: 2
+  #     type: "star"
+  #     auto_submit: true
+  #     should_save: true
+  #     data:
+  #       label: "Mala"
+  #       value: 2
+  #   - id: 3
+  #     type: "star"
+  #     auto_submit: true
+  #     should_save: true
+  #     data:
+  #       label: "Aceptable"
+  #       value: 3
+  #   - id: 4
+  #     type: "star"
+  #     auto_submit: true
+  #     should_save: true
+  #     data:
+  #       label: "Buena"
+  #       value: 4
+  #   - id: 5
+  #     type: "star"
+  #     auto_submit: true
+  #     should_save: true
+  #     data:
+  #       label: "Muy Buena"
+  #       value: 5
+  #   previous_step: null
+  #   next_step:
+  #     1: 9
+  #     2: 9
+  #     3: 10
+  #     4: 10
+  #     5: 10
+  #   answer: null
   - id: 9
     question: "¿Cuál fue el motivo de tu mala experiencia?"
     multi_response: false
@@ -949,7 +955,7 @@ steps:
       1: 11
     answer: null
   - id: 10
-    question: "¿Qué valoras de tu experiencia en el servicio de urgencia?"
+    question: "¿Qué valoras de tu experiencia en el servicio?"
     multi_response: false
     answers:
     - id: 1
@@ -985,8 +991,8 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis espectativas"
-        value: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis espectativas"
+        label: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis expectativas"
+        value: "El personal médico y/o de enfermería prestó un servicio que cumplió o superó mis expectativas"
     - id: 6
       type: "option"
       auto_submit: true
@@ -1004,7 +1010,7 @@ steps:
       6: 20
     answer: null
   - id: 20
-    question: "¿Qué valoras de tu experiencia en el servicio de urgencia?"
+    question: "¿Qué valoras de tu experiencia en el servicio?"
     multi_response: false
     answers:
     - id: 1
@@ -1041,8 +1047,8 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "Personal de enfermería"
-        value: "Personal de enfermería"
+        label: "Enfermero(a)"
+        value: "Enfermero(a)"
     - id: 4
       type: "cuckoo"
       auto_submit: true
@@ -1057,13 +1063,6 @@ steps:
       data:
         label: "Médico(a) especialista"
         value: "Médico(a) especialista"
-    - id: 6
-      type: "cuckoo"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Odontología"
-        value: "Odontología"
     - id: 7
       type: "cuckoo"
       auto_submit: true
@@ -1130,7 +1129,7 @@ steps:
       13: 12
     answer: null
   - id: 12
-    question: "¿Cómo califica el trato del personal que lo atendio?"
+    question: "¿Cómo califica el trato del personal que lo atendió?"
     multi_response: true
     answers:
     - id: 1
@@ -1172,12 +1171,12 @@ steps:
     next_step:
       1: 13
       2: 13
-      3: 14
+      3: 13
       4: 14
       5: 14
     answer: null
   - id: 13
-    question: "¿Cuál fue el motivo la mala atención?"
+    question: "¿Cuál fue el motivo de la mala atención?"
     multi_response: true
     loop_from: 11
     answers:
@@ -1186,8 +1185,8 @@ steps:
       auto_submit: false
       should_save: true
       data:
-        label: "No se presentó amabilidad y calidéz por parte de los funcionarios"
-        value: "No se presentó amabilidad y calidéz por parte de los funcionarios"
+        label: "No se presentó amabilidad y calidez por parte de los funcionarios"
+        value: "No se presentó amabilidad y calidez por parte de los funcionarios"
     - id: 2
       type: "option"
       auto_submit: false
@@ -1225,7 +1224,7 @@ steps:
       5: 21
     answer: null
   - id: 21
-    question: "¿Cuál fue el motivo la mala atención?"
+    question: "¿Cuál fue el motivo de la mala atención?"
     multi_response: true
     loop_from: 11
     answers:
@@ -1250,8 +1249,8 @@ steps:
       auto_submit: false
       should_save: true
       data:
-        label: "Se presentó amabilidad y calidéz por parte de los funcionarios"
-        value: "Se presentó amabilidad y calidéz por parte de los funcionarios"
+        label: "Se presentó amabilidad y calidez por parte de los funcionarios"
+        value: "Se presentó amabilidad y calidez por parte de los funcionarios"
     - id: 2
       type: "option"
       auto_submit: false
@@ -1347,12 +1346,12 @@ steps:
     next_step:
       1: 16
       2: 16
-      3: 17
+      3: 16
       4: 17
       5: 17
     answer: null
   - id: 16
-    question: "¿Cuál fue el motivo la mala atención?"
+    question: "¿Cuál fue el motivo de la mala atención?"
     multi_response: false
     answers:
     - id: 1
@@ -1399,7 +1398,7 @@ steps:
       5: 23
     answer: null
   - id: 23
-    question: "¿Cuál fue el motivo la mala atención?"
+    question: "¿Cuál fue el motivo de la mala atención?"
     multi_response: false
     answers:
     - id: 1

@@ -1,23 +1,69 @@
-@mixin city-image() {
+@mixin city-image {
   bottom: gutter(3.1);
   left: 0;
+  pointer-events: none;
   position: absolute;
   right: 0;
+  top: 30%;
 
-  .cls-1  {fill: #3fa6c9; opacity:0.8; }
-  .cls-2 {fill: #b9cfeb; }
-  .cls-3, .cls-5, .cls-8 {fill: #304454; }
-  .cls-4 {fill: #272425; }
-  .cls-5, .cls-8 {stroke: #304454; }
-  .cls-5, .cls-6, .cls-8, .cls-9 {stroke-miterlimit: 10; }
-  .cls-6, .cls-9 {stroke: #000; }
-  .cls-6, .cls-8 {stroke-width: 0.5px; }
-  .cls-7 {fill: #fff; }
-  .cls-9 {stroke-width: 0.75px; }
+  > svg {
+    bottom: 0;
+    height: 100%;
+    left: 50%;
+    max-height: 70%;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
+  .cls-1 {
+    fill: #3fa6c9;
+    opacity: 0.8;
+  }
+
+  .cls-2 {
+    fill: #b9cfeb;
+  }
+
+  .cls-3, .cls-5, .cls-8 {
+    fill: #304454;
+  }
+
+  .cls-4 {
+    fill: #272425;
+  }
+
+  .cls-5, .cls-8 {
+    stroke: #304454;
+  }
+
+  .cls-5, .cls-6, .cls-8, .cls-9 {
+    stroke-miterlimit: 10;
+  }
+
+  .cls-6, .cls-9 {
+    stroke: #000;
+  }
+
+  .cls-6, .cls-8 {
+    stroke-width: 0.5px;
+  }
+
+  .cls-7 {
+    fill: #fff;
+  }
+
+  .cls-9 {
+    stroke-width: 0.75px;
+  }
 
   @keyframes winds-from-east {
-    0% {transform: translateX(-100%);}
-    100% {transform: translateX(100%);}
+    0% {
+      transform: translateX(-100%);
+    }
+
+    100% {
+      transform: translateX(100%);
+    }
   }
 
   .cloud-fill,
@@ -27,7 +73,7 @@
       iteration-count: infinite;
       name: winds-from-east;
       timing-function: linear;
-    }
+    };
     position: relative !important;
   }
 
@@ -39,17 +85,42 @@
     z-index: 2001;
   }
 
-  .cloud-fill-1, .cloud-sillouette-1 { animation-duration: 50s }
-  .cloud-fill-2, .cloud-sillouette-2 { animation-duration: 42s }
-  .cloud-fill-3, .cloud-sillouette-3 { animation-duration: 64s }
-  .cloud-fill-4, .cloud-sillouette-4 { animation-duration: 78s }
-  .cloud-fill-5, .cloud-sillouette-5 { animation-duration: 86s }
-  .cloud-fill-6, .cloud-sillouette-6 { animation-duration: 94s }
+  .cloud-fill-1, .cloud-sillouette-1 {
+    animation-duration: 50s;
+  }
+
+  .cloud-fill-2, .cloud-sillouette-2 {
+    animation-duration: 42s;
+  }
+
+  .cloud-fill-3, .cloud-sillouette-3 {
+    animation-duration: 64s;
+  }
+
+  .cloud-fill-4, .cloud-sillouette-4 {
+    animation-duration: 78s;
+  }
+
+  .cloud-fill-5, .cloud-sillouette-5 {
+    animation-duration: 86s;
+  }
+
+  .cloud-fill-6, .cloud-sillouette-6 {
+    animation-duration: 94s;
+  }
 }
 
-@mixin mobile-city-image() {
+@mixin mobile-city-image {
   bottom: 0;
   margin: 0 -160px;
+  top: auto;
+
+  > svg {
+    height: auto;
+    max-height: auto;
+    position: initial;
+    transform: none;
+  }
 }
 
 .city-image-cell {
