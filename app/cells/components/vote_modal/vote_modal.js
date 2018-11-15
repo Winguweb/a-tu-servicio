@@ -96,6 +96,19 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.clientId = localStorage.getItem('client_id') || client_id
         localStorage.setItem('client_id', this.clientId)
       },
+      getQuestion: function(step) {
+        var actualStep = this.getActualStep()
+        var question = actualStep.question
+        if( _.isArray(question) ){
+          var depends_on = actualStep.depends_on
+          var depends_on_answer_id = this.getStepById(depends_on).answer
+
+          question = _(question).find(function(q){
+            return _(q.depends_on_id).contains(depends_on_answer_id)
+          }).label
+        }
+        return question
+      },
       getStepById: function(id) {
         var step = this.steps.filter(function(step) {
           return step.id == id
@@ -133,7 +146,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
         var answer_id = actualAnswerId
         var answer_data = this.getAnswerById(actualAnswerId).data
             answer_data.value = this.inputValue || answer_data.value
-        var question_value = this.getActualStep().question
+        var question_value = this.getQuestion()
 
         this.loopTo = options.loopTo
         this.showForm = false

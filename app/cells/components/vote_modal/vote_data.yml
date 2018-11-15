@@ -167,7 +167,7 @@ representation:
       - label: "Entre 31 y 60 minutos"
         value: 2
         range: {min: 0.02152777777, max: 0.04166666666}
-      - label: "1 minuto o más"
+      - label: "Más de 60 minutos"
         value: 3
         range: {min: 0.04236111111, max: Infinity}
 
@@ -219,6 +219,13 @@ steps:
       data:
         label: "Contributivo"
         value: "Contributivo"
+    - id: 5
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Prepagada"
+        value: "Prepagada"
     - id: 4
       type: "cuckoo"
       auto_submit: true
@@ -232,6 +239,7 @@ steps:
       2: 2
       3: 2
       4: 2
+      5: 2
     answer: null
   - id: 2
     question: "Selecciona el servicio para el cual solicitaste la cita"
@@ -361,7 +369,11 @@ steps:
       15: 5
     answer: null
   - id: 5
-    question: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
+    question:
+      - depends_on_id: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15]
+        label: "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?"
+      - depends_on_id: [10]
+        label: "¿Cuánto tiempo pasó desde que llegó al servicio de urgencias, hasta que lo atendieron?"
     multi_response: false
     depends_on: 2
     answers:
@@ -622,9 +634,9 @@ steps:
             auto_submit: true
             should_save: true
             data:
-              label: "1 minuto o más"
+              label: "Más de 60 minutos"
               value: 3
-            display: "+1"
+            display: "+60"
       - depends_on_id: 11
         answers:
           - id: 1
@@ -1051,13 +1063,6 @@ steps:
       data:
         label: "Médico(a) especialista"
         value: "Médico(a) especialista"
-    - id: 6
-      type: "cuckoo"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Odontología"
-        value: "Odontología"
     - id: 7
       type: "cuckoo"
       auto_submit: true
