@@ -41,6 +41,7 @@ $search-bar-height: calc(66px);
 
           > h1 {
             @include text-color($blue, 1);
+
             @include type-golden(1);
 
             line-height: gutter(1);
@@ -56,6 +57,7 @@ $search-bar-height: calc(66px);
 
           > h2 {
             @include text-color($grey, 1);
+
             @include type-golden(0);
 
             max-width: calc(100% - 135px);
@@ -136,6 +138,7 @@ $search-bar-height: calc(66px);
 
                 > h1 {
                   @include text-color($white, 1);
+
                   @include type-golden(0);
 
                   text-align: right;
@@ -183,6 +186,7 @@ $search-bar-height: calc(66px);
 
                     > span {
                       @include text-color($white);
+
                       @include type-golden(1);
 
                       float: left;
@@ -303,6 +307,46 @@ $search-bar-height: calc(66px);
                         @include grid-column(1 of 3);
 
                         margin-bottom: gutter();
+                      }
+                    }
+                  }
+                }
+
+                > div.no-data {
+                  padding-left: gutter() / 2;
+                }
+
+                > div.no-data-sad {
+                  padding-right: gutter() / 2;
+                }
+
+                > div.no-data, > div.no-data-sad {
+                  margin-top: gutter();
+                  width: 50%;
+
+                  > p {
+                    @include type-golden(-1);
+
+                    font-weight: 400;
+                    margin-bottom: gutter();
+                  }
+
+                  > div {
+                    display: block;
+                    float: left;
+                    width: calc(10%);
+
+                    > img {
+                      $width: calc(100% - #{gutter(-2)});
+
+                      display: block;
+                      margin-right: gutter(-2);
+                      width: $width;
+                    }
+
+                    &:last-of-type {
+                      > img {
+                        margin-right: 0;
                       }
                     }
                   }

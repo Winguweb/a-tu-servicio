@@ -57,13 +57,26 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                     | {{toPercentage(branch.initial_source.satisfaction)}}%
             main
               div
-                div
+                div v-if="hasSatisfactionInformationToShow('initial_source') || hasSatisfactionInformationToShow('surveys_source')"
                   p = "La satisfacción corresponde al grado de conformidad de los pacientes respecto al prestador de servicios de salud al que pertenece esta sede."
                   p = "El siguiente gráfico representa la satisfacción del prestador de servicios de salud en relación al que mejor satisface a los pacientes."
-                div.horizontal v-for="branch in [branch.initial_source, branch.surveys_source]" v-if="branch.has_satisfaction_information"
+
+                div.horizontal v-for="branch in [branch.initial_source]" v-if="hasSatisfactionInformationToShow('initial_source')"
                   div
                     div
                       == cell('visualization_components/satisfaction_visualization')
+                div.no-data-sad v-else=""
+                  div v-for="i in 10"
+                    = image_tag asset_path('icons/satisfaction-sad.svg')
+                  p = "El IPS no provee datos de satisfacción para esta sede"
+                div.horizontal v-for="branch in [branch.surveys_source]" v-if="hasSatisfactionInformationToShow('surveys_source')"
+                  div
+                    div
+                      == cell('visualization_components/satisfaction_visualization')
+                div.no-data v-else=""
+                  div v-for="i in 10"
+                    = image_tag asset_path('icons/satisfaction-sad.svg')
+                  p = "Aún no hay datos de participación ciudadana"
           section
             header :class="{percentage: branch.has_waiting_times_information}"
               div
@@ -74,22 +87,37 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                     | {{branch.initial_source.waiting_times_average}} días
             main
               div
-                div
+                div v-if="hasWaitingTimesInformationToShow('initial_source') || hasWaitingTimesInformationToShow('surveys_source')"
                   p = "El tiempo de espera general para esta sede es de {{branch.initial_source.waiting_times_average}} días."
                   p = "A continuación se muestran los tiempos de espera hasta ser atendido, desagregado por especialidad:"
-                div.horizontal v-for="branch in [branch.initial_source, branch.surveys_source]" v-if="branch.has_waiting_times_information"
+                div.horizontal v-for="branch in [branch.initial_source]" v-if="hasWaitingTimesInformationToShow('initial_source')"
                   div
                     div v-for="waiting_time in branch.waiting_times_by_speciality"
                       p
                         | {{waiting_time.name}}
                       == cell('visualization_components/waiting_times_visualization')
+                div.no-data-sad v-else=""
+                  div v-for="i in 10"
+                    = image_tag asset_path('icons/satisfaction-sad.svg')
+                  p = "El IPS no provee datos de tiempos de espera para esta sede"
+                div.horizontal v-for="branch in [branch.surveys_source]" v-if="hasWaitingTimesInformationToShow('surveys_source')"
+                  div
+                    div v-for="waiting_time in branch.waiting_times_by_speciality"
+                      p
+                        | {{waiting_time.name}}
+                      == cell('visualization_components/waiting_times_visualization')
+                div.no-data v-else=""
+                  div v-for="i in 10"
+                    = image_tag asset_path('icons/satisfaction-sad.svg')
+                  p = "Aún no hay datos de participación ciudadana"
+
           section
             header
               div
                 h1 = "Especialidades"
-            main v-if="branch.initial_source.has_specialities_information"
-              div
-                div
+            main
+              div v-if="hasSpecialitiesInformationToShow('initial_source')"
+                div v-if="hasSpecialitiesInformationToShow('initial_source')"
                   p
                     = "Hay "
                     strong
@@ -100,8 +128,7 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                     div v-for="speciality in branch.initial_source.specialities"
                       == cell('visualization_components/specialities_visualization')
                     div
-            main v-else=""
-              p ="Sin información."
+
 
 javascript:
   $(function() {ATSB.Components['components/branch-detail-large']()});
