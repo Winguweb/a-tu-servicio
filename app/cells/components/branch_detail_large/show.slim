@@ -59,7 +59,6 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
               div
                 div v-if="hasSatisfactionInformationToShow('initial_source') || hasSatisfactionInformationToShow('surveys_source')"
                   p = "La satisfacción corresponde al grado de conformidad de los pacientes respecto al prestador de servicios de salud al que pertenece esta sede."
-                  p = "El siguiente gráfico representa la satisfacción del prestador de servicios de salud en relación al que mejor satisface a los pacientes."
 
                 div.horizontal v-for="branch in [branch.initial_source]" v-if="hasSatisfactionInformationToShow('initial_source')"
                   div
