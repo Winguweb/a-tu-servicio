@@ -6,45 +6,45 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
       actions: {show: false},
       showStatuses: {},
       barColors: {
-        users_types: "#3fa6c9",
+        users_types: "#3FA6C9",
         waiting_times: {
           1: "#FF3E25",
-          2: "#ff9425",
+          2: "#FF9425",
           3: "#FFC649",
-          4: "#c7d83d",
-          5: "#92c461"
+          4: "#C7D83D",
+          5: "#92C461"
         },
         explanations: {
-          bad: "#ff9425",
-          good: "#c7d83d",
+          bad: "#FF9425",
+          good: "#C7D83D",
         }
       },
       labels: {
         1: {
-          1: 'Contributivo', 2: 'Subsidiado', 3: 'No asegurado', 4: 'Particular', 5: 'Prepagada'
+          3: 'Contributivo', 2: 'Subsidiado', 1: 'No asegurado', 4: 'Particular', 5: 'Prepagada'
         },
         2: {
-          1: "Medicina General",
-          2: "Odontología General",
-          3: "Medicina Interna",
-          4: "Enfermería",
-          5: "Pediatría",
-          6: "Ginecología",
-          7: "Obstetricia",
-          8: "Cirugía General",
-          9: "Ortopedia",
-          10: "Oftalmología",
-          11: "Psiquiatría",
-          12: "Gastroenterología",
-          13: "Radiología",
-          14: "Urgencias",
-          15: "Toma de muestras en laboratorio"
+          4: "Medicina General",
+          3: "Odontología General",
+          2: "Medicina Interna",
+          11: "Enfermería",
+          1: "Pediatría",
+          5: "Ginecología",
+          6: "Obstetricia",
+          7: "Cirugía General",
+          12: "Ortopedia",
+          13: "Oftalmología",
+          14: "Psiquiatría",
+          15: "Gastroenterología",
+          9: "Radiología",
+          10: "Urgencias",
+          8: "Toma de muestras en laboratorio"
         },
         5: {
-          1: 'Malo', 2: 'Aceptable', 3: 'Bueno'
+          3: 'Malo', 2: 'Aceptable', 1: 'Bueno'
         },
         7: {
-          1: 'Malo', 2: 'Muy malo', 3: 'Aceptable', 4: 'Bueno', 5: 'Muy bueno'
+          1: 'Muy Malo', 2: 'Malo', 3: 'Aceptable', 4: 'Bueno', 5: 'Muy Bueno'
         },
         9: {
           1: 'El tiempo de espera hasta que me evaluaron fue excesivamente largo',
@@ -70,7 +70,6 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
           3: "Enfermero(a)",
           4: "Médico(a)",
           5: "Médico(a) especialista",
-          6: "Odontología",
           7: "Odontólogo(a)",
           8: "Psicólogo(a)",
           9: "Fisioterapeuta",
@@ -97,7 +96,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
           5: "Otros"
         },
         15: {
-          1: 'Malo', 2: 'Muy malo', 3: 'Aceptable', 4: 'Bueno', 5: 'Muy bueno'
+          1: 'Muy Mala', 2: 'Mala', 3: 'Aceptable', 4: 'Buena', 5: 'Muy Buena'
         },
         16: {
           1: "No hubo coherencia o relación entre la atención y su necesidad",
