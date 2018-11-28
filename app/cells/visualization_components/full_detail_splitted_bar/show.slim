@@ -1,7 +1,7 @@
 div.full-detail-splitted-bar-cell
   div
     div
-      div v-for="(data, nameId) in #{percentage}" :style="{backgroundColor: barColors.waiting_times[nameId], width: data.percentage + '%'}"
+      div v-for="(data, nameId) in #{'reversedVersion(' if reverse}#{percentage}#{')' if reverse}" :style="{backgroundColor: getColor(nameId, _(#{percentage}).size()), width: data.percentage + '%'}"
   div.layout
-    span v-for="(data, nameId) in #{percentage}" :style="{color: barColors.waiting_times[nameId]}"
+    span v-for="(data, nameId) in #{'reversedVersion(' if reverse}#{percentage}#{')' if reverse}" :style="{color: getColor(nameId, _(#{percentage}).size())}"
       = "{{#{label}[nameId]}}: {{data.percentage}}%"

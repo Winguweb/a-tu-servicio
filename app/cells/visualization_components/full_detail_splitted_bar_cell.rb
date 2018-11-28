@@ -3,12 +3,18 @@ class VisualizationComponents::FullDetailSplittedBarCell < Cell::ViewModel
 
   private
 
-  def percentage
-    model || []
+  def label
+    @label ||= options[:label]
   end
 
-  def label
-    options[:label]
+  def percentage
+    model || {}
+  end
+
+  def reverse
+    return @reverse if defined?(@reverse)
+
+    @reverse = options[:reverse] || false
   end
 
 end
