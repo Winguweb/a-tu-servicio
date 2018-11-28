@@ -40,7 +40,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.componentClose()
         ATSB.pubSub.$emit('all:slides:close')
         ATSB.pubSub.$emit('branch:detail:large:open')
-        ATSB.pubSub.$emit('branch:detail:large:fetch', this.branchId)
         ATSB.pubSub.$emit('branch:selected', [this.branchId])
         ATSB.pubSub.$emit('branch:compare:set', this.branchId)
         ATSB.pubSub.$emit('branch:compare:button:show')
@@ -58,6 +57,11 @@ ATSB.Components['components/vote-modal'] = function(options) {
         })
       },
       componentClose: function() {
+        // I move this line here in order to fetch the information despite the fact
+        // if the visitor did not end the vote process and at least started it.
+        if( this.partiallyAnswered() ){
+          ATSB.pubSub.$emit('branch:detail:large:fetch', this.branchId)
+        }
         this.actions.show = false
         this.resetForm()
       },
@@ -164,6 +168,9 @@ ATSB.Components['components/vote-modal'] = function(options) {
           return;
         }
         this.sendVoteSuccess()
+      },
+      partiallyAnswered: function() {
+        return _(this.steps).some(function(step){ return !_.isNull(step.answer) })
       },
       preloadInputValue: function() {
         this.inputValue = ""

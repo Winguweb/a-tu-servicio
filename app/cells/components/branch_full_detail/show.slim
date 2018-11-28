@@ -14,14 +14,14 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
 
     section
       p
-        strong = "Contributivo:"
-        = "Es el ciudadano con capacidad de pago, ya sea empleado o independiente, que contribuye económicamente con su aporte para pertenecer al Sistema General de Seguridad Social en Salud."
+        strong = "No asegurado:"
+        = "Es el ciudadano que no se encuentra en ninguno de los dos regímenes."
       p
         strong = "Subsidiado:"
         = "Es el ciudadano que se encuentra afiliado al Sistema General de Seguridad Social en Salud gracias a los aportes realizados por los afiliados con capacidad de pago."
       p
-        strong = "No asegurado:"
-        = "Es el ciudadano que no se encuentra en ninguno de los dos regímenes."
+        strong = "Contributivo:"
+        = "Es el ciudadano con capacidad de pago, ya sea empleado o independiente, que contribuye económicamente con su aporte para pertenecer al Sistema General de Seguridad Social en Salud."
       p
         strong = "Particular:"
         = "Es el ciudadano que puede estar dentro del sistema en el régimen contributivo pero que, adicionalmente quiere realizar una consulta y pagarla de forma independiente."
@@ -36,7 +36,7 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
       h1 = "Tiempos de espera"
       div v-for="(waiting_times, nameId) in branch.metrics[2]"
         h2 = "{{labels[2][nameId]}}"
-        == cell('visualization_components/full_detail_splitted_bar', 'waiting_times.detail[5].answers', label: 'labels[5]')
+        == cell('visualization_components/full_detail_splitted_bar', 'waiting_times.detail[5].answers', label: 'labels[5]', reverse: true)
 
     section
       p = "Esta dimensión expresa el tiempo de espera en días calendario, que trascurre entre el primer contacto con la IPS/EAPB para la asignación de la cita de primera vez y la fecha en que es asignada la cita."

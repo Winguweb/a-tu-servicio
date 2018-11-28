@@ -21,7 +21,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
       },
       labels: {
         1: {
-          3: 'Contributivo', 2: 'Subsidiado', 1: 'No asegurado', 4: 'Particular', 5: 'Prepagada'
+          1: 'No asegurado', 2: 'Subsidiado', 3: 'Contributivo', 4: 'Particular', 5: 'Prepagada'
         },
         2: {
           4: "Medicina General",
@@ -41,7 +41,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
           8: "Toma de muestras en laboratorio"
         },
         5: {
-          3: 'Malo', 2: 'Aceptable', 1: 'Bueno'
+          1: 'Malo', 2: 'Aceptable', 3: 'Bueno'
         },
         7: {
           1: 'Muy Malo', 2: 'Malo', 3: 'Aceptable', 4: 'Bueno', 5: 'Muy Bueno'
@@ -121,14 +121,33 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
       ATSB.pubSub.$on('branch:full:detail:data', this.branchData)
     },
     methods: {
+      branchData: function(branch) {
+        this.branch = branch
+      },
       componentClose: function() {
         this.actions.show = false
       },
       componentOpen: function(id) {
         this.actions.show = true
       },
-      branchData: function(branch) {
-        this.branch = branch
+      getColor: function(position, totalOptions){
+        // I'm harcoding the totalColors amount because seems that it's
+        // not necessary to calculate it each time
+        var totalColors = 5 // _(this.barColors.waiting_times).size()
+        if( totalOptions === totalColors ){
+          return this.barColors.waiting_times[position]
+        }
+        var newColorPosition = Math.floor(totalColors/totalOptions * position)
+        return this.barColors.waiting_times[newColorPosition]
+      },
+      reversedVersion: function(answers){
+        var keys = _(answers).keys()
+        var reversedKeys = keys.slice().reverse()
+        var reversedAnswers = {}
+        for(var i in reversedKeys) {
+          reversedAnswers[keys[i]] = answers[reversedKeys[i]]
+        }
+        return reversedAnswers
       },
       showMoreDetails: function(name) {
         if (this.showStatuses[name] === undefined) {
