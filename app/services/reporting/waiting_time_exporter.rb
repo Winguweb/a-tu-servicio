@@ -1,10 +1,10 @@
 module Reporting
   class WaitingTimeExporter < Exporter
 
-    HEADER = ["name","days","provider"].freeze
+    HEADER = %w[name days provider].freeze
 
-    def initialize(user,options = {})
-      @waiting_times = options[:data]
+    def initialize(user, options = {})
+      @waiting_times = options[:model_klass].includes(:provider).all
     end
 
     def filename
@@ -35,7 +35,6 @@ module Reporting
       end
     end
 
- 
     private
 
     def header
@@ -52,21 +51,19 @@ module Reporting
     end
 
     def yielder
-      @waiting_times.each do |waiting_time|
-        yield row_data(waiting_time)
+      @waiting_times.group_by(&:provider).each do |provider, provider_waiting_times|
+        provider_waiting_times.each do |waiting_time|
+          yield row_data(provider, waiting_time)
+        end
       end
     end
 
-    def row_data(waiting_time)
+    def row_data(provider, waiting_time)
       [
         waiting_time.name,
         waiting_time.days,
-        print_provider_name(waiting_time.provider_id),
+        provider.name,
       ]
-    end
-
-    def print_provider_name(id)
-      Provider.find(id).name
     end
 
   end

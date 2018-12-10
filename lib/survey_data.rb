@@ -37,6 +37,17 @@ class SurveyData
     @response_structure.deep_dup
   end
 
+  def steps_labels
+    @steps_labels ||= @steps_by_id.each_with_object({}) do |(id, step_config), _hash|
+      question = step_config[:question]
+      _hash[id] = if question.is_a?(Array)
+        question.map{ |question| question[:label] }
+      else
+        question
+      end
+    end
+  end
+
   private
 
   def process_response_structure

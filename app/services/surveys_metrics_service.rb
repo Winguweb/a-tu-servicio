@@ -35,9 +35,9 @@ class SurveysMetricsService
       if node.key?(:keys)
         process_answers_percentages_with_detail_of(@response[node_id], detail_ids)
       else
-        process_anwsers_percentage_of(@response[node_id])
+        process_answers_percentage_of(@response[node_id])
         if detail_ids
-          process_detail_anwsers_percentage_of(@response[node_id], detail_ids)
+          process_detail_answers_percentage_of(@response[node_id], detail_ids)
         end
       end
     end
@@ -60,12 +60,12 @@ class SurveysMetricsService
 
       response_node[answer_id][:percentage] = percentage
       if detail_ids
-        process_detail_anwsers_percentage_of(response_node[answer_id], detail_ids)
+        process_detail_answers_percentage_of(response_node[answer_id], detail_ids)
       end
     end
   end
 
-  def process_anwsers_percentage_of(response_node)
+  def process_answers_percentage_of(response_node)
     answers = response_node[:answers].deep_dup
 
     total_answers_count = answers.values.map{|data| data[:counter]}.sum
@@ -80,9 +80,9 @@ class SurveysMetricsService
     end
   end
 
-  def process_detail_anwsers_percentage_of(response_node, detail_ids)
+  def process_detail_answers_percentage_of(response_node, detail_ids)
     Array(detail_ids).each do |node_id|
-      process_anwsers_percentage_of(response_node[:detail][node_id])
+      process_answers_percentage_of(response_node[:detail][node_id])
     end
   end
 
@@ -106,9 +106,9 @@ class SurveysMetricsService
           end
         else
           node_responses_groups.each do |node_responses|
-            add_anwser_count_to(response[node_id], node_responses[node_id])
+            add_answer_count_to(response[node_id], node_responses[node_id])
             if detail_ids
-              add_detail_anwsers_count_for(response[node_id], detail_ids, node_responses)
+              add_detail_answers_count_for(response[node_id], detail_ids, node_responses)
             end
           end
         end
@@ -122,18 +122,18 @@ class SurveysMetricsService
 
       response_node[node_response.answer_id][:counter] += 1
 
-      add_detail_anwsers_count_for(response_node[node_response.answer_id], detail_ids, node_responses)
+      add_detail_answers_count_for(response_node[node_response.answer_id], detail_ids, node_responses)
     end
 
-    def add_anwser_count_to(response_node, node_response)
+    def add_answer_count_to(response_node, node_response)
       return unless node_response && node_response.respond_to?(:answer_id)
 
       response_node[:answers][node_response.answer_id][:counter] += 1
     end
 
-    def add_detail_anwsers_count_for(response_node, detail_ids, node_responses)
+    def add_detail_answers_count_for(response_node, detail_ids, node_responses)
       Array(detail_ids).each do |node_id|
-        add_anwser_count_to(response_node[:detail][node_id], node_responses[node_id])
+        add_answer_count_to(response_node[:detail][node_id], node_responses[node_id])
       end
     end
 
