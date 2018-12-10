@@ -5,7 +5,7 @@ module Reporting
 
     def stream_csv(exporter,user, *args)
       raise MistypeError.new(self, Exporter, __method__) unless exporter.ancestors.include? Exporter
-      
+
       exporter = exporter.new(user,*args)
 
       set_file_headers(exporter.filename)
@@ -17,7 +17,7 @@ module Reporting
     end
 
     private
-    
+
     def set_file_headers(filename)
       file_name = "#{filename}.csv"
       headers['Content-Type'] = 'text/csv; charset=utf-8; header=present'

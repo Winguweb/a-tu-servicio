@@ -14,7 +14,7 @@ class HomeController < ApplicationController
   end
 
   def about;end
-  
+
   def datasets
     @models = ["Branch","Provider","Satisfaction","Speciality","WaitingTime","Survey"]
   end
@@ -23,7 +23,7 @@ class HomeController < ApplicationController
 
     if params[:model].present?
       exporter_options = {
-        data: params[:model].singularize.classify.constantize.all ,
+        model_klass: params[:model].singularize.classify.constantize,
       }
       reporter = "Reporting::#{params[:model]}Exporter".singularize.classify.constantize
       stream_csv(reporter, logged_in?, **exporter_options )

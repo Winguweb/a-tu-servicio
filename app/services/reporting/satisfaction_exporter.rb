@@ -1,10 +1,10 @@
 module Reporting
   class SatisfactionExporter < Exporter
 
-    HEADER = ["name","percentage","satisfaction"].freeze
+    HEADER = %w[name percentage_score provider].freeze
 
-    def initialize(user,options = {})
-      @satisfactions = options[:data]
+    def initialize(user, options = {})
+      @satisfactions = options[:model_klass].includes(:provider).all
     end
 
     def filename
@@ -25,17 +25,6 @@ module Reporting
       end
     end
 
-    def data_stream
-      Enumerator.new do |result|
-        result << header
-
-        yielder do |row|
-          result << row
-        end
-      end
-    end
-
- 
     private
 
     def header
@@ -61,12 +50,8 @@ module Reporting
       [
         satisfaction.name,
         satisfaction.percentage,
-        print_provider_name(satisfaction.provider_id),
+        satisfaction.provider.name
       ]
-    end
-
-    def print_provider_name(id)
-      Provider.find(id).name
     end
 
   end

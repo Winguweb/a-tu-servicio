@@ -1,11 +1,10 @@
 module Reporting
   class ProviderExporter < Exporter
-    
-  
-    HEADER = ["name","address","subnet","website","email","communication_services", "is_private", "state_id"].freeze
 
-    def initialize(user,options = {})
-      @providers = options[:data]
+    HEADER = %w[name address subnet website email communication_services is_private state_id].freeze
+
+    def initialize(user, options = {})
+      @providers = options[:model_klass].all
     end
 
     def filename
@@ -26,17 +25,6 @@ module Reporting
       end
     end
 
-    def data_stream
-      Enumerator.new do |result|
-        result << header
-
-        yielder do |row|
-          result << row
-        end
-      end
-    end
-
- 
     private
 
     def header

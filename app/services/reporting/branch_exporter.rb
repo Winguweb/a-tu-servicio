@@ -1,10 +1,10 @@
 module Reporting
   class BranchExporter < Exporter
-    
-    HEADER = ["name", "address","georeference","provider"].freeze
 
-    def initialize(user,options = {})
-      @branchs = options[:data]
+    HEADER = %w[name address georeference provider].freeze
+
+    def initialize(user, options = {})
+      @branchs = options[:model_klass].includes(:provider).all
     end
 
     def filename
@@ -25,23 +25,11 @@ module Reporting
       end
     end
 
-    def data_stream
-      Enumerator.new do |result|
-        result << header
-
-        yielder do |row|
-          result << row
-        end
-      end
-    end
-
- 
     private
 
     def header
       @header ||= HEADER
     end
-
 
     def csv_header
       CSV::Row.new(header, header, true).to_s
@@ -62,14 +50,9 @@ module Reporting
         branch.name,
         branch.address,
         branch.georeference,
-        print_provider_name(branch.provider_id),
+        branch.provider.name,
       ]
     end
-
-    def print_provider_name(id)
-      Provider.find(id).name
-    end
-   
 
   end
 end
