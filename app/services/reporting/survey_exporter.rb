@@ -12,6 +12,7 @@ module Reporting
       {
         id: [9, 10],
         custom_label: 'Detalle calificación servicio',
+        default_value_ids: [19, 20],
         default_value: 'Otros'
       },
       {
@@ -24,6 +25,7 @@ module Reporting
       {
         id: [13, 14],
         custom_label: 'Detalle calificación personal',
+        default_value_ids: [21, 22],
         default_value: 'Otros'
       },
       {
@@ -35,6 +37,7 @@ module Reporting
       {
         id: [16, 17],
         custom_label: 'Detalle calificación satisfacción',
+        default_value_ids: [23, 24],
         default_value: 'Otros'
       },
       {
@@ -154,6 +157,8 @@ module Reporting
     def row_data(branch, row_responses)
       row_colums = [ branch.provider.name, branch.name ]
 
+      responses_ids = row_responses.keys
+
       responses_columns = SURVEY_COLUMNS.map do |column|
         next if column[:user_only] && !user_logged_in?
 
@@ -163,7 +168,11 @@ module Reporting
           column[:id]
         end
 
-        row_colums.push(row_responses[id] || column[:default_value])
+        default_value = if row_responses[id].blank? && column.key?(:default_value_ids)
+          column[:default_value] if (column[:default_value_ids] & responses_ids).present?
+        end
+
+        row_colums.push(row_responses[id] || default_value)
       end
 
       row_colums
