@@ -11,19 +11,37 @@ module Reporting
       { id: 7 },
       {
         id: [9, 10],
-        custom_label: 'Detalle calificación servicio'
+        custom_label: 'Detalle calificación servicio',
+        default_value: 'Otros'
+      },
+      {
+        id: [19, 20],
+        user_only: true,
+        custom_label: 'Calificación servicio (Otros)'
       },
       { id: 11 },
       { id: 12 },
       {
         id: [13, 14],
-        custom_label: 'Detalle calificación personal'
+        custom_label: 'Detalle calificación personal',
+        default_value: 'Otros'
+      },
+      {
+        id: [21, 22],
+        user_only: true,
+        custom_label: 'Calificación personal (Otros)'
       },
       { id: 15 },
       {
         id: [16, 17],
-        custom_label: 'Detalle calificación satisfaccion'
-      }
+        custom_label: 'Detalle calificación satisfacción',
+        default_value: 'Otros'
+      },
+      {
+        id: [23, 24],
+        user_only: true,
+        custom_label: 'Calificación satisfacción (Otros)'
+      },
     ].freeze
     private_constant :SURVEY_COLUMNS
 
@@ -62,6 +80,8 @@ module Reporting
       @header = %w[provider_name branch_name]
 
       SURVEY_COLUMNS.each do |column|
+        next if column[:user_only] && !user_logged_in?
+
         label = if column.key?(:custom_label)
           column[:custom_label]
         else
@@ -69,7 +89,6 @@ module Reporting
         end
         @header << label
       end
-
       @header
     end
 
@@ -93,6 +112,7 @@ module Reporting
       # TO-DO: I harcoded this in here because is the only step that has this situation
       multiple_responses_entry_step_id = 11
       multiple_responses_group = [ 11, 12, 13, 14 ]
+      responses_other_step_id = [ 19, 20, 21, 22, 23, 24 ]
 
       multiple_responses_columns = survey_responses.select do |response|
         multiple_responses_group.include?(response.step_id)
@@ -101,7 +121,11 @@ module Reporting
       common_colums_data = survey_responses.select do |response|
         not multiple_responses_group.include?(response.step_id)
       end.each_with_object({}) do |response, _hash|
-        _hash[response.step_id] = response.answer_data['label']
+        _hash[response.step_id] = if responses_other_step_id.include?(response.step_id)
+          response.answer_data['value']
+        else
+          response.answer_data['label']
+        end
       end
 
       # TO-DO: All this logic below is very order sensitive of the records
@@ -128,20 +152,21 @@ module Reporting
     end
 
     def row_data(branch, row_responses)
+      row_colums = [ branch.provider.name, branch.name ]
+
       responses_columns = SURVEY_COLUMNS.map do |column|
+        next if column[:user_only] && !user_logged_in?
+
         id = if column[:id].is_a?(Array)
           column[:id].detect{ |id| row_responses[id] }
         else
           column[:id]
         end
 
-        row_responses[id]
+        row_colums.push(row_responses[id] || column[:default_value])
       end
 
-      [
-        branch.provider.name,
-        branch.name
-      ].push(*responses_columns)
+      row_colums
     end
   end
 end
