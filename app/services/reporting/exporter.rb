@@ -15,10 +15,6 @@ module Reporting
       raise NotImplementedError.new(self, __method__)
     end
 
-    def data_stream
-      raise NotImplementedError.new(self, __method__)
-    end
-
     private
 
     def csv_header

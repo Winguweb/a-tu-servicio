@@ -1,10 +1,10 @@
 module Reporting
   class SpecialityExporter < Exporter
 
-    HEADER = ["provider","specialities"].freeze
+    HEADER = %w[speciality provider branch].freeze
 
-    def initialize(user,options = {})
-      @specialities = options[:data]
+    def initialize(user, options = {})
+      @specialities = options[:model_klass].includes(branch: :provider)
     end
 
     def filename
@@ -25,17 +25,6 @@ module Reporting
       end
     end
 
-    def data_stream
-      Enumerator.new do |result|
-        result << header
-
-        yielder do |row|
-          result << row
-        end
-      end
-    end
-
- 
     private
 
     def header
@@ -52,25 +41,20 @@ module Reporting
     end
 
     def yielder
-      @specialities.pluck(:branch_id).uniq.each do |branch_id|
-       yield row_data(Branch.find(branch_id).name,  Speciality.where(branch: Branch.find(branch_id)).pluck(:name))
+      @specialities.group_by(&:branch).each do |branch, branch_specialities|
+        branch_specialities.each do |speciality|
+          yield row_data(branch, speciality)
+        end
       end
-      # @specialities.each do |speciality|
-      #   yield row_data(speciality)
-      # end
     end
 
 
-    def row_data(provider , specialities)
+    def row_data(branch, speciality)
       [
-        provider,
-        specialities
+        speciality.name,
+        branch.provider.name,
+        branch.name
       ]
     end
-
-    def print_branch_name(id)
-      Branch.find(id).name
-    end
-
   end
 end

@@ -1,13 +1,35 @@
 module Reporting
   class SurveyExporter < Exporter
 
-    include HomeHelper
-    HEADER =  ["¿Qué tipo de usuario eres?", "Selecciona el servicio para el cual solicitaste la cita", "¿Cuánto tiempo pasó desde la asignación de la cita hasta que te atendieron?", "¿Cómo calificas la atención recibida?", "servicio de salud", "Evaluacion de personal"]
+    SURVEY_COLUMNS = [
+      { id: 1 },
+      { id: 2 },
+      {
+        id: 5,
+        custom_label: 'Tiempo de espera del servicio'
+      },
+      { id: 7 },
+      {
+        id: [9, 10],
+        custom_label: 'Detalle calificación servicio'
+      },
+      { id: 11 },
+      { id: 12 },
+      {
+        id: [13, 14],
+        custom_label: 'Detalle calificación personal'
+      },
+      { id: 15 },
+      {
+        id: [16, 17],
+        custom_label: 'Detalle calificación satisfaccion'
+      }
+    ].freeze
+    private_constant :SURVEY_COLUMNS
 
-    def initialize(user,options = {})
-      @surveys = options[:data]
+    def initialize(user, options = {})
       @user = user
-
+      @surveys = options[:model_klass].includes(branch: :provider)
     end
 
     def filename
@@ -28,22 +50,28 @@ module Reporting
       end
     end
 
-    def data_stream
-      Enumerator.new do |result|
-        result << header
-
-        yielder do |row|
-          result << row
-        end
-      end
-    end
-
     private
 
-    def header
-      @header ||= HEADER
+    def user_logged_in?
+      !!@user
     end
 
+    def header
+      return @header if defined?(@header)
+
+      @header = %w[provider_name branch_name]
+
+      SURVEY_COLUMNS.each do |column|
+        label = if column.key?(:custom_label)
+          column[:custom_label]
+        else
+          $survey_data.steps_labels[column[:id]]
+        end
+        @header << label
+      end
+
+      @header
+    end
 
     def csv_header
       CSV::Row.new(header, header, true).to_s
@@ -54,66 +82,66 @@ module Reporting
     end
 
     def yielder
-      get_clients_id(@surveys).each do |client|
-        yield row_data(client[0],client[1])
+      @surveys.group_by{|s| [s.client_id, s.branch]}.each do |(_, branch), survey_responses|
+        process_survey_responses(survey_responses).each do |row_responses|
+          yield row_data(branch, row_responses)
+        end
       end
     end
 
-    def row_data(client,branch)
-      group_answer_by_client(client,branch)
-    end
+    def process_survey_responses(survey_responses)
+      # TO-DO: I harcoded this in here because is the only step that has this situation
+      multiple_responses_entry_step_id = 11
+      multiple_responses_group = [ 11, 12, 13, 14 ]
 
-    def get_clients_id(surveys)
-      surveys.pluck(:client_id, :branch_id).uniq
-    end
+      multiple_responses_columns = survey_responses.select do |response|
+        multiple_responses_group.include?(response.step_id)
+      end
 
-    
-    def group_answer_by_client(client_id,branch_id)
-      answers = []
-      filter_data = Survey.where(client_id: client_id, branch_id: branch_id).pluck(:answer_data, :question_value,:step_id)#.uniq{ |ans| ans[1]}
-    
-      personal_data = []
-      urgency_data = []
-      service_data = []
-      filter_data.each_with_index { |answer,index| 
+      common_colums_data = survey_responses.select do |response|
+        not multiple_responses_group.include?(response.step_id)
+      end.each_with_object({}) do |response, _hash|
+        _hash[response.step_id] = response.answer_data['label']
+      end
 
-        if answer[2] ==  11 #"Escoja el personal por el cual fue atendido"
-          json = Hash.new
-          json[answer[1]] = get_others_value(answer[0]) 
-          json[filter_data[index +1][1]] =  get_others_value( filter_data[index +1][0])
-          json[filter_data[index +2][1]] = get_others_value(filter_data[index +2][0])
-          personal_data << json
-        elsif answer[2] == 8 # "¿Cómo calificas tu experiencia en el servicio de urgencia?" 
-          # urgency_json = Hash.new
-          # urgency_json[answer[1]] = get_others_value(answer[0]) 
-          # urgency_json[filter_data[index +1][1]] =  get_others_value(filter_data[index +1][0])
-          # urgency_data << urgency_json
-          # answers << urgency_data
-        elsif answer[2] == 15 #"¿Cuál es su nivel de satisfacción con la calidad el servicio de salud?"
-         
-          service_json = Hash.new
-          service_json[answer[1]] = get_others_value(answer[0]) 
-          service_json[filter_data[index +1][1]] = get_others_value(filter_data[index +1][0])
-          service_data << service_json
-        
-          answers<< service_data
-        elsif  ["¿Qué valoras de tu experiencia en el servicio de urgencia?" , "¿Cuál fue el motivo de tu mala experiencia?","¿Qué valoras de tu experiencia en el servicio de urgencia?", "¿Cómo califica el trato del personal que lo atendio?", "¿Qué valoras de la atención recibida?"].include?(answer[1]) || [13,21,16,17,24,23].include?(answer[2]) 
-          next
-        else
-          answers << get_others_value(answer[0]) 
+      # TO-DO: All this logic below is very order sensitive of the records
+      # the assumptions is that the grouped records are next to each other
+      response_group = {}
+      within_group = false
+      multiple_columns_groups = multiple_responses_columns.each_with_object([]) do |response, _array|
+        if response.step_id == multiple_responses_entry_step_id
+          if within_group
+            _array.push(response_group)
+            within_group = false
+          end
+          response_group = {}
+          within_group = true
         end
-         
-      }
-      answers << personal_data
-      answers.uniq
-      
+        response_group[response.step_id] = response.answer_data['label']
+      end
+      multiple_columns_groups.push(response_group) if within_group
+      # END | TO-DO
+
+      multiple_columns_groups.map do |group|
+        common_colums_data.merge(group)
+      end
     end
 
-    def get_others_value(answer)
-      return answer["label"] if !@user || !["Otro", "Otros"].include?(answer["label"]) 
-      answer["value"]
+    def row_data(branch, row_responses)
+      responses_columns = SURVEY_COLUMNS.map do |column|
+        id = if column[:id].is_a?(Array)
+          column[:id].detect{ |id| row_responses[id] }
+        else
+          column[:id]
+        end
+
+        row_responses[id]
+      end
+
+      [
+        branch.provider.name,
+        branch.name
+      ].push(*responses_columns)
     end
-
-
   end
 end
