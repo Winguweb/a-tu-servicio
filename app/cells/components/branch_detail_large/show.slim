@@ -10,8 +10,13 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
           h2
             | {{branch.provider.name}}
           ul v-if="branch.quality > 0"
-            li v-for="i in branch.quality" = image_tag asset_path('icons/star-golden-hover.svg')
-            li v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-golden.svg')
+            li v-if="[1,2].indexOf(branch.quality) > -1" v-for="i in branch.quality" = image_tag asset_path('icons/star-red-full.svg')
+            li v-if="[3].indexOf(branch.quality) > -1" v-for="i in branch.quality" = image_tag asset_path('icons/star-yellow-full.svg')
+            li v-if="[4,5].indexOf(branch.quality) > -1" v-for="i in branch.quality" = image_tag asset_path('icons/star-green-full.svg')
+            li v-if="[1,2].indexOf(branch.quality) > -1" v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-red-empty.svg')
+            li v-if="[3].indexOf(branch.quality) > -1" v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-yellow-empty.svg')
+            li v-if="[4,5].indexOf(branch.quality) > -1" v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-green-empty.svg')
+
           button @click="openVoteModal()"
             = image_tag asset_path('icons/rating.svg')
             span = "Calificar"
