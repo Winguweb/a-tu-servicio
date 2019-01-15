@@ -154,6 +154,17 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
           this.$set(this.showStatuses, name, false)
         }
         this.showStatuses[name] = !this.showStatuses[name]
+      },
+      totalCounter: function(answers) {
+        return Object.keys(answers).reduce(function(sum, next) {
+          return sum + answers[next].counter
+        }, 0)
+      },
+      totalCounterNested: function(answers) {
+        console.log(answers)
+        return Object.keys(answers).reduce(function(sum, next) {
+          return sum + answers[next].counter
+        }, 0)
       }
     }
   })
