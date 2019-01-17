@@ -1,0 +1,14 @@
+wb = xlsx_package.workbook
+
+model = Object.const_get(@model)
+
+objects = model.all.includes(:provider)
+
+wb.add_worksheet(name: model.to_xml_filename) do | sheet |
+
+  sheet.add_row objects.first.to_xml_structure
+
+  objects.each do | obj |
+    sheet.add_row obj.to_xml_data
+  end
+end

@@ -22,6 +22,10 @@ gem 'cells-slim', git: "git@github.com:trailblazer/cells-slim", branch: :master
 gem 'sidekiq'
 gem 'typhoeus'
 
+gem 'rubyzip', '>= 1.2.1'
+gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+gem 'axlsx_rails'
+
 group :development, :test do
   gem 'pry'
   gem 'byebug'

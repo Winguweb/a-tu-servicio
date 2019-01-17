@@ -41,7 +41,19 @@ class Branch < ActiveRecord::Base
     redis.get("quality/branch/#{id}").to_i
   end
 
+  def to_xml_structure
+    ['Nombre Sede', 'Dirección', 'Georreferenciación (Latitud, Longitud)', 'Nombre del Prestador']
+  end
+
+  def to_xml_data
+    [name, address, latlngString, provider.name]
+  end
+
   private
+
+  def self.to_xml_filename
+    'dataset_atsb_sedes'
+  end
 
   def redis
     $redis
@@ -53,6 +65,10 @@ class Branch < ActiveRecord::Base
 
   def lng
     latlng[1]
+  end
+
+  def latlngString
+    latlng.any? ? "#{lat}, #{lng}" : ""
   end
 
   def should_index?
@@ -74,4 +90,5 @@ class Branch < ActiveRecord::Base
   def subnet_name
     provider.subnet
   end
+
 end

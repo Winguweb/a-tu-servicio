@@ -2,7 +2,13 @@ section
   h1 = "Datasets disponibles"
 
   ul
-    - @models.each do |model|
+    - @models.each do | model |
       li
-        = link_to "Descargar dataset #{model}", data_download_path(model)
+        = link_to "Descargar dataset #{model} en csv", data_download_path(model, format: 'csv')
+  br
+  ul
+    - @models.each do | model |
+      li
+        = link_to "Descargar dataset #{model} en xls", data_download_path(model, format: 'xlsx')
+
 == cell('components/site_footer', { active_links: true })

@@ -20,13 +20,20 @@ class HomeController < ApplicationController
   end
 
   def download
-
-    if params[:model].present?
-      exporter_options = {
-        model_klass: params[:model].singularize.classify.constantize,
-      }
-      reporter = "Reporting::#{params[:model]}Exporter".singularize.classify.constantize
-      stream_csv(reporter, logged_in?, **exporter_options )
+    if @model = params[:model].presence
+      respond_to do | format |
+        format.csv { export_csv }
+        format.xlsx { render xlsx: Object.const_get(@model).to_xml_filename, template: 'home/download' }
+      end
     end
+  end
+
+  def export_csv
+    exporter_options = {
+      model_klass: params[:model].singularize.classify.constantize,
+    }
+    reporter = "Reporting::#{params[:model]}Exporter".singularize.classify.constantize
+
+    stream_csv(reporter, logged_in?, **exporter_options )
   end
 end
