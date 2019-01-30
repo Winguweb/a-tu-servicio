@@ -123,12 +123,18 @@
     > section:first-of-type {
       float: left;
 
-      > ul {
-        > li {
-          display: inline-block;
-          padding-right: gutter(-2);
-          text-align: center;
-          width: gutter(1);
+      > section {
+        > ul {
+          > li {
+            display: inline-block;
+            padding-right: gutter(-2);
+            text-align: center;
+            width: gutter(1) * 0.75;
+          }
+        }
+
+        > span {
+          @include type-golden(-1);
         }
       }
     }
