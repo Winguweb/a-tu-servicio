@@ -9,12 +9,15 @@ class BranchesController < ApplicationController
     response = {
       :results => @branches.map do |branch|
         {
-          :id => branch.id,
-          :name => branch.name,
-          :address => branch.address,
-          :provider_name => branch.provider.name,
-          :featured => branch.provider.featured,
-          :quality => branch.quality
+          id: branch.id,
+          name: branch.name,
+          address: branch.address,
+          provider_name: branch.provider.name,
+          featured: branch.provider.featured,
+          quality: branch.quality,
+          waiting_times: branch.waiting_times,
+          satisfaction: branch.satisfaction,
+          humanization: branch.humanization
         }
       end
     }
