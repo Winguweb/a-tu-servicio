@@ -21,7 +21,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
       },
       labels: {
         1: {
-          1: 'No asegurado', 2: 'Subsidiado', 3: 'Contributivo', 4: 'Particular', 5: 'Prepagada'
+          1: 'No asegurado', 2: 'Subsidiado', 3: 'Contributivo', 4: 'Particular', 5: 'Prepagada', 6: 'No Sabe'
         },
         2: {
           4: "Medicina General",
