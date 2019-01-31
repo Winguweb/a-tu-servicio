@@ -1,4 +1,6 @@
 @mixin full-detail-splitted-bar {
+  clear: both;
+
   > div {
     height: gutter();
     position: relative;

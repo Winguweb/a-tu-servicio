@@ -10,7 +10,10 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
       h1 = "Tipo de usuarios"
       div v-for="(user_type, nameId) in branch.metrics[1].answers"
         h2 = "{{labels[1][nameId]}}"
-        span = "{{ user_type.counter }}/{{totalCounter(branch.metrics[1].answers)}}"
+        div.counter
+          span = "{{ user_type.counter }}"
+          span = "/"
+          span = "{{totalCounter(branch.metrics[1].answers)}}"
         == cell('visualization_components/full_detail_bar', 'user_type.percentage')
 
     section
@@ -37,7 +40,7 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
       h1 = "Tiempos de espera"
       div v-for="(waiting_times, nameId) in branch.metrics[2]"
         h2 = "{{labels[2][nameId]}}"
-        span = "{{totalCounterNested(waiting_times.detail[5].answers)}} {{totalCounterNested(waiting_times.detail[5].answers) == 1 ? 'valoración' : 'valoraciones'}}"
+        span.valuations = "{{totalCounterNested(waiting_times.detail[5].answers)}} {{totalCounterNested(waiting_times.detail[5].answers) == 1 ? 'valoración' : 'valoraciones'}}"
         == cell('visualization_components/full_detail_splitted_bar', 'waiting_times.detail[5].answers', label: 'labels[5]', reverse: true)
 
     section
@@ -50,7 +53,7 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
       h1 = "Satisfacción por especialidad"
       div v-for="(satisfactions, nameId) in branch.metrics[2]"
         h2 = "{{labels[2][nameId]}}"
-        span = "{{totalCounterNested(satisfactions.detail[7].answers)}} {{totalCounterNested(satisfactions.detail[7].answers) == 1 ? 'valoración' : 'valoraciones'}}"
+        span.valuations = "{{totalCounterNested(satisfactions.detail[7].answers)}} {{totalCounterNested(satisfactions.detail[7].answers) == 1 ? 'valoración' : 'valoraciones'}}"
         == cell('visualization_components/full_detail_splitted_bar', 'satisfactions.detail[7].answers', label: 'labels[7]' )
         button @click="showMoreDetails('2_' + nameId)" = "Ver detalles"
         div v-show="showStatuses['2_' + nameId]"
@@ -79,7 +82,7 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
       h1 = "Humanización"
       div v-for="(personnel, nameId) in branch.metrics[11]"
         h2 = "{{labels[11][nameId]}}"
-        span = "{{totalCounterNested(personnel.detail[12].answers)}} {{totalCounterNested(personnel.detail[12].answers) == 1 ? 'valoración' : 'valoraciones'}}"
+        span.valuations = "{{totalCounterNested(personnel.detail[12].answers)}} {{totalCounterNested(personnel.detail[12].answers) == 1 ? 'valoración' : 'valoraciones'}}"
         == cell('visualization_components/full_detail_splitted_bar', 'personnel.detail[12].answers', label: 'labels[12]' )
         button @click="showMoreDetails('11_' + nameId)" = "Ver detalles"
         div v-show="showStatuses['11_' + nameId]"
@@ -99,7 +102,7 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
   div
     section
       h1 = "Satisfacción"
-      span = "{{totalCounter(branch.metrics[15].answers)}} {{totalCounter(branch.metrics[15].answers) == 1 ? 'valoración' : 'valoraciones'}}"
+      span.valuations = "{{totalCounter(branch.metrics[15].answers)}} {{totalCounter(branch.metrics[15].answers) == 1 ? 'valoración' : 'valoraciones'}}"
       == cell('visualization_components/full_detail_splitted_bar', 'branch.metrics[15].answers', label: 'labels[15]' )
       button @click="showMoreDetails('15_1')" = "Ver detalles"
       div v-show="showStatuses['15_1']"
