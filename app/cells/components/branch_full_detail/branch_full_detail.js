@@ -161,7 +161,6 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
         }, 0)
       },
       totalCounterNested: function(answers) {
-        console.log(answers)
         return Object.keys(answers).reduce(function(sum, next) {
           return sum + answers[next].counter
         }, 0)
