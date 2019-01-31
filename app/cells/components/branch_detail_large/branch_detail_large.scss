@@ -4,22 +4,14 @@ $search-bar-height: calc(66px);
 @mixin branch-detail-large {
   background-color: $white;
   border-left: 1px solid color($light-grey, 0.5);
-
-  // for right
   bottom: 0;
   overflow-x: hidden;
   overflow-y: auto;
   padding: gutter(1) gutter(1) gutter(1) 0;
-
-  // for right
   position: fixed;
   right: 0;
-
-  // for right
   top: $search-bar-height;
   transform: translateX(100%);
-
-  // for right
   transition: transform 300ms ease 0ms;
   width: calc(100% / 1.61803398875);
   will-change: transform;
@@ -27,8 +19,6 @@ $search-bar-height: calc(66px);
 
   &.show {
     transform: translateX(0);
-
-    // for right
     transition: transform 300ms ease 300ms;
   }
 
@@ -47,12 +37,7 @@ $search-bar-height: calc(66px);
             line-height: gutter(1);
             max-width: calc(100% - 135px);
             padding: 0 gutter(1) 0 gutter();
-
-            // for right
             text-align: left;
-
-            // for right
-
           }
 
           > h2 {
@@ -62,23 +47,29 @@ $search-bar-height: calc(66px);
 
             max-width: calc(100% - 135px);
             padding: 0 gutter(1) 0 gutter();
-
-            // for right
             text-align: left;
-
-            // for right
-
           }
 
-          > ul {
-            padding: 0 gutter(1) 0 gutter();
+          > section {
+            overflow: auto;
+            padding: gutter();
 
-            // for right
-            > li {
-              display: inline-block;
-              padding-right: gutter(-2);
-              text-align: center;
-              width: gutter(1);
+            > section {
+              float: left;
+              width: 25%;
+
+              > ul {
+                > li {
+                  display: inline-block;
+                  padding-right: gutter(-2);
+                  text-align: center;
+                  width: gutter(1) * 0.75;
+                }
+              }
+
+              > span {
+                @include type-golden(-1);
+              }
             }
           }
 
@@ -132,8 +123,6 @@ $search-bar-height: calc(66px);
 
               > div:first-of-type {
                 float: right;
-
-                // for right
                 padding: gutter();
 
                 > h1 {
@@ -142,9 +131,6 @@ $search-bar-height: calc(66px);
                   @include type-golden(0);
 
                   text-align: right;
-
-                  // for right
-
                 }
               }
 
@@ -156,8 +142,6 @@ $search-bar-height: calc(66px);
                 > div:last-of-type {
                   border-bottom: 2px solid $blue;
                   float: right;
-
-                  // for right
                   width: calc(100% / 1.61803398875);
 
                   &.low {
@@ -179,8 +163,6 @@ $search-bar-height: calc(66px);
                   > div {
                     background-color: $blue;
                     float: left;
-
-                    // for right
                     height: 100%;
                     padding: gutter();
 
@@ -190,8 +172,6 @@ $search-bar-height: calc(66px);
                       @include type-golden(1);
 
                       float: left;
-
-                      // for right
                       height: 19px;
                       line-height: 19px;
                       white-space: nowrap;
@@ -391,14 +371,10 @@ $search-bar-height: calc(66px);
   background-color: transparent;
   padding: 60vh 0 0 0;
   transform: translateY(100%);
-
-  // for right
   width: 100%;
 
   &.show {
     transform: translateX(0);
-
-    // for right
     transition: transform 300ms ease 300ms;
   }
 
