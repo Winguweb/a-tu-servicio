@@ -3,18 +3,77 @@
     font-weight: 300;
     min-height: calc(100% - 5rem);
     padding: gutter(2);
-    > h1, h2 {
+
+    > h1 {
       @include type-golden(1);
+
       font-weight: 600;
       margin-bottom: gutter();
       text-transform: uppercase;
     }
-    > h2 {
-      @include type-golden(0);
-      margin-top: gutter(2);
-    }
+
     > p {
-      margin-bottom: gutter();
+      margin-bottom: gutter(2);
+      text-align: justify;
+
+      @media (max-width: 800px) {
+        text-align: left;
+      }
+    }
+
+    > div {
+      display: flex;
+      margin-right: -gutter();
+
+      @media (max-width: 800px) {
+        flex-direction: column;
+      }
+
+      > article {
+        border: 1px solid $light-grey;
+        flex: 1;
+        margin-bottom: gutter();
+        margin-right: gutter();
+        padding: gutter();
+
+        @media (max-width: 800px) {
+          flex: 0 0 100%;
+        }
+
+        > h2 {
+          @include type-golden(0);
+
+          font-weight: 600;
+          margin-bottom: gutter();
+          text-transform: uppercase;
+        }
+
+        > p {
+          margin-bottom: gutter();
+          min-height: 100px;
+          text-align: justify;
+
+          @include type-golden(-0.5);
+
+          @media (max-width: 800px) {
+            min-height: auto;
+            text-align: left;
+          }
+        }
+
+        ul {
+          padding-left: gutter();
+
+          li {
+            a {
+              @include type-golden(-0.5);
+
+              color: $light-blue;
+              padding: (gutter() / 2) 0;
+            }
+          }
+        }
+      }
     }
   }
 }
