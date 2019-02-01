@@ -19,7 +19,7 @@ class HomeController < ApplicationController
     @models = ["Branch","Provider","Satisfaction","Speciality","WaitingTime","Survey"]
   end
 
-  def download
+  def download_csv
 
     if params[:model].present?
       exporter_options = {
@@ -27,6 +27,17 @@ class HomeController < ApplicationController
       }
       reporter = "Reporting::#{params[:model]}Exporter".singularize.classify.constantize
       stream_csv(reporter, logged_in?, **exporter_options )
+    end
+  end
+
+  def download_xlsx
+
+    if params[:model].present?
+      exporter_options = {
+        model_klass: params[:model].singularize.classify.constantize,
+      }
+      reporter = "Reporting::#{params[:model]}Exporter".singularize.classify.constantize
+      stream_xlsx(reporter, logged_in?, **exporter_options )
     end
   end
 end
