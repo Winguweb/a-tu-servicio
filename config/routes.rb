@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/mapa-de-servicios' => 'home#services', as: :services
   get '/datos/descarga/csv/:model', action: :download_csv, controller: :home, as: :data_download_csv, constraints: { model: /(Branch|Provider|Satisfaction|Speciality|WaitingTime|Survey)/ }
   get '/datos/descarga/xls/:model', action: :download_xlsx, controller: :home, as: :data_download_xlsx, constraints: { model: /(Survey)/ }
+  get '/datos/descarga/xls/todo', action: :download_all, controller: :home, as: :data_download_all
   get '/datasets' => 'home#datasets', as: :datasets
 
   get '/apple-touch-icon-precomposed.png', to: redirect('/assets/apple-touch-icon-precomposed.png')

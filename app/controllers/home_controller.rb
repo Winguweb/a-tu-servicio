@@ -40,4 +40,12 @@ class HomeController < ApplicationController
       stream_xlsx(reporter, logged_in?, **exporter_options )
     end
   end
+
+  def download_all
+    send_file(
+      "#{Rails.root}/public/download/unified_data.xlsx",
+      filename: "unified_data.xlsx",
+      type: "application/vnd.ms-excel"
+    )
+  end
 end

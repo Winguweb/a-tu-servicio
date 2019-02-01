@@ -69,6 +69,7 @@
               @include type-golden(-0.5);
 
               color: $light-blue;
+              font-weight: 400;
               padding: (gutter() / 2) 0;
             }
           }
