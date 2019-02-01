@@ -71,16 +71,26 @@ module Reporting
       end
     end
 
+    def data_stream
+      Enumerator.new do |result|
+        result << xlsx_header
+
+        yielder do |row|
+          result << row
+        end
+      end
+    end
+
     private
 
     def user_logged_in?
       !!@user
     end
 
-    def header
-      return @header if defined?(@header)
+    def create_csv_headers
+      return @csv_header if defined?(@csv_header)
 
-      @header = %w[provider_name branch_name]
+      @csv_header = %w[provider_name branch_name]
 
       SURVEY_COLUMNS.each do |column|
         next if column[:user_only] && !user_logged_in?
@@ -90,16 +100,41 @@ module Reporting
         else
           $survey_data.steps_labels[column[:id]]
         end
-        @header << label
+        @csv_header << label
       end
-      @header
+      @csv_header
+    end
+
+    def create_xlsx_headers
+      return @xlsx_header if defined?(@xlsx_header)
+
+      @xlsx_header = ["Nombre del Prestador", "Nombre de la Sede"]
+
+      SURVEY_COLUMNS.each do |column|
+        next if column[:user_only] && !user_logged_in?
+
+        label = if column.key?(:custom_label)
+          column[:custom_label]
+        else
+          $survey_data.steps_labels[column[:id]]
+        end
+        @xlsx_header << label
+      end
+      @xlsx_header
     end
 
     def csv_header
+      header = create_csv_headers
       CSV::Row.new(header, header, true).to_s
     end
 
+    def xlsx_header
+      header = create_xlsx_headers
+      CSV::Row.new(header, header, true).to_h.keys
+    end
+
     def csv_row(values)
+      header = create_csv_headers
       CSV::Row.new(header, values).to_s
     end
 

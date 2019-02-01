@@ -1,8 +1,26 @@
 section
   h1 = "Datasets disponibles"
+  p
+    | En esta sección descarga los datos abiertos de A Tu Servicio Bogotá para que sean utilizados de forma abierta por la comunidad. La información se encuentra dividida en dos categorías. Por un lado, los datos de fuente oficial recopilados por la Secretaría Distrital de Salud de Bogotá. Por otro, los datos que se generan día a día gracias al reporte ciudadano, reflejando la calificación de los usuarios sobre la calidad de la atención en las Instituciones Prestadoras de Salud (IPS) de la ciudad.
 
-  ul
-    - @models.each do |model|
-      li
-        = link_to "Descargar dataset #{model}", data_download_path(model)
+  div
+    article
+      h2 = "Conoce los datos de reporte ciudadano"
+      p
+        | Datos abiertos sobre la calidad, oportunidad y atención de los servicios que reciben los usuarios en las Instituciones Prestadoras de Salud (IPS), públicas y privadas, que están habilitadas para funcionar en Bogotá.
+      ul
+        li = link_to "Descargar CSV Reporte Ciudadano", data_download_csv_path(Survey)
+        li = link_to "Descargar Excel Reporte Ciudadano", data_download_xlsx_path(Survey)
+
+    article
+      h2 = "Conoce los datos sobre la salud pública en Bogotá"
+      p
+        | Datos abiertos oficiales de la Secretaría Distrital de Salud de Bogotá sobre las sedes, los prestadores, la satisfacción y tiempos de espera.
+      ul
+        li = link_to "Descargar CSV de Prestadores", data_download_csv_path(Provider)
+        li = link_to "Descargar CSV de Sedes", data_download_csv_path(Branch)
+        li = link_to "Descargar CSV de Satisfacción", data_download_csv_path(Satisfaction)
+        li = link_to "Descargar CSV de Tiempo de Espera", data_download_csv_path(WaitingTime)
+        li = link_to "Descargar Excel Unificado", data_download_all_path(Survey)
+
 == cell('components/site_footer', { active_links: true })

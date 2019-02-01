@@ -109,7 +109,7 @@ $search-bar-height: calc(66px);
         }
 
         > span.valuations {
-          @include type-golden(-2);
+          @include type-golden(-1);
 
           background-color: $blue;
           border-radius: 100px;
