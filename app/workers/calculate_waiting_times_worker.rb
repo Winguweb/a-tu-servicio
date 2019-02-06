@@ -30,6 +30,6 @@ class CalculateWaitingTimesWorker
 
     waiting_times_total_average = waiting_times_total_count > 0 ? waiting_times_total_sum / waiting_times_total_count : 0
 
-    $redis.set("waiting_times/branch/#{branch_id}", waiting_times_total_average / 3 * 5)
+    $redis.set("waiting_times/branch/#{branch_id}", (4 - waiting_times_total_average) / 3 * 5)
   end
 end

@@ -38,19 +38,19 @@ class Branch < ActiveRecord::Base
   end
 
   def quality
-    redis.get("quality/branch/#{id}").to_i
+    redis.get("quality/branch/#{id}").to_f.round.to_i
   end
 
   def waiting_times
-    redis.get("waiting_times/branch/#{id}").to_i
+    redis.get("waiting_times/branch/#{id}").to_f.round.to_i
   end
 
   def satisfaction
-    redis.get("satisfaction/branch/#{id}").to_i
+    redis.get("satisfaction/branch/#{id}").to_f.round.to_i
   end
 
   def humanization
-    redis.get("humanization/branch/#{id}").to_i
+    redis.get("humanization/branch/#{id}").to_f.round.to_i
   end
 
   private
