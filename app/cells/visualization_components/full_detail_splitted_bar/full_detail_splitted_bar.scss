@@ -1,4 +1,6 @@
 @mixin full-detail-splitted-bar {
+  clear: both;
+
   > div {
     height: gutter();
     position: relative;
@@ -67,6 +69,17 @@
         display: inline-block;
         height: 100%;
         opacity: 0.5;
+        position: relative;
+
+        &:not(first-of-type):before {
+          background-color: $white;
+          bottom: 0;
+          content: '';
+          left: -1px;
+          position: absolute;
+          top: 0;
+          width: 1px;
+        }
       }
     }
   }

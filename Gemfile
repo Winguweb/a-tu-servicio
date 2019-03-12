@@ -21,6 +21,7 @@ gem 'cells-rails'
 gem 'cells-slim', git: "git@github.com:trailblazer/cells-slim", branch: :master
 gem 'sidekiq'
 gem 'typhoeus'
+gem 'xlsxtream'
 
 group :development, :test do
   gem 'pry'

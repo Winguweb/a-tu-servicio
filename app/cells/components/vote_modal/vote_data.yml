@@ -233,6 +233,13 @@ steps:
       data:
         label: "Particular"
         value: "Particular"
+    - id: 6
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No Sabe"
+        value: "No Sabe"
     previous_step: null
     next_step:
       1: 2
@@ -240,6 +247,7 @@ steps:
       3: 2
       4: 2
       5: 2
+      6: 2
     answer: null
   - id: 2
     question: "Selecciona el servicio para el cual solicitaste la cita"

@@ -21,7 +21,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
       },
       labels: {
         1: {
-          1: 'No asegurado', 2: 'Subsidiado', 3: 'Contributivo', 4: 'Particular', 5: 'Prepagada'
+          1: 'No asegurado', 2: 'Subsidiado', 3: 'Contributivo', 4: 'Particular', 5: 'Prepagada', 6: 'No Sabe'
         },
         2: {
           4: "Medicina General",
@@ -154,6 +154,16 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
           this.$set(this.showStatuses, name, false)
         }
         this.showStatuses[name] = !this.showStatuses[name]
+      },
+      totalCounter: function(answers) {
+        return Object.keys(answers).reduce(function(sum, next) {
+          return sum + answers[next].counter
+        }, 0)
+      },
+      totalCounterNested: function(answers) {
+        return Object.keys(answers).reduce(function(sum, next) {
+          return sum + answers[next].counter
+        }, 0)
       }
     }
   })

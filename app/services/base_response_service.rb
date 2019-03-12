@@ -29,6 +29,18 @@ class BaseResponseService
     @branch.quality
   end
 
+  def _waiting_times
+    @branch.waiting_times
+  end
+
+  def _satisfaction
+    @branch.satisfaction
+  end
+
+  def _humanization
+    @branch.humanization
+  end
+
   def _provider_name
     @branch.provider.name
   end
@@ -55,6 +67,9 @@ class BaseResponseService
       name: _name,
       address: _address,
       quality: _quality,
+      waiting_times: _waiting_times,
+      satisfaction: _satisfaction,
+      humanization: _humanization,
       provider: {
         name: _provider_name,
         subnet: _provider_subnet,

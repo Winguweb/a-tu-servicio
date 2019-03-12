@@ -120,7 +120,7 @@ class SurveysMetricsService
 
       return unless node_response && node_response.respond_to?(:answer_id)
 
-      response_node[node_response.answer_id][:counter] += 1
+      response_node[node_response.answer_id][:counter] += 1 if response_node[node_response.answer_id].present?
 
       add_detail_answers_count_for(response_node[node_response.answer_id], detail_ids, node_responses)
     end
@@ -132,6 +132,7 @@ class SurveysMetricsService
     end
 
     def add_detail_answers_count_for(response_node, detail_ids, node_responses)
+      return if response_node.blank?
       Array(detail_ids).each do |node_id|
         add_answer_count_to(response_node[:detail][node_id], node_responses[node_id])
       end

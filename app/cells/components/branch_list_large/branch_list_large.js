@@ -111,7 +111,8 @@ ATSB.Components['components/branch-list-large'] = function(options) {
           highlightPostTag: '</em>',
           getRankingInfo: true,
           facets: [ "specialities_names" ],
-          page: page
+          page: page,
+          hitsPerPage: query == '' ? 9999 : 50
         }
       },
       suggestionClicked: function(suggestion) {
