@@ -1,8 +1,8 @@
 development: &app_config
   algolia:
-    admin_api_key:
-    application_id:
-    search_api_key:
+    admin_api_key: <%= ENV['ALGOLIA_ADMIN_KEY'] %>
+    application_id: <%= ENV['ALGOLIA_APP_KEY'] %>
+    search_api_key: <%= ENV['ALGOLIA_SEARCH_KEY'] %>
 
   google:
     analytics:
@@ -10,11 +10,11 @@ development: &app_config
       api_key:
     recaptcha:
       secretkey:
-      sitekey:
+      sitekey: <%= ENV['GOOGLE_RECAPTCHA_SITE_KEY'] %>
       verifyUrl:
 
   mapbox:
-    token:
+    token: <%= ENV['MAPBOX_TOKEN'] %>
 
   redis:
     host: 'localhost'
@@ -22,7 +22,7 @@ development: &app_config
     db:   0
 
   vuejs:
-    cdn_url:
+    cdn_url: <%= ENV['VUEJS_CDN'] %>
 
 production:
   <<: *app_config
