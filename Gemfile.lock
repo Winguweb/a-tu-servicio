@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:trailblazer/cells-slim
+  remote: https://github.com/trailblazer/cells-slim
   revision: 8f9b35a5f770f2f821c95b8cabb1b654166cd2e9
   branch: master
   specs:
@@ -348,7 +348,7 @@ DEPENDENCIES
   xlsxtream
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.4.0p0
 
 BUNDLED WITH
    1.17.3

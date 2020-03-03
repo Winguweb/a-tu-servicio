@@ -18,7 +18,7 @@ gem 'puma'
 gem 'redis-namespace'
 gem 'rollbar'
 gem 'cells-rails'
-gem 'cells-slim', git: "trailblazer/cells-slim", branch: :master
+gem 'cells-slim', git: "https://github.com/trailblazer/cells-slim", branch: :master
 gem 'sidekiq'
 gem 'typhoeus'
 gem 'xlsxtream'
