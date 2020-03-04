@@ -258,9 +258,7 @@ namespace :importer do
     end
 
     providers
-    if !Rails.env.development?
-      specialities_data
-    end
+    # specialities_data
     costs_data
     medical_assistences_data
     satisfactions_data
