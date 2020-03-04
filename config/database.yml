@@ -78,8 +78,10 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+
 production:
-  adapter: postgresql
+  adapter: <%= ENV['ATUSERVICIO_DB_ADAPTER'] || postgresql %>
   encoding: unicode
   pool: 5
   database: <%= ENV['ATUSERVICIO_DB'] %>
