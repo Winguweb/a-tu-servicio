@@ -260,6 +260,7 @@ namespace :importer do
     providers
     if !Rails.env.development?
       specialities_data
+    end
     costs_data
     medical_assistences_data
     satisfactions_data
