@@ -78,10 +78,9 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-
-# <%= ENV['ATUSERVICIO_DB_ADAPTER'] || postgresql %>
+  # adapter: postgresql
 production:
-  adapter: postgis
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
   encoding: unicode
   pool: 5
   database: <%= ENV['ATUSERVICIO_DB'] %>
