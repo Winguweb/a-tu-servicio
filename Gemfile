@@ -7,7 +7,7 @@ gem 'pg'
 gem 'algoliasearch-rails'
 gem 'acts-as-taggable-on'
 gem 'authlogic'
-gem 'slim'
+gem 'slim', '~> 3.0.0'
 gem 'uglifier'
 gem 'sass-rails'
 gem 'neat' # A lightweight and flexible Sass grid
@@ -18,7 +18,7 @@ gem 'puma'
 gem 'redis-namespace'
 gem 'rollbar'
 gem 'cells-rails'
-gem 'cells-slim', git: "https://github.com/trailblazer/cells-slim", branch: :master
+gem 'cells-slim', '0.0.6'
 gem 'sidekiq'
 gem 'typhoeus'
 gem 'xlsxtream'
@@ -29,7 +29,7 @@ group :development, :test do
   gem 'query_diet'
   gem 'bullet'
   # Access an IRB console on exception pages or by using <%= console %> in views
-  # gem 'web-console'
+  gem 'web-console'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'active_record_query_trace'
@@ -45,6 +45,5 @@ group :development do
   gem 'capistrano-bundler',     require: false
   gem 'capistrano3-puma',       require: false
   gem 'capistrano-rails',       require: false
-  gem 'capistrano-maintenance', require: false
-  gem 'web-console'
+  gem 'capistrano-maintenance', require: false  
 end
