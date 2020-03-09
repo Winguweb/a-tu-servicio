@@ -258,7 +258,7 @@ namespace :importer do
     end
 
     providers
-    specialities_data
+    # specialities_data
     costs_data
     medical_assistences_data
     satisfactions_data
