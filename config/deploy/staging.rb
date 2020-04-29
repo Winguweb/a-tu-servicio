@@ -1,5 +1,5 @@
 set :stage, :staging
-set :branch, :dev
+set :branch, "covid-19"
 
 server '34.224.95.156', user: 'deploy', roles: %w{ app }
 
