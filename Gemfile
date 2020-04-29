@@ -38,6 +38,7 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'active_record_query_trace'
 end
 
 group :development do
