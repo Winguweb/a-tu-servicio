@@ -1,7 +1,7 @@
 set :stage, :staging
 set :branch, :dev
 
-server 'stg18.atsb.wingu.ong', user: 'deploy', roles: %w{ app }
+server '34.224.95.156', user: 'deploy', roles: %w{ app }
 
 set :rails_env, :production
 set :puma_env, :production
