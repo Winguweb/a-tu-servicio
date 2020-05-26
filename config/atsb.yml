@@ -1,0 +1,25 @@
+development: &app_config
+  algolia:
+    admin_api_key: ['ALGOLIA_ADMIN_KEY']
+    application_id: ['ALGOLIA_APP_KEY']
+    search_api_key: ['ALGOLIA_SEARCH_KEY']
+  google:
+    analytics:
+    geocoding:
+      api_key:
+    recaptcha:
+      secretkey:
+      sitekey: 1234567
+      verifyUrl:
+  mapbox:
+    token: ['MAPBOX_TOKEN']
+  redis:
+    host: 'localhost'
+    port: 6379
+    db:   0
+  vuejs:
+    cdn_url: ['VUE_CDN']
+production:
+  <<: *app_config
+test:
+  <<: *app_config
