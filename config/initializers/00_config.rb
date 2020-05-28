@@ -28,4 +28,4 @@ REDIS_HOST            = ENV['REDIS_HOST']
 REDIS_PORT            = ENV['REDIS_PORT']
 REDIS_URL             = "redis://#{REDIS_HOST}:#{REDIS_PORT}/#{REDIS_DB}".freeze
 
-MAPBOX_TOKEN    = APP_CONFIG[env]['mapbox']['token'].freeze
+MAPBOX_TOKEN    = ENV['MAPBOX_TOKEN']
