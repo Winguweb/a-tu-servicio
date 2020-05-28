@@ -1,11 +1,11 @@
 GIT
-  remote: git@github.com:trailblazer/cells-slim
-  revision: ad3b0a6aebc1213cb564f1ccd34395696f9d82cd
+  remote: https://github.com/trailblazer/cells-slim
+  revision: 8f9b35a5f770f2f821c95b8cabb1b654166cd2e9
   branch: master
   specs:
-    cells-slim (0.0.6)
+    cells-slim (0.1.1)
       cells (>= 4.0.1, < 6.0.0)
-      slim (~> 3.0)
+      slim (>= 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -352,4 +352,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.16.1
+   2.1.4
