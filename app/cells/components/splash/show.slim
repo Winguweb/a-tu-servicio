@@ -15,7 +15,11 @@ div.splash-cell v-bind:class="{show: actions.show}"
 
   div
     = link_to services_path
-      = 'Explora y califica'
+      = 'Explora y califica'  
+
+  div
+    == cell('components/search_bar')
+    
   div :style="{transition: '100ms linear all', transform: this.isMobile && `translateX(${displacement}px)`}"
     == cell('components/city_image')
 
