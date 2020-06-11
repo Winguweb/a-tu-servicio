@@ -1,49 +1,47 @@
-div.vote-modal-cell v-bind:class="{show: actions.show}"
+div.vote-modal-cell.show v-bind:class="{show: actions.show}"
   transition-group name="swipe"
     section key="main-section" v-if="showForm"
-      header
+      .header
         button @click="componentClose()"
-        h1 = "Reporte ciudadano"
-      section
+        h1 = "HEADER"
+      .line-container
+          .line
+      .content
+        .title
+          span Reporte Ciudadano
+          p Esta encuesta es confidencial y anónima, el único proposito que la reviste es conocer la percepción de los usuarios ante las instituciones prestadoras de salud.
+          
+        .chat-wrapper
+          .question
+            span = "{{getQuestion()}}"
+          ul
+            li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
 
-        h1 = "{{getQuestion()}}"
-        ul
-          li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
+              button.cuckoo v-if="answer.type == 'cuckoo'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
 
-            button.cuckoo v-if="answer.type == 'cuckoo'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
+              label v-if="answer.type == 'input'"
+                input type="text" v-model="inputValue" placeholder=""
 
-            label v-if="answer.type == 'input'"
-              input type="text" v-model="inputValue" placeholder=""
+              div v-if="answer.type == 'text'"
+                i v-text="inputValueLength"
+                textarea v-model="inputValue" placeholder="Escriba aquí..." :maxlength="inputValueSizeLimit"
 
-            div v-if="answer.type == 'text'"
-              i v-text="inputValueLength"
-              textarea v-model="inputValue" placeholder="Escriba aquí..." :maxlength="inputValueSizeLimit"
+              label v-if="answer.type == 'number'"
+                input type="number" size="1" min="0" v-model="inputValue" placeholder="-"
+                span = " días"
 
-            label v-if="answer.type == 'number'"
-              input type="number" size="1" min="0" v-model="inputValue" placeholder="-"
-              span = " días"
+              button.star v-if="answer.type == 'star'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}"
+                span = "{{answer.data.label}}"
 
-            button.star v-if="answer.type == 'star'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}"
-              span = "{{answer.data.label}}"
+              button.icon v-if="answer.type == 'icon'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}"
+                span = "{{answer.display}}"
+                span = "{{answer.data.label}}"
 
-            button.icon v-if="answer.type == 'icon'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}"
-              span = "{{answer.display}}"
-              span = "{{answer.data.label}}"
+              button.option v-if="answer.type == 'option'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
 
-            button.option v-if="answer.type == 'option'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
-
-            p.link v-if="answer.type == 'link'" v-html="answer.data.html"
-      footer
-        button.navigation.previous.animated-button v-if="getActualStep().previous_step" @click="previousStep()"
-        transition-group name="next"
-          button.navigation.next.animated-button key="NextButton" v-if="getActualStep().next_step && getActualAnswer()" @click="nextStep()"
-          button.loop.animated-button key="LoopButton" v-if="stepIsLooped() && getActualStep().next_step && getActualAnswer()" @click="goToLoop()"
-            = image_tag asset_path('icons/star-white.svg')
-            span = "Calificar otro"
-          #google_recaptcha.g-recaptcha key="recaptcha" data-sitekey="#{RECAPTCHA_SITEKEY}" data-size="invisible"
-          button.back.animated-button key="BackButton" v-if="getActualStep().next_step == null" @click="backToProvider()"
-            span = "Volver al prestador"
-            = image_tag asset_path('icons/arrow-right.svg')
+              p.link v-if="answer.type == 'link'" v-html="answer.data.html"
+      .next-button
+        button @click="nextStep()" Siguiente
 javascript:
     $(function() {ATSB.Components['components/vote-modal']({
       form: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json},

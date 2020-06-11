@@ -153,8 +153,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
         var question_value = this.getQuestion()
 
         this.loopTo = options.loopTo
-        this.showForm = false
-
         if (this.shouldSaveVote()) {
           this.sendVote({
             client_id: client_id,
@@ -214,7 +212,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.getStepById(this.actualStepId).answer = id
         var actualAnswer = this.getAnswerById(id)
         if (actualAnswer.auto_submit == false) { return }
-        this.nextStep()
       },
       sendVote: function(vote, needsRecaptcha, fnSuccess, fnFail) {
         ATSB.pubSub.$emit('vote:send', vote, needsRecaptcha, fnSuccess, fnFail)

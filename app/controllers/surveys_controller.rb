@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   def create
-    return error_message unless recaptcha_was_verified? || recaptcha_verified?
+    # return error_message unless recaptcha_was_verified? || recaptcha_verified?
     multi_response = params[:vote][:multi_response]
 
     @survey = get_existing_or_new_survey(multi_response)
