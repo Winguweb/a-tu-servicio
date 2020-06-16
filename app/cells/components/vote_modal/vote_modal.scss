@@ -18,6 +18,7 @@
       overflow: hidden;
       position: relative;
       width: 100%;
+      background-color: #F7FAFC;
       .header{
         position: relative;
         box-shadow: 0 2px 4px color($black, 0.5);
@@ -35,7 +36,6 @@
         }
       }
       .content{
-        background-color: #F7FAFC;
         overflow: scroll;
         position: relative;
         padding: 1rem;
@@ -78,6 +78,22 @@
             border: 1px solid #00ABE6;
             color: #00ABE6;
           }
+        }
+      }
+      .urgency-info{
+        padding: 1rem 0;
+        .title{
+          font-size: 15px;
+          color: #3FA6C9;
+          font-weight: bold;
+        }
+        >p, >ul{
+          padding: 1rem 0;
+          font-size: 15px;
+          color: #0A2127;
+        }
+        >p{
+          line-height: 1.5
         }
       }
       .next-button{

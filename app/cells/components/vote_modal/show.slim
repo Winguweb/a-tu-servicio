@@ -7,11 +7,10 @@ div.vote-modal-cell.show v-bind:class="{show: actions.show}"
       .line-container
           .line
       .content
-        .title
+        .title v-if="type == 'first'"
           span Reporte Ciudadano
           p Esta encuesta es confidencial y anónima, el único proposito que la reviste es conocer la percepción de los usuarios ante las instituciones prestadoras de salud.
-          
-        .chat-wrapper
+        .chat-wrapper v-if="type != 'urgency'"
           .question
             span = "{{getQuestion()}}"
           ul
@@ -40,8 +39,14 @@ div.vote-modal-cell.show v-bind:class="{show: actions.show}"
               button.option v-if="answer.type == 'option'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
 
               p.link v-if="answer.type == 'link'" v-html="answer.data.html"
+        .urgency-info v-if="type == 'urgency'"
+          span.title Servicio de urgencias
+          p = "{{getQuestion()}}"
+          ul
+            li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
+              span = "{{answer.data.label}}"
       .next-button
-        button @click="nextStep()" Siguiente
+        button @click="nextStep()" Siguiente 
 javascript:
     $(function() {ATSB.Components['components/vote-modal']({
       form: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json},

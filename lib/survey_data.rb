@@ -10,16 +10,16 @@ class SurveyData
       keys: 'answers',
       detail_ids: [5, 7, 9, 10]
     },
-    {
-      id: 11,
-      keys: 'answers',
-      detail_ids: [12, 13, 14],
-      multiple: true
-    },
-    {
-      id: 15,
-      detail_ids: [16, 17]
-    }
+    # {
+    #   id: 11,
+    #   keys: 'answers',
+    #   detail_ids: [12, 13, 14],
+    #   multiple: true
+    # },
+    # {
+    #   id: 15,
+    #   detail_ids: [16, 17]
+    # }
   ].freeze
   private_constant :RESPONSE_STRUCTURE_KEYS
 
@@ -84,9 +84,9 @@ class SurveyData
     # TO-DO: Review this if the vote_data.yml file change. Because I need to do
     # this only because of the step 5 that has different answers depending on
     # the id of the previous step
-    if node_id == 5
-      answers_data = answers_data.first[:answers]
-    end
+    # if node_id == 5
+    #   answers_data = answers_data.first[:answers]
+    # end
 
     answers_data.each_with_object({}) do |answer_data, _hash|
       answer_id = answer_data[:id]

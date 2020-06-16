@@ -11,6 +11,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
       recaptchaSitekey: options.recaptchaSitekey,
       showForm: true,
       steps: options.form.steps,
+      type: ""
     },
     created: function() {
       var _this = this
@@ -111,6 +112,8 @@ ATSB.Components['components/vote-modal'] = function(options) {
             return _(q.depends_on_id).contains(depends_on_answer_id)
           }).label
         }
+
+        this.type = actualStep.type
         return question
       },
       getStepById: function(id) {
@@ -137,11 +140,16 @@ ATSB.Components['components/vote-modal'] = function(options) {
         return !!this.getStepById(this.actualStepId).multi_response
       },
       nextStep: function(options) {
+
         var _this = this
         var options = options || {}
         var needsRecaptcha = this.isFirstStep()
         var actualStep = this.getActualStep()
         var actualAnswerId = this.getActualAnswer()
+        if(this.type == 'urgency'){
+          this.actualStepId = this.actualStepId + 1
+          return
+        }
         if (actualAnswerId == null) { return }
 
         var client_id = this.clientId
@@ -151,7 +159,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
         var answer_data = this.getAnswerById(actualAnswerId).data
             answer_data.value = this.inputValue || answer_data.value
         var question_value = this.getQuestion()
-
         this.loopTo = options.loopTo
         if (this.shouldSaveVote()) {
           this.sendVote({
@@ -181,7 +188,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
         var _this = this
         var actualStep = this.getActualStep()
         var previousStep = actualStep.previous_step
-        if (previousStep) { this.actualStepId = +previousStep }
+        if (previousStep) { IdId = +previousStep }
         this.preloadInputValue()
         this.showForm = false
         setTimeout(function() {_this.showForm = true}, 300)
