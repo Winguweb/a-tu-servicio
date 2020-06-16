@@ -13,7 +13,7 @@ div.vote-modal-cell.show v-bind:class="{show: actions.show}"
         .chat-wrapper v-if="type != 'urgency'"
           .question
             span = "{{getQuestion()}}"
-          ul
+          ul v-if="type != 'star'"
             li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
 
               button.cuckoo v-if="answer.type == 'cuckoo'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
@@ -29,9 +29,6 @@ div.vote-modal-cell.show v-bind:class="{show: actions.show}"
                 input type="number" size="1" min="0" v-model="inputValue" placeholder="-"
                 span = " días"
 
-              button.star v-if="answer.type == 'star'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}"
-                span = "{{answer.data.label}}"
-
               button.icon v-if="answer.type == 'icon'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}"
                 span = "{{answer.display}}"
                 span = "{{answer.data.label}}"
@@ -39,6 +36,10 @@ div.vote-modal-cell.show v-bind:class="{show: actions.show}"
               button.option v-if="answer.type == 'option'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
 
               p.link v-if="answer.type == 'link'" v-html="answer.data.html"
+          ul.star v-if="type == 'star'"
+            li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
+              button.star v-if="answer.type == 'star'" @click="selectAnswer(answer.id)" 
+                  span = "{{answer.data.label}}"
         .urgency-info v-if="type == 'urgency'"
           span.title Servicio de urgencias
           p = "{{getQuestion()}}"

@@ -407,7 +407,7 @@ steps:
     previous_step: null
     next_step:
       1: 7
-      2: 7
+      2: 16
       3: 7
       4: 7
     answer: null
@@ -540,7 +540,7 @@ steps:
       data:
         label: "mas de 4 horas"
         value: "mas de 4 horas"
-    - id: 4
+    - id: 5
       type: "cuckoo"
       auto_submit: true
       should_save: true
@@ -556,7 +556,7 @@ steps:
       5: 10
     answer: null
   - id: 10
-    type: "humanización"
+    type: "star"
     question: "¿Cómo calificaría el grado de amabilidad del personal de recepción o administrativo?"
     multi_response: true
     answers:
@@ -597,143 +597,16 @@ steps:
         value: 5
     previous_step: null
     next_step:
-      1: 13
-      2: 13
-      3: 13
-      4: 14
-      5: 14
+      1: 11
+      2: 11
+      3: 11
+      4: 11
+      5: 11
     answer: null
-  - id: 13
-    question: "¿Cuál fue el motivo de la mala atención?"
+  - id: 11
+    type: "star"
+    question: "¿Cómo calificaría el grado de amabilidad del profesional de salud que lo atendió?"
     multi_response: true
-    loop_from: 11
-    answers:
-    - id: 1
-      type: "option"
-      auto_submit: false
-      should_save: true
-      data:
-        label: "No se presentó amabilidad y calidez por parte de los funcionarios"
-        value: "No se presentó amabilidad y calidez por parte de los funcionarios"
-    - id: 2
-      type: "option"
-      auto_submit: false
-      should_save: true
-      data:
-        label: "No le demostraron interés o voluntad en ayudarlo"
-        value: "No le demostraron interés o voluntad en ayudarlo"
-    - id: 3
-      type: "option"
-      auto_submit: false
-      should_save: true
-      data:
-        label: "No tuvo privacidad para contar su caso"
-        value: "No tuvo privacidad para contar su caso"
-    - id: 4
-      type: "option"
-      auto_submit: false
-      should_save: true
-      data:
-        label: "La explicación o información que le brindaron no fue confiable"
-        value: "La explicación o información que le brindaron no fue confiable"
-    - id: 5
-      type: "option"
-      auto_submit: true
-      should_save: false
-      data:
-        label: "Otros"
-        value: "Otros"
-    previous_step: null
-    next_step:
-      1: 15
-      2: 15
-      3: 15
-      4: 15
-      5: 21
-    answer: null
-  - id: 21
-    question: "¿Cuál fue el motivo de la mala atención?"
-    multi_response: true
-    loop_from: 11
-    answers:
-    - id: 1
-      type: "text"
-      auto_submit: false
-      should_save: true
-      data:
-        label: "Otros"
-        value: "Otros"
-    previous_step: null
-    next_step:
-      1: 15
-    answer: null
-  - id: 14
-    question: "¿Qué valoras de la atención recibida?"
-    multi_response: true
-    loop_from: 11
-    answers:
-    - id: 1
-      type: "option"
-      auto_submit: false
-      should_save: true
-      data:
-        label: "Se presentó amabilidad y calidez por parte de los funcionarios"
-        value: "Se presentó amabilidad y calidez por parte de los funcionarios"
-    - id: 2
-      type: "option"
-      auto_submit: false
-      should_save: true
-      data:
-        label: "Le demostraron interés y voluntad en ayudarlo"
-        value: "Le demostraron interés y voluntad en ayudarlo"
-    - id: 3
-      type: "option"
-      auto_submit: false
-      should_save: true
-      data:
-        label: "La privacidad para contar su caso"
-        value: "La privacidad para contar su caso"
-    - id: 4
-      type: "option"
-      auto_submit: false
-      should_save: true
-      data:
-        label: "La explicación o información que le brindaron fue confiable"
-        value: "La explicación o información que le brindaron fue confiable"
-    - id: 5
-      type: "option"
-      auto_submit: true
-      should_save: false
-      data:
-        label: "Otros"
-        value: "Otros"
-    previous_step: null
-    next_step:
-      1: 15
-      2: 15
-      3: 15
-      4: 15
-      5: 22
-    answer: null
-  - id: 22
-    question: "¿Qué valoras de la atención recibida?"
-    multi_response: true
-    loop_from: 11
-    answers:
-    - id: 1
-      type: "text"
-      auto_submit: false
-      should_save: true
-      data:
-        label: "Otros"
-        value: "Otros"
-    previous_step: null
-    next_step:
-      1: 15
-    answer: null
-  - id: 15
-    question: "¿Cuál es su nivel de satisfacción con la calidad del servicio de salud?"
-    multi_response: false
     answers:
     - id: 1
       type: "star"
@@ -772,147 +645,401 @@ steps:
         value: 5
     previous_step: null
     next_step:
-      1: 16
-      2: 16
-      3: 16
-      4: 17
-      5: 17
+      1: 12
+      2: 12
+      3: 12
+      4: 12
+      5: 12
     answer: null
-  - id: 16
-    question: "¿Cuál fue el motivo de la mala atención?"
-    multi_response: false
+  - id: 12
+    type: "humanización"
+    question: "¿Siente que fue clara la información transmitida por el personal de salud?"
+    multi_response: true
     answers:
     - id: 1
-      type: "option"
+      type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "No hubo coherencia o relación entre la atención y su necesidad"
-        value: "No hubo coherencia o relación entre la atención y su necesidad"
+        label: "Si"
+        value: "Si"
     - id: 2
-      type: "option"
+      type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "No hay tranquilidad y comodidad del punto de atención"
-        value: "No hay tranquilidad y comodidad del punto de atención"
-    - id: 3
-      type: "option"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "No hubo respeto a la dignidad y la condición humana"
-        value: "No hubo respeto a la dignidad y la condición humana"
-    - id: 4
-      type: "option"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "No se resolvió su necesidad"
-        value: "No se resolvió su necesidad"
-    - id: 5
-      type: "option"
-      auto_submit: true
-      should_save: false
-      data:
-        label: "Otros"
-        value: "Otros"
+        label: "No"
+        value: "No"
     previous_step: null
     next_step:
-      1: 18
-      2: 18
-      3: 18
-      4: 18
-      5: 23
+      1: 13
+      2: 13
     answer: null
-  - id: 23
-    question: "¿Cuál fue el motivo de la mala atención?"
-    multi_response: false
+  - id: 13
+    type: "efectividad"
+    question: "¿Siente que fue resuelto el problema de salud por el que ingresó?"
+    multi_response: true
     answers:
     - id: 1
-      type: "text"
-      auto_submit: false
-      should_save: true
-      data:
-        label: "Otros"
-        value: "Otros"
-    previous_step: null
-    next_step:
-      1: 18
-    answer: null
-  - id: 17
-    question: "¿Qué valoras de la calidad del servicio de salud?"
-    multi_response: false
-    answers:
-    - id: 1
-      type: "option"
+      type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "Hubo coherencia o relación entre la atención y su necesidad"
-        value: "Hubo coherencia o relación entre la atención y su necesidad"
+        label: "Si"
+        value: "Si"
     - id: 2
-      type: "option"
+      type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "Hubo tranquilidad y comodidad del punto de atención"
-        value: "Hubo tranquilidad y comodidad del punto de atención"
+        label: "No"
+        value: "No"
+    previous_step: null
+    next_step:
+      1: 14
+      2: 14
+    answer: null
+  - id: 14
+    type: "gestión del riesgo"
+    question: "¿Las señalizaciones y/o la información recibida para orientarse en las instalaciones son claras?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Si"
+        value: "Si"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No"
+        value: "No"
+    previous_step: null
+    next_step:
+      1: 15
+      2: 15
+    answer: null 
+  - id: 15
+    type: "star"
+    question: "Teniendo en cuenta el servicio recibido por los profesionales del área de urgencias (equipo interdisciplinario de atención), qué tanto lo recomendaría a un familiar o amigo?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
     - id: 3
-      type: "option"
+      type: "star"
       auto_submit: true
       should_save: true
       data:
-        label: "Hubo respeto a la dignidad y condición humana"
-        value: "Hubo respeto a la dignidad y condición humana"
+        label: "Aceptable"
+        value: 3
     - id: 4
-      type: "option"
+      type: "star"
       auto_submit: true
       should_save: true
       data:
-        label: "Se resolvió su necesidad"
-        value: "Se resolvió su necesidad"
+        label: "Buena"
+        value: 4
     - id: 5
-      type: "option"
+      type: "star"
       auto_submit: true
-      should_save: false
-      data:
-        label: "Otros"
-        value: "Otros"
-    previous_step: null
-    next_step:
-      1: 18
-      2: 18
-      3: 18
-      4: 18
-      5: 24
-    answer: null
-  - id: 24
-    question: "¿Qué valoras de la calidad del servicio de salud?"
-    multi_response: false
-    answers:
-    - id: 1
-      type: "text"
-      auto_submit: false
       should_save: true
       data:
-        label: "Otros"
-        value: "Otros"
-    previous_step: null
-    next_step:
-      1: 18
-    answer: null
-  - id: 18
-    question: "¡Gracias por contestar la encuesta!"
-    multi_response: false
-    answers:
-    - id: 1
-      type: "link"
-      auto_submit: false
-      should_save: false
-      data:
-        html: "Para realizar un reclamo formal ingrese a <a noopener noreferrer target='_blank' href='https://www.bogota.gov.co/sdqs'>https://www.bogota.gov.co/sdqs</a>"
+        label: "Muy Buena"
+        value: 5
     previous_step: null
     next_step: null
     answer: null
+  - id: 16
+    type: "oportunidad"
+    question: "¿Tuvo algún inconveniente al momento de agendar la cita?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Si"
+        value: "Si"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No"
+        value: "No"
+    previous_step: null
+    next_step:
+      1: 17
+      2: 18
+    answer: null
+  - id: 17
+    type: "oportunindad"
+    question: "¿Qué incoveniente tuvo?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Comunicación con la institución"
+        value: "Comunicación con la institución"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Disponibilidad de agenda"
+        value: "Disponibilidad de agenda"
+    - id: 3
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Horario de la vita"
+        value: "Horario de la vita"
+    
+    previous_step: null
+    next_step:
+      1: 18
+      2: 18
+      3: 18
+    answer: null
+  - id: 18
+    type: "oportunindad"
+    question: "¿Con qué especialidad recibió la atención?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Anestesia"
+        value: "Anestesia"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Cardiología"
+        value: "Cardiología"
+    - id: 3
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Cardiología Pediátrica"
+        value: "Cardiología Pediátrica"
+    - id: 4
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Cirugía Cardiovascular"
+        value: "Cirugía Cardiovascular"
+    - id: 5
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Cirugía"
+        value: "Cirugía"
+    
+    previous_step: null
+    next_step:
+      1: 19
+      2: 19
+      3: 19
+      4: 19
+      4: 19
+    answer: null
+  - id: 19
+    type: "oportunindad"
+    question: "¿Desde que llamó o se acercó a pedir la cita, cuanto tiempo transcurrió hasta que le atendieron?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "0 - 30min"
+        value: "0 - 30min"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "31min - 2 horas"
+        value: "31min - 2 horas"
+    - id: 3
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "2 horas - 4 horas"
+        value: "2 horas - 4 horas"
+    - id: 4
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Más de 4 horas"
+        value: "Más de 4 horas"
+    - id: 5
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No recuerdo"
+        value: "No recuerdo"
+    
+    previous_step: null
+    next_step:
+      1: 20
+      2: 20
+      3: 20
+      4: 20
+      4: 20
+    answer: null
+  - id: 20
+    type: "star"
+    question: "¿Cómo calificaría el grado de amabilidad del personal de recepción o administrativo?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
+    - id: 3
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Aceptable"
+        value: 3
+    - id: 4
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Buena"
+        value: 4
+    - id: 5
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Buena"
+        value: 5
+    previous_step: null
+    next_step:
+      1: 21
+      2: 21
+      3: 21
+      4: 21
+      5: 21
+    answer: null
+  - id: 21
+    type: "star"
+    question: "¿Cómo calificaría el grado de amabilidad del profesional de salud que lo atendió?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
+    - id: 3
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Aceptable"
+        value: 3
+    - id: 4
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Buena"
+        value: 4
+    - id: 5
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Buena"
+        value: 5
+    previous_step: null
+    next_step:
+      1: 22
+      2: 22
+      3: 22
+      4: 22
+      5: 22
+    answer: null
+  - id: 22
+    type: "humanización"
+    question: "¿Siente que fue clara la información transmitida por el personal de salud?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Si"
+        value: "Si"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No"
+        value: "No"
+    previous_step: null
+    next_step:
+      1: 13
+      2: 13
+    answer: null
+ 
 ...
