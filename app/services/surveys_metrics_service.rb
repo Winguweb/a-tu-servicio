@@ -6,6 +6,7 @@ class SurveysMetricsService
   end
 
   def initialize(branch)
+    binding.pry
     @branch = branch
     @surveys_by_client_id = Survey.where(branch_id: @branch.id).group_by(&:client_id)
     @response = $survey_data.response_structure

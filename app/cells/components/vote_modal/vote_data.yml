@@ -341,35 +341,11 @@ steps:
         value: NO SABE, NO INFORMA
     previous_step: null
     next_step:
-      1: 5
-      2: 5
-      3: 5
-      4: 5
-      5: 5
-    answer: null
-  - id: 5
-    type: "question"
-    question: "¿En que barrio vive?"
-    multi_response: false
-    answers:
-    - id: 1
-      type: "text"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "barrio"
-        value: "barrio"
-    - id: 2
-      type: "option"
-      auto_submit: true
-      should_save: false
-      data:
-        label: "Otro"
-        value: "Otro"
-    previous_step: null
-    next_step:
       1: 6
       2: 6
+      3: 6
+      4: 6
+      5: 6
     answer: null
   - id: 6
     type: "question"

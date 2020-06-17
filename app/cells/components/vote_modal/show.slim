@@ -1,4 +1,4 @@
-div.vote-modal-cell.show v-bind:class="{show: actions.show}"
+div.vote-modal-cell v-bind:class="{show: actions.show}"
   transition-group name="swipe"
     section key="main-section" v-if="showForm"
       .header
@@ -17,25 +17,6 @@ div.vote-modal-cell.show v-bind:class="{show: actions.show}"
             li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
 
               button.cuckoo v-if="answer.type == 'cuckoo'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
-
-              label v-if="answer.type == 'input'"
-                input type="text" v-model="inputValue" placeholder=""
-
-              div v-if="answer.type == 'text'"
-                i v-text="inputValueLength"
-                textarea v-model="inputValue" placeholder="Escriba aquí..." :maxlength="inputValueSizeLimit"
-
-              label v-if="answer.type == 'number'"
-                input type="number" size="1" min="0" v-model="inputValue" placeholder="-"
-                span = " días"
-
-              button.icon v-if="answer.type == 'icon'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}"
-                span = "{{answer.display}}"
-                span = "{{answer.data.label}}"
-
-              button.option v-if="answer.type == 'option'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
-
-              p.link v-if="answer.type == 'link'" v-html="answer.data.html"
           ul.star v-if="type == 'star'"
             li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
               button.star v-if="answer.type == 'star'" @click="selectAnswer(answer.id)" 

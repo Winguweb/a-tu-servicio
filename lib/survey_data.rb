@@ -8,18 +8,18 @@ class SurveyData
     {
       id: 2,
       keys: 'answers',
-      detail_ids: [5, 7, 9, 10]
+      detail_ids: [7, 9, 10]
     },
-    # {
-    #   id: 11,
-    #   keys: 'answers',
-    #   detail_ids: [12, 13, 14],
-    #   multiple: true
-    # },
-    # {
-    #   id: 15,
-    #   detail_ids: [16, 17]
-    # }
+    {
+      id: 11,
+      keys: 'answers',
+      detail_ids: [12, 13, 14],
+      multiple: true
+    },
+    {
+      id: 15,
+      detail_ids: [16, 17]
+    }
   ].freeze
   private_constant :RESPONSE_STRUCTURE_KEYS
 
