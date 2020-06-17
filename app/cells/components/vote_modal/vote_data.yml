@@ -408,7 +408,7 @@ steps:
     next_step:
       1: 7
       2: 16
-      3: 7
+      3: 23
       4: 7
     answer: null
   - id: 7
@@ -1041,5 +1041,269 @@ steps:
       1: 13
       2: 13
     answer: null
+  - id: 23
+    type: "oportunidad"
+    question: "¿Tuvo algún inconveniente al momento de agendar la cita?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Si"
+        value: "Si"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No"
+        value: "No"
+    previous_step: null
+    next_step:
+      1: 24
+      2: 25
+    answer: null
+  - id: 24
+    type: "oportunidad"
+    question: "¿Qué incoveniente tuvo?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Comunicación con la institución"
+        value: "Comunicación con la institución"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Disponibilidad de la agenda"
+        value: "Disponibilidad de la agenda"
+    - id: 3
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Horario de la cita"
+        value: "Horario de la cita"
+    previous_step: null
+    next_step:
+      1: 25
+      2: 25
+    answer: null
+  - id: 25
+    type: "oportunidad"
+    question: "¿Con qué especialidad recibió la atención?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Neonatologia"
+        value: "Neonatologia"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Pediatría"
+        value: "Pediatría"
+    - id: 3
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Medicina interna"
+        value: "Medicina interna"
+    - id: 4
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Cuidados intensivos"
+        value: "Cuidados intensivos"
+    previous_step: null
+    next_step:
+      1: 26
+      2: 26
+    answer: null
+  - id: 26
+    type: "star"
+    question: "¿Cómo calificaría el grado de amabilidad del personal de recepción o administrativo?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
+    - id: 3
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Aceptable"
+        value: 3
+    - id: 4
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Buena"
+        value: 4
+    - id: 5
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Buena"
+        value: 5
+    previous_step: null
+    next_step:
+      1: 27
+      2: 27
+      3: 27
+      4: 27
+      5: 27
+    answer: null
+  - id: 27
+    type: "star"
+    question: "¿Cómo calificaría el grado de amabilidad del profesional de salud que lo atendió?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
+    - id: 3
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Aceptable"
+        value: 3
+    - id: 4
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Buena"
+        value: 4
+    - id: 5
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Buena"
+        value: 5
+    previous_step: null
+    next_step:
+      1: 28
+      2: 28
+      3: 28
+      4: 28
+      5: 28
+    answer: null
+  - id: 28
+    type: "Humanización"
+    question: "¿Siente que fue clara la información transmitida por el personal de salud?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Si"
+        value: "Si"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No"
+        value: "No"
+    previous_step: null
+    next_step:
+      1: 30
+      2: 30
+    answer: null
+  - id: 30
+    type: "star"
+    question: "¿Cómo calificaría la información recibida acerca de los posibles riesgos que pueden presentarse en hospitalización?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
+    - id: 3
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Aceptable"
+        value: 3
+    - id: 4
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Buena"
+        value: 4
+    - id: 5
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Buena"
+        value: 5
+    previous_step: null
+    next_step:
+      1: 13
+      2: 13
+      3: 13
+      4: 13
+      5: 13
+    answer: null
+
+  
+  
  
 ...
