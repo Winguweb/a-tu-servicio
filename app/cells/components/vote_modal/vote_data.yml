@@ -484,7 +484,7 @@ steps:
       5: 9
     answer: null
   - id: 9
-    type: "oportunindad"
+    type: "oportunidad"
     question: "¿Cuánto tiempo demoraron para la atención médica desde que le vieron en el triage?"
     multi_response: true
     answers:
@@ -767,7 +767,7 @@ steps:
       2: 18
     answer: null
   - id: 17
-    type: "oportunindad"
+    type: "oportunidad"
     question: "¿Qué incoveniente tuvo?"
     multi_response: true
     answers:
@@ -800,7 +800,7 @@ steps:
       3: 18
     answer: null
   - id: 18
-    type: "oportunindad"
+    type: "oportunidad"
     question: "¿Con qué especialidad recibió la atención?"
     multi_response: true
     answers:
@@ -849,7 +849,7 @@ steps:
       4: 19
     answer: null
   - id: 19
-    type: "oportunindad"
+    type: "oportunidad"
     question: "¿Desde que llamó o se acercó a pedir la cita, cuanto tiempo transcurrió hasta que le atendieron?"
     multi_response: true
     answers:

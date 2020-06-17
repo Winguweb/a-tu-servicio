@@ -1,15 +1,25 @@
-div.vote-modal-cell v-bind:class="{show: actions.show}"
+div.vote-modal-cell.show v-bind:class="{show: actions.show}"
   transition-group name="swipe"
     section key="main-section" v-if="showForm"
       .header
-        button @click="componentClose()"
-        h1 = "HEADER"
+        .button
+          a v-on:click="componentClose()" 
+            i.back 
+            / button @click="componentClose()"
+        .image
+          = link_to root_path do
+            = image_tag image_path("logos/atsb.svg")
       .line-container
           .line
       .content
         .title v-if="type == 'first'"
-          span Reporte Ciudadano
+          span Reporte Ciudadano 
           p Esta encuesta es confidencial y anónima, el único proposito que la reviste es conocer la percepción de los usuarios ante las instituciones prestadoras de salud.
+        .title v-if="(type !== 'first') && (type !== 'question') && (type !== 'urgency') && (type !== 'star')"
+          span.title = "{{type}}"
+        .title v-if="(type == 'star')"
+          span.title v-if="actualStepId != 15" Humanización
+          span.title v-if="actualStepId == 15" Efectividad
         .chat-wrapper v-if="type != 'urgency'"
           .question
             span = "{{getQuestion()}}"
