@@ -106,39 +106,50 @@
               border-radius: 8px;
               font-weight: bold;
           }
-          >ul.star{
-            display: flex;
-            >li>button.star{
-              @include type-golden(-0.6);
-
-              background-image: image-url("icons/star.svg");
-              background-position: center top;
-              background-repeat: no-repeat;
-              background-size: contain;
-              border: none;
-              color: $light-blue;
-              cursor: pointer;
-              display: block;
-              font-weight: 600;
-              height: 85px;
-              position: relative;
-              width: gutter(3);
-
-              &:hover {
-                background-image: image-url("icons/star-hover.svg");
-              }
-
-              &.selected {
-                background-image: image-url("icons/star-selected.svg");
-              }
-
-              > span {
-                bottom: 0;
-                color: $black;
-                left: 0;
-                position: absolute;
-                right: 0;
-                text-align: center;
+          >.star-container{
+            .info{
+              color: #6C7C85;
+              font-size: 12px;
+              padding: 0.5rem;
+            }
+            .star-label{
+              padding: 0.5rem;
+              font-weight: bold;
+            }
+            >ul.star{
+              padding-top: 0.5rem;
+              display: flex;
+              >li>button.star{
+                @include type-golden(-0.6);
+  
+                background-image: image-url("icons/star.svg");
+                background-position: center top;
+                background-repeat: no-repeat;
+                background-size: contain;
+                border: none;
+                color: $light-blue;
+                cursor: pointer;
+                display: block;
+                font-weight: 600;
+                height: 85px;
+                position: relative;
+                width: gutter(3);
+                &:hover {
+                  background-image: image-url("icons/star-hover.svg");
+                }
+  
+                &.selected {
+                  background-image: image-url("icons/star-selected.svg");
+                }
+  
+                > span {
+                  bottom: 0;
+                  color: $black;
+                  left: 0;
+                  position: absolute;
+                  right: 0;
+                  text-align: center;
+                }
               }
             }
           }

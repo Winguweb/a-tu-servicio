@@ -24,18 +24,20 @@ div.vote-modal-cell.show v-bind:class="{show: actions.show}"
           .question
             span = "{{getQuestion()}}"
           ul v-if="type != 'star'"
-            li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
+            li :key="answer.id" v-for="answer in getActualStepAnswers()"
 
               button.cuckoo v-if="answer.type == 'cuckoo'" @click="selectAnswer(answer.id)" :class="{selected: getActualAnswer() == answer.id}" = "{{answer.data.label}}"
-          ul.star v-if="type == 'star'"
-            li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
-              button.star v-if="answer.type == 'star'" @click="selectAnswer(answer.id)" 
-                  span = "{{answer.data.label}}"
+          div.star-container v-if="type == 'star'"
+            p.info * Por favor seleccione la cantidad de estrellas
+            span.star-label = "{{getActualAnswer() ? getActualStepAnswers()[getActualAnswer() - 1].data.label : ''}}"
+            ul.star 
+              li :key="answer.id" v-for="answer in getActualStepAnswers()"
+                button.star v-if="answer.type == 'star'" @click="selectAnswer(answer.id)" 
         .urgency-info v-if="type == 'urgency'"
           span.title Servicio de urgencias
           p = "{{getQuestion()}}"
           ul
-            li :key="answer.id" v-for="answer in getActualStepAnswers()" :class="{large: (answer.type == 'option') || (answer.type == 'text')}"
+            li :key="answer.id" v-for="answer in getActualStepAnswers()"
               span = "{{answer.data.label}}"
       .next-button
         button @click="nextStep()" Siguiente 
