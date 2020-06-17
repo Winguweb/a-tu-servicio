@@ -134,12 +134,12 @@
                 height: 85px;
                 position: relative;
                 width: gutter(3);
-                &:hover {
-                  background-image: image-url("icons/star-hover.svg");
-                }
+                // &:hover {
+                //   background-image: image-url("icons/star-hover.svg");
+                // }
   
                 &.selected {
-                  background-image: image-url("icons/star-selected.svg");
+                  background-image: image-url("icons/star-golden-hover.svg");
                 }
   
                 > span {

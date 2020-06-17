@@ -32,7 +32,7 @@ div.vote-modal-cell.show v-bind:class="{show: actions.show}"
             span.star-label = "{{getActualAnswer() ? getActualStepAnswers()[getActualAnswer() - 1].data.label : ''}}"
             ul.star 
               li :key="answer.id" v-for="answer in getActualStepAnswers()"
-                button.star v-if="answer.type == 'star'" @click="selectAnswer(answer.id)" 
+                button.star v-if="answer.type == 'star'" @click="selectAnswer(answer.id)" :class="{selected: answer.id <= getActualAnswer()}"
         .urgency-info v-if="type == 'urgency'"
           span.title Servicio de urgencias
           p = "{{getQuestion()}}"
