@@ -20,8 +20,10 @@
         var payload = {vote: vote}
         if (needsReacaptcha) {
           grecaptcha.ready(function() {
+            console.log(ATSB, payload, grecaptcha)
             grecaptcha.execute(ATSB.recaptchaSitekey, {action: 'action_name'})
             .then(function(token) {
+              console.log('token', token)
               payload.token = token
               axios.post("/api/v1/surveys", payload).then(success).catch(fail)
             })

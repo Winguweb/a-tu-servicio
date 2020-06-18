@@ -1,0 +1,25 @@
+development: &app_config
+  algolia:
+    admin_api_key:
+    application_id:
+    search_api_key:
+  google:
+    analytics:
+    geocoding:
+      api_key:
+    recaptcha:
+      secretkey:
+      sitekey: 1234567
+      verifyUrl:
+  mapbox:
+    token:
+  redis:
+    host: 'localhost'
+    port: 6379
+    db:   0
+  vuejs:
+    cdn_url: "https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"
+production:
+  <<: *app_config
+test:
+  <<: *app_config

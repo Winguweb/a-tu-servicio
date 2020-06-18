@@ -238,7 +238,7 @@ namespace :import do
 
     branches = Branch.joins(:provider).where(providers: { show: true })
     branches.each do |branch|
-      GeolocationWorker.perform_async(branch.id)
+      GeolocationWorker.perform_async(branch.id, true)
     end
     puts 'Tasks generated'
     puts
@@ -258,7 +258,7 @@ namespace :importer do
     end
 
     providers
-    specialities_data
+    # specialities_data
     costs_data
     medical_assistences_data
     satisfactions_data
