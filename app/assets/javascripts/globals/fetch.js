@@ -20,6 +20,7 @@
         var payload = {vote: vote}
         if (needsReacaptcha) {
           grecaptcha.ready(function() {
+            console.log(ATSB, token, payload)
             grecaptcha.execute(ATSB.recaptchaSitekey, {action: 'action_name'})
             .then(function(token) {
               payload.token = token
