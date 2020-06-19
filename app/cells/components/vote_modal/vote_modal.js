@@ -60,7 +60,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
       componentClose: function() {
         // I move this line here in order to fetch the information despite the fact
         // if the visitor did not end the vote process and at least started it.
-        console.log('ueueueueuue')
         if( this.partiallyAnswered() ){
           ATSB.pubSub.$emit('branch:detail:large:fetch', this.branchId)
         }
