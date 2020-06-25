@@ -18,6 +18,7 @@
 //= require branch_list_large
 //= require compare_branch_button
 //= require general_info
+//= require map_services
 //= require m_drawer
 //= require m_site_header
 //= require reference_map

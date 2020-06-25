@@ -49,7 +49,7 @@ module AtuservicioRails
       components/splash_cell
       components/story_slider_cell
       components/vote_modal_cell
-      components/search_bar_cell
+      components/map_services_cell
       mobile_components/m_drawer_cell
       mobile_components/m_site_header_cell
       visualization_components/beds_visualization_cell

@@ -1,7 +1,0 @@
-@mixin search-bar() {
-  background: greenyellow;
-}
-
-.search-bar-cell {
-  @include search-bar;
-}

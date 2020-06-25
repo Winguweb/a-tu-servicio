@@ -15,6 +15,7 @@ class Branch < ActiveRecord::Base
       :name,
       :town,
       :provider_name,
+      :slug,
       :show,
       :specialities_names,
       :subnet_name
