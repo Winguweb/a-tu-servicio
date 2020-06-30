@@ -1,15 +1,12 @@
-env = ENV['RAILS_ENV'] || Rails.env	env = ENV['RAILS_ENV'] || Rails.env
-
+env = ENV['RAILS_ENV'] || Rails.env
 
 # vuejs = APP_CONFIG[env]['vuejs'].freeze	# vuejs = APP_CONFIG[env]['vuejs'].freeze
 VUEJS_CDN_URL = ENV['VUE_CDN']
-
 
 # algolia = APP_CONFIG[env]['algolia'].freeze	# algolia = APP_CONFIG[env]['algolia'].freeze
 ALGOLIA_APP_ID = ENV['ALGOLIA_APP_KEY']
 ALGOLIA_ADMIN_API_KEY = ENV['ALGOLIA_ADMIN_KEY']
 ALGOLIA_SEARCH_API_KEY = ENV['ALGOLIA_SEARCH_KEY']
-
 
 # google = APP_CONFIG[env]['google'].freeze	# google = APP_CONFIG[env]['google'].freeze
 
