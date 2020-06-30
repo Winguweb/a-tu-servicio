@@ -15,7 +15,7 @@ ATSB.Components['components/site-header'] = function(options) {
     },
     methods: {
       actionClicked: function() {
-        window.history.pushState(null, '', `/mapa-de-servicios`)
+        window.history.pushState(null, '', '/mapa-de-servicios')
         ATSB.pubSub.$emit(this.events[this.action])
       },
       actionChange: function(action) {

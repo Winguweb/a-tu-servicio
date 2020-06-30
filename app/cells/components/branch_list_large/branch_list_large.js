@@ -24,7 +24,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
     },
     methods: {
       branchClicked: function(slug) {
-        window.history.pushState(null, '', `/mapa-de-servicios/${slug}`)
+        window.history.pushState(null, '', '/mapa-de-servicios/' + slug)
         ATSB.pubSub.$emit('all:slides:close')
         ATSB.pubSub.$emit('branch:detail:large:open')
         ATSB.pubSub.$emit('branch:detail:large:fetch', slug)

@@ -94,7 +94,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         var _this = this
         marker.on('click', function (evt) {
           var slug = evt.target.options.slug
-          window.history.pushState(null, '', `/mapa-de-servicios/${slug}`)
+          window.history.pushState(null, '', '/mapa-de-servicios/' + slug)
           ATSB.pubSub.$emit('all:slides:close')
           ATSB.pubSub.$emit('branch:detail:large:open')
           ATSB.pubSub.$emit('branch:detail:large:fetch', slug)
