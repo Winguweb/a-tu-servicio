@@ -23,17 +23,18 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       }, this.performSearchDebounceTime))
     },
     methods: {
-      branchClicked: function(id) {
+      branchClicked: function(slug) {
+        window.history.pushState(null, '', `/mapa-de-servicios/${slug}`)
         ATSB.pubSub.$emit('all:slides:close')
         ATSB.pubSub.$emit('branch:detail:large:open')
-        ATSB.pubSub.$emit('branch:detail:large:fetch', id)
-        ATSB.pubSub.$emit('branch:selected', [id])
-        ATSB.pubSub.$emit('branch:compare:set', id)
+        ATSB.pubSub.$emit('branch:detail:large:fetch', slug)
+        ATSB.pubSub.$emit('branch:selected', [slug])
+        ATSB.pubSub.$emit('branch:compare:set', slug)
         ATSB.pubSub.$emit('branch:compare:button:show')
       },
       branchesFetchSuccess: function(response) {
         this.branches = this.transformHitsToResults(response.hits)
-        ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
+        ATSB.pubSub.$emit('branch:selected', this.getBranchesSlugs())
         this.performingSearch = false
         this.focusSearch()
       },
@@ -45,7 +46,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
           return
         }
         this.branches = this.branches.concat(results)
-        ATSB.pubSub.$emit('branch:selected', this.getBranchesIds())
+        ATSB.pubSub.$emit('branch:selected', this.getBranchesSlugs())
         this.performingSearch = false
         this.performLazy = false
         if(this.isMobile() == false) { this.focusSearch() }
@@ -90,6 +91,9 @@ ATSB.Components['components/branch-list-large'] = function(options) {
       getBranchesIds: function() {
         return this.branches.map(function(branch) {return branch.id})
       },
+      getBranchesSlugs: function() {
+        return this.branches.map(function(branch) {return branch.slug})
+      },
       performSearch: function(evt) {
         this.searchQuery = evt.target.value
       },
@@ -128,6 +132,7 @@ ATSB.Components['components/branch-list-large'] = function(options) {
           }))
           return {
             id: hitData.objectID,
+            slug: hitData.slug,
             name: hitData._highlightResult.name.value,
             provider_name: hitData._highlightResult.provider_name.value,
             coordinates: coordinates,

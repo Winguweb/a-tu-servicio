@@ -14,8 +14,25 @@ div.splash-cell v-bind:class="{show: actions.show}"
             | ¡Participar es mejorar la calidad!
 
   div
-    = link_to services_path
-      = 'Explora y califica'
+    div.searchbar
+      input type="text" placeholder="Buscar en A Tu Servicio Bogotá..." required="" ref="search" autofocus="true" v-on:keyup="performSearch" v-on:keyup.enter="closeMobileKeyboard()"
+      a v-on:click="clearSearchClicked"
+        = image_tag image_path("icons/cancel-search.svg")    
+      div.explain
+        strong
+          | Tip:
+        | Puedes buscar el centro de salud por su nombre, o el nombre del prestador a la que pertenece, o una especialidad (Ejemplo: pediatría, medicina general, enfermería)
+      div.search-results v-if="!performingSearch && showList" v-on:scroll="scrollEnd"
+        ul
+          li v-for="branch in branches"
+            a v-on:click="branchClicked(branch.slug)"
+              article
+                header
+                  p v-html="branch.name"
+                main
+                  p v-html="branch.provider_name"
+
+    
   div :style="{transition: '100ms linear all', transform: this.isMobile && `translateX(${displacement}px)`}"
     == cell('components/city_image')
 

@@ -10,6 +10,153 @@
     100% {opacity:0;}
   }
 
+  // Searchbar styles
+  .searchbar {
+    // height: 66px;
+    // overflow: auto;
+    position: relative;
+    > input {
+      @include type-golden(0);
+      float: left;
+      height: 44px;
+      margin-bottom: gutter();
+      padding: gutter() gutter(2) gutter() gutter();
+      width: 100%;
+      background: #FFF;
+      border: 1px solid $light-blue;
+      color: $light-blue;
+    }
+    > input::placeholder {
+      color: $light-blue;
+    }
+    > a {
+      cursor: pointer;
+      display: block;
+      height: 44px;
+      opacity: 0.6;
+      padding: gutter(-1);
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 44px;
+      &:hover {
+        opacity: 1;
+      }
+      > img {
+        height: 100%;
+      }
+    }
+    .explain {
+      @include type-golden(0);
+      color: $blue;
+      font-size: 0.8rem;
+      background: #FFF;
+      font-family: "PT Sans";
+      line-height: gutter($phi - 1);
+      margin-bottom: gutter();
+      padding: gutter(-1);
+      strong{
+        font-family: "Montserrat", Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        margin-right: gutter()/2;
+      }
+    }
+    input:invalid ~ a {
+      display: none;
+    }
+  }
+  .search-results {
+    overflow: auto;
+    position: absolute;
+    top: 55px;
+    left: 0;
+    width: 100%;    
+    > ul {
+      border: 1px solid $light-grey;
+      background: #FFF;
+      > li {
+        border-bottom: 1px solid $light-grey;
+        &:last-of-type {
+          border: none;
+        }
+        &:hover {
+          background-color: $light-blue;
+          > a {
+            > article {
+              > header {
+                > p {
+                  color: $white;
+                  font-size: 0.8rem;
+                  font-weight: 600;
+                  > em {
+                    background-color: transparent;
+                    font-weight: 800;
+                  }
+                }
+              }
+              > main {
+                > p {
+                  color: $white;
+                  
+                }
+                em {
+                  background-color: transparent;
+                  font-weight: 800;
+                }
+                .specialties-wrapper {
+                  > div {
+                    background-color: $white;
+                    > span {
+                      border: none;
+                      color: $light-blue;
+                      > em {
+                        background-color: $highlight;
+                        color: $black;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        > a {
+          cursor: pointer;
+          display: block;
+          overflow: auto;
+          padding: gutter(-1);
+          &:hover {
+            text-decoration: none;
+          }
+          > article {
+            > header {
+              > p {
+                @include type-golden(0);
+                @include text-color($blue, 1);
+                font-size: 0.8rem;
+                font-weight: 600;
+                line-height: gutter(1);
+                em {
+                  background-color: $highlight;
+                }
+              }
+            }
+            > main {
+              > p {
+                @include type-golden(-1);
+                @include text-color($grey, 1);
+                text-transform: uppercase;
+                em {
+                  background-color: $highlight;
+                }
+              }              
+            }
+          }
+        }
+      }
+    }
+  }
+
   background-color: $white;
   > div:first-of-type {
     background-color: rgba(255,255,255,0.6);
@@ -58,43 +205,11 @@
   > div:nth-of-type(2) {
     left: 50%;
     position: absolute;
-    top: 43%;
+    top: 40%;
+    width: 50%;
     transform: translate3d(-50%, -50%, 0);
     z-index: 100;
-    > a {
-      @include type-golden(0);
-      background-color: $light-blue;
-      border: none;
-      border-radius: 2px;
-      box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
-      color: $white;
-      cursor: pointer;
-      display: block;
-      margin: 0 auto;
-      padding: gutter(-1);
-      text-align: center;
-      width: 200px;
-      &:active {
-        position: relative;
-        top: 1px;
-      }
-      &:hover {
-        text-decoration: none;
-      }
-      &:after {
-        border-bottom: 3px solid $white;
-        border-right: 3px solid $white;
-        content: '';
-        display: inline-block;
-        height: 8px;
-        left: 5px;
-        position: relative;
-        transform: rotateZ(-45deg);
-        vertical-align: baseline;
-        width: 8px;
-      }
-    }
-  }
+  }  
 }
 
 @mixin mobile-splash() {
@@ -109,9 +224,10 @@
     }
   }
   > div:nth-of-type(2) {
-    bottom: 30%;
+    bottom: 15%;
     position: absolute;
     top: auto;
+    width: 90%;
     transform: translate3d(-50%, 0, 0);
   }
   > div:nth-of-type(3) {

@@ -3,6 +3,7 @@
     created: function() {
       ATSB.pubSub.$on('fetch:branch:search', this.branchAll)
       ATSB.pubSub.$on('fetch:branch:id', this.branchId)
+      ATSB.pubSub.$on('fetch:branch:slug', this.branchSlug)
       ATSB.pubSub.$on('vote:send', this.voteSend)
     },
     methods: {
@@ -15,6 +16,13 @@
         var cb = cb || ATSB.Utils.fn
         var err = err || ATSB.Utils.out
         axios.get("/api/v1/branches/" + id).then(cb).catch(err)
+      },
+      branchSlug: function(id, cb, err) {
+        var cb = cb || ATSB.Utils.fn
+        var err = err || ATSB.Utils.out
+        axios.get("/api/v1/branches/slug/" + id).then(cb).catch(function() {
+          console.log(err)
+        })
       },
       voteSend: function(vote, needsReacaptcha, success, fail) {
         var payload = {vote: vote}
