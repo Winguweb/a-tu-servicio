@@ -204,22 +204,22 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "15-35"
-        value: "15-35"
+        label: "Entre 15-35"
+        value: "Entre 15-35"
     - id: 2
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "36-57"
-        value: "36-57"
+        label: "Entre 36-57"
+        value: "Entre 36-57"
     - id: 3
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "58-79"
-        value: "58-79"
+        label: "Entre 58-79"
+        value: "Entre 58-79"
     - id: 4
       type: "cuckoo"
       auto_submit: true
