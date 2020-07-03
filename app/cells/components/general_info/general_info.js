@@ -2,11 +2,15 @@ ATSB.Components['components/general-info'] = function(options) {
   new Vue({
     el: '.general-info-cell',
     data: {
-      actions: {show: true}
+      actions: {show: false}
     },
     created: function() {
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('general:info:open', this.componentOpen)
+    },
+    mounted: function(){ 
+      //component is ready to use
+      ATSB.pubSub.$emit('general:info:created')
     },
     methods: {
       componentClose: function() {

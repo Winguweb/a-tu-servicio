@@ -5,11 +5,15 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
       branch: {loaded: false},
       actions: {show: false}
     },
-    created: function() {
+    created: function() {      
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:detail:large:open', this.componentOpen)
       ATSB.pubSub.$on('branch:detail:large:close', this.componentClose)
-      ATSB.pubSub.$on('branch:detail:large:fetch', this.branchFetch)
+      ATSB.pubSub.$on('branch:detail:large:fetch', this.branchFetch)      
+    },
+    mounted: function(){
+      //component is ready to use
+      ATSB.pubSub.$emit('branch:detail:large:created')
     },
     methods: {
       toPercentage: ATSB.Helpers.numbers.toPercentage,
@@ -17,8 +21,8 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
       toNOfTen: ATSB.Helpers.numbers.toNOfTen,
       toNOfReverse: ATSB.Helpers.numbers.toNOfReverse,
       toNOfTenReverse: ATSB.Helpers.numbers.toNOfTenReverse,
-      branchFetch: function(id) {
-        ATSB.pubSub.$emit('fetch:branch:id', id, this.branchFetchSuccess, this.branchFetchError)
+      branchFetch: function(slug) {
+        ATSB.pubSub.$emit('fetch:branch:slug', slug, this.branchFetchSuccess, this.branchFetchError)
       },
       branchFetchSuccess: function(response) {
         this.branch = response.data

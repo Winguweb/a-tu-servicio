@@ -16,9 +16,14 @@ ATSB.Components['mobile-components/m-site-header'] = function(options) {
     },
     methods: {
       actionClicked: function() {
+        if (this.action == 'back') {
+          window.history.pushState(null, '', '/mapa-de-servicios')
+        }
+        
         ATSB.pubSub.$emit(this.events[this.action])
       },
       searchClicked: function() {
+        window.history.pushState(null, '', '/mapa-de-servicios')
         ATSB.pubSub.$emit(this.events['search'])
       },
       actionChange: function(action) {

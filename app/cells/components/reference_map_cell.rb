@@ -15,7 +15,8 @@ class Components::ReferenceMapCell < Cell::ViewModel
         quality: branch.quality,
         waiting_times: branch.waiting_times,
         satisfaction: branch.satisfaction,
-        humanization: branch.humanization
+        humanization: branch.humanization,
+        slug: branch.slug
       }
     end.to_json
   end
