@@ -303,8 +303,8 @@ steps:
     previous_step: null
     next_step:
       1: 4
-      2: 5
-      3: 5
+      2: 4
+      3: 4
     answer: null
   - id: 4
     type: "question"

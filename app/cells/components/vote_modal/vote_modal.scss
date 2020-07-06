@@ -2,12 +2,16 @@
   background-color: #00000088;
   bottom: 0;
   display: none;
-  left: 0;
   position: fixed;
   right: 0;
   top: 0;
   z-index: 3000;
-
+  @media (min-width: 800px) {
+    width: calc(100% / 1.61803398875);
+  }
+  @media (max-width: 800px) {
+    left: 0;
+  }
   &.show {
     display: block;
   }
@@ -24,21 +28,46 @@
         box-shadow: 0 2px 4px color($black, 0.5);
         height: $header-height;
         z-index: 3000;
-        >.button {
-          float: left;
-          >a{
-            cursor: pointer;
-            display: block;
-            height: 100%;
-            padding: gutter(-1);
-            >i{
-              background-size: cover;
+        @media (min-width: 800px){
+          >.button{
+            position: absolute;
+            top: 60px;
+            right: 10px;
+            >a{
+              cursor: pointer;
               display: block;
-              height: 20px;
-              margin: 15px 14px;
-              width: 20px;
-              &.back {
-                background-image: image-url("icons/arrow-left-mobile.svg");
+              height: 100%;
+              padding: gutter(-1);
+              >i{
+                background-size: cover;
+                display: block;
+                height: 20px;
+                margin: 15px 14px;
+                width: 20px;
+                &.back {
+                  background-image: image-url("icons/cancel-search.svg");
+                }
+              }
+            }
+          }
+        }
+        @media (max-width: 800px){
+          >.button {
+            float: left;
+            >a{
+              cursor: pointer;
+              display: block;
+              height: 100%;
+              padding: gutter(-1);
+              >i{
+                background-size: cover;
+                display: block;
+                height: 20px;
+                margin: 15px 14px;
+                width: 20px;
+                &.back {
+                  background-image: image-url("icons/arrow-left-mobile.svg");
+                }
               }
             }
           }
@@ -179,7 +208,10 @@
       .next-button{
         position: fixed;
         bottom: 0;
-        width: 100%;
+        width: calc(100% / 1.61803398875);
+        @media (max-width: 800px) {
+          width: 100%
+        }
         >button{
           width: 100%;
           background-color: #00ABE6;
