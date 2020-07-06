@@ -4,6 +4,109 @@ require 'sidekiq/api'
 
 include ImporterHelper
 
+namespace :update do
+  desc 'Update providers and branches'
+
+  task :all => [:environment] do
+    base_csv = File.read('./db/data/bogota.tsv')
+    new_data_csv = File.read('./db/data/data_update.csv')
+    rows = []
+
+    updated = 0
+    created = 0
+    puts 'Starting process...'
+
+    CSV.parse(new_data_csv, headers: true, header_converters: :symbol, col_sep: ",", row_sep: :auto) do |row|
+      past_name = row[:sede_nombre_anterior].downcase
+      @branch = Branch.where('lower(name) = ?', past_name).first
+      especialidad = row[:especialidades].split('-').drop(1).map(&:strip).join(' - ')
+
+      data = {
+        :nombre_sede => row[:sede_nombre_actual].strip,
+        :direccion => row[:direccion],
+        :nombre_prestador => row[:prestador].strip,
+        :tipo_prestador => row[:naju_nombre],
+        :mostrar => true,
+        :email => row[:email],
+        :comunicacion => row[:telefono].to_s,
+        :subred => 'No aplica',
+        :especialidades => [],
+        :camas => [],        
+        :update => @branch.present? && @branch.id
+      }
+
+      data_exists = rows.detect do |p|
+        p[:nombre_sede].downcase == data[:nombre_sede].downcase
+      end
+
+      if data_exists.nil?
+        data[:especialidades] << especialidad
+        rows << data
+      else
+        data_exists[:especialidades] << especialidad      
+      end
+    end
+
+    puts 'Creating...'
+
+    total = rows.size
+    rows.each_with_index do |data_row, actual|
+
+      if data_row[:update]
+        branch = Branch.find(data_row[:update])
+        branch.update(
+          name: data_row[:nombre_sede],
+          slug: data_row[:nombre_sede].parameterize,
+          address: data_row[:direccion]
+        )        
+        branch.save
+        File.write('./db/data/updated.txt', "#{branch.id} #{branch.name} \n", mode: 'a')      
+        updated = updated + 1
+      else
+        specialities = []
+        data_row[:especialidades].each do |especialidad|
+          speciality = Speciality.new(
+            name: especialidad
+          )
+          specialities << speciality
+        end
+
+        branch = Branch.new(
+          name: data_row[:nombre_sede],
+          slug: data_row[:nombre_sede].parameterize,
+          address: data_row[:direccion],
+          specialities: specialities,
+        )
+        
+        provider = Provider.new(
+          name: data_row[:nombre_prestador],
+          address: data_row[:direccion],
+          email: data_row[:email],
+          show: data_row[:mostrar],
+          communication_services: data_row[:comunicacion],
+          is_private: data_row[:tipo_prestador].downcase().include?('privada'),
+          subnet: data_row[:subred],
+          branches: [branch],
+        )
+
+        File.write('./db/data/created.txt', "#{branch.id} #{branch.name} \n", mode: 'a')      
+        created = created + 1
+
+        Branch.without_auto_index do
+          provider.save
+        end
+      end
+
+      
+      # Show progress
+      printf(".")
+    end
+    puts 'Results:'
+    puts 'update:' + updated.to_s
+    puts 'create:' + created.to_s
+  end
+end
+
 namespace :import do
   desc 'Import From Excel Data'
   task :all => [:environment] do
@@ -125,6 +228,7 @@ namespace :import do
         state = State.find_or_create_by(name: sede[:localidad])
         branch = Branch.new(
           name: sede[:nombre],
+          slug: sede[:nombre].parameterize,
           address: sede[:direccion],
           state: state,
           specialities: specialities,
