@@ -10,7 +10,7 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
           = link_to root_path do
             = image_tag image_path("logos/atsb.svg")
       .line-container
-          .line
+          div.line v-bind:style="{'right': percentage + '%'}" 
       .content
         .title v-if="type == 'first'"
           span Reporte Ciudadano 

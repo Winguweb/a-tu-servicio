@@ -11,7 +11,8 @@ ATSB.Components['components/vote-modal'] = function(options) {
       recaptchaSitekey: options.recaptchaSitekey,
       showForm: true,
       steps: options.form.steps,
-      type: ""
+      type: "",
+      percentage: 100
     },
     created: function() {
       var _this = this
@@ -160,6 +161,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
             answer_data.value = this.inputValue || answer_data.value
         var question_value = this.getQuestion()
         this.loopTo = options.loopTo
+        this.percentage = this.percentage - 7.69
         if (this.shouldSaveVote()) {
           this.sendVote({
             client_id: client_id,
