@@ -43,7 +43,7 @@ namespace :update do
         data[:especialidades] << especialidad
         rows << data
       else
-        data_exists[:especialidades] << especialidad      
+        data_exists[:especialidades] << especialidad
       end
     end
 
@@ -60,7 +60,7 @@ namespace :update do
           address: data_row[:direccion]
         )        
         branch.save
-        File.write('./db/data/updated.txt', "#{branch.id} #{branch.name} \n", mode: 'a')      
+        # File.write('./db/data/updated.txt', "#{branch.id} #{branch.name} \n", mode: 'a')      
         updated = updated + 1
       else
         specialities = []
@@ -89,7 +89,7 @@ namespace :update do
           branches: [branch],
         )
 
-        File.write('./db/data/created.txt', "#{branch.id} #{branch.name} \n", mode: 'a')      
+        # File.write('./db/data/created.txt', "#{branch.id} #{branch.name} \n", mode: 'a')      
         created = created + 1
 
         Branch.without_auto_index do
