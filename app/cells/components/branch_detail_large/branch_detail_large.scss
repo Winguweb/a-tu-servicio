@@ -1,12 +1,49 @@
 $search-button-width: gutter(1.5);
 $search-bar-height: calc(66px);
+.rate-cta{
+  position: fixed;
+  padding: 2em;
+  right: 0;
+  bottom: 0;
+  transform: translateX(0%);
+  padding: 2rem 1.5rem;
+  background: $white;
+  z-index: 3000;
+  box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px -1px rgba(113, 128, 150, 0.28);
+  width: 375px;
+  .content{
+    padding-bottom: 1rem;
+  }
+  button {
+    @include type-golden(0);
 
+    background-color: $blue;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    width: 100%;
+    padding: 10px 5px;
+    background-color: #00ABE6;
+    position: relative;
+
+    span {
+      @include type-golden(0);
+
+      color: $white;
+      font-weight: bold;
+      position: relative;
+      text-transform: uppercase;
+    }
+  }
+}
 @mixin branch-detail-large {
   background-color: $white;
   border-left: 1px solid color($light-grey, 0.5);
   bottom: 0;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   padding: gutter(1) gutter(1) gutter(1) 0;
   position: fixed;
   right: 0;
@@ -26,7 +63,6 @@ $search-bar-height: calc(66px);
     > div {
       > article {
         > header {
-          border-bottom: 1px solid $blue;
           margin-bottom: gutter();
 
           > h1 {
@@ -72,37 +108,6 @@ $search-bar-height: calc(66px);
               }
             }
           }
-
-          button {
-            @include type-golden(0);
-
-            background-color: $blue;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            display: inline-block;
-            font-weight: 600;
-            height: 44px;
-            padding: gutter(-1) gutter();
-            position: absolute;
-            right: gutter(1);
-            top: gutter();
-
-            img {
-              height: 100%;
-              margin-right: gutter(-1);
-            }
-
-            span {
-              @include type-golden(0);
-
-              color: $white;
-              font-weight: 300;
-              position: relative;
-              text-transform: uppercase;
-              top: -6px;
-            }
-          }
         }
 
         > main {
@@ -115,22 +120,21 @@ $search-bar-height: calc(66px);
             margin-bottom: gutter(2);
 
             > header {
-              background-color: $light-blue;
               height: 53px;
-              margin-bottom: gutter();
+              margin: gutter();
               overflow: hidden;
               position: relative;
-
+              border-bottom: 2px solid #D1E4EB;
               > div:first-of-type {
-                float: right;
+                float: left;
                 padding: gutter();
+                padding-left: 0;
 
                 > h1 {
-                  @include text-color($white, 1);
-
+                  @include text-color($black, 1);
+                  font-weight: bold;
                   @include type-golden(0);
-
-                  text-align: right;
+                  text-align: left;
                 }
               }
 
@@ -165,7 +169,7 @@ $search-bar-height: calc(66px);
                     float: left;
                     height: 100%;
                     padding: gutter();
-
+                    
                     > span {
                       @include text-color($white);
 
@@ -211,30 +215,17 @@ $search-bar-height: calc(66px);
 
                   button {
                     @include type-golden(0);
-
-                    background-color: $blue;
-                    border: none;
-                    border-radius: 2px;
                     cursor: pointer;
                     display: inline-block;
                     font-weight: 600;
                     height: 44px;
-                    margin-bottom: gutter();
-                    padding: gutter(-1) gutter();
-
-                    img {
-                      height: 100%;
-                      margin-right: gutter(-1);
-                    }
-
+                    color: #00ABE6;
+                    border: none;
                     span {
                       @include type-golden(0);
-
-                      color: $white;
                       font-weight: 300;
-                      position: relative;
-                      text-transform: uppercase;
-                      top: -6px;
+                      text-transform: capitalize;
+                      border-bottom: 1px solid #00ABE6;
                     }
                   }
                 }

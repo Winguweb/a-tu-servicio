@@ -1,3 +1,7 @@
+div.rate-cta
+  div.content ¡Hola 👋!  Háganos saber su experiencia.
+  button @click="openVoteModal()"
+    span = "CALIFICAR ESTE CENTRO DE SALUD"
 div.branch-detail-large-cell v-bind:class="{show: actions.show}"
   div
     div v-if="!branch.loaded"
@@ -49,10 +53,6 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                 li v-if="[1,2].indexOf(branch.humanization) > -1" v-for="i in 5 - branch.humanization" = image_tag asset_path('icons/star-red-empty.svg')
                 li v-if="[3].indexOf(branch.humanization) > -1" v-for="i in 5 - branch.humanization" = image_tag asset_path('icons/star-yellow-empty.svg')
                 li v-if="[4,5].indexOf(branch.humanization) > -1" v-for="i in 5 - branch.humanization" = image_tag asset_path('icons/star-green-empty.svg')
-
-          button @click="openVoteModal()"
-            = image_tag asset_path('icons/rating.svg')
-            span = "Calificar"
         main
           section
             header
@@ -82,8 +82,7 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                   p v-if="branch.provider.communication_services"
                     strong = "Para comunicarse con el prestador: "
                     | {{branch.provider.communication_services}}
-                  button @click="openDetailsModal()"
-                    = image_tag asset_path('icons/details.svg')
+                  button.detail-cta @click="openDetailsModal()"
                     span = "Más detalles"
           section
             header :class="{percentage: branch.has_satisfaction_information}"
