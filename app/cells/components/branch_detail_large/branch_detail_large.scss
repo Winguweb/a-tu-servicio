@@ -6,11 +6,14 @@ $search-bar-height: calc(66px);
   right: 0;
   bottom: 0;
   transform: translateX(0%);
-  padding: 2rem 1rem;
+  padding: 2rem 1.5rem;
   background: $white;
   z-index: 3000;
   box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px -1px rgba(113, 128, 150, 0.28);
   width: 375px;
+  .content{
+    padding-bottom: 1rem;
+  }
   button {
     @include type-golden(0);
 
