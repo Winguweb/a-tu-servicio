@@ -72,34 +72,43 @@ $search-bar-height: calc(66px);
             }
           }
 
-          button {
-            @include type-golden(0);
-
-            background-color: $blue;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            display: inline-block;
-            font-weight: 600;
-            height: 44px;
-            padding: gutter(-1) gutter();
-            position: absolute;
-            right: gutter(1);
-            top: gutter();
-
-            img {
-              height: 100%;
-              margin-right: gutter(-1);
-            }
-
-            span {
+          >div{
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            padding: 2rem;
+            background: $white;
+            z-index: 3000;
+            box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px -1px rgba(113, 128, 150, 0.28);
+            width: 375px;
+            margin: 0 auto;
+            button {
               @include type-golden(0);
-
-              color: $white;
-              font-weight: 300;
+  
+              background-color: $blue;
+              border: none;
+              border-radius: 9999px;
+              cursor: pointer;
+              display: inline-block;
+              font-weight: 600;
+              width: 100%;
+              padding: 10px 5px;
+              background-color: #00ABE6;
               position: relative;
-              text-transform: uppercase;
-              top: -6px;
+  
+              img {
+                height: 100%;
+                margin-right: gutter(-1);
+              }
+  
+              span {
+                @include type-golden(0);
+  
+                color: $white;
+                font-weight: bold;
+                position: relative;
+                text-transform: uppercase;
+              }
             }
           }
         }
