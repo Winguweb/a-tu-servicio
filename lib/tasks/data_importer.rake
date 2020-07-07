@@ -17,8 +17,12 @@ namespace :update do
     puts 'Starting process...'
 
     CSV.parse(new_data_csv, headers: true, header_converters: :symbol, col_sep: ",", row_sep: :auto) do |row|
-      past_name = row[:sede_nombre_anterior].downcase
+      past_name = row[:sede_nombre_anterior].strip.downcase
+      
       @branch = Branch.where('lower(name) = ?', past_name).first
+      if !@branch.present?
+        @branch = Branch.where('lower(name) = ?', row[:sede_nombre_actual].strip.downcase).first
+      end
       especialidad = row[:especialidades].split('-').drop(1).map(&:strip).join(' - ')
 
       data = {
