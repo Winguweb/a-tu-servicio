@@ -57,7 +57,7 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
           section
             header
               div
-                h1 = "Datos de la sede y el presddsadatador"
+                h1 = "Datos de la sede y el prestador"
             main
               div
                 div
@@ -82,8 +82,7 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                   p v-if="branch.provider.communication_services"
                     strong = "Para comunicarse con el prestador: "
                     | {{branch.provider.communication_services}}
-                  button @click="openDetailsModal()"
-                    = image_tag asset_path('icons/details.svg')
+                  button.detail-cta @click="openDetailsModal()"
                     span = "Más detalles"
           section
             header :class="{percentage: branch.has_satisfaction_information}"

@@ -26,7 +26,6 @@ $search-bar-height: calc(66px);
     > div {
       > article {
         > header {
-          border-bottom: 1px solid $blue;
           margin-bottom: gutter();
 
           > h1 {
@@ -119,7 +118,7 @@ $search-bar-height: calc(66px);
               margin: gutter();
               overflow: hidden;
               position: relative;
-              border-bottom: 1px solid $black;
+              border-bottom: 2px solid #D1E4EB;
               > div:first-of-type {
                 float: left;
                 padding: gutter();
@@ -210,30 +209,17 @@ $search-bar-height: calc(66px);
 
                   button {
                     @include type-golden(0);
-
-                    background-color: $blue;
-                    border: none;
-                    border-radius: 2px;
                     cursor: pointer;
                     display: inline-block;
                     font-weight: 600;
                     height: 44px;
-                    margin-bottom: gutter();
-                    padding: gutter(-1) gutter();
-
-                    img {
-                      height: 100%;
-                      margin-right: gutter(-1);
-                    }
-
+                    color: #00ABE6;
+                    border: none;
                     span {
                       @include type-golden(0);
-
-                      color: $white;
                       font-weight: 300;
-                      position: relative;
-                      text-transform: uppercase;
-                      top: -6px;
+                      text-transform: capitalize;
+                      border-bottom: 1px solid #00ABE6;
                     }
                   }
                 }
