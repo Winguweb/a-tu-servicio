@@ -1,3 +1,6 @@
+div.rate-cta
+  button @click="openVoteModal()"
+    span = "CALIFICAR ESTE CENTRO DE SALUD"
 div.branch-detail-large-cell v-bind:class="{show: actions.show}"
   div
     div v-if="!branch.loaded"
@@ -49,9 +52,6 @@ div.branch-detail-large-cell v-bind:class="{show: actions.show}"
                 li v-if="[1,2].indexOf(branch.humanization) > -1" v-for="i in 5 - branch.humanization" = image_tag asset_path('icons/star-red-empty.svg')
                 li v-if="[3].indexOf(branch.humanization) > -1" v-for="i in 5 - branch.humanization" = image_tag asset_path('icons/star-yellow-empty.svg')
                 li v-if="[4,5].indexOf(branch.humanization) > -1" v-for="i in 5 - branch.humanization" = image_tag asset_path('icons/star-green-empty.svg')
-          div.rate-cta
-            button @click="openVoteModal()"
-              span = "CALIFICAR ESTE CENTRO DE SALUD"
         main
           section
             header
