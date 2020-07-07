@@ -115,22 +115,21 @@ $search-bar-height: calc(66px);
             margin-bottom: gutter(2);
 
             > header {
-              background-color: $light-blue;
               height: 53px;
-              margin-bottom: gutter();
+              margin: gutter();
               overflow: hidden;
               position: relative;
-
+              border-bottom: 1px solid $black;
               > div:first-of-type {
-                float: right;
+                float: left;
                 padding: gutter();
+                padding-left: 0;
 
                 > h1 {
-                  @include text-color($white, 1);
-
+                  @include text-color($black, 1);
+                  font-weight: bold;
                   @include type-golden(0);
-
-                  text-align: right;
+                  text-align: left;
                 }
               }
 
@@ -165,7 +164,7 @@ $search-bar-height: calc(66px);
                     float: left;
                     height: 100%;
                     padding: gutter();
-
+                    
                     > span {
                       @include text-color($white);
 
