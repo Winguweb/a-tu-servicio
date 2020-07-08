@@ -172,7 +172,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
             answer_id: answer_id,
             question_value: question_value,
             answer_data: answer_data,
-            question_type: !!actualStep.question_type && actualStep.question_type,
+            // question_type: !!actualStep.question_type && actualStep.question_type,
             question_subtype: !!actualStep.question_subtype && actualStep.question_subtype,
             multi_response: this.isMultiResponse(),
           }, needsRecaptcha, this.sendVoteSuccess, this.sendVoteFail)

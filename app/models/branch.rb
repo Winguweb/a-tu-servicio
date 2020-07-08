@@ -54,6 +54,14 @@ class Branch < ActiveRecord::Base
   def humanization
     redis.get("humanization/branch/#{id}").to_f.round.to_i
   end
+
+  def risk
+    redis.get("risk/branch/#{id}").to_f.round.to_i
+  end
+
+  def effectiveness
+    redis.get("effectiveness/branch/#{id}").to_f.round.to_i
+  end
   # TODO new workers
 
   private

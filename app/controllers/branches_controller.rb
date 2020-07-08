@@ -18,7 +18,9 @@ class BranchesController < ApplicationController
           quality: branch.quality,
           waiting_times: branch.waiting_times,
           satisfaction: branch.satisfaction,
-          humanization: branch.humanization
+          humanization: branch.humanization,
+          risk: branch.risk,
+          effectiveness: branch.effectiveness
         }
       end
     }
