@@ -141,8 +141,9 @@ ATSB.Components['components/vote-modal'] = function(options) {
         return !!this.getStepById(this.actualStepId).multi_response
       },
       nextStep: function(options) {
-
+        
         var _this = this
+        console.log(this.steps)
         var options = options || {}
         var needsRecaptcha = this.isFirstStep()
         var actualStep = this.getActualStep()
@@ -163,6 +164,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.loopTo = options.loopTo
         this.percentage = this.percentage - 7.69
         if (this.shouldSaveVote()) {
+          console.log(actualStep)
           this.sendVote({
             client_id: client_id,
             branch_id: branch_id,
@@ -170,6 +172,8 @@ ATSB.Components['components/vote-modal'] = function(options) {
             answer_id: answer_id,
             question_value: question_value,
             answer_data: answer_data,
+            question_type: !!actualStep.question_type && actualStep.question_type,
+            question_subtype: !!actualStep.question_subtype && actualStep.question_subtype,
             multi_response: this.isMultiResponse(),
           }, needsRecaptcha, this.sendVoteSuccess, this.sendVoteFail)
           return;

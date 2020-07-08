@@ -1,351 +1,361 @@
 $search-button-width: gutter(1.5);
 $search-bar-height: calc(66px);
-.rate-cta{
-  position: fixed;
-  padding: 2em;
-  right: 0;
-  bottom: 0;
-  transform: translateX(0%);
-  padding: 2rem 1.5rem;
-  background: $white;
-  z-index: 3000;
-  box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px -1px rgba(113, 128, 150, 0.28);
-  width: 375px;
-  .content{
-    padding-bottom: 1rem;
-  }
-  button {
-    @include type-golden(0);
 
-    background-color: $blue;
-    border: none;
-    border-radius: 9999px;
-    cursor: pointer;
-    display: inline-block;
-    font-weight: 600;
-    width: 100%;
-    padding: 10px 5px;
-    background-color: #00ABE6;
-    position: relative;
+@mixin branch-detail-large {
+  .rate-cta{
+    position: fixed;
+    padding: 2em;
+    right: 0;
+    bottom: 0;
+    transform: translateX(0%);
+    padding: 2rem 1.5rem;
+    background: $white;
+    z-index: 3000;
+    box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px -1px rgba(113, 128, 150, 0.28);
+    width: 375px;
+    
+    display: none;
+    &.show {
+      display: block;
+    }
+    .content{
+      padding-bottom: 1rem;
+    }
 
-    span {
+    button {
       @include type-golden(0);
-
-      color: $white;
-      font-weight: bold;
+  
+      background-color: $blue;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      display: inline-block;
+      font-weight: 600;
+      width: 100%;
+      padding: 10px 5px;
+      background-color: #00ABE6;
       position: relative;
-      text-transform: uppercase;
+  
+      span {
+        @include type-golden(0);
+  
+        color: $white;
+        font-weight: bold;
+        position: relative;
+        text-transform: uppercase;
+      }
     }
   }
-}
-@mixin branch-detail-large {
-  background-color: $white;
-  border-left: 1px solid color($light-grey, 0.5);
-  bottom: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  padding: gutter(1) gutter(1) gutter(1) 0;
-  position: fixed;
-  right: 0;
-  top: $search-bar-height;
-  transform: translateX(100%);
-  transition: transform 300ms ease 0ms;
-  width: calc(100% / 1.61803398875);
-  will-change: transform;
-  z-index: 2000;
 
-  &.show {
-    transform: translateX(0);
-    transition: transform 300ms ease 300ms;
-  }
-
-  > div {
+  .branch-detail-body {
+    background-color: $white;
+    border-left: 1px solid color($light-grey, 0.5);
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: gutter(1) gutter(1) gutter(1) 0;
+    position: fixed;
+    right: 0;
+    top: $search-bar-height;
+    transform: translateX(100%);
+    transition: transform 300ms ease 0ms;
+    width: calc(100% / 1.61803398875);
+    will-change: transform;
+    z-index: 2000;
+  
+    &.show {
+      transform: translateX(0);
+      transition: transform 300ms ease 300ms;
+    }
+  
     > div {
-      > article {
-        > header {
-          margin-bottom: gutter();
-
-          > h1 {
-            @include text-color($blue, 1);
-
-            @include type-golden(1);
-
-            line-height: gutter(1);
-            max-width: calc(100% - 135px);
-            padding: 0 gutter(1) 0 gutter();
-            text-align: left;
-          }
-
-          > h2 {
-            @include text-color($grey, 1);
-
-            @include type-golden(0);
-
-            max-width: calc(100% - 135px);
-            padding: 0 gutter(1) 0 gutter();
-            text-align: left;
-          }
-
-          > section {
-            overflow: auto;
-            padding: gutter();
-
+      > div {
+        > article {
+          > header {
+            margin-bottom: gutter();
+  
+            > h1 {
+              @include text-color($blue, 1);
+  
+              @include type-golden(1);
+  
+              line-height: gutter(1);
+              max-width: calc(100% - 135px);
+              padding: 0 gutter(1) 0 gutter();
+              text-align: left;
+            }
+  
+            > h2 {
+              @include text-color($grey, 1);
+  
+              @include type-golden(0);
+  
+              max-width: calc(100% - 135px);
+              padding: 0 gutter(1) 0 gutter();
+              text-align: left;
+            }
+  
             > section {
-              float: left;
-              width: 25%;
-
-              > ul {
-                > li {
-                  display: inline-block;
-                  padding-right: gutter(-2);
-                  text-align: center;
-                  width: gutter(1) * 0.75;
-                }
-              }
-
-              > span {
-                @include type-golden(-1);
-              }
-            }
-          }
-        }
-
-        > main {
-          @include grid-column(1 of 1);
-
-          > section {
-            @include grid-collapse;
-
-            clear: both;
-            margin-bottom: gutter(2);
-
-            > header {
-              height: 53px;
-              margin: gutter();
-              overflow: hidden;
-              position: relative;
-              border-bottom: 2px solid #D1E4EB;
-              > div:first-of-type {
+              overflow: auto;
+              padding: gutter();
+  
+              > section {
                 float: left;
-                padding: gutter();
-                padding-left: 0;
-
-                > h1 {
-                  @include text-color($black, 1);
-                  font-weight: bold;
-                  @include type-golden(0);
-                  text-align: left;
-                }
-              }
-
-              &.percentage {
-                > div:first-of-type {
-                  width: calc(100% - 100% / 1.61803398875);
-                }
-
-                > div:last-of-type {
-                  border-bottom: 2px solid $blue;
-                  float: right;
-                  width: calc(100% / 1.61803398875);
-
-                  &.low {
-                    border-bottom-color: $red;
-
-                    > div {
-                      background-color: $red;
-                    }
-                  }
-
-                  &.high {
-                    border-bottom-color: $light-blue;
-
-                    > div {
-                      background-color: $light-blue;
-                    }
-                  }
-
-                  > div {
-                    background-color: $blue;
-                    float: left;
-                    height: 100%;
-                    padding: gutter();
-                    
-                    > span {
-                      @include text-color($white);
-
-                      @include type-golden(1);
-
-                      float: left;
-                      height: 19px;
-                      line-height: 19px;
-                      white-space: nowrap;
-                    }
-                  }
-                }
-              }
-            }
-
-            > main {
-              @include grid-container;
-
-              > p {
-                @include type-golden(0);
-
-                font-weight: 300;
-                padding: 0 gutter();
-              }
-
-              padding: 0 gutter();
-
-              > div {
-                > div:first-of-type {
-                  float: left;
-                  width: 100%;
-
-                  > p {
-                    @include type-golden(0);
-
-                    font-weight: 300;
-                    margin-bottom: gutter();
-
-                    > strong {
-                      font-weight: 600;
-                    }
-                  }
-
-                  button {
-                    @include type-golden(0);
-                    cursor: pointer;
+                width: 25%;
+  
+                > ul {
+                  > li {
                     display: inline-block;
-                    font-weight: 600;
-                    height: 44px;
-                    color: #00ABE6;
-                    border: none;
-                    span {
-                      @include type-golden(0);
-                      font-weight: 300;
-                      text-transform: capitalize;
-                      border-bottom: 1px solid #00ABE6;
-                    }
+                    padding-right: gutter(-2);
+                    text-align: center;
+                    width: gutter(1) * 0.75;
                   }
                 }
-
-                > div + div {
+  
+                > span {
+                  @include type-golden(-1);
+                }
+              }
+            }
+          }
+  
+          > main {
+            @include grid-column(1 of 1);
+  
+            > section {
+              @include grid-collapse;
+  
+              clear: both;
+              margin-bottom: gutter(2);
+  
+              > header {
+                height: 53px;
+                margin: gutter();
+                overflow: hidden;
+                position: relative;
+                border-bottom: 2px solid #D1E4EB;
+                > div:first-of-type {
                   float: left;
-                  overflow: hidden;
-
-                  > div {
-                    > div {
-                      > p {
-                        @include text-color($blue);
-
-                        border-bottom: 2px solid $blue;
-                        display: inline-block;
-                        width: 100%;
-                      }
-                    }
+                  padding: gutter();
+                  padding-left: 0;
+  
+                  > h1 {
+                    @include text-color($black, 1);
+                    font-weight: bold;
+                    @include type-golden(0);
+                    text-align: left;
                   }
-
-                  &.horizontal {
-                    width: 50%;
-
-                    > div {
-                      > div {
-                        min-height: 105px;
-                      }
-                    }
-
-                    &:nth-of-type(even) {
-                      > div {
-                        > div {
-                          padding-right: gutter() / 2;
-                        }
-                      }
-                    }
-
-                    &:nth-of-type(odd) {
-                      > div {
-                        > div {
-                          padding-left: gutter() / 2;
-                        }
-                      }
-                    }
+                }
+  
+                &.percentage {
+                  > div:first-of-type {
+                    width: calc(100% - 100% / 1.61803398875);
                   }
-
-                  &.vertical {
-                    > div {
+  
+                  > div:last-of-type {
+                    border-bottom: 2px solid $blue;
+                    float: right;
+                    width: calc(100% / 1.61803398875);
+  
+                    &.low {
+                      border-bottom-color: $red;
+  
                       > div {
-                        @include grid-column(1 of 3);
-
-                        margin-bottom: gutter();
+                        background-color: $red;
+                      }
+                    }
+  
+                    &.high {
+                      border-bottom-color: $light-blue;
+  
+                      > div {
+                        background-color: $light-blue;
+                      }
+                    }
+  
+                    > div {
+                      background-color: $blue;
+                      float: left;
+                      height: 100%;
+                      padding: gutter();
+                      
+                      > span {
+                        @include text-color($white);
+  
+                        @include type-golden(1);
+  
+                        float: left;
+                        height: 19px;
+                        line-height: 19px;
+                        white-space: nowrap;
                       }
                     }
                   }
                 }
-
-                > div.no-data {
-                  padding-left: gutter() / 2;
+              }
+  
+              > main {
+                @include grid-container;
+  
+                > p {
+                  @include type-golden(0);
+  
+                  font-weight: 300;
+                  padding: 0 gutter();
                 }
-
-                > div.no-data-sad {
-                  padding-right: gutter() / 2;
-                }
-
-                > div.no-data, > div.no-data-sad {
-                  margin-top: gutter();
-                  width: 50%;
-
-                  > p {
-                    @include type-golden(-1);
-
-                    font-weight: 400;
-                    margin-bottom: gutter();
-                  }
-
-                  > div {
-                    display: block;
+  
+                padding: 0 gutter();
+  
+                > div {
+                  > div:first-of-type {
                     float: left;
-                    width: calc(10%);
-
-                    > img {
-                      $width: calc(100% - #{gutter(-2)});
-
-                      display: block;
-                      margin-right: gutter(-2);
-                      width: $width;
+                    width: 100%;
+  
+                    > p {
+                      @include type-golden(0);
+  
+                      font-weight: 300;
+                      margin-bottom: gutter();
+  
+                      > strong {
+                        font-weight: 600;
+                      }
                     }
-
-                    &:last-of-type {
+  
+                    button {
+                      @include type-golden(0);
+                      cursor: pointer;
+                      display: inline-block;
+                      font-weight: 600;
+                      height: 44px;
+                      color: #00ABE6;
+                      border: none;
+                      span {
+                        @include type-golden(0);
+                        font-weight: 300;
+                        text-transform: capitalize;
+                        border-bottom: 1px solid #00ABE6;
+                      }
+                    }
+                  }
+  
+                  > div + div {
+                    float: left;
+                    overflow: hidden;
+  
+                    > div {
+                      > div {
+                        > p {
+                          @include text-color($blue);
+  
+                          border-bottom: 2px solid $blue;
+                          display: inline-block;
+                          width: 100%;
+                        }
+                      }
+                    }
+  
+                    &.horizontal {
+                      width: 50%;
+  
+                      > div {
+                        > div {
+                          min-height: 105px;
+                        }
+                      }
+  
+                      &:nth-of-type(even) {
+                        > div {
+                          > div {
+                            padding-right: gutter() / 2;
+                          }
+                        }
+                      }
+  
+                      &:nth-of-type(odd) {
+                        > div {
+                          > div {
+                            padding-left: gutter() / 2;
+                          }
+                        }
+                      }
+                    }
+  
+                    &.vertical {
+                      > div {
+                        > div {
+                          @include grid-column(1 of 3);
+  
+                          margin-bottom: gutter();
+                        }
+                      }
+                    }
+                  }
+  
+                  > div.no-data {
+                    padding-left: gutter() / 2;
+                  }
+  
+                  > div.no-data-sad {
+                    padding-right: gutter() / 2;
+                  }
+  
+                  > div.no-data, > div.no-data-sad {
+                    margin-top: gutter();
+                    width: 50%;
+  
+                    > p {
+                      @include type-golden(-1);
+  
+                      font-weight: 400;
+                      margin-bottom: gutter();
+                    }
+  
+                    > div {
+                      display: block;
+                      float: left;
+                      width: calc(10%);
+  
                       > img {
-                        margin-right: 0;
+                        $width: calc(100% - #{gutter(-2)});
+  
+                        display: block;
+                        margin-right: gutter(-2);
+                        width: $width;
+                      }
+  
+                      &:last-of-type {
+                        > img {
+                          margin-right: 0;
+                        }
                       }
                     }
                   }
                 }
               }
             }
-          }
-
-          > section:first-of-type {
-            > main {}
-          }
-
-          > section:last-of-type {
-            > main {
-              > div:first-of-type {
-                float: none;
-                width: 100%;
-              }
-
-              > div:last-of-type {
-                float: none;
-
-                &.horizontal {
+  
+            > section:first-of-type {
+              > main {}
+            }
+  
+            > section:last-of-type {
+              > main {
+                > div:first-of-type {
+                  float: none;
                   width: 100%;
-
-                  > div {
+                }
+  
+                > div:last-of-type {
+                  float: none;
+  
+                  &.horizontal {
+                    width: 100%;
+  
                     > div {
-                      @include grid-column(1 of 2);
+                      > div {
+                        @include grid-column(1 of 2);
+                      }
                     }
                   }
                 }
@@ -356,6 +366,7 @@ $search-bar-height: calc(66px);
       }
     }
   }
+  
 }
 
 @mixin mobile-branch-detail-large {

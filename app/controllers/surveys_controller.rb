@@ -36,7 +36,13 @@ class SurveysController < ApplicationController
     )
 
     request.run
+    
+    puts params
     response = request.response
+    puts 'Response!'
+    # puts JSON.parse(response)
+    puts '---'
+    puts JSON.parse(response.options[:response_body])
     success = JSON.parse(response.options[:response_body])['success']
     session[:recaptcha_success] = success
   end
@@ -48,6 +54,8 @@ class SurveysController < ApplicationController
       :step_id,
       :answer_id,
       :question_value,
+      :question_type,
+      :question_subtype,
       answer_data: [:label, :value],
     )
   end

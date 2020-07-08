@@ -8,6 +8,7 @@ class Survey < ActiveRecord::Base
 
   private
 
+  # Update workers
   def update_quality
     return unless step_id == 15
     CalculateQualityWorker.perform_async(branch_id)

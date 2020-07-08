@@ -388,7 +388,9 @@ steps:
       4: 31
     answer: null
   - id: 7
-    type: "urgency"
+    question_type: 'urgency'
+    question_subtype: 'opportunity'
+    type: "urgency"    
     question: "El Servicio de triage que se realiza en los servicios de urgencias se basa en la resolución 5596 de 2015, tenga en cuenta los tiempos de espera para el triage asignado:"
     multi_response: false
     answers:
@@ -436,6 +438,8 @@ steps:
       5: 8
     answer: null
   - id: 8
+    question_type: 'urgency'
+    question_subtype: 'opportunity'
     type: "oportunidad"
     question: "¿Cuando llegó al Triage, qué clasificación le dieron?"
     multi_response: false
@@ -484,6 +488,8 @@ steps:
       5: 9
     answer: null
   - id: 9
+    question_type: 'urgency'
+    question_subtype: 'opportunity'
     type: "oportunidad"
     question: "¿Cuánto tiempo demoraron para la atención médica desde que le vieron en el triage?"
     multi_response: true
@@ -532,6 +538,8 @@ steps:
       5: 10
     answer: null
   - id: 10
+    question_type: 'urgency'
+    question_subtype: 'humanization'
     type: "star"
     question: "¿Cómo calificaría el grado de amabilidad del personal de recepción o administrativo?"
     multi_response: true
@@ -580,6 +588,8 @@ steps:
       5: 11
     answer: null
   - id: 11
+    question_type: 'urgency'
+    question_subtype: 'humanization'
     type: "star"
     question: "¿Cómo calificaría el grado de amabilidad del profesional de salud que lo atendió?"
     multi_response: true
@@ -628,6 +638,8 @@ steps:
       5: 12
     answer: null
   - id: 12
+    question_type: 'urgency'
+    question_subtype: 'humanization'
     type: "humanización"
     question: "¿Siente que fue clara la información transmitida por el personal de salud?"
     multi_response: true
@@ -652,6 +664,8 @@ steps:
       2: 13
     answer: null
   - id: 13
+    question_type: 'urgency'
+    question_subtype: 'effectiveness'
     type: "efectividad"
     question: "¿Siente que fue resuelto el problema de salud por el que ingresó?"
     multi_response: true
@@ -676,6 +690,8 @@ steps:
       2: 14
     answer: null
   - id: 14
+    question_type: 'urgency'
+    question_subtype: 'risk'
     type: "gestión del riesgo"
     question: "¿Las señalizaciones y/o la información recibida para orientarse en las instalaciones son claras?"
     multi_response: true
@@ -700,6 +716,8 @@ steps:
       2: 15
     answer: null 
   - id: 15
+    question_type: 'urgency'
+    question_subtype: 'effectiveness'
     type: "star"
     question: "Teniendo en cuenta el servicio recibido por los profesionales del área de urgencias (equipo interdisciplinario de atención), qué tanto lo recomendaría a un familiar o amigo?"
     multi_response: true

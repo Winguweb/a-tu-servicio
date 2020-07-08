@@ -3,32 +3,36 @@ class CalculateHumanizationWorker
 
   def perform(branch_id)
     branch = Branch.find_by(id: branch_id)
-    surveys_metrics = SurveysMetricsService.call(branch)
-    specialities = surveys_metrics.response[11]
+    survey_data = Survey.where(branch_id: branch.id, question_subtype: 'humanization')
+    
 
-    average_by_speciality = []
 
-    humanizations_total_count = 0
+    # surveys_metrics = SurveysMetricsService.call(branch)
+    # specialities = surveys_metrics.response[11]
 
-    specialities.each do | k, speciality |
-      humanizations = speciality[:detail][12][:answers]
+    # average_by_speciality = []
 
-      humanizations_sum = humanizations.sum do | k, humanization |
-        humanization[:counter] * k
-      end
+    # humanizations_total_count = 0
 
-      humanizations_count = humanizations.sum do | k, humanization |
-        humanization[:counter]
-      end.to_f
+    # specialities.each do | k, speciality |
+    #   humanizations = speciality[:detail][12][:answers]
 
-      humanizations_average = humanizations_count > 0 ? humanizations_sum / humanizations_count : 0
-      average_by_speciality << humanizations_average
-      humanizations_total_count += 1 if humanizations_count > 0
-    end
+    #   humanizations_sum = humanizations.sum do | k, humanization |
+    #     humanization[:counter] * k
+    #   end
 
-    humanizations_total_sum = average_by_speciality.sum.to_f
+    #   humanizations_count = humanizations.sum do | k, humanization |
+    #     humanization[:counter]
+    #   end.to_f
 
-    humanizations_total_average = humanizations_total_count > 0 ? humanizations_total_sum / humanizations_total_count : 0
+    #   humanizations_average = humanizations_count > 0 ? humanizations_sum / humanizations_count : 0
+    #   average_by_speciality << humanizations_average
+    #   humanizations_total_count += 1 if humanizations_count > 0
+    # end
+
+    # humanizations_total_sum = average_by_speciality.sum.to_f
+
+    # humanizations_total_average = humanizations_total_count > 0 ? humanizations_total_sum / humanizations_total_count : 0
 
     $redis.set("humanization/branch/#{branch_id}", humanizations_total_average)
   end

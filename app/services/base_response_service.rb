@@ -67,9 +67,9 @@ class BaseResponseService
       name: _name,
       address: _address,
       quality: _quality,
-      waiting_times: _waiting_times,
-      satisfaction: _satisfaction,
-      humanization: _humanization,
+      # waiting_times: _waiting_times,
+      # satisfaction: _satisfaction,
+      # humanization: _humanization,
       provider: {
         name: _provider_name,
         subnet: _provider_subnet,
