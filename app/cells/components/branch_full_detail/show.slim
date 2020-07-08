@@ -35,18 +35,18 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}" v-if="branch.met
 
   hr
 
-  div
-    section
-      h1 = "Tiempos de espera"
-      div v-for="(waiting_times, nameId) in branch.metrics[2]"
-        h2 = "{{labels[2][nameId]}}"
-        span.valuations = "{{totalCounterNested(waiting_times.detail[5].answers)}} {{totalCounterNested(waiting_times.detail[5].answers) == 1 ? 'valoración' : 'valoraciones'}}"
-        == cell('visualization_components/full_detail_splitted_bar', 'waiting_times.detail[5].answers', label: 'labels[5]', reverse: true)
+  / div
+  /   section
+  /     h1 = "Tiempos de espera"
+  /     div v-for="(waiting_times, nameId) in branch.metrics[2]"
+  /       h2 = "{{labels[2][nameId]}}"
+  /       span.valuations = "{{totalCounterNested(waiting_times.detail[5].answers)}} {{totalCounterNested(waiting_times.detail[5].answers) == 1 ? 'valoración' : 'valoraciones'}}"
+  /       == cell('visualization_components/full_detail_splitted_bar', 'waiting_times.detail[5].answers', label: 'labels[5]', reverse: true)
 
-    section
-      p = "Esta dimensión expresa el tiempo de espera en días calendario, que trascurre entre el primer contacto con la IPS/EAPB para la asignación de la cita de primera vez y la fecha en que es asignada la cita."
+  /   section
+  /     p = "Esta dimensión expresa el tiempo de espera en días calendario, que trascurre entre el primer contacto con la IPS/EAPB para la asignación de la cita de primera vez y la fecha en que es asignada la cita."
 
-  hr
+  / hr
 
   div
     section

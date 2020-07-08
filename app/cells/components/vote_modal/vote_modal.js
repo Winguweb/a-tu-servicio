@@ -11,6 +11,8 @@ ATSB.Components['components/vote-modal'] = function(options) {
       recaptchaSitekey: options.recaptchaSitekey,
       showForm: true,
       steps: options.form.steps,
+      type: "",
+      percentage: 100
     },
     created: function() {
       var _this = this
@@ -111,6 +113,8 @@ ATSB.Components['components/vote-modal'] = function(options) {
             return _(q.depends_on_id).contains(depends_on_answer_id)
           }).label
         }
+
+        this.type = actualStep.type
         return question
       },
       getStepById: function(id) {
@@ -137,11 +141,17 @@ ATSB.Components['components/vote-modal'] = function(options) {
         return !!this.getStepById(this.actualStepId).multi_response
       },
       nextStep: function(options) {
+        
         var _this = this
+        console.log(this.steps)
         var options = options || {}
         var needsRecaptcha = this.isFirstStep()
         var actualStep = this.getActualStep()
         var actualAnswerId = this.getActualAnswer()
+        if(this.type == 'urgency'){
+          this.actualStepId = this.actualStepId + 1
+          return
+        }
         if (actualAnswerId == null) { return }
 
         var client_id = this.clientId
@@ -151,11 +161,10 @@ ATSB.Components['components/vote-modal'] = function(options) {
         var answer_data = this.getAnswerById(actualAnswerId).data
             answer_data.value = this.inputValue || answer_data.value
         var question_value = this.getQuestion()
-
         this.loopTo = options.loopTo
-        this.showForm = false
-
+        this.percentage = this.percentage - 7.69
         if (this.shouldSaveVote()) {
+          console.log(actualStep)
           this.sendVote({
             client_id: client_id,
             branch_id: branch_id,
@@ -163,6 +172,8 @@ ATSB.Components['components/vote-modal'] = function(options) {
             answer_id: answer_id,
             question_value: question_value,
             answer_data: answer_data,
+            question_type: !!actualStep.question_type && actualStep.question_type,
+            question_subtype: !!actualStep.question_subtype && actualStep.question_subtype,
             multi_response: this.isMultiResponse(),
           }, needsRecaptcha, this.sendVoteSuccess, this.sendVoteFail)
           return;
@@ -183,7 +194,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
         var _this = this
         var actualStep = this.getActualStep()
         var previousStep = actualStep.previous_step
-        if (previousStep) { this.actualStepId = +previousStep }
+        if (previousStep) { IdId = +previousStep }
         this.preloadInputValue()
         this.showForm = false
         setTimeout(function() {_this.showForm = true}, 300)
@@ -214,7 +225,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.getStepById(this.actualStepId).answer = id
         var actualAnswer = this.getAnswerById(id)
         if (actualAnswer.auto_submit == false) { return }
-        this.nextStep()
       },
       sendVote: function(vote, needsRecaptcha, fnSuccess, fnFail) {
         ATSB.pubSub.$emit('vote:send', vote, needsRecaptcha, fnSuccess, fnFail)

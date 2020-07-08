@@ -128,6 +128,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
         this.actions.show = false
       },
       componentOpen: function(id) {
+        console.log('details open')
         this.actions.show = true
       },
       getColor: function(position, totalOptions){
@@ -150,6 +151,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
         return reversedAnswers
       },
       showMoreDetails: function(name) {
+        console.log('show more details')
         if (this.showStatuses[name] === undefined) {
           this.$set(this.showStatuses, name, false)
         }

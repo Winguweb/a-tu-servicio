@@ -8,8 +8,12 @@ class SurveysMetricsService
   def initialize(branch)
     @branch = branch
     @surveys_by_client_id = Survey.where(branch_id: @branch.id).group_by(&:client_id)
+
+    # SurveyData $survey_data
+    # $survey_data.response_structure es estructura con contadores
     @response = $survey_data.response_structure
 
+    # puts @response
     populate_response
   end
 

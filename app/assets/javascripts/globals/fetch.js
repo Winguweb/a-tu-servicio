@@ -29,13 +29,21 @@
         if (needsReacaptcha) {
           grecaptcha.ready(function() {
             console.log(ATSB, payload, grecaptcha)
+            console.log('here!')
             grecaptcha.execute(ATSB.recaptchaSitekey, {action: 'action_name'})
-            .then(function(token) {
-              console.log('token', token)
-              payload.token = token
-              axios.post("/api/v1/surveys", payload).then(success).catch(fail)
-            })
+            // grecaptcha.execute(ATSB.recaptchaSitekey)
+              .then(function(token) {
+                console.log('token', token)
+                payload.token = token
+                axios.post("/api/v1/surveys", payload).then(success).catch(fail)
+              })
+              .catch(function(err, a) {
+                console.log('captcha err')
+                console.log(err)
+                console.log(a)
+              })
           })
+
         } else {
           axios.post("/api/v1/surveys", payload).then(success).catch(fail)
         }

@@ -2,8 +2,8 @@ class FlagResponseService
   def initialize(branch)
     @branch = branch
     @specialities = @branch.specialities
-    @satisfactions = @branch.provider.satisfactions
-    @waiting_times = @branch.provider.waiting_times
+    # @satisfactions = @branch.provider.satisfactions
+    # @waiting_times = @branch.provider.waiting_times
     @response = _response
   end
 

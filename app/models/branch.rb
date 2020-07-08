@@ -38,6 +38,7 @@ class Branch < ActiveRecord::Base
     georeference.coordinates.reverse
   end
 
+  # TODO new workers
   def quality
     redis.get("quality/branch/#{id}").to_f.round.to_i
   end
@@ -53,6 +54,7 @@ class Branch < ActiveRecord::Base
   def humanization
     redis.get("humanization/branch/#{id}").to_f.round.to_i
   end
+  # TODO new workers
 
   private
 
