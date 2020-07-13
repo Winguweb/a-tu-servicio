@@ -366,9 +366,6 @@ $search-bar-height: calc(66px);
       }
     }
 
-    .mobile-rate-cta {
-      display: none;
-    }
   }
   
 }
@@ -376,56 +373,25 @@ $search-bar-height: calc(66px);
 @mixin mobile-branch-detail-large {
 
   .rate-cta{
-    display: none;    
-    // position: fixed;
-    // padding: 2em;
-    // right: 0;
-    // bottom: 0;
-    // transform: translateX(0%);
-    // padding: 2rem 1.5rem;
-    // background: $white;
-    // z-index: 3000;
-    // box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px -1px rgba(113, 128, 150, 0.28);
-    // width: 375px;
-    
-    // display: none;
-    // &.show {
-    //   display: block;
-    // }
-    // .content{
-    //   padding-bottom: 1rem;
-    // }
+    width: 100%;
+    padding: 1rem;
 
-    // button {
-    //   @include type-golden(0);
-  
-    //   background-color: $blue;
-    //   border: none;
-    //   border-radius: 9999px;
-    //   cursor: pointer;
-    //   display: inline-block;
-    //   font-weight: 600;
-    //   width: 100%;
-    //   padding: 10px 5px;
-    //   background-color: #00ABE6;
-    //   position: relative;
-  
-    //   span {
-    //     @include type-golden(0);
-  
-    //     color: $white;
-    //     font-weight: bold;
-    //     position: relative;
-    //     text-transform: uppercase;
-    //   }
-    // }
+    .content{
+      font-size: 0.75rem;
+    }
+
+    button {
+      span {
+        font-size: 0.75rem;
+      }
+    }
   }
 
 
   .branch-detail-body { 
 
     background-color: transparent;
-    padding: 60vh 0 0 0;
+    padding: 25vh 0 0 0;
     transform: translateY(100%);
     width: 100%;
   
@@ -443,44 +409,6 @@ $search-bar-height: calc(66px);
   
       > div {        
         > article {
-          .mobile-rate-cta {
-            display:  block;
-            width: 100%;
-            padding: 2em;    
-            padding: 2rem 1.5rem;
-            background: $white;
-            z-index: 2000;
-            box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px -1px rgba(113, 128, 150, 0.28);
-      
-            .content{
-              padding-bottom: 1rem;
-            }
-      
-            button {
-              @include type-golden(0);
-          
-              background-color: $blue;
-              border: none;
-              border-radius: 9999px;
-              cursor: pointer;
-              display: inline-block;
-              font-weight: 600;
-              width: 100%;
-              padding: 10px 5px;
-              background-color: #00ABE6;
-              position: relative;
-          
-              span {
-                @include type-golden(0);
-          
-                color: $white;
-                font-weight: bold;
-                position: relative;
-                text-transform: uppercase;
-              }
-            }
-          }
-
           > header {
             border-bottom: none;
             padding: gutter(1) gutter(0) gutter(0) gutter(0);
@@ -504,6 +432,16 @@ $search-bar-height: calc(66px);
               padding: 0;
               text-align: left;
             }
+
+            > section {
+              display: flex;
+              flex-wrap: wrap;
+
+              > section {
+                width: auto;
+                padding-right: 0.5rem;
+              }
+            }
   
             > ul {
               padding: 0;
@@ -512,7 +450,7 @@ $search-bar-height: calc(66px);
   
           > main {
             > section {
-              margin-bottom: 0;
+              margin-bottom: 7rem;
   
               > header {
                 > div:first-of-type {
