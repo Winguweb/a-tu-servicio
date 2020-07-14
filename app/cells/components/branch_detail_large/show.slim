@@ -168,23 +168,23 @@ div.branch-detail-large-cell
             /           = image_tag asset_path('icons/satisfaction-sad.svg')
             /         p = "Aún no hay datos de participación ciudadana"
 
-            / section
-            /   header
-            /     div
-            /       h1 = "Especialidades"
-            /   main
-            /     div v-if="hasSpecialitiesInformationToShow('initial_source')"
-            /       div v-if="hasSpecialitiesInformationToShow('initial_source')"
-            /         p
-            /           = "Hay "
-            /           strong
-            /             | {{branch.initial_source.specialities_count}}
-            /           = " especialidades disponibles en esta sede:"
-            /       div
-            /         div
-            /           div v-for="speciality in branch.initial_source.specialities"
-            /             == cell('visualization_components/specialities_visualization')
-            /           div          
+            section
+              header
+                div
+                  h1 = "Especialidades"
+              main
+                div v-if="hasSpecialitiesInformationToShow('initial_source')"
+                  div v-if="hasSpecialitiesInformationToShow('initial_source')"
+                    p
+                      = "Hay "
+                      strong
+                        | {{branch.initial_source.specialities_count}}
+                      = " especialidades disponibles en esta sede:"
+                  div
+                    div
+                      div v-for="speciality in branch.initial_source.specialities"
+                        == cell('visualization_components/specialities_visualization')
+                      div          
 
 javascript:
   $(function() {ATSB.Components['components/branch-detail-large']()});

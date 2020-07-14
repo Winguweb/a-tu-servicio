@@ -68,11 +68,27 @@ class BranchesController < ApplicationController
   def findBySlug
     @branch = Branch.includes(:provider, :specialities).find_by(slug: params[:slug])
 
-    @base_response = BaseResponseService.call(@branch)
     # @flag_response = FlagResponseService.call(@branch)    
     # @satisfaction_response = SatisfactionResponseService.call(@branch)
-    # @speciality_response = SpecialityResponseService.call(@branch)
     # @waiting_time_response = WaitingTimeResponseService.call(@branch)
+    @base_response = BaseResponseService.call(@branch)
+    @speciality_response = SpecialityResponseService.call(@branch)
+    @surveys = Survey.where(branch_id: @branch.id)
+    details_response = {}
+
+  
+    @surveys.each do |survey|
+      if !details_response[survey['question_type']]
+        details_response[survey['question_type']] = {}
+      end
+
+      if !details_response[survey['question_type']][survey['step_id']]
+        details_response[survey['question_type']][survey['step_id']] = []
+      end      
+
+      details_response[survey['question_type']][survey['step_id']].push(survey)
+    end
+
 
     # TODO: I think that maybe there are optimal ways of doing all this
     # seems that there are a lot of duplication in AR calls and stuff.
@@ -91,11 +107,14 @@ class BranchesController < ApplicationController
     # end
     # ==========================================================================
 
+
     response = {}
     response.deep_merge!(@base_response.response)
+    response.deep_merge!(@speciality_response.response)
+    response['details'] = details_response
+
     # response.deep_merge!(@flag_response.response)
     # response.deep_merge!(@satisfaction_response.response)
-    # response.deep_merge!(@speciality_response.response)
     # response.deep_merge!(@waiting_time_response.response)
 
     # response['metrics'] = @surveys_metrics.response

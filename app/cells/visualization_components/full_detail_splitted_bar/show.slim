@@ -1,7 +1,8 @@
 div.full-detail-splitted-bar-cell
   div
     div
-      div v-for="(data, nameId) in #{'reversedVersion(' if reverse}#{percentage}#{')' if reverse}" :style="{backgroundColor: getColor(nameId, _(#{percentage}).size()), width: data.percentage + '%'}"
+      div v-for="(step, stepId) in parseStep(step)" :style="{backgroundColor: getColor(step.key), width: step.percentage + '%'}"
+      / div v-for="(data, nameId) in #{'reversedVersion(' if reverse}#{percentage}#{')' if reverse}" :style="{backgroundColor: getColor(nameId, _(#{percentage}).size()), width: data.percentage + '%'}"
   div.layout
-    span v-for="(data, nameId) in #{'reversedVersion(' if reverse}#{percentage}#{')' if reverse}" :style="{color: getColor(nameId, _(#{percentage}).size())}"
-      = "{{#{label}[nameId]}}: {{data.percentage}}%"
+    span v-for="(step, stepId) in parseStep(step)" :style="{color: getColor(step.key)}"
+      = "{{step.label}}: {{step.percentage}}%"
