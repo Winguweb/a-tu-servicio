@@ -16,7 +16,6 @@ ATSB.Components['components/reference-map'] = function(options) {
       ATSB.pubSub.$on('map:activearea', this.setMapActiveArea)
     },
     mounted: function() {
-      console.log('here!')
       this.setAccessToken()
       this.createMap()
       this.showReferences()

@@ -302,9 +302,9 @@ steps:
           value: "NO SABE"
     previous_step: null
     next_step:
-      1: 4
-      2: 4
-      3: 4
+      1: 45
+      2: 45
+      3: 45
     answer: null
   - id: 4
     type: "question"
@@ -384,12 +384,18 @@ steps:
     next_step:
       1: 7
       2: 16
-      3: 23
-      4: 31
+      3: 27
+      4: 37
     answer: null
+  # 
+  # 
+  # * Urgency flow *
+  # 
+  # 
   - id: 7
     question_subtype: 'opportunity'
-    type: "urgency"    
+    question_type: "urgency"
+    type: "urgency"
     question: "El Servicio de triage que se realiza en los servicios de urgencias se basa en la resolución 5596 de 2015, tenga en cuenta los tiempos de espera para el triage asignado:"
     multi_response: false
     answers:
@@ -437,6 +443,7 @@ steps:
       5: 8
     answer: null
   - id: 8
+    question_type: "urgency"
     question_subtype: 'opportunity'
     type: "oportunidad"
     question: "¿Cuando llegó al Triage, qué clasificación le dieron?"
@@ -486,6 +493,7 @@ steps:
       5: 9
     answer: null
   - id: 9
+    question_type: "urgency"
     question_subtype: 'opportunity'
     type: "oportunidad"
     question: "¿Cuánto tiempo demoraron para la atención médica desde que le vieron en el triage?"
@@ -535,6 +543,7 @@ steps:
       5: 10
     answer: null
   - id: 10
+    question_type: "urgency"
     question_subtype: 'humanization'
     type: "star"
     question: "¿Cómo calificaría el grado de amabilidad del personal de recepción o administrativo?"
@@ -584,6 +593,7 @@ steps:
       5: 11
     answer: null
   - id: 11
+    question_type: "urgency"
     question_subtype: 'humanization'
     type: "star"
     question: "¿Cómo calificaría el grado de amabilidad del profesional de salud que lo atendió?"
@@ -633,6 +643,7 @@ steps:
       5: 12
     answer: null
   - id: 12
+    question_type: "urgency"
     question_subtype: 'humanization'
     type: "humanización"
     question: "¿Siente que fue clara la información transmitida por el personal de salud?"
@@ -658,6 +669,7 @@ steps:
       2: 13
     answer: null
   - id: 13
+    question_type: "urgency"
     question_subtype: 'effectiveness'
     type: "efectividad"
     question: "¿Siente que fue resuelto el problema de salud por el que ingresó?"
@@ -683,6 +695,7 @@ steps:
       2: 14
     answer: null
   - id: 14
+    question_type: "urgency"
     question_subtype: 'risk'
     type: "gestión del riesgo"
     question: "¿Las señalizaciones y/o la información recibida para orientarse en las instalaciones son claras?"
@@ -708,8 +721,10 @@ steps:
       2: 15
     answer: null 
   - id: 15
+    question_type: "urgency"
     question_subtype: 'effectiveness'
     type: "star"
+    type_label: "Efectividad"
     question: "Teniendo en cuenta el servicio recibido por los profesionales del área de urgencias (equipo interdisciplinario de atención), qué tanto lo recomendaría a un familiar o amigo?"
     multi_response: true
     answers:
@@ -751,7 +766,13 @@ steps:
     previous_step: null
     next_step: null
     answer: null
+  #
+  #
+  # External Consultation
+  #
+  #
   - id: 16
+    question_type: "external_consultation"
     question_subtype: 'opportunity'
     type: "oportunidad"
     question: "¿Tuvo algún inconveniente al momento de agendar la cita?"
@@ -777,6 +798,7 @@ steps:
       2: 18
     answer: null
   - id: 17
+    question_type: "external_consultation"
     question_subtype: 'opportunity'
     type: "oportunidad"
     question: "¿Qué incoveniente tuvo?"
@@ -801,8 +823,8 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "Horario de la vita"
-        value: "Horario de la vita"
+        label: "Horario de la cita"
+        value: "Horario de la cita"
     
     previous_step: null
     next_step:
@@ -811,8 +833,9 @@ steps:
       3: 18
     answer: null
   - id: 18
+    question_type: "external_consultation"
     question_subtype: null
-    type: "oportunidad"
+    type: "question"
     question: "¿Con qué especialidad recibió la atención?"
     multi_response: true
     answers:
@@ -861,6 +884,7 @@ steps:
       4: 19
     answer: null
   - id: 19
+    question_type: "external_consultation"
     question_subtype: 'opportunity'
     type: "oportunidad"
     question: "¿Desde que llamó o se acercó a pedir la cita, cuanto tiempo transcurrió hasta que le atendieron?"
@@ -911,6 +935,7 @@ steps:
       4: 20
     answer: null
   - id: 20
+    question_type: "external_consultation"
     question_subtype: 'humanization'
     type: "star"
     question: "¿Cómo calificaría el grado de amabilidad del personal de recepción o administrativo?"
@@ -960,6 +985,7 @@ steps:
       5: 21
     answer: null
   - id: 21
+    question_type: "external_consultation"
     question_subtype: 'humanization'
     type: "star"
     question: "¿Cómo calificaría el grado de amabilidad del profesional de salud que lo atendió?"
@@ -1009,6 +1035,7 @@ steps:
       5: 22
     answer: null
   - id: 22
+    question_type: "external_consultation"
     question_subtype: 'humanization'
     type: "humanización"
     question: "¿Siente que fue clara la información transmitida por el personal de salud?"
@@ -1030,13 +1057,14 @@ steps:
         value: 0
     previous_step: null
     next_step:
-      1: 13
-      2: 13
+      1: 23
+      2: 23
     answer: null
   - id: 23
-    question_subtype: "opportunity"
-    type: "oportunidad"
-    question: "¿Tuvo algún inconveniente al momento de agendar la cita?"
+    question_type: "external_consultation"
+    question_subtype: 'effectiveness'
+    type: "efectividad"
+    question: "¿Siente que fue resuelto el problema de salud por el que ingresó?"
     multi_response: true
     answers:
     - id: 1
@@ -1056,12 +1084,13 @@ steps:
     previous_step: null
     next_step:
       1: 24
-      2: 25
+      2: 24
     answer: null
   - id: 24
-    question_subtype: "opportunity"
-    type: "oportunidad"
-    question: "¿Qué incoveniente tuvo?"
+    question_type: "external_consultation"
+    question_subtype: 'risk'
+    type: "gestión del riesgo"
+    question: "¿Las señalizaciones y/o la información recibida para orientarse en las instalaciones son claras?"
     multi_response: true
     answers:
     - id: 1
@@ -1069,70 +1098,26 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "Comunicación con la institución"
-        value: "Comunicación con la institución"
+        label: "Si"
+        value: 5
     - id: 2
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "Disponibilidad de la agenda"
-        value: "Disponibilidad de la agenda"
-    - id: 3
-      type: "cuckoo"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Horario de la cita"
-        value: "Horario de la cita"
+        label: "No"
+        value: 0
     previous_step: null
     next_step:
       1: 25
       2: 25
-    answer: null
+    answer: null 
   - id: 25
-    question_subtype: "opportunity"
-    type: "oportunidad"
-    question: "¿Con qué especialidad recibió la atención?"
-    multi_response: true
-    answers:
-    - id: 1
-      type: "cuckoo"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Neonatologia"
-        value: "Neonatologia"
-    - id: 2
-      type: "cuckoo"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Pediatría"
-        value: "Pediatría"
-    - id: 3
-      type: "cuckoo"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Medicina interna"
-        value: "Medicina interna"
-    - id: 4
-      type: "cuckoo"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Cuidados intensivos"
-        value: "Cuidados intensivos"
-    previous_step: null
-    next_step:
-      1: 26
-      2: 26
-    answer: null
-  - id: 26
-    question_subtype: "humanization"
+    question_type: "external_consultation"
+    question_subtype: null
     type: "star"
-    question: "¿Cómo calificaría el grado de amabilidad del personal de recepción o administrativo?"
+    type_label: " "
+    question: "¿Cómo calificaría su puntualidad para llegar a la cita?"
     multi_response: true
     answers:
     - id: 1
@@ -1172,13 +1157,249 @@ steps:
         value: 5
     previous_step: null
     next_step:
-      1: 27
-      2: 27
-      3: 27
-      4: 27
-      5: 27
+      1: 26
+      2: 26
+      3: 26
+      4: 26
+      5: 26
     answer: null
+  - id: 26
+    question_type: "external_consultation"
+    question_subtype: "effectiveness"
+    type: "star"
+    type_label: "Efectividad"
+    question: "Teniendo en cuenta el servicio recibido por los profesionales del área de consulta externa, qué tanto lo recomendaría a un familiar o amigo?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
+    - id: 3
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Aceptable"
+        value: 3
+    - id: 4
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Buena"
+        value: 4
+    - id: 5
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Buena"
+        value: 5
+    previous_step: null
+    next_step: null
+    answer: null
+  #
+  #
+  # * hospitalization *
+  #
+  #
   - id: 27
+    question_type: "hospitalization"
+    question_subtype: "opportunity"
+    type: "Oportunidad"
+    question: "¿Tuvo algún inconveniente para que se generara la autorización de hospitalización?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Si"
+        value: 5
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No"
+        value: 0
+    previous_step: null
+    next_step:
+      1: 28 
+      2: 29
+    answer: null
+  - id: 28
+    question_subtype: 'opportunity'
+    question_type: "hospitalization"
+    question: "¿Una vez dada la autorización de hospitalización cuánto tiempo se demoraron en asignarle una cama de hospitalización?"
+    multi_response: false
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Inmediatamente"
+        value: "Inmediatamente"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "0 - 30 min"
+        value: "0 - 30 min"
+    - id: 3
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "31 min - 2 horas"
+        value: "31 min - 2 horas"
+    - id: 4
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "2 horas - 4 horas"
+        value: "2 horas - 4 horas"
+    - id: 5
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Más de 4 horas"
+        value: "Más de 4 horas"
+    - id: 6
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No recuerdo"
+        value: "No recuerdo"
+    previous_step: null
+    next_step:
+      1: 29
+      2: 29
+      3: 29
+      4: 29
+      5: 29
+      6: 29
+    answer: null
+  - id: 29
+    question_type: "hospitalization"
+    question_subtype: "humanization"
+    type: "star"
+    question: "¿Cómo calificaría el grado de amabilidad del profesional de recepción o administrativo?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
+    - id: 3
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Aceptable"
+        value: 3
+    - id: 4
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Buena"
+        value: 4
+    - id: 5
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Buena"
+        value: 5
+    previous_step: null
+    next_step:
+      1: 30
+      2: 30
+      3: 30
+      4: 30
+      5: 30
+    answer: null 
+  - id: 30
+    question_type: "hospitalization"
+    question_subtype: null
+    type: "question"
+    question: "¿En qué servicio recibió la atención?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Anestesia"
+        value: "Anestesia"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Cardiología"
+        value: "Cardiología"
+    - id: 3
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Cardiología Pediátrica"
+        value: "Cardiología Pediátrica"
+    - id: 4
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Cirugía Cardiovascular"
+        value: "Cirugía Cardiovascular"
+    - id: 5
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Cirugía"
+        value: "Cirugía"
+    
+    previous_step: null
+    next_step:
+      1: 31
+      2: 31
+      3: 31
+      4: 31
+      4: 31
+    answer: null
+  - id: 31
+    question_type: "hospitalization"
     question_subtype: "humanization"
     type: "star"
     question: "¿Cómo calificaría el grado de amabilidad del profesional de salud que lo atendió?"
@@ -1221,16 +1442,17 @@ steps:
         value: 5
     previous_step: null
     next_step:
-      1: 28
-      2: 28
-      3: 28
-      4: 28
-      5: 28
+      1: 32
+      2: 32
+      3: 32
+      4: 32
+      5: 32
     answer: null
-  - id: 28
+  - id: 32
+    question_type: "hospitalization"
     question_subtype: "humanization"
-    type: "Humanización"
-    question: "¿Siente que fue clara la información transmitida por el personal de salud?"
+    type: "humanización"
+    question: "¿Siente que fue clara la información transmitida por el personal de salud durante la hospitalización?"
     multi_response: true
     answers:
     - id: 1
@@ -1249,12 +1471,380 @@ steps:
         value: 0
     previous_step: null
     next_step:
-      1: 30
-      2: 30
+      1: 33
+      2: 33
     answer: null
-  - id: 30
+  - id: 33
+    question_type: "hospitalization"
+    question_subtype: "effectiveness"
+    type: "efectividad"
+    question: "¿Siente que fue resuelto el problema de salud por el que ingresó?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Si"
+        value: 5
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No"
+        value: 0
+    previous_step: null
+    next_step:
+      1: 34
+      2: 34
+    answer: null
+  - id: 34
+    question_type: 'hospitalization'
+    question_subtype: "risk"
+    type: "gestión del riesgo"
+    question: "¿Las señalizaciones y/o la información recibida para orientarse en las instalaciones son claras?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Si"
+        value: 5
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No"
+        value: 0
+    previous_step: null
+    next_step:
+      1: 35
+      2: 35
+    answer: null
+  - id: 35
+    question_type: 'hospitalization'
     question_subtype: "risk"
     type: "star"
+    type_label: "Gestión del riesgo"
+    question: "¿Cómo calificaría la información recibida acerca de los posibles riesgos que pueden presentarse en la hospitalización?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
+    - id: 3
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Aceptable"
+        value: 3
+    - id: 4
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Buena"
+        value: 4
+    - id: 5
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Buena"
+        value: 5
+    previous_step: null
+    next_step:
+      1: 36
+      2: 36
+      3: 36
+      4: 36
+      5: 36
+    answer: null
+  - id: 36
+    question_type: 'hospitalization'
+    question_subtype: "effectiveness"
+    type: "star"
+    type_label: "Efectividad"
+    question: "¿Teniendo en cuenta el servicio recibido por los profesionales del área de hospitalización, qué tanto lo recomendaría a un familiar o amigo?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
+    - id: 3
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Aceptable"
+        value: 3
+    - id: 4
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Buena"
+        value: 4
+    - id: 5
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Buena"
+        value: 5
+    previous_step: null
+    next_step: null
+    answer: null
+  #
+  #
+  # * surgery *
+  #
+  #
+  - id: 37
+    question_type: 'surgery'
+    question_subtype: "opportunity"
+    type: "oportunidad"
+    question: "¿Tuvo algún inconveniente para que se generara la autorización de cirugía?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Si"
+        value: 5
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No"
+        value: 0
+    previous_step: null
+    next_step:
+      1: 38
+      2: 39      
+    answer: null
+  - id: 38
+    question_type: "surgery"
+    question_subtype: 'opportunity'
+    type: "oportunidad"
+    question: "¿Qué incoveniente tuvo?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Comunicación con la institución"
+        value: "Comunicación con la institución"
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Disponibilidad de agenda"
+        value: "Disponibilidad de agenda"
+    - id: 3
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Horario de la cirugía"
+        value: "Horario de la cirugía"  
+    previous_step: null
+    next_step:
+      1: 39
+      2: 39
+      3: 39      
+    answer: null
+  - id: 39
+    question_type: 'surgery'
+    question_subtype: "humanization"
+    type: "star"
+    question: "¿Cómo calificaría el grado de amabilidad del personal de recepción o administrativo?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
+    - id: 3
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Aceptable"
+        value: 3
+    - id: 4
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Buena"
+        value: 4
+    - id: 5
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Buena"
+        value: 5
+    previous_step: null
+    next_step:
+      1: 40
+      2: 40
+      3: 40
+      4: 40
+      5: 40
+    answer: null
+  - id: 40
+    question_type: 'surgery'
+    question_subtype: "humanization"
+    type: "star"
+    question: "¿Cómo calificaría el grado de amabilidad del profesional de salud que lo atendió?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Mala"
+        value: 1
+    - id: 2
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Mala"
+        value: 2
+    - id: 3
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Aceptable"
+        value: 3
+    - id: 4
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Buena"
+        value: 4
+    - id: 5
+      type: "star"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Muy Buena"
+        value: 5
+    previous_step: null
+    next_step:
+      1: 41
+      2: 41
+      3: 41
+      4: 41
+      5: 41
+    answer: null
+  - id: 41
+    question_type: 'surgery'
+    question_subtype: "humanization"
+    type: "humanización"
+    question: "¿Siente que fue clara la información transmitida por el personal de salud antes, durante y después de la cirugía?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Si"
+        value: 5
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No"
+        value: 0
+    previous_step: null
+    next_step:
+      1: 42
+      2: 42
+    answer: null
+  - id: 42
+    question_type: 'surgery'
+    question_subtype: "risk"
+    type: "gestion del riesgo"
+    question: "¿Las señalizaciones y/o la información recibida para orientarse en las instalaciones son claras?"
+    multi_response: true
+    answers:
+    - id: 1
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Si"
+        value: 5
+    - id: 2
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "No"
+        value: 0
+    previous_step: null
+    next_step:
+      1: 43
+      2: 43
+    answer: null
+  - id: 43
+    question_type: 'surgery'
+    question_subtype: "risk"
+    type: "star"
+    type_label: "Gestión del riesgo"
     question: "¿Cómo calificaría la información recibida acerca de los posibles riesgos que pueden presentarse en hospitalización?"
     multi_response: true
     answers:
@@ -1295,41 +1885,18 @@ steps:
         value: 5
     previous_step: null
     next_step:
-      1: 13
-      2: 13
-      3: 13
-      4: 13
-      5: 13
+      1: 44
+      2: 44
+      3: 44
+      4: 44
+      5: 44
     answer: null
-  - id: 31
-    question_subtype: "opportunity"
-    type: "oportunidad"
-    question: "¿Tuvo algún inconveniente al momento de agendar la cita?"
-    multi_response: true
-    answers:
-    - id: 1
-      type: "cuckoo"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Si"
-        value: 5
-    - id: 2
-      type: "cuckoo"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "No"
-        value: 0
-    previous_step: null
-    next_step:
-      1: 32
-      2: 32
-    answer: null
-  - id: 32
-    question_subtype: "humanization"
+  - id: 44
+    question_type: 'surgery'
+    question_subtype: "effectiveness"
     type: "star"
-    question: "¿Cómo calificaría el grado de amabilidad del personal de recepción o administrativo?"
+    type_label: 'Efectividad'
+    question: "¿Teniendo en cuenta el servicio recibido por los profesionales del área de cirugía, que tanto lo recomendaría a un familiar o amigo?"
     multi_response: true
     answers:
     - id: 1
@@ -1368,134 +1935,79 @@ steps:
         label: "Muy Buena"
         value: 5
     previous_step: null
-    next_step:
-      1: 33
-      2: 33
-      3: 33
-      4: 33
-      5: 33
+    next_step: null
     answer: null
-  - id: 33
-    question_subtype: "humanization"
-    type: "star"
-    question: "¿Cómo calificaría el grado de amabilidad del profesional de salud que lo atendió?"
-    multi_response: true
-    answers:
-    - id: 1
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Muy Mala"
-        value: 1
-    - id: 2
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Mala"
-        value: 2
-    - id: 3
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Aceptable"
-        value: 3
-    - id: 4
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Buena"
-        value: 4
-    - id: 5
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Muy Buena"
-        value: 5
-    previous_step: null
-    next_step:
-      1: 34
-      2: 34
-      3: 34
-      4: 34
-      5: 34
-    answer: null
-  - id: 34
-    question_subtype: "humanization"
-    type: "humanización"
-    question: "¿Siente que fue clara la información transmitida por el personal de salud?"
-    multi_response: true
+  # Append of two questions
+  - id: 45
+    type: "question"
+    question: "¿Cuánto tiempo te demoró llegar?"
+    multi_response: false
     answers:
     - id: 1
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "Si"
-        value: 5
+        label: "Hasta 30 min"
+        value: "Hasta 30 min"
     - id: 2
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "No"
-        value: 0
+        label: "Entre 30 min y 1hs"
+        value: "Entre 30 min y 1hs"
+    - id: 3
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "Más de 1hs"
+        value: "Más de 1hs"    
     previous_step: null
     next_step:
-      1: 35
-      2: 35
+      1: 46
+      2: 46
+      3: 46
     answer: null
-  - id: 35
-    question_subtype: "risk"
-    type: "star"
-    question: "¿Cómo calificaría la información recibida acerca de los posibles riesgos que pueden presentarse en la cirugía?"
-    multi_response: true
+  - id: 46
+    type: "question"
+    question: "¿Qué transporte utilizaste para llegar?"
+    multi_response: false
     answers:
     - id: 1
-      type: "star"
+      type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "Muy Mala"
-        value: 1
+        label: "Ninguno, a pie"
+        value: "Ninguno, a pie"
     - id: 2
-      type: "star"
+      type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "Mala"
-        value: 2
+        label: "Bus"
+        value: "Bus"
     - id: 3
-      type: "star"
+      type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "Aceptable"
-        value: 3
+        label: "Transmilenio"
+        value: "Transmilenio"    
     - id: 4
-      type: "star"
+      type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "Buena"
-        value: 4
-    - id: 5
-      type: "star"
-      auto_submit: true
-      should_save: true
-      data:
-        label: "Muy Buena"
-        value: 5
+        label: "Taxi"
+        value: "Taxi"
     previous_step: null
     next_step:
-      1: 14
-      2: 14
-      3: 14
-      4: 14
-      5: 14
+      1: 4
+      2: 4
+      3: 4
+      4: 4
     answer: null
 ...

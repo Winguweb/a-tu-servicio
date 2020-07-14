@@ -23,7 +23,11 @@ ATSB.Components['components/branch-info-popup'] = function(options) {
         clearTimeout(this.hideTimer)
       },
       openVoteModal: function() {
-        ATSB.pubSub.$emit('vote:open', this.branch.id)
+
+        ATSB.pubSub.$emit('vote:open', {
+          branchId: this.branch.id,
+          branchSlug: this.branch.slug
+        })
       },
       positionToCss: function(position) {
         return {

@@ -18,8 +18,8 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
         .title v-if="(type !== 'first') && (type !== 'question') && (type !== 'urgency') && (type !== 'star')"
           span.title = "{{type}}"
         .title v-if="(type == 'star')"
-          span.title v-if="actualStepId != 15" Humanización
-          span.title v-if="actualStepId == 15" Efectividad
+          span.title v-if="!typeLabel" Humanización        
+          span.title v-if="!!(typeLabel)" = "{{typeLabel}}" 
         .chat-wrapper v-if="type != 'urgency'"
           .question
             span = "{{getQuestion()}}"

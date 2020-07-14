@@ -54,6 +54,7 @@ class SurveysController < ApplicationController
       :step_id,
       :answer_id,
       :question_value,
+      :question_type,
       :question_subtype,
       answer_data: [:label, :value],
     )

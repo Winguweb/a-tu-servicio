@@ -12,6 +12,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
       showForm: true,
       steps: options.form.steps,
       type: "",
+      typeLabel: null,
       percentage: 100
     },
     created: function() {
@@ -62,13 +63,14 @@ ATSB.Components['components/vote-modal'] = function(options) {
         // I move this line here in order to fetch the information despite the fact
         // if the visitor did not end the vote process and at least started it.
         if( this.partiallyAnswered() ){
-          ATSB.pubSub.$emit('branch:detail:large:fetch', this.branchId)
+          ATSB.pubSub.$emit('branch:detail:large:fetch', this.branchSlug)
         }
         this.actions.show = false
         this.resetForm()
       },
-      componentOpen: function(id) {
-        this.branchId = id
+      componentOpen: function(obj) {
+        this.branchId = obj.branchId
+        this.branchSlug = obj.branchSlug
         this.actions.show = true
       },
       getActualAnswer: function() {
@@ -114,6 +116,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
           }).label
         }
 
+        this.typeLabel = !!(actualStep.type_label) && actualStep.type_label
         this.type = actualStep.type
         return question
       },
@@ -143,7 +146,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
       nextStep: function(options) {
         
         var _this = this
-        console.log(this.steps)
         var options = options || {}
         var needsRecaptcha = this.isFirstStep()
         var actualStep = this.getActualStep()
@@ -153,7 +155,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
           return
         }
         if (actualAnswerId == null) { return }
-
         var client_id = this.clientId
         var branch_id = this.branchId
         var step_id = actualStep.id
@@ -164,7 +165,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.loopTo = options.loopTo
         this.percentage = this.percentage - 7.69
         if (this.shouldSaveVote()) {
-          console.log(actualStep)
           this.sendVote({
             client_id: client_id,
             branch_id: branch_id,
@@ -172,7 +172,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
             answer_id: answer_id,
             question_value: question_value,
             answer_data: answer_data,
-            // question_type: !!actualStep.question_type && actualStep.question_type,
+            question_type: !!actualStep.question_type && actualStep.question_type,
             question_subtype: !!actualStep.question_subtype && actualStep.question_subtype,
             multi_response: this.isMultiResponse(),
           }, needsRecaptcha, this.sendVoteSuccess, this.sendVoteFail)
