@@ -3,7 +3,8 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
     el: '.branch-detail-large-cell',
     data: {
       branch: {loaded: false},
-      actions: {show: false}
+      actions: {show: false},
+      slug: null
     },
     created: function() {      
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
@@ -22,6 +23,7 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
       toNOfReverse: ATSB.Helpers.numbers.toNOfReverse,
       toNOfTenReverse: ATSB.Helpers.numbers.toNOfTenReverse,
       branchFetch: function(slug) {
+        this.slug = slug
         ATSB.pubSub.$emit('fetch:branch:slug', slug, this.branchFetchSuccess, this.branchFetchError)
       },
       branchFetchSuccess: function(response) {
@@ -50,7 +52,7 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
       openVoteModal: function() {
         ATSB.pubSub.$emit('vote:open', {
           branchId: this.branch.id,
-          branchSlug: this.branch.slug
+          branchSlug: this.slug
         })
       },
       hasSpecialitiesInformationToShow: function(source) {

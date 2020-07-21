@@ -9,11 +9,13 @@ ATSB.Components['components/vote-modal'] = function(options) {
       inputValue: "",
       inputValueSizeLimit: 200,
       recaptchaSitekey: options.recaptchaSitekey,
+      useRecaptcha: options.useRecaptcha,
       showForm: true,
       steps: options.form.steps,
       type: "",
       typeLabel: null,
-      percentage: 100
+      percentage: 100,
+      finished: false
     },
     created: function() {
       var _this = this
@@ -71,6 +73,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
       componentOpen: function(obj) {
         this.branchId = obj.branchId
         this.branchSlug = obj.branchSlug
+        this.finished = false
         this.actions.show = true
       },
       getActualAnswer: function() {
@@ -175,7 +178,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
             question_type: !!actualStep.question_type && actualStep.question_type,
             question_subtype: !!actualStep.question_subtype && actualStep.question_subtype,
             multi_response: this.isMultiResponse(),
-          }, needsRecaptcha, this.sendVoteSuccess, this.sendVoteFail)
+          }, this.useRecaptcha == 'true' ? needsRecaptcha : false, this.sendVoteSuccess, this.sendVoteFail)
           return;
         }
         this.sendVoteSuccess()
@@ -199,14 +202,23 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.showForm = false
         setTimeout(function() {_this.showForm = true}, 300)
       },
-      sendVoteFail: function() {
+      sendVoteFail: function(err) {
         var _this = this
-        alert('error en recaptcha')
-        setTimeout(function() {_this.showForm = true}, 300)
+        console.log('unexpected error')
+        console.log(err)
+        // alert('error en recaptcha')
+        // setTimeout(function() {_this.showForm = true}, 300)
       },
-      sendVoteSuccess: function() {
+      sendVoteSuccess: function() {      
+        // if not next step finish 
         var _this = this
         var actualStep = this.getActualStep()
+        
+        if (!actualStep.next_step) {
+          _this.finished = true
+          return
+        }
+        
         var actualAnswerId = this.getActualAnswer()
         var nextStep = this.loopTo || actualStep.next_step[actualAnswerId] || actualStep.id+1
         this.loopTo = null

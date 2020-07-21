@@ -94,6 +94,26 @@
           background: #00ABE6;
         }
       }
+      .finished-content {
+        overflow: scroll;
+        position: relative;
+        padding: 2rem; 
+        .success-image {
+          text-align: center;
+        }
+        .success-content {
+          .title {
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 2rem 0;
+          }
+
+          > p {
+            text-align: center;            
+          }
+        }
+      }
       .content{
         overflow: scroll;
         position: relative;

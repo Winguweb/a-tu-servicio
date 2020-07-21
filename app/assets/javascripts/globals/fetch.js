@@ -28,6 +28,7 @@
         var payload = {vote: vote}
         if (needsReacaptcha) {
           grecaptcha.ready(function() {
+            console.log('is ready')
             grecaptcha.execute(ATSB.recaptchaSitekey, {action: 'action_name'})
             // grecaptcha.execute(ATSB.recaptchaSitekey)
               .then(function(token) {

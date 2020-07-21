@@ -11,7 +11,13 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
             = image_tag image_path("logos/atsb.svg")
       .line-container
           div.line v-bind:style="{'right': percentage + '%'}" 
-      .content
+      .finished-content v-if="finished"
+        .success-image 
+          = image_tag image_path("logos/success-form.svg")
+        .success-content
+          .title ¡Gracias por contestar la encuesta!
+          p = "Para realizar un reclamo formal ingrese a <a href='www.bogota.gov.co/sdgs' target='_blank'>www.bogota.gov.co/sdgs</a>"
+      .content v-if="!finished"
         .title v-if="type == 'first'"
           span Reporte Ciudadano 
           p Esta encuesta es confidencial y anónima, el único proposito que la reviste es conocer la percepción de los usuarios ante las instituciones prestadoras de salud.
@@ -39,12 +45,13 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
           ul
             li :key="answer.id" v-for="answer in getActualStepAnswers()"
               span = "{{answer.data.label}}"
-      .next-button
+      .next-button v-if="!finished"
         button @click="nextStep()" Siguiente 
 javascript:
     $(function() {ATSB.Components['components/vote-modal']({
       form: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json},
       client_id: "#{SecureRandom.urlsafe_base64(40, false)}",
-      recaptchaSitekey: "#{RECAPTCHA_SITEKEY}"
+      recaptchaSitekey: "#{RECAPTCHA_SITEKEY}",
+      useRecaptcha:"#{USE_RECAPTCHA}"
     })});
 
