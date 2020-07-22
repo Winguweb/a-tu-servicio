@@ -5,6 +5,8 @@ ATSB.Components['components/vote-modal'] = function(options) {
       actions: {show: false},
       actualStepId: 1,
       branchId: null,
+      branchSlug: null,
+      branchSpecialities: {},
       clientId: null,
       inputValue: "",
       inputValueSizeLimit: 200,
@@ -73,6 +75,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
       componentOpen: function(obj) {
         this.branchId = obj.branchId
         this.branchSlug = obj.branchSlug
+        this.branchSpecialities = obj.branchSpecialities
         this.finished = false
         this.actions.show = true
       },
@@ -85,10 +88,43 @@ ATSB.Components['components/vote-modal'] = function(options) {
       },
       getActualStepAnswers: function() {
         var actualStep = this.getActualStep()
+
+        if (actualStep.custom_specialities) {
+          var specialities = this.parseSpecialities()
+          if (specialities && specialities.length > 0) {
+            return specialities
+          }
+        }
+
         var answers = actualStep.depends_on
           ? this.getDependentAnswer(actualStep.answers, actualStep.depends_on)
           : actualStep.answers
+
         return answers
+      },
+      parseSpecialities: function() {
+        console.log('specialities information')
+        console.log(this.branchSpecialities)
+        if (!this.branchSpecialities.has_specialities_information) {
+          return null
+        }
+
+        var idCounter = 0
+        return this.branchSpecialities.specialities.map(function(spec) {
+          idCounter += 1
+          return {            
+            auto_submit: true,
+            data: {
+              label: spec.name,
+              value: spec.name
+            },
+            id: idCounter,
+            should_save: true,
+            type: 'cuckoo'
+          }          
+        })
+        
+        // var parsedSpecialities = this.branc
       },
       getDependentAnswer: function(answers, depends_on) {
         var _this = this

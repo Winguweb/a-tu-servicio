@@ -835,6 +835,7 @@ steps:
   - id: 18
     question_type: "external_consultation"
     question_subtype: null
+    custom_specialities: true
     type: "question"
     question: "¿Con qué especialidad recibió la atención?"
     multi_response: true
@@ -1350,6 +1351,7 @@ steps:
   - id: 30
     question_type: "hospitalization"
     question_subtype: null
+    custom_specialities: true
     type: "question"
     question: "¿En qué servicio recibió la atención?"
     multi_response: true

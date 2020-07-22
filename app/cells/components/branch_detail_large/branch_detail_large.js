@@ -50,9 +50,11 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
         ATSB.pubSub.$emit('header:action:set', 'closeDetails')
       },
       openVoteModal: function() {
+        console.log(this.branch)
         ATSB.pubSub.$emit('vote:open', {
           branchId: this.branch.id,
-          branchSlug: this.slug
+          branchSlug: this.slug,
+          branchSpecialities: this.branch.initial_source
         })
       },
       hasSpecialitiesInformationToShow: function(source) {

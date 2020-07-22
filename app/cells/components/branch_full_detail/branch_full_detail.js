@@ -173,15 +173,8 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
         })
         return answers
       },
-      // parseLabels: function(step) {
-      //   console.log('parse labels')
-         
-      // },
       filteredAnswers: function(typeData) {
-        // console.log(typeData)
-        // console.log(typeData[0])
-        // console.log(typeData[19])
-        console.log(typeData)
+
         var newData = Object.keys(typeData).filter(function(key) {
           console.log(typeData[key])
           return typeof (typeData[key][0].answer_data.value) == 'number'
@@ -189,18 +182,7 @@ ATSB.Components['components/branch-full-detail'] = function(options) {
           return typeData[stepId]
         })
 
-        console.log(newData)
         return newData
-        // var newTypeData = {}
-        // for (var i = 0; i < Object.keys(typeData).length; i++) {          
-        //   if (typeof typeData[i][0].value == 'number') {
-        //     newTypeData[Object.keys(typeData)[i]] = typeData[i]
-        //   }
-        // }
-
-        // console.log(newTypeData)
-        // return newTypeData
-
       },
       reversedVersion: function(answers){
         var keys = _(answers).keys()

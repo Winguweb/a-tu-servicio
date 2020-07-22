@@ -17,10 +17,10 @@
         position: fixed;
         right: 0;
         width: 400px;
+        // overflow-y: scroll;
       }
       background-color: $white;
-      height: 100%;
-      overflow: hidden;
+      height: 100%; 
       position: relative;
       width: 100%;
       background-color: #F7FAFC;
@@ -115,7 +115,8 @@
         }
       }
       .content{
-        overflow: scroll;
+        height: 100%;
+        overflow-y: scroll;
         position: relative;
         padding: 1rem;
         .title{

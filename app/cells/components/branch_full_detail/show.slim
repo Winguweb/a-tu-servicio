@@ -33,8 +33,11 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}"
   /       strong = "Prepagada:"
   /       = "Es el ciudadano que tiene la capacidad de pagar el servicio opcional de medicina prepagada dentro del régimen contributivo."
 
-  div
-    section v-if='branch.details.urgency'
+  div v-if="!branch.details.urgency && !branch.details.external_consultation && !branch.details.hospitalization && !branch.details.surgery"
+    h1 = "Este IPS no tiene reportes que mostrar"
+
+  div v-if='branch.details.urgency'
+    section 
       h1 = "Urgencia"
       div v-for="step in filteredAnswers(branch.details.urgency)"
         h2 = "{{step[0].question_value}}"
@@ -44,11 +47,11 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}"
     section
       p = ""
 
-  hr v-if='branch.details.surgery'
+  hr v-if='branch.details.urgency'
 
 
-  div
-    section v-if='branch.details.external_consultation'
+  div v-if='branch.details.external_consultation'
+    section 
       h1 = "Gestión del riesgo"
       div  v-for="step in filteredAnswers(branch.details.external_consultation)"
         h2 = "{{step[0].question_value}}"
@@ -58,11 +61,11 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}"
     section
       p = ""
 
-  hr v-if='branch.details.surgery'
+  hr v-if='branch.details.external_consultation'
 
 
-  div
-    section v-if="branch.details.hospitalization"
+  div v-if="branch.details.hospitalization"
+    section 
       h1 = "Hospitalización"
       div  v-for="step in filteredAnswers(branch.details.hospitalization)"
         h2 = "{{step[0].question_value}}"
@@ -75,8 +78,8 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}"
   hr v-if="branch.details.hospitalization"
 
 
-  div
-    section v-if='branch.details.surgery'
+  div v-if='branch.details.surgery'
+    section 
       h1 = "Cirugia"
       div  v-for="step in filteredAnswers(branch.details.surgery)"
         h2 = "{{step[0].question_value}}"
