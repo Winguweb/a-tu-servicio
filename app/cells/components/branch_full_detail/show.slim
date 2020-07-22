@@ -52,7 +52,7 @@ div.branch-full-detail-cell v-bind:class="{show: actions.show}"
 
   div v-if='branch.details.external_consultation'
     section 
-      h1 = "Gestión del riesgo"
+      h1 = "Consultar Externa o Atención Ambulatoria"
       div  v-for="step in filteredAnswers(branch.details.external_consultation)"
         h2 = "{{step[0].question_value}}"
         / span.valuations = "{{totalCounterNested(waiting_times.detail[5].answers)}} {{totalCounterNested(waiting_times.detail[5].answers) == 1 ? 'valoración' : 'valoraciones'}}"
