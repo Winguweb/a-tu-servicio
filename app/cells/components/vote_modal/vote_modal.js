@@ -103,8 +103,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
         return answers
       },
       parseSpecialities: function() {
-        console.log('specialities information')
-        console.log(this.branchSpecialities)
         if (!this.branchSpecialities.has_specialities_information) {
           return null
         }
@@ -115,7 +113,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
           return {            
             auto_submit: true,
             data: {
-              label: spec.name,
+              label: spec.name.charAt(0).toUpperCase() + spec.name.slice(1).toLowerCase(),
               value: spec.name
             },
             id: idCounter,

@@ -284,21 +284,21 @@ steps:
         auto_submit: true
         should_save: true
         data:
-          label: "SI"
+          label: "Si"
           value: 5
       - id: 2
         type: "cuckoo"
         auto_submit: true
         should_save: true
         data:
-          label: "NO"
+          label: "No"
           value: 0
       - id: 3
         type: "cuckoo"
         auto_submit: true
         should_save: true
         data:
-          label: "NO SABE"
+          label: "No sabe"
           value: "NO SABE"
     previous_step: null
     next_step:
@@ -316,28 +316,28 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "CONTRIBUTIVO (EPS)"
+        label: "Contributivo (EPS)"
         value: "CONTRIBUTIVO (EPS)"
     - id: 2
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "ESPECIAL ( fuerzas armadas, ecopetrol, universidades públicas)"
+        label: "Especial (fuerzas armadas, ecopetrol, universidades públicas)"
         value: "ESPECIAL ( fuerzas armadas, ecopetrol, universidades públicas)"
     - id: 3
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "SUBSIDIADO (EPS-S)"
+        label: "Subsidiado (EPS-S)"
         value: "SUBSIDIADO (EPS-S)"
     - id: 4
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "NO SABE, NO INFORMA"
+        label: "No sabe, No informa"
         value: NO SABE, NO INFORMA
     previous_step: null
     next_step:
@@ -525,14 +525,14 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "mas de 4 horas"
+        label: "Más de 4 horas"
         value: "mas de 4 horas"
     - id: 5
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "no recuerdo"
+        label: "No recuerdo"
         value: "no recuerdo"   
     previous_step: null
     next_step:
@@ -725,7 +725,7 @@ steps:
     question_subtype: 'effectiveness'
     type: "star"
     type_label: "Efectividad"
-    question: "Teniendo en cuenta el servicio recibido por los profesionales del área de urgencias (equipo interdisciplinario de atención), qué tanto lo recomendaría a un familiar o amigo?"
+    question: "Teniendo en cuenta el servicio recibido por los profesionales del área de urgencias <i class='italic-text'>(equipo interdisciplinario de atención)</i>, qué tanto lo recomendaría a un familiar o amigo?"
     multi_response: true
     answers:
     - id: 1

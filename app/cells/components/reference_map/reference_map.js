@@ -36,7 +36,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         var southWest = L.latLng(4.456638, -74.794551),
         northEast = L.latLng(4.867143, -73.370018),
         bounds = L.latLngBounds(southWest, northEast);
-        var minZoom = this.isMobile ? 10 : 12
+        var minZoom = this.isMobile ? 6 : 10
 
         this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom, zoomDelta: 0.5, zoomSnap: 0.5})
         this.setMapActiveArea('medium')

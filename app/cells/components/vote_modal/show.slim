@@ -16,7 +16,7 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
           = image_tag image_path("logos/success-form.svg")
         .success-content
           .title ¡Gracias por contestar la encuesta!
-          p = "Para realizar un reclamo formal ingrese a <a href='www.bogota.gov.co/sdgs' target='_blank'>www.bogota.gov.co/sdgs</a>"
+          p = "Para realizar un reclamo formal ingrese a <a href='https://bogota.gov.co/sdgs' target='_blank'>www.bogota.gov.co/sdgs</a>"
       .content v-if="!finished"
         .title v-if="type == 'first'"
           span Reporte Ciudadano 
@@ -28,7 +28,7 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
           span.title v-if="!!(typeLabel)" = "{{typeLabel}}" 
         .chat-wrapper v-if="type != 'urgency'"
           .question
-            span = "{{getQuestion()}}"
+            span v-html="getQuestion()"
           ul v-if="type != 'star'"
             li :key="answer.id" v-for="answer in getActualStepAnswers()"
 

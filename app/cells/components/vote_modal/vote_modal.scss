@@ -148,6 +148,10 @@
             color: #0A2127;
             padding: 1rem 0.4rem;
             font-weight: bold;
+
+            .italic-text {
+              font-style: italic;
+            }
           }
           >ul>li>button, .answer{
               background-color: #fff;
@@ -227,6 +231,9 @@
         }
         >p{
           line-height: 1.5
+        }
+        >ul {
+          font-weight: 600;
         }
       }
       .next-button{

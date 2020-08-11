@@ -35,7 +35,8 @@ $search-bar-height: calc(66px);
       padding: 10px 5px;
       background-color: #00ABE6;
       position: relative;
-  
+      box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
+      
       span {
         @include type-golden(0);
   
