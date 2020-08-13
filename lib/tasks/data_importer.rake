@@ -42,7 +42,6 @@ namespace :update do
 
       if @branch.present?
         save_branches << @branch.id
-        File.write('./db/data/to_save.txt', "save #{@branch.id}\n", mode: 'a')      
       end
 
 
@@ -60,9 +59,6 @@ namespace :update do
     
     delete_branches = Branch.where.not(id: save_branches)
     delete_providers = Provider.where(id: delete_branches.pluck('provider_id'))
-    delete_branches.each do |delete_branch|
-      File.write('./db/data/to_delete.txt', "delete #{delete_branch.id}\n", mode: 'a')      
-    end    
 
     puts 'Creating...'
 
@@ -126,7 +122,7 @@ namespace :update do
       end
           
     end
-    
+
     puts 'Deleting obsolete branches and providers...'
     delete_providers.destroy_all
     delete_branches.destroy_all
