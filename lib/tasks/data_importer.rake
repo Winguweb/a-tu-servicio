@@ -55,16 +55,17 @@ namespace :update do
       else
         data_exists[:especialidades] << especialidad
       end
-    end
-    
+    end    
+
+    puts 'Deleting obsolete branches and providers...'
     delete_branches = Branch.where.not(id: save_branches)
-    delete_providers = Provider.where(id: delete_branches.pluck('provider_id'))
+    delete_branches.delete_all
 
     puts 'Creating...'
 
     total = rows.size
     rows.each_with_index do |data_row, actual|
-
+      printf '.' 
       if data_row[:update]
         branch = Branch.find(data_row[:update])
         Speciality.where(branch_id: branch.id).destroy_all
@@ -121,11 +122,7 @@ namespace :update do
         end
       end
           
-    end
-
-    puts 'Deleting obsolete branches and providers...'
-    delete_providers.destroy_all
-    delete_branches.destroy_all
+    end    
 
     puts 'Results:'
     puts 'update:' + updated.to_s
