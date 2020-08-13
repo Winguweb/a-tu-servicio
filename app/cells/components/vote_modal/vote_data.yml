@@ -404,35 +404,35 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "Triage I: Atención Inmediata."
+        label: "<strong class='strong'>Triage I:</strong> Atención Inmediata."
         value: "Triage I: Atención Inmediata."
     - id: 2
       type: "option"
       auto_submit: true
       should_save: true
       data:
-        label: "Triage II: No debe superar los treinta (30) min. "
+        label: "<strong class='strong'>Triage II:</strong> No debe superar los treinta (30) min. "
         value: "Triage II: No debe superar los treinta (30) min. "
     - id: 3
       type: "option"
       auto_submit: true
       should_save: true
       data:
-        label: "Triage III: De 1 a 2 horas aproximadamente."
+        label: "<strong class='strong'>Triage III:</strong> De 1 a 2 horas aproximadamente."
         value: "Triage III: De 1 a 2 horas aproximadamente."
     - id: 4
       type: "option"
       auto_submit: true
       should_save: true
       data:
-        label: "Triage IV: De 2 a 4 horas aproximadamente"
+        label: "<strong class='strong'>Triage IV:</strong> De 2 a 4 horas aproximadamente"
         value: "Triage IV: De 2 a 4 horas aproximadamente"
     - id: 5
       type: "option"
       auto_submit: true
       should_save: true
       data:
-        label: "Triage V: Menos de 5 horas o remisión por consulta externa."
+        label: "<strong class='strong'>Triage V:</strong> Menos de 5 horas o remisión por consulta externa."
         value: "Triage V: Menos de 5 horas o remisión por consulta externa."
     previous_step: null
     next_step:

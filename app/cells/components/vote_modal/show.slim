@@ -44,7 +44,7 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
           p = "{{getQuestion()}}"
           ul
             li :key="answer.id" v-for="answer in getActualStepAnswers()"
-              span = "{{answer.data.label}}"
+              span v-html="answer.data.label"
       .next-button v-if="!finished"
         button @click="nextStep()" Siguiente 
 javascript:

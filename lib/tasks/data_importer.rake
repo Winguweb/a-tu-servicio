@@ -10,6 +10,7 @@ namespace :update do
   task :all => [:environment] do
     base_csv = File.read('./db/data/bogota.tsv')
     new_data_csv = File.read('./db/data/data_update.csv')
+    save_branches = []
     rows = []
 
     updated = 0
@@ -39,6 +40,12 @@ namespace :update do
         :update => @branch.present? && @branch.id
       }
 
+      if @branch.present?
+        save_branches << @branch.id
+        File.write('./db/data/to_save.txt', "save #{@branch.id}\n", mode: 'a')      
+      end
+
+
       data_exists = rows.detect do |p|
         p[:nombre_sede].downcase == data[:nombre_sede].downcase
       end
@@ -50,6 +57,12 @@ namespace :update do
         data_exists[:especialidades] << especialidad
       end
     end
+    
+    delete_branches = Branch.where.not(id: save_branches)
+    delete_providers = Provider.where(id: delete_branches.pluck('provider_id'))
+    delete_branches.each do |delete_branch|
+      File.write('./db/data/to_delete.txt', "delete #{delete_branch.id}\n", mode: 'a')      
+    end    
 
     puts 'Creating...'
 
@@ -58,10 +71,21 @@ namespace :update do
 
       if data_row[:update]
         branch = Branch.find(data_row[:update])
+        Speciality.where(branch_id: branch.id).destroy_all
+
+        specialities = []
+        data_row[:especialidades].each do |especialidad|
+          speciality = Speciality.new(
+            name: especialidad
+          )
+          specialities << speciality
+        end
+
         branch.update(
           name: data_row[:nombre_sede],
           slug: data_row[:nombre_sede].parameterize,
-          address: data_row[:direccion]
+          address: data_row[:direccion],
+          specialities: specialities
         )        
         branch.save
         # File.write('./db/data/updated.txt', "#{branch.id} #{branch.name} \n", mode: 'a')      
@@ -100,11 +124,13 @@ namespace :update do
           provider.save
         end
       end
-
-      
-      # Show progress
-      printf(".")
+          
     end
+    
+    puts 'Deleting obsolete branches and providers...'
+    delete_providers.destroy_all
+    delete_branches.destroy_all
+
     puts 'Results:'
     puts 'update:' + updated.to_s
     puts 'create:' + created.to_s
