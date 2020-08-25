@@ -12,15 +12,15 @@ section
         li = link_to "Descargar CSV Reporte Ciudadano", data_download_csv_path(Survey)
         li = link_to "Descargar Excel Reporte Ciudadano", data_download_xlsx_path(Survey)
 
-    article
-      h2 = "Conoce los datos sobre la salud pública en Bogotá"
-      p
-        | Datos abiertos oficiales de la Secretaría Distrital de Salud de Bogotá sobre las sedes, los prestadores, la satisfacción y tiempos de espera.
-      ul
-        li = link_to "Descargar CSV de Prestadores", data_download_csv_path(Provider)
-        li = link_to "Descargar CSV de Sedes", data_download_csv_path(Branch)
-        li = link_to "Descargar CSV de Satisfacción", data_download_csv_path(Satisfaction)
-        li = link_to "Descargar CSV de Tiempo de Espera", data_download_csv_path(WaitingTime)
-        li = link_to "Descargar Excel Unificado", data_download_all_path(Survey)
+    / article
+    /   h2 = "Conoce los datos sobre la salud pública en Bogotá"
+    /   p
+    /     | Datos abiertos oficiales de la Secretaría Distrital de Salud de Bogotá sobre las sedes, los prestadores, la satisfacción y tiempos de espera.
+    /   ul
+    /     li = link_to "Descargar CSV de Prestadores", data_download_csv_path(Provider)
+    /     li = link_to "Descargar CSV de Sedes", data_download_csv_path(Branch)
+    /     li = link_to "Descargar CSV de Satisfacción", data_download_csv_path(Satisfaction)
+    /     li = link_to "Descargar CSV de Tiempo de Espera", data_download_csv_path(WaitingTime)
+    /     li = link_to "Descargar Excel Unificado", data_download_all_path(Survey)
 
 == cell('components/site_footer', { active_links: true })

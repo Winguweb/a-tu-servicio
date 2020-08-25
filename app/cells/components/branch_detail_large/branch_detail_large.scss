@@ -3,49 +3,113 @@ $search-bar-height: calc(66px);
 
 @mixin branch-detail-large {
   .rate-cta{
-    position: fixed;
-    padding: 2em;
+    position: fixed; 
     right: 0;
     bottom: 0;
     transform: translateX(0%);
-    padding: 2rem 1.5rem;
     background: $white;
     z-index: 3000;
-    box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px -1px rgba(113, 128, 150, 0.28);
+    box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px 2px rgba(113, 128, 150, 0.28);
     width: 375px;
     
     display: none;
     &.show {
       display: block;
     }
-    .content{
-      padding-bottom: 1rem;
-    }
 
-    button {
-      @include type-golden(0);
-  
-      background-color: $blue;
-      border: none;
-      border-radius: 9999px;
-      cursor: pointer;
-      display: inline-block;
-      font-weight: 600;
-      width: 100%;
-      padding: 10px 5px;
-      background-color: #00ABE6;
-      position: relative;
-      box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
-      
-      span {
-        @include type-golden(0);
-  
-        color: $white;
-        font-weight: bold;
-        position: relative;
-        text-transform: uppercase;
+    .rate-container {
+      position: relative;      
+      height: 75px;
+      background: white;
+
+      .head {
+        position: absolute;
+        z-index: 2999;
+        top: -27px;
+        left: calc(50% - 24px);
+        border-radius: 50%;
+        height: 48px;
+        width: 52px;
+        box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px 2px rgba(113, 128, 150, 0.28);
+        background-color: white;              
+      }
+
+      .content{                
+        background: white;
+        position: absolute;                 
+        font-family: "PT Sans";
+        padding: 1.5rem 1rem;
+        padding-top: 2rem;
+        font-weight: 500;
+        text-align: center;
+        z-index: 3000;
+        width: 100%;        
+      }
+
+      .head-icon {
+        z-index: 3001;
+        border-radius: 50%;
+        background-color: #00ABE6;
+        position: absolute;
+        top: -24px;
+        left: calc(50% - 21px);
+        width: 46px;
+        height: 46px;
+
+        > div { 
+          position: relative;
+
+          > img {
+            fill: white;
+            position: absolute;
+            top: 13px;
+            left: 13px;
+            height: 20px;
+            width: 20px;
+          }
+
+        }
       }
     }
+
+    .cta-container {
+      background-color: #00ABE6;
+      padding: 1rem;
+      text-align: center;
+
+      span { 
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: "PT Sans";
+      }
+
+      button {
+        @include type-golden(0);    
+        background-color: $blue;
+        border: none;
+        border-radius: 9999px;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        width: 100%;
+        padding: 10px 5px;
+        background-color: #00ABE6;
+        position: relative;
+        box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
+        
+        span {
+          @include type-golden(0);
+    
+          color: $white;
+          font-weight: bold;
+          position: relative;
+          text-transform: uppercase;
+        }
+      }
+    }    
   }
 
   .branch-detail-body {
@@ -375,10 +439,11 @@ $search-bar-height: calc(66px);
 
   .rate-cta{
     width: 100%;
-    padding: 1rem;
 
-    .content{
-      font-size: 0.75rem;
+    .rate-container {
+      .content{
+        font-size: 1rem;
+      }
     }
 
     button {
@@ -451,7 +516,7 @@ $search-bar-height: calc(66px);
   
           > main {
             > section {
-              margin-bottom: 7rem;
+              margin-bottom: 8rem;
   
               > header {
                 > div:first-of-type {

@@ -896,37 +896,58 @@ steps:
       auto_submit: true
       should_save: true
       data:
-        label: "0 - 30min"
-        value: "0 - 30min"
+        label: "0 - 1 día"
+        value: "0 - 1 día"
     - id: 2
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "31min - 2 horas"
-        value: "31min - 2 horas"
+        label: "2 - 5 días"
+        value: "2 - 5 días"
     - id: 3
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "2 horas - 4 horas"
-        value: "2 horas - 4 horas"
+        label: "6 - 9 días"
+        value: "6 - 9 días"
     - id: 4
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "Más de 4 horas"
-        value: "Más de 4 horas"
+        label: "10 - 15 días"
+        value: "10 - 15 días"
     - id: 5
       type: "cuckoo"
       auto_submit: true
       should_save: true
       data:
-        label: "No recuerdo"
-        value: "No recuerdo"
-    
+        label: "16 - 20 días"
+        value: "16 - 20 días"
+    - id: 6
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "21 - 30 días"
+        value: "21 - 30 días"
+    - id: 7
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "31 - 60 días"
+        value: "31 - 60 días"      
+    - id: 8
+      type: "cuckoo"
+      auto_submit: true
+      should_save: true
+      data:
+        label: "61 - 90 días"
+        value: "61 - 90 días"
+
     previous_step: null
     next_step:
       1: 20
@@ -1942,7 +1963,7 @@ steps:
   # Append of two questions
   - id: 45
     type: "question"
-    question: "¿Cuánto tiempo te demoró llegar?"
+    question: "¿Cuánto tiempo se demoró en el desplazamiento de su casa al centro de salud?"
     multi_response: false
     answers:
     - id: 1

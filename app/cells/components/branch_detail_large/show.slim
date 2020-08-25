@@ -1,8 +1,14 @@
 div.branch-detail-large-cell  
   div.rate-cta v-bind:class="{show: actions.show}"
-    div.content ¡Hola 👋!  Háganos saber su experiencia.
-    button @click="openVoteModal()"
-      span = "CALIFICAR ESTE CENTRO DE SALUD"
+    div.rate-container
+      div.head
+        div          
+      div.head-icon
+        div = image_tag asset_path('icons/vote_star.svg')
+      div.content 
+        | ¡Hola 👋!  Háganos saber su experiencia.      
+    div.cta-container         
+      span @click="openVoteModal()" = "CALIFICAR ESTE CENTRO DE SALUD"
   div.branch-detail-body v-bind:class="{show: actions.show}"
     div
       div v-if="!branch.loaded"

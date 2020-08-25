@@ -78,6 +78,7 @@ namespace :update do
           specialities << speciality
         end
 
+        # Add show true
         branch.update(
           name: data_row[:nombre_sede],
           slug: data_row[:nombre_sede].parameterize,
