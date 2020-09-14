@@ -3,7 +3,7 @@ div.branch-detail-large-cell
     div.rate-container
       div.head
         div          
-      div.head-icon
+      div.head-icon @click="openVoteModal()"
         div = image_tag asset_path('icons/vote_star.svg')
       div.content 
         | ¡Hola 👋!  Háganos saber su experiencia.      
