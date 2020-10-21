@@ -39,6 +39,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         var minZoom = this.isMobile ? 6 : 10
 
         this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom, zoomDelta: 0.5, zoomSnap: 0.5})
+          .addLayer(L.mapbox.styleLayer('mapbox://styles/juanlacueva/ckgjoftkv183w19muzvmuk37l'))
         this.setMapActiveArea('medium')
         this.baseGeometryFeature = new L.MarkerClusterGroup({
           spiderfyOnMaxZoom: true,
