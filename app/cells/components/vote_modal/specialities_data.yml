@@ -1,0 +1,290 @@
+---
+hospitalization:
+  - id: 1
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Neonatología"
+      value: "Neonatología"
+  - id: 2
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Pediatría"
+      value: "Pediatría"
+  - id: 3
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Medicina Interna"
+      value: "Medicina Interna"
+  - id: 4
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Cuidados Intensivos"
+      value: "Cuidados Intensivos"
+  - id: 5
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Cuidados Intermedios"
+      value: "Cuidados Intermedios"
+external_consultation:
+  - id: 1
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Anestesia"
+      value: "Anestesia"
+  - id: 2
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Cardiología"
+      value: "Cardiología"
+  - id: 3
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Cardiología Pediátrica"
+      value: "Cardiología Pediátrica"
+  - id: 4
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Cirugía Cardiovascular"
+      value: "Cirugía Cardiovascular"
+  - id: 5
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Cirugía de Tórax"
+      value: "Cirugía de Tórax"
+  - id: 6
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Cirugía General"
+      value: "Cirugía General"
+  - id: 7
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Cirugía Neurológica"
+      value: "Cirugía Neurológica"
+  - id: 8
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Cirugía Pediátrica"
+      value: "Cirugía Pediátrica"
+  - id: 9
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Cirugía Plástica"
+      value: "Cirugía Plástica"
+  - id: 10
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Cirugía Vascular"
+      value: "Cirugía Vascular"
+  - id: 11
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Dermatología"
+      value: "Dermatología"
+  - id: 12
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Fisioterapia"
+      value: "Fisioterapia"
+  - id: 13
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Fonoaudiología y/o Terapia del Lenguaje"
+      value: "Fonoaudiología y/o Terapia del Lenguaje"
+  - id: 14
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Ginecobstetricia"
+      value: "Ginecobstetricia"
+  - id: 15
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Ginecología Oncológica"
+      value: "Ginecología Oncológica"
+  - id: 16
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Hematología"
+      value: "Hematología"
+  - id: 17
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Medicina General"
+      value: "Medicina General"
+  - id: 18
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Medicina Física y Rehabilitación"
+      value: "Medicina Física y Rehabilitación"
+  - id: 19
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Medicina Interna"
+      value: "Medicina Interna"
+  - id: 20
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Nefrología"
+      value: "Nefrología"
+  - id: 21
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Neumología (Espirometría)"
+      value: "Neumología (Espirometría)"
+  - id: 22
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Neurología"
+      value: "Neurología"
+  - id: 23
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Nutrición y Dietética"
+      value: "Nutrición y Dietética"
+  - id: 24
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Odontología General y Especializada"
+      value: "GinecobsOdontología General y Especializadatetricia"
+  - id: 25
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Odontopediatría"
+      value: "Odontopediatría"
+  - id: 26
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Rehabilitación Oral"
+      value: "Rehabilitación Oral"
+  - id: 27
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Toma e interpretación de Radiología"
+      value: "Toma e interpretación de Radiología"
+  - id: 28
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Oftalmología"
+      value: "Oftalmología"
+  - id: 29
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Oncología y Hematología"
+      value: "Oncología y Hematología"
+  - id: 30
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Ortopedia y/o Traumatología"
+      value: "Ortopedia y/o Traumatología"
+  - id: 31
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Otorrinolaringología"
+      value: "Otorrinolaringología"
+  - id: 32
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Psicología"
+      value: "Psicología"
+  - id: 33
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Psiquiatría"
+      value: "Psiquiatría"
+  - id: 34
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Reumatología"
+      value: "Reumatología"
+  - id: 35
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Urología"
+      value: "Urología"
+  - id: 36
+    type: "cuckoo"
+    auto_submit: true
+    should_save: true
+    data:
+      label: "Promoción y Prevención"
+      value: "Promoción y Prevención"      

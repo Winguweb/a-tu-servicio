@@ -1,4 +1,4 @@
-ATSB.Components['components/vote-modal'] = function(options) {
+ATSB.Components['components/vote-modal'] = function(options) {  
   new Vue({
     el: '.vote-modal-cell',
     data: {
@@ -14,6 +14,7 @@ ATSB.Components['components/vote-modal'] = function(options) {
       useRecaptcha: options.useRecaptcha,
       showForm: true,
       steps: options.form.steps,
+      specialities: options.specialities,
       type: "",
       typeLabel: null,
       percentage: 100,
@@ -88,11 +89,13 @@ ATSB.Components['components/vote-modal'] = function(options) {
       },
       getActualStepAnswers: function() {
         var actualStep = this.getActualStep()
-
         if (actualStep.custom_specialities) {
-          var specialities = this.parseSpecialities()
-          if (specialities && specialities.length > 0) {
-            return specialities
+          if (actualStep.question_type == 'external_consultation') {
+            return this.specialities.external_consultation
+          }
+
+          if (actualStep.question_type == 'hospitalization') {
+            return this.specialities.hospitalization
           }
         }
 

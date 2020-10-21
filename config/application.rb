@@ -4,7 +4,7 @@ require 'rails/all'
 
 # APP_CONFIG = YAML.load_file(File.expand_path('../atsb.yml', __FILE__)).with_indifferent_access
 # APP_CONFIG = YAML.load(ERB.new(File.new(File.expand_path('../atsb.yml', __FILE__)).read).result)
-MAP = YAML.load_file(File.expand_path('../map.yml', __FILE__))
+# MAP = YAML.load_file(File.expand_path('../map.yml', __FILE__))
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

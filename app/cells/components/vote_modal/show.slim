@@ -50,6 +50,7 @@ div.vote-modal-cell v-bind:class="{show: actions.show}"
 javascript:
     $(function() {ATSB.Components['components/vote-modal']({
       form: #{YAML.load_file(File.expand_path('../vote_data.yml', __FILE__)).to_json},
+      specialities: #{YAML.load_file(File.expand_path('../specialities_data.yml', __FILE__)).to_json},
       client_id: "#{SecureRandom.urlsafe_base64(40, false)}",
       recaptchaSitekey: "#{RECAPTCHA_SITEKEY}",
       useRecaptcha:"#{USE_RECAPTCHA}"

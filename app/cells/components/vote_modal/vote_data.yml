@@ -302,9 +302,9 @@ steps:
           value: "NO SABE"
     previous_step: null
     next_step:
-      1: 45
-      2: 45
-      3: 45
+      1: 4
+      2: 4
+      3: 4
     answer: null
   - id: 4
     type: "question"
@@ -1961,6 +1961,7 @@ steps:
     next_step: null
     answer: null
   # Append of two questions
+  # UPDATE: Removed in later feedback (keeping them just in case)
   - id: 45
     type: "question"
     question: "¿Cuánto tiempo se demoró en el desplazamiento de su casa al centro de salud?"
