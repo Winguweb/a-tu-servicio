@@ -23,8 +23,5 @@ class Components::ReferenceMapCell < Cell::ViewModel
     end.to_json
   end
 
-  def map_defaults
-    MAP.to_json
-  end
 
 end

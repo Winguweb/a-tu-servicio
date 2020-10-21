@@ -4,8 +4,8 @@ ATSB.Components['components/reference-map'] = function(options) {
     data: {
       branches: options.branches,
       centered: false,
-      style: options.defaults.style,
-      zoom: options.defaults.zoom,
+      style: null,
+      zoom: null,
       token: options.token,
       selectedBranch: [],
       isMobile: $('body').hasClass('mobile')
