@@ -345,7 +345,7 @@ namespace :import do
     Branch.reindex!
     puts 'Indexing completed!'
     puts
-    Rake::Task["import:resolveGeolocation"].execute
+    # Rake::Task["import:resolveGeolocation"].execute
   end
 
   desc 'Resolve geolocation from addresses'
@@ -366,7 +366,7 @@ namespace :import do
 
     branches = Branch.joins(:provider).where(providers: { show: true })
     branches.each do |branch|
-      GeolocationWorker.perform_async(branch.id, true)
+      GeolocationWorker.perform_async(branch.id, false)
     end
     puts 'Tasks generated'
     puts
