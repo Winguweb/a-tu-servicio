@@ -1,26 +1,34 @@
 class GeocoderService
 
 
-  def self.call(branch)
+  def self.call(branch, is_fake)
     key = GEOCODING_API_KEY
     normalized_address = normalize_address(branch.address)
     address = URI.encode("#{normalized_address}")
     puts "\nNormalized Address:\n\n--> #{normalized_address}"
 
-    url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{address}&key=#{key}"
-
-    request = Typhoeus.get(url)
-    body = JSON.parse(request.body)
-
-    if body["results"].present?
-      location = body["results"].first["geometry"]["location"]
-      formatted_address = body["results"].first["formatted_address"]
-      point = "POINT(#{location['lng']} #{location['lat']})"
-      puts "\nFormatted Address:\n\n--> #{formatted_address}"
-
+    if is_fake 
+      lat = rand(4.574..4.745).to_d.truncate(6).to_f
+      lng = rand(-74.167..-74.021).to_d.truncate(6).to_f
+      point = "POINT(#{lng} #{lat})"
       branch.georeference = point
-      branch.save
-      location
+      branch.save      
+    else
+      url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{address}&key=#{key}"
+  
+      request = Typhoeus.get(url)
+      body = JSON.parse(request.body)
+  
+      if body["results"].present?
+        location = body["results"].first["geometry"]["location"]
+        formatted_address = body["results"].first["formatted_address"]
+        point = "POINT(#{location['lng']} #{location['lat']})"
+        puts "\nFormatted Address:\n\n--> #{formatted_address}"
+  
+        branch.georeference = point
+        branch.save
+        location
+      end
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_143138) do
+ActiveRecord::Schema.define(version: 2020_07_07_195415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_143138) do
     t.string "town"
     t.integer "provider_id", null: false
     t.integer "state_id"
+    t.string "slug"
     t.index ["provider_id"], name: "index_branches_on_provider_id"
     t.index ["state_id"], name: "index_branches_on_state_id"
   end
@@ -263,6 +264,8 @@ ActiveRecord::Schema.define(version: 2018_10_24_143138) do
     t.json "answer_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "question_type"
+    t.string "question_subtype"
     t.index ["answer_id"], name: "index_surveys_on_answer_id"
     t.index ["branch_id"], name: "index_surveys_on_branch_id"
     t.index ["client_id"], name: "index_surveys_on_client_id"

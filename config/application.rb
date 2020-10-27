@@ -2,8 +2,9 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-APP_CONFIG = YAML.load_file(File.expand_path('../atsb.yml', __FILE__)).with_indifferent_access
-MAP = YAML.load_file(File.expand_path('../map.yml', __FILE__))
+# APP_CONFIG = YAML.load_file(File.expand_path('../atsb.yml', __FILE__)).with_indifferent_access
+# APP_CONFIG = YAML.load(ERB.new(File.new(File.expand_path('../atsb.yml', __FILE__)).read).result)
+# MAP = YAML.load_file(File.expand_path('../map.yml', __FILE__))
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -48,6 +49,7 @@ module AtuservicioRails
       components/splash_cell
       components/story_slider_cell
       components/vote_modal_cell
+      components/map_services_cell
       mobile_components/m_drawer_cell
       mobile_components/m_site_header_cell
       visualization_components/beds_visualization_cell

@@ -2,498 +2,602 @@ $search-button-width: gutter(1.5);
 $search-bar-height: calc(66px);
 
 @mixin branch-detail-large {
-  background-color: $white;
-  border-left: 1px solid color($light-grey, 0.5);
-  bottom: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: gutter(1) gutter(1) gutter(1) 0;
-  position: fixed;
-  right: 0;
-  top: $search-bar-height;
-  transform: translateX(100%);
-  transition: transform 300ms ease 0ms;
-  width: calc(100% / 1.61803398875);
-  will-change: transform;
-  z-index: 2000;
+  .rate-cta{
+    position: fixed; 
+    right: 0;
+    bottom: 0;
+    transform: translateX(0%);
+    background: $white;
+    z-index: 3000;
+    box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px 2px rgba(113, 128, 150, 0.28);
+    width: 375px;
+    
+    display: none;
+    &.show {
+      display: block;
+    }
 
-  &.show {
-    transform: translateX(0);
-    transition: transform 300ms ease 300ms;
+    .rate-container {
+      position: relative;      
+      height: 75px;
+      background: white;
+
+      .head {
+        position: absolute;
+        z-index: 2999;
+        top: -27px;
+        left: calc(50% - 24px);
+        border-radius: 50%;
+        height: 48px;
+        width: 52px;
+        box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.04), 1px 1px 4px 2px rgba(113, 128, 150, 0.28);
+        background-color: white;              
+      }
+
+      .content{                
+        background: white;
+        position: absolute;                 
+        font-family: "PT Sans";
+        padding: 1.5rem 1rem;
+        padding-top: 2rem;
+        font-weight: 500;
+        text-align: center;
+        z-index: 3000;
+        width: 100%;        
+      }
+
+      .head-icon {
+        z-index: 3001;
+        border-radius: 50%;
+        background-color: #00ABE6;
+        position: absolute;
+        top: -24px;
+        left: calc(50% - 21px);
+        width: 46px;
+        height: 46px;
+
+        > div { 
+          position: relative;
+
+          > img {
+            fill: white;
+            position: absolute;
+            top: 13px;
+            left: 13px;
+            height: 20px;
+            width: 20px;
+          }
+
+        }
+      }
+    }
+
+    .cta-container {
+      background-color: #00ABE6;
+      padding: 1rem;
+      text-align: center;
+
+      span { 
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: "PT Sans";
+      }
+
+      button {
+        @include type-golden(0);    
+        background-color: $blue;
+        border: none;
+        border-radius: 9999px;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        width: 100%;
+        padding: 10px 5px;
+        background-color: #00ABE6;
+        position: relative;
+        box-shadow: 0 2px 4px rgba(112, 112, 112, 0.5);
+        
+        span {
+          @include type-golden(0);
+    
+          color: $white;
+          font-weight: bold;
+          position: relative;
+          text-transform: uppercase;
+        }
+      }
+    }    
   }
 
-  > div {
+  .branch-detail-body {
+    background-color: $white;
+    border-left: 1px solid color($light-grey, 0.5);
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: gutter(1) gutter(1) gutter(1) 0;
+    position: fixed;
+    right: 0;
+    top: $search-bar-height;
+    transform: translateX(100%);
+    transition: transform 300ms ease 0ms;
+    width: calc(100% / 1.61803398875);
+    will-change: transform;
+    z-index: 2000;
+  
+    &.show {
+      transform: translateX(0);
+      transition: transform 300ms ease 300ms;
+    }
+  
     > div {
-      > article {
-        > header {
-          border-bottom: 1px solid $blue;
-          margin-bottom: gutter();
-
-          > h1 {
-            @include text-color($blue, 1);
-
-            @include type-golden(1);
-
-            line-height: gutter(1);
-            max-width: calc(100% - 135px);
-            padding: 0 gutter(1) 0 gutter();
-            text-align: left;
-          }
-
-          > h2 {
-            @include text-color($grey, 1);
-
-            @include type-golden(0);
-
-            max-width: calc(100% - 135px);
-            padding: 0 gutter(1) 0 gutter();
-            text-align: left;
-          }
-
-          > section {
-            overflow: auto;
-            padding: gutter();
-
+      > div {
+        > article {
+          > header {
+            margin-bottom: gutter();
+  
+            > h1 {
+              @include text-color($blue, 1);
+  
+              @include type-golden(1);
+  
+              line-height: gutter(1);
+              max-width: calc(100% - 135px);
+              padding: 0 gutter(1) 0 gutter();
+              text-align: left;
+            }
+  
+            > h2 {
+              @include text-color($grey, 1);
+  
+              @include type-golden(0);
+  
+              max-width: calc(100% - 135px);
+              padding: 0 gutter(1) 0 gutter();
+              text-align: left;
+            }
+  
             > section {
-              float: left;
-              width: 25%;
-
-              > ul {
-                > li {
-                  display: inline-block;
-                  padding-right: gutter(-2);
-                  text-align: center;
-                  width: gutter(1) * 0.75;
+              overflow: auto;
+              padding: gutter();
+  
+              > section {
+                float: left;
+                width: 25%;
+  
+                > ul {
+                  > li {
+                    display: inline-block;
+                    padding-right: gutter(-2);
+                    text-align: center;
+                    width: gutter(1) * 0.75;
+                  }
+                }
+  
+                > span {
+                  @include type-golden(-1);
                 }
               }
-
-              > span {
-                @include type-golden(-1);
-              }
             }
           }
-
-          button {
-            @include type-golden(0);
-
-            background-color: $blue;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            display: inline-block;
-            font-weight: 600;
-            height: 44px;
-            padding: gutter(-1) gutter();
-            position: absolute;
-            right: gutter(1);
-            top: gutter();
-
-            img {
-              height: 100%;
-              margin-right: gutter(-1);
+  
+          > main {
+            @include grid-column(1 of 1);
+  
+            > section {
+              @include grid-collapse;
+  
+              clear: both;
+              margin-bottom: gutter(2);
+  
+              > header {
+                height: 53px;
+                margin: gutter();
+                overflow: hidden;
+                position: relative;
+                border-bottom: 2px solid #D1E4EB;
+                > div:first-of-type {
+                  float: left;
+                  padding: gutter();
+                  padding-left: 0;
+  
+                  > h1 {
+                    @include text-color($black, 1);
+                    font-weight: bold;
+                    @include type-golden(0);
+                    text-align: left;
+                  }
+                }
+  
+                &.percentage {
+                  > div:first-of-type {
+                    width: calc(100% - 100% / 1.61803398875);
+                  }
+  
+                  > div:last-of-type {
+                    border-bottom: 2px solid $blue;
+                    float: right;
+                    width: calc(100% / 1.61803398875);
+  
+                    &.low {
+                      border-bottom-color: $red;
+  
+                      > div {
+                        background-color: $red;
+                      }
+                    }
+  
+                    &.high {
+                      border-bottom-color: $light-blue;
+  
+                      > div {
+                        background-color: $light-blue;
+                      }
+                    }
+  
+                    > div {
+                      background-color: $blue;
+                      float: left;
+                      height: 100%;
+                      padding: gutter();
+                      
+                      > span {
+                        @include text-color($white);
+  
+                        @include type-golden(1);
+  
+                        float: left;
+                        height: 19px;
+                        line-height: 19px;
+                        white-space: nowrap;
+                      }
+                    }
+                  }
+                }
+              }
+  
+              > main {
+                @include grid-container;
+  
+                > p {
+                  @include type-golden(0);
+  
+                  font-weight: 300;
+                  padding: 0 gutter();
+                }
+  
+                padding: 0 gutter();
+  
+                > div {
+                  > div:first-of-type {
+                    float: left;
+                    width: 100%;
+  
+                    > p {
+                      @include type-golden(0);
+  
+                      font-weight: 300;
+                      margin-bottom: gutter();
+  
+                      > strong {
+                        font-weight: 600;
+                      }
+                    }
+  
+                    button {
+                      @include type-golden(0);
+                      cursor: pointer;
+                      display: inline-block;
+                      font-weight: 600;
+                      height: 44px;
+                      color: #00ABE6;
+                      border: none;
+                      span {
+                        @include type-golden(0);
+                        font-weight: 300;
+                        text-transform: capitalize;
+                        border-bottom: 1px solid #00ABE6;
+                      }
+                    }
+                  }
+  
+                  > div + div {
+                    float: left;
+                    overflow: hidden;
+  
+                    > div {
+                      > div {
+                        > p {
+                          @include text-color($blue);
+  
+                          border-bottom: 2px solid $blue;
+                          display: inline-block;
+                          width: 100%;
+                        }
+                      }
+                    }
+  
+                    &.horizontal {
+                      width: 50%;
+  
+                      > div {
+                        > div {
+                          min-height: 105px;
+                        }
+                      }
+  
+                      &:nth-of-type(even) {
+                        > div {
+                          > div {
+                            padding-right: gutter() / 2;
+                          }
+                        }
+                      }
+  
+                      &:nth-of-type(odd) {
+                        > div {
+                          > div {
+                            padding-left: gutter() / 2;
+                          }
+                        }
+                      }
+                    }
+  
+                    &.vertical {
+                      > div {
+                        > div {
+                          @include grid-column(1 of 3);
+  
+                          margin-bottom: gutter();
+                        }
+                      }
+                    }
+                  }
+  
+                  > div.no-data {
+                    padding-left: gutter() / 2;
+                  }
+  
+                  > div.no-data-sad {
+                    padding-right: gutter() / 2;
+                  }
+  
+                  > div.no-data, > div.no-data-sad {
+                    margin-top: gutter();
+                    width: 50%;
+  
+                    > p {
+                      @include type-golden(-1);
+  
+                      font-weight: 400;
+                      margin-bottom: gutter();
+                    }
+  
+                    > div {
+                      display: block;
+                      float: left;
+                      width: calc(10%);
+  
+                      > img {
+                        $width: calc(100% - #{gutter(-2)});
+  
+                        display: block;
+                        margin-right: gutter(-2);
+                        width: $width;
+                      }
+  
+                      &:last-of-type {
+                        > img {
+                          margin-right: 0;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
-
-            span {
-              @include type-golden(0);
-
-              color: $white;
-              font-weight: 300;
-              position: relative;
-              text-transform: uppercase;
-              top: -6px;
+  
+            > section:first-of-type {
+              > main {}
+            }
+  
+            > section:last-of-type {
+              > main {
+                > div:first-of-type {
+                  float: none;
+                  width: 100%;
+                }
+  
+                > div:last-of-type {
+                  float: none;
+  
+                  &.horizontal {
+                    width: 100%;
+  
+                    > div {
+                      > div {
+                        @include grid-column(1 of 2);
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
+      }
+    }
 
-        > main {
-          @include grid-column(1 of 1);
+  }
+  
+}
 
-          > section {
-            @include grid-collapse;
+@mixin mobile-branch-detail-large {
 
-            clear: both;
-            margin-bottom: gutter(2);
+  .rate-cta{
+    width: 100%;
 
-            > header {
-              background-color: $light-blue;
-              height: 53px;
+    .rate-container {
+      .content{
+        font-size: 1rem;
+      }
+    }
+
+    button {
+      span {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+
+  .branch-detail-body { 
+
+    background-color: transparent;
+    padding: 25vh 0 0 0;
+    transform: translateY(100%);
+    width: 100%;
+  
+    &.show {
+      transform: translateX(0);
+      transition: transform 300ms ease 300ms;
+    }
+  
+    > div {
+
+      
+
+      background-color: $white;
+      overflow: auto;
+  
+      > div {        
+        > article {
+          > header {
+            border-bottom: none;
+            padding: gutter(1) gutter(0) gutter(0) gutter(0);
+  
+            > h1 {
+              @include type-golden(1);
+  
+              line-height: gutter(1);
               margin-bottom: gutter();
-              overflow: hidden;
-              position: relative;
-
-              > div:first-of-type {
-                float: right;
-                padding: gutter();
-
-                > h1 {
-                  @include text-color($white, 1);
-
-                  @include type-golden(0);
-
-                  text-align: right;
-                }
-              }
-
-              &.percentage {
-                > div:first-of-type {
-                  width: calc(100% - 100% / 1.61803398875);
-                }
-
-                > div:last-of-type {
-                  border-bottom: 2px solid $blue;
-                  float: right;
-                  width: calc(100% / 1.61803398875);
-
-                  &.low {
-                    border-bottom-color: $red;
-
-                    > div {
-                      background-color: $red;
-                    }
-                  }
-
-                  &.high {
-                    border-bottom-color: $light-blue;
-
-                    > div {
-                      background-color: $light-blue;
-                    }
-                  }
-
-                  > div {
-                    background-color: $blue;
-                    float: left;
-                    height: 100%;
-                    padding: gutter();
-
-                    > span {
-                      @include text-color($white);
-
-                      @include type-golden(1);
-
-                      float: left;
-                      height: 19px;
-                      line-height: 19px;
-                      white-space: nowrap;
-                    }
-                  }
-                }
-              }
+              max-width: initial;
+              padding-left: 0;
+              text-align: left;
+            }
+  
+            > h2 {
+              @include type-golden(0);
+  
+              line-height: gutter();
+              margin-bottom: gutter();
+              max-width: initial;
+              padding: 0;
+              text-align: left;
             }
 
-            > main {
-              @include grid-container;
+            > section {
+              display: flex;
+              flex-wrap: wrap;
 
-              > p {
-                @include type-golden(0);
-
-                font-weight: 300;
-                padding: 0 gutter();
+              > section {
+                width: auto;
+                padding-right: 0.5rem;
               }
-
-              padding: 0 gutter();
-
-              > div {
+            }
+  
+            > ul {
+              padding: 0;
+            }
+          }
+  
+          > main {
+            > section {
+              margin-bottom: 8rem;
+  
+              > header {
                 > div:first-of-type {
-                  float: left;
-                  width: 100%;
-
-                  > p {
+                  > h1 {
                     @include type-golden(0);
-
-                    font-weight: 300;
-                    margin-bottom: gutter();
-
-                    > strong {
-                      font-weight: 600;
-                    }
-                  }
-
-                  button {
-                    @include type-golden(0);
-
-                    background-color: $blue;
-                    border: none;
-                    border-radius: 2px;
-                    cursor: pointer;
-                    display: inline-block;
-                    font-weight: 600;
-                    height: 44px;
-                    margin-bottom: gutter();
-                    padding: gutter(-1) gutter();
-
-                    img {
-                      height: 100%;
-                      margin-right: gutter(-1);
-                    }
-
-                    span {
-                      @include type-golden(0);
-
-                      color: $white;
-                      font-weight: 300;
-                      position: relative;
-                      text-transform: uppercase;
-                      top: -6px;
-                    }
+  
+                    text-align: right;
                   }
                 }
-
-                > div + div {
-                  float: left;
-                  overflow: hidden;
-
+  
+                &.percentage {
+                  > div:first-of-type {
+                    width: calc(100% / 1.61803398875);
+                  }
+  
+                  > div:last-of-type {
+                    width: calc(100% - 100% / 1.61803398875);
+                  }
+                }
+              }
+  
+              > main {
+                > p {
+                  @include type-golden(0);
+  
+                  margin-bottom: gutter();
+                  padding: 0 gutter();
+                }
+  
+                padding: 0 gutter();
+  
+                > div:first-of-type {
+                  > p {
+                    @include type-golden(0);
+                  }
+                }
+  
+                > div:last-of-type {
                   > div {
                     > div {
                       > p {
-                        @include text-color($blue);
-
-                        border-bottom: 2px solid $blue;
-                        display: inline-block;
-                        width: 100%;
+                        max-width: initial;
                       }
                     }
                   }
-
+  
                   &.horizontal {
-                    width: 50%;
-
                     > div {
                       > div {
-                        min-height: 105px;
-                      }
-                    }
-
-                    &:nth-of-type(even) {
-                      > div {
-                        > div {
-                          padding-right: gutter() / 2;
-                        }
-                      }
-                    }
-
-                    &:nth-of-type(odd) {
-                      > div {
-                        > div {
-                          padding-left: gutter() / 2;
-                        }
+                        @include grid-column(1 of 1);
+  
+                        margin-bottom: gutter();
                       }
                     }
                   }
-
+  
                   &.vertical {
                     > div {
                       > div {
-                        @include grid-column(1 of 3);
-
+                        @include grid-column(1 of 1);
+  
                         margin-bottom: gutter();
                       }
                     }
                   }
                 }
-
-                > div.no-data {
-                  padding-left: gutter() / 2;
-                }
-
-                > div.no-data-sad {
-                  padding-right: gutter() / 2;
-                }
-
-                > div.no-data, > div.no-data-sad {
-                  margin-top: gutter();
-                  width: 50%;
-
-                  > p {
-                    @include type-golden(-1);
-
-                    font-weight: 400;
-                    margin-bottom: gutter();
-                  }
-
-                  > div {
-                    display: block;
-                    float: left;
-                    width: calc(10%);
-
-                    > img {
-                      $width: calc(100% - #{gutter(-2)});
-
-                      display: block;
-                      margin-right: gutter(-2);
-                      width: $width;
-                    }
-
-                    &:last-of-type {
-                      > img {
-                        margin-right: 0;
-                      }
-                    }
-                  }
-                }
               }
             }
-          }
-
-          > section:first-of-type {
-            > main {}
-          }
-
-          > section:last-of-type {
-            > main {
-              > div:first-of-type {
-                float: none;
-                width: 100%;
-              }
-
-              > div:last-of-type {
-                float: none;
-
-                &.horizontal {
-                  width: 100%;
-
-                  > div {
-                    > div {
-                      @include grid-column(1 of 2);
-                    }
-                  }
-                }
+  
+            > section:first-of-type {
+              > main {
+                clear: both;
               }
             }
           }
         }
       }
     }
-  }
-}
 
-@mixin mobile-branch-detail-large {
-  background-color: transparent;
-  padding: 60vh 0 0 0;
-  transform: translateY(100%);
-  width: 100%;
-
-  &.show {
-    transform: translateX(0);
-    transition: transform 300ms ease 300ms;
-  }
-
-  > div {
-    background-color: $white;
-    overflow: auto;
-
-    > div {
-      > article {
-        > header {
-          border-bottom: none;
-          padding: gutter(1) gutter(0) gutter(0) gutter(0);
-
-          > h1 {
-            @include type-golden(1);
-
-            line-height: gutter(1);
-            margin-bottom: gutter();
-            max-width: initial;
-            padding-left: 0;
-            text-align: left;
-          }
-
-          > h2 {
-            @include type-golden(0);
-
-            line-height: gutter();
-            margin-bottom: gutter();
-            max-width: initial;
-            padding: 0;
-            text-align: left;
-          }
-
-          > ul {
-            padding: 0;
-          }
-        }
-
-        > main {
-          > section {
-            margin-bottom: 0;
-
-            > header {
-              > div:first-of-type {
-                > h1 {
-                  @include type-golden(0);
-
-                  text-align: right;
-                }
-              }
-
-              &.percentage {
-                > div:first-of-type {
-                  width: calc(100% / 1.61803398875);
-                }
-
-                > div:last-of-type {
-                  width: calc(100% - 100% / 1.61803398875);
-                }
-              }
-            }
-
-            > main {
-              > p {
-                @include type-golden(0);
-
-                margin-bottom: gutter();
-                padding: 0 gutter();
-              }
-
-              padding: 0 gutter();
-
-              > div:first-of-type {
-                > p {
-                  @include type-golden(0);
-                }
-              }
-
-              > div:last-of-type {
-                > div {
-                  > div {
-                    > p {
-                      max-width: initial;
-                    }
-                  }
-                }
-
-                &.horizontal {
-                  > div {
-                    > div {
-                      @include grid-column(1 of 1);
-
-                      margin-bottom: gutter();
-                    }
-                  }
-                }
-
-                &.vertical {
-                  > div {
-                    > div {
-                      @include grid-column(1 of 1);
-
-                      margin-bottom: gutter();
-                    }
-                  }
-                }
-              }
-            }
-          }
-
-          > section:first-of-type {
-            > main {
-              clear: both;
-            }
-          }
-        }
-      }
-    }
-  }
+    
+  }  
 }
 
 .branch-detail-large-cell {

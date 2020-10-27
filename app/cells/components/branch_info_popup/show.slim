@@ -4,36 +4,35 @@ div.branch-info-popup-cell v-bind:class="{show: actions.show}" v-bind:style="pos
       h1 = "{{branch.name}}"
       span = "{{branch.provider_name}}"
     section
-      section v-if="branch.quality > 0"
-        span="Calidad"
-        ul
-          li v-if="[1,2].indexOf(branch.quality) > -1" v-for="i in branch.quality" = image_tag asset_path('icons/star-red-full.svg')
-          li v-if="[3].indexOf(branch.quality) > -1" v-for="i in branch.quality" = image_tag asset_path('icons/star-yellow-full.svg')
-          li v-if="[4,5].indexOf(branch.quality) > -1" v-for="i in branch.quality" = image_tag asset_path('icons/star-green-full.svg')
-          li v-if="[1,2].indexOf(branch.quality) > -1" v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-red-empty.svg')
-          li v-if="[3].indexOf(branch.quality) > -1" v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-yellow-empty.svg')
-          li v-if="[4,5].indexOf(branch.quality) > -1" v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-green-empty.svg')
+      / section v-if="branch.quality > 0"
+      /   span="Calidad"
+      /   ul
+      /     li v-if="[1,2].indexOf(branch.quality) > -1" v-for="i in branch.quality" = image_tag asset_path('icons/star-red-full.svg')
+      /     li v-if="[3].indexOf(branch.quality) > -1" v-for="i in branch.quality" = image_tag asset_path('icons/star-yellow-full.svg')
+      /     li v-if="[4,5].indexOf(branch.quality) > -1" v-for="i in branch.quality" = image_tag asset_path('icons/star-green-full.svg')
+      /     li v-if="[1,2].indexOf(branch.quality) > -1" v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-red-empty.svg')
+      /     li v-if="[3].indexOf(branch.quality) > -1" v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-yellow-empty.svg')
+      /     li v-if="[4,5].indexOf(branch.quality) > -1" v-for="i in 5 - branch.quality" = image_tag asset_path('icons/star-green-empty.svg')
 
-      section v-if="branch.waiting_times > 0"
-        span="Tiempos de espera"
-        ul
-          li v-if="[1,2].indexOf(branch.waiting_times) > -1" v-for="i in branch.waiting_times" = image_tag asset_path('icons/star-red-full.svg')
-          li v-if="[3].indexOf(branch.waiting_times) > -1" v-for="i in branch.waiting_times" = image_tag asset_path('icons/star-yellow-full.svg')
-          li v-if="[4,5].indexOf(branch.waiting_times) > -1" v-for="i in branch.waiting_times" = image_tag asset_path('icons/star-green-full.svg')
-          li v-if="[1,2].indexOf(branch.waiting_times) > -1" v-for="i in 5 - branch.waiting_times" = image_tag asset_path('icons/star-red-empty.svg')
-          li v-if="[3].indexOf(branch.waiting_times) > -1" v-for="i in 5 - branch.waiting_times" = image_tag asset_path('icons/star-yellow-empty.svg')
-          li v-if="[4,5].indexOf(branch.waiting_times) > -1" v-for="i in 5 - branch.waiting_times" = image_tag asset_path('icons/star-green-empty.svg')
+      / section v-if="branch.waiting_times > 0"
+      /   span="Tiempos de espera"
+      /   ul
+      /     li v-if="[1,2].indexOf(branch.waiting_times) > -1" v-for="i in branch.waiting_times" = image_tag asset_path('icons/star-red-full.svg')
+      /     li v-if="[3].indexOf(branch.waiting_times) > -1" v-for="i in branch.waiting_times" = image_tag asset_path('icons/star-yellow-full.svg')
+      /     li v-if="[4,5].indexOf(branch.waiting_times) > -1" v-for="i in branch.waiting_times" = image_tag asset_path('icons/star-green-full.svg')
+      /     li v-if="[1,2].indexOf(branch.waiting_times) > -1" v-for="i in 5 - branch.waiting_times" = image_tag asset_path('icons/star-red-empty.svg')
+      /     li v-if="[3].indexOf(branch.waiting_times) > -1" v-for="i in 5 - branch.waiting_times" = image_tag asset_path('icons/star-yellow-empty.svg')
+      /     li v-if="[4,5].indexOf(branch.waiting_times) > -1" v-for="i in 5 - branch.waiting_times" = image_tag asset_path('icons/star-green-empty.svg')
 
-      section v-if="branch.satisfaction > 0"
-        span="Satisfacción"
-        ul
-          li v-if="[1,2].indexOf(branch.satisfaction) > -1" v-for="i in branch.satisfaction" = image_tag asset_path('icons/star-red-full.svg')
-          li v-if="[3].indexOf(branch.satisfaction) > -1" v-for="i in branch.satisfaction" = image_tag asset_path('icons/star-yellow-full.svg')
-          li v-if="[4,5].indexOf(branch.satisfaction) > -1" v-for="i in branch.satisfaction" = image_tag asset_path('icons/star-green-full.svg')
-          li v-if="[1,2].indexOf(branch.satisfaction) > -1" v-for="i in 5 - branch.satisfaction" = image_tag asset_path('icons/star-red-empty.svg')
-          li v-if="[3].indexOf(branch.satisfaction) > -1" v-for="i in 5 - branch.satisfaction" = image_tag asset_path('icons/star-yellow-empty.svg')
-          li v-if="[4,5].indexOf(branch.satisfaction) > -1" v-for="i in 5 - branch.satisfaction" = image_tag asset_path('icons/star-green-empty.svg')
-
+      / section v-if="branch.satisfaction > 0"
+      /   span="Satisfacción"
+      /   ul
+      /     li v-if="[1,2].indexOf(branch.satisfaction) > -1" v-for="i in branch.satisfaction" = image_tag asset_path('icons/star-red-full.svg')
+      /     li v-if="[3].indexOf(branch.satisfaction) > -1" v-for="i in branch.satisfaction" = image_tag asset_path('icons/star-yellow-full.svg')
+      /     li v-if="[4,5].indexOf(branch.satisfaction) > -1" v-for="i in branch.satisfaction" = image_tag asset_path('icons/star-green-full.svg')
+      /     li v-if="[1,2].indexOf(branch.satisfaction) > -1" v-for="i in 5 - branch.satisfaction" = image_tag asset_path('icons/star-red-empty.svg')
+      /     li v-if="[3].indexOf(branch.satisfaction) > -1" v-for="i in 5 - branch.satisfaction" = image_tag asset_path('icons/star-yellow-empty.svg')
+      /     li v-if="[4,5].indexOf(branch.satisfaction) > -1" v-for="i in 5 - branch.satisfaction" = image_tag asset_path('icons/star-green-empty.svg')
       section v-if="branch.humanization > 0"
         span="Humanización"
         ul
@@ -43,6 +42,26 @@ div.branch-info-popup-cell v-bind:class="{show: actions.show}" v-bind:style="pos
           li v-if="[1,2].indexOf(branch.humanization) > -1" v-for="i in 5 - branch.humanization" = image_tag asset_path('icons/star-red-empty.svg')
           li v-if="[3].indexOf(branch.humanization) > -1" v-for="i in 5 - branch.humanization" = image_tag asset_path('icons/star-yellow-empty.svg')
           li v-if="[4,5].indexOf(branch.humanization) > -1" v-for="i in 5 - branch.humanization" = image_tag asset_path('icons/star-green-empty.svg')
+
+      section v-if="branch.risk > 0"
+        span="Gestión del Riesgo"
+        ul
+          li v-if="[1,2].indexOf(branch.risk) > -1" v-for="i in branch.risk" = image_tag asset_path('icons/star-red-full.svg')
+          li v-if="[3].indexOf(branch.risk) > -1" v-for="i in branch.risk" = image_tag asset_path('icons/star-yellow-full.svg')
+          li v-if="[4,5].indexOf(branch.risk) > -1" v-for="i in branch.risk" = image_tag asset_path('icons/star-green-full.svg')
+          li v-if="[1,2].indexOf(branch.risk) > -1" v-for="i in 5 - branch.risk" = image_tag asset_path('icons/star-red-empty.svg')
+          li v-if="[3].indexOf(branch.risk) > -1" v-for="i in 5 - branch.risk" = image_tag asset_path('icons/star-yellow-empty.svg')
+          li v-if="[4,5].indexOf(branch.risk) > -1" v-for="i in 5 - branch.risk" = image_tag asset_path('icons/star-green-empty.svg')
+
+      section v-if="branch.effectiveness > 0"
+        span="Efectividad"
+        ul
+          li v-if="[1,2].indexOf(branch.effectiveness) > -1" v-for="i in branch.effectiveness" = image_tag asset_path('icons/star-red-full.svg')
+          li v-if="[3].indexOf(branch.effectiveness) > -1" v-for="i in branch.effectiveness" = image_tag asset_path('icons/star-yellow-full.svg')
+          li v-if="[4,5].indexOf(branch.effectiveness) > -1" v-for="i in branch.effectiveness" = image_tag asset_path('icons/star-green-full.svg')
+          li v-if="[1,2].indexOf(branch.effectiveness) > -1" v-for="i in 5 - branch.effectiveness" = image_tag asset_path('icons/star-red-empty.svg')
+          li v-if="[3].indexOf(branch.effectiveness) > -1" v-for="i in 5 - branch.effectiveness" = image_tag asset_path('icons/star-yellow-empty.svg')
+          li v-if="[4,5].indexOf(branch.effectiveness) > -1" v-for="i in 5 - branch.effectiveness" = image_tag asset_path('icons/star-green-empty.svg')
 
     section
       button @click="openVoteModal()"

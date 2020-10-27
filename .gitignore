@@ -15,7 +15,6 @@
 .env
 .gs
 .DS_Store
-config/atsb.yml
 ansible/
 
 # General private stuff
@@ -39,3 +38,9 @@ Thumbs.db
 .gs/
 coverage
 .idea
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+

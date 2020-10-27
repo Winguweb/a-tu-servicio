@@ -1,16 +1,24 @@
-ATSB.Components['components/vote-modal'] = function(options) {
+ATSB.Components['components/vote-modal'] = function(options) {  
   new Vue({
     el: '.vote-modal-cell',
     data: {
       actions: {show: false},
       actualStepId: 1,
       branchId: null,
+      branchSlug: null,
+      branchSpecialities: {},
       clientId: null,
       inputValue: "",
       inputValueSizeLimit: 200,
       recaptchaSitekey: options.recaptchaSitekey,
+      useRecaptcha: options.useRecaptcha,
       showForm: true,
       steps: options.form.steps,
+      specialities: options.specialities,
+      type: "",
+      typeLabel: null,
+      percentage: 100,
+      finished: false
     },
     created: function() {
       var _this = this
@@ -60,13 +68,16 @@ ATSB.Components['components/vote-modal'] = function(options) {
         // I move this line here in order to fetch the information despite the fact
         // if the visitor did not end the vote process and at least started it.
         if( this.partiallyAnswered() ){
-          ATSB.pubSub.$emit('branch:detail:large:fetch', this.branchId)
+          ATSB.pubSub.$emit('branch:detail:large:fetch', this.branchSlug)
         }
         this.actions.show = false
         this.resetForm()
       },
-      componentOpen: function(id) {
-        this.branchId = id
+      componentOpen: function(obj) {
+        this.branchId = obj.branchId
+        this.branchSlug = obj.branchSlug
+        this.branchSpecialities = obj.branchSpecialities
+        this.finished = false
         this.actions.show = true
       },
       getActualAnswer: function() {
@@ -78,10 +89,43 @@ ATSB.Components['components/vote-modal'] = function(options) {
       },
       getActualStepAnswers: function() {
         var actualStep = this.getActualStep()
+        if (actualStep.custom_specialities) {
+          if (actualStep.question_type == 'external_consultation') {
+            return this.specialities.external_consultation
+          }
+
+          if (actualStep.question_type == 'hospitalization') {
+            return this.specialities.hospitalization
+          }
+        }
+
         var answers = actualStep.depends_on
           ? this.getDependentAnswer(actualStep.answers, actualStep.depends_on)
           : actualStep.answers
+
         return answers
+      },
+      parseSpecialities: function() {
+        if (!this.branchSpecialities.has_specialities_information) {
+          return null
+        }
+
+        var idCounter = 0
+        return this.branchSpecialities.specialities.map(function(spec) {
+          idCounter += 1
+          return {            
+            auto_submit: true,
+            data: {
+              label: spec.name.charAt(0).toUpperCase() + spec.name.slice(1).toLowerCase(),
+              value: spec.name
+            },
+            id: idCounter,
+            should_save: true,
+            type: 'cuckoo'
+          }          
+        })
+        
+        // var parsedSpecialities = this.branc
       },
       getDependentAnswer: function(answers, depends_on) {
         var _this = this
@@ -111,6 +155,9 @@ ATSB.Components['components/vote-modal'] = function(options) {
             return _(q.depends_on_id).contains(depends_on_answer_id)
           }).label
         }
+
+        this.typeLabel = !!(actualStep.type_label) && actualStep.type_label
+        this.type = actualStep.type
         return question
       },
       getStepById: function(id) {
@@ -137,13 +184,17 @@ ATSB.Components['components/vote-modal'] = function(options) {
         return !!this.getStepById(this.actualStepId).multi_response
       },
       nextStep: function(options) {
+        
         var _this = this
         var options = options || {}
         var needsRecaptcha = this.isFirstStep()
         var actualStep = this.getActualStep()
         var actualAnswerId = this.getActualAnswer()
+        if(this.type == 'urgency'){
+          this.actualStepId = this.actualStepId + 1
+          return
+        }
         if (actualAnswerId == null) { return }
-
         var client_id = this.clientId
         var branch_id = this.branchId
         var step_id = actualStep.id
@@ -151,10 +202,8 @@ ATSB.Components['components/vote-modal'] = function(options) {
         var answer_data = this.getAnswerById(actualAnswerId).data
             answer_data.value = this.inputValue || answer_data.value
         var question_value = this.getQuestion()
-
         this.loopTo = options.loopTo
-        this.showForm = false
-
+        this.percentage = this.percentage - 7.69
         if (this.shouldSaveVote()) {
           this.sendVote({
             client_id: client_id,
@@ -163,8 +212,10 @@ ATSB.Components['components/vote-modal'] = function(options) {
             answer_id: answer_id,
             question_value: question_value,
             answer_data: answer_data,
+            question_type: !!actualStep.question_type && actualStep.question_type,
+            question_subtype: !!actualStep.question_subtype && actualStep.question_subtype,
             multi_response: this.isMultiResponse(),
-          }, needsRecaptcha, this.sendVoteSuccess, this.sendVoteFail)
+          }, this.useRecaptcha == 'true' ? needsRecaptcha : false, this.sendVoteSuccess, this.sendVoteFail)
           return;
         }
         this.sendVoteSuccess()
@@ -183,19 +234,28 @@ ATSB.Components['components/vote-modal'] = function(options) {
         var _this = this
         var actualStep = this.getActualStep()
         var previousStep = actualStep.previous_step
-        if (previousStep) { this.actualStepId = +previousStep }
+        if (previousStep) { IdId = +previousStep }
         this.preloadInputValue()
         this.showForm = false
         setTimeout(function() {_this.showForm = true}, 300)
       },
-      sendVoteFail: function() {
+      sendVoteFail: function(err) {
         var _this = this
-        alert('error en recaptcha')
-        setTimeout(function() {_this.showForm = true}, 300)
+        console.log('unexpected error')
+        console.log(err)
+        // alert('error en recaptcha')
+        // setTimeout(function() {_this.showForm = true}, 300)
       },
-      sendVoteSuccess: function() {
+      sendVoteSuccess: function() {      
+        // if not next step finish 
         var _this = this
         var actualStep = this.getActualStep()
+        
+        if (!actualStep.next_step) {
+          _this.finished = true
+          return
+        }
+        
         var actualAnswerId = this.getActualAnswer()
         var nextStep = this.loopTo || actualStep.next_step[actualAnswerId] || actualStep.id+1
         this.loopTo = null
@@ -214,7 +274,6 @@ ATSB.Components['components/vote-modal'] = function(options) {
         this.getStepById(this.actualStepId).answer = id
         var actualAnswer = this.getAnswerById(id)
         if (actualAnswer.auto_submit == false) { return }
-        this.nextStep()
       },
       sendVote: function(vote, needsRecaptcha, fnSuccess, fnFail) {
         ATSB.pubSub.$emit('vote:send', vote, needsRecaptcha, fnSuccess, fnFail)

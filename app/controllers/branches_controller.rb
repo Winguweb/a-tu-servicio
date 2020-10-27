@@ -10,6 +10,7 @@ class BranchesController < ApplicationController
       :results => @branches.map do |branch|
         {
           id: branch.id,
+          slug: branch.slug,
           name: branch.name,
           address: branch.address,
           provider_name: branch.provider.name,
@@ -17,7 +18,9 @@ class BranchesController < ApplicationController
           quality: branch.quality,
           waiting_times: branch.waiting_times,
           satisfaction: branch.satisfaction,
-          humanization: branch.humanization
+          humanization: branch.humanization,
+          risk: branch.risk,
+          effectiveness: branch.effectiveness
         }
       end
     }
@@ -58,6 +61,63 @@ class BranchesController < ApplicationController
     response.deep_merge!(@waiting_time_response.response)
 
     response['metrics'] = @surveys_metrics.response
+
+    render json: response
+  end
+
+  def findBySlug
+    @branch = Branch.includes(:provider, :specialities).find_by(slug: params[:slug])
+
+    # @flag_response = FlagResponseService.call(@branch)    
+    # @satisfaction_response = SatisfactionResponseService.call(@branch)
+    # @waiting_time_response = WaitingTimeResponseService.call(@branch)
+    @base_response = BaseResponseService.call(@branch)
+    @speciality_response = SpecialityResponseService.call(@branch)
+    @surveys = Survey.where(branch_id: @branch.id)
+    details_response = {}
+
+  
+    @surveys.each do |survey|
+      if !details_response[survey['question_type']]
+        details_response[survey['question_type']] = {}
+      end
+
+      if !details_response[survey['question_type']][survey['step_id']]
+        details_response[survey['question_type']][survey['step_id']] = []
+      end      
+
+      details_response[survey['question_type']][survey['step_id']].push(survey)
+    end
+
+
+    # TODO: I think that maybe there are optimal ways of doing all this
+    # seems that there are a lot of duplication in AR calls and stuff.
+    #
+    # I placed here and followed the actual scheme as required.
+    # @surveys_metrics = SurveysMetricsService.call(@branch)
+
+    # TODO: WIP
+    # ==========================================================================
+    # @surveys = Survey.where(branch_id: @branch.id)
+    # user_waiting_times = {}
+    # @surveys.where(step_id: 6).each do |waiting_time|
+    #   speciality = @surveys.where(step_id: 2, client_id: waiting_time.client_id).first.answer_value
+    #   user_waiting_times[speciality] = 0 if user_waiting_times[speciality].blank?
+    #   user_waiting_times[speciality] += waiting_time.answer_value.to_i
+    # end
+    # ==========================================================================
+
+
+    response = {}
+    response.deep_merge!(@base_response.response)
+    response.deep_merge!(@speciality_response.response)
+    response['details'] = details_response
+
+    # response.deep_merge!(@flag_response.response)
+    # response.deep_merge!(@satisfaction_response.response)
+    # response.deep_merge!(@waiting_time_response.response)
+
+    # response['metrics'] = @surveys_metrics.response
 
     render json: response
   end

@@ -41,6 +41,14 @@ class BaseResponseService
     @branch.humanization
   end
 
+  def _risk
+    @branch.risk
+  end
+
+  def _effectiveness
+    @branch.effectiveness
+  end
+
   def _provider_name
     @branch.provider.name
   end
@@ -66,10 +74,12 @@ class BaseResponseService
       id: _id,
       name: _name,
       address: _address,
-      quality: _quality,
-      waiting_times: _waiting_times,
-      satisfaction: _satisfaction,
+      # quality: _quality,
+      # waiting_times: _waiting_times,
+      # satisfaction: _satisfaction,
       humanization: _humanization,
+      risk: _risk,
+      effectiveness: _effectiveness,
       provider: {
         name: _provider_name,
         subnet: _provider_subnet,

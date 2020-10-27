@@ -24,9 +24,11 @@
     > div {
       display: flex;
       margin-right: -gutter();
+      width: 50%;
 
       @media (max-width: 800px) {
         flex-direction: column;
+        width: 100%;
       }
 
       > article {

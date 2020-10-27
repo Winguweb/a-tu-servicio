@@ -12,16 +12,16 @@ class Components::ReferenceMapCell < Cell::ViewModel
         coordinates: branch.latlng,
         provider_name: branch.provider.name,
         featured: branch.provider.featured,
-        quality: branch.quality,
-        waiting_times: branch.waiting_times,
-        satisfaction: branch.satisfaction,
-        humanization: branch.humanization
+        # quality: branch.quality,
+        # waiting_times: branch.waiting_times,
+        # satisfaction: branch.satisfaction,
+        humanization: branch.humanization,
+        risk: branch.risk,
+        effectiveness: branch.effectiveness,
+        slug: branch.slug
       }
     end.to_json
   end
 
-  def map_defaults
-    MAP.to_json
-  end
 
 end

@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   def create
-    return error_message unless recaptcha_was_verified? || recaptcha_verified?
+    # return error_message unless recaptcha_was_verified? || recaptcha_verified?
     multi_response = params[:vote][:multi_response]
 
     @survey = get_existing_or_new_survey(multi_response)
@@ -36,7 +36,13 @@ class SurveysController < ApplicationController
     )
 
     request.run
+    
+    puts params
     response = request.response
+    puts 'Response!'
+    # puts JSON.parse(response)
+    puts '---'
+    puts JSON.parse(response.options[:response_body])
     success = JSON.parse(response.options[:response_body])['success']
     session[:recaptcha_success] = success
   end
@@ -48,6 +54,8 @@ class SurveysController < ApplicationController
       :step_id,
       :answer_id,
       :question_value,
+      :question_type,
+      :question_subtype,
       answer_data: [:label, :value],
     )
   end

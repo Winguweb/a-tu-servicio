@@ -3,6 +3,10 @@ class VisualizationComponents::FullDetailSplittedBarCell < Cell::ViewModel
 
   private
 
+  def step
+    @step = options[:step]
+  end
+
   def label
     @label ||= options[:label]
   end

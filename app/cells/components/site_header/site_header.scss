@@ -1,10 +1,9 @@
 @mixin site-header {
   background-color: $white;
-  box-shadow: 0 2px 4px color($black, 0.5);
   height: $header-height;
   position: relative;
   z-index: 5001;
-
+  border-bottom: 1px solid #C0C4C7;
   @media (max-width: 720px) {
     display: none;
   }

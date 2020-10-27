@@ -4,8 +4,8 @@ ATSB.Components['components/reference-map'] = function(options) {
     data: {
       branches: options.branches,
       centered: false,
-      style: options.defaults.style,
-      zoom: options.defaults.zoom,
+      style: null,
+      zoom: null,
       token: options.token,
       selectedBranch: [],
       isMobile: $('body').hasClass('mobile')
@@ -36,7 +36,7 @@ ATSB.Components['components/reference-map'] = function(options) {
         var southWest = L.latLng(4.456638, -74.794551),
         northEast = L.latLng(4.867143, -73.370018),
         bounds = L.latLngBounds(southWest, northEast);
-        var minZoom = this.isMobile ? 10 : 12
+        var minZoom = this.isMobile ? 6 : 10
 
         this.map = L.mapbox.map('map_container', this.style, {maxBounds: bounds, minZoom: minZoom, zoomDelta: 0.5, zoomSnap: 0.5})
           .addLayer(L.mapbox.styleLayer('mapbox://styles/juanlacueva/ckgjoftkv183w19muzvmuk37l'))
@@ -74,21 +74,19 @@ ATSB.Components['components/reference-map'] = function(options) {
               iconAnchor: [size.width, size.height],
               iconSize: [size.width, size.height],
             }),
-            id: branch.id
+            id: branch.id,
+            slug: branch.slug
           })
           this.addEvents(marker)
           this.baseGeometryFeature.addLayer(marker)
         }.bind(this))
       },
       getSelectedBranch: function(branch) {
-        var castedSelectedBranchIds = this.selectedBranch.map(function(branchId) {
-          return branchId.toString()
-        })
-
-        return castedSelectedBranchIds.indexOf(branch.id.toString()) > -1
+        var selectedBranchesSlugs = this.selectedBranch
+        return selectedBranchesSlugs.indexOf(branch.slug) > -1
       },
-      setSelectedBranch: function(ids) {
-        this.selectedBranch = ids
+      setSelectedBranch: function(slugs) {
+        this.selectedBranch = slugs
         this.clearReferences()
         this.showReferences()
         this.centerMap()
@@ -96,12 +94,13 @@ ATSB.Components['components/reference-map'] = function(options) {
       addEvents: function(marker) {
         var _this = this
         marker.on('click', function (evt) {
-          var id = evt.target.options.id
+          var slug = evt.target.options.slug
+          window.history.pushState(null, '', '/mapa-de-servicios/' + slug)
           ATSB.pubSub.$emit('all:slides:close')
           ATSB.pubSub.$emit('branch:detail:large:open')
-          ATSB.pubSub.$emit('branch:detail:large:fetch', id)
-          ATSB.pubSub.$emit('branch:selected', [id])
-          ATSB.pubSub.$emit('branch:compare:set', id)
+          ATSB.pubSub.$emit('branch:detail:large:fetch', slug)
+          ATSB.pubSub.$emit('branch:selected', [slug])
+          ATSB.pubSub.$emit('branch:compare:set', slug)
           ATSB.pubSub.$emit('branch:compare:button:show')
           ATSB.pubSub.$emit('branch:hover:close')
         })

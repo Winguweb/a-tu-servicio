@@ -15,6 +15,7 @@ class Branch < ActiveRecord::Base
       :name,
       :town,
       :provider_name,
+      :slug,
       :show,
       :specialities_names,
       :subnet_name
@@ -37,6 +38,7 @@ class Branch < ActiveRecord::Base
     georeference.coordinates.reverse
   end
 
+  # TODO new workers
   def quality
     redis.get("quality/branch/#{id}").to_f.round.to_i
   end
@@ -52,6 +54,15 @@ class Branch < ActiveRecord::Base
   def humanization
     redis.get("humanization/branch/#{id}").to_f.round.to_i
   end
+
+  def risk
+    redis.get("risk/branch/#{id}").to_f.round.to_i
+  end
+
+  def effectiveness
+    redis.get("effectiveness/branch/#{id}").to_f.round.to_i
+  end
+  # TODO new workers
 
   private
 

@@ -3,13 +3,18 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
     el: '.branch-detail-large-cell',
     data: {
       branch: {loaded: false},
-      actions: {show: false}
+      actions: {show: false},
+      slug: null
     },
-    created: function() {
+    created: function() {      
       ATSB.pubSub.$on('all:slides:close', this.componentClose)
       ATSB.pubSub.$on('branch:detail:large:open', this.componentOpen)
       ATSB.pubSub.$on('branch:detail:large:close', this.componentClose)
-      ATSB.pubSub.$on('branch:detail:large:fetch', this.branchFetch)
+      ATSB.pubSub.$on('branch:detail:large:fetch', this.branchFetch)      
+    },
+    mounted: function(){
+      //component is ready to use
+      ATSB.pubSub.$emit('branch:detail:large:created')
     },
     methods: {
       toPercentage: ATSB.Helpers.numbers.toPercentage,
@@ -17,8 +22,9 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
       toNOfTen: ATSB.Helpers.numbers.toNOfTen,
       toNOfReverse: ATSB.Helpers.numbers.toNOfReverse,
       toNOfTenReverse: ATSB.Helpers.numbers.toNOfTenReverse,
-      branchFetch: function(id) {
-        ATSB.pubSub.$emit('fetch:branch:id', id, this.branchFetchSuccess, this.branchFetchError)
+      branchFetch: function(slug) {
+        this.slug = slug
+        ATSB.pubSub.$emit('fetch:branch:slug', slug, this.branchFetchSuccess, this.branchFetchError)
       },
       branchFetchSuccess: function(response) {
         this.branch = response.data
@@ -44,7 +50,12 @@ ATSB.Components['components/branch-detail-large'] = function(options) {
         ATSB.pubSub.$emit('header:action:set', 'closeDetails')
       },
       openVoteModal: function() {
-        ATSB.pubSub.$emit('vote:open', this.branch.id)
+        console.log(this.branch)
+        ATSB.pubSub.$emit('vote:open', {
+          branchId: this.branch.id,
+          branchSlug: this.slug,
+          branchSpecialities: this.branch.initial_source
+        })
       },
       hasSpecialitiesInformationToShow: function(source) {
         return this.hasInformationToShow(source, 'has_specialities_information')

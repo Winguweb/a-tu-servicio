@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # API
   scope '/api' do
     scope '/v1' do
+      get '/branches/slug/:slug' => "branches#findBySlug"
       resources :branches, only: %i[index show]
       resources :surveys, only: %i[create]
     end
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   get '/sobre-el-proyecto' => 'home#about', as: :about
-  get '/mapa-de-servicios' => 'home#services', as: :services
+  get '/mapa-de-servicios(/:id)' => 'home#services', as: :services
   get '/datos/descarga/csv/:model', action: :download_csv, controller: :home, as: :data_download_csv, constraints: { model: /(Branch|Provider|Satisfaction|Speciality|WaitingTime|Survey)/ }
   get '/datos/descarga/xls/:model', action: :download_xlsx, controller: :home, as: :data_download_xlsx, constraints: { model: /(Survey)/ }
   get '/datos/descarga/xls/todo', action: :download_all, controller: :home, as: :data_download_all
