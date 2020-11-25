@@ -224,6 +224,7 @@
       > li {
         > div {
           top: 0;
+          font-size: 12px;
         }
       }
     }
@@ -231,7 +232,7 @@
   > div:nth-of-type(2) {
     bottom: 15%;
     position: absolute;
-    top: 45%;
+    top: 42%;
     width: 90%;
     transform: translate3d(-50%, 0, 0);
   }
