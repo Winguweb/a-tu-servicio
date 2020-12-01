@@ -5,6 +5,12 @@ Local:
 1. Bundle - `bundle`
 2. Levantar base de datos (postgres): `rake db:create db:migrate importer:all[year]`
 
+## Deploy
+Para deploy a produccion necesitas acceso ssh al servivor y corres desde tu entorno local:
+```
+ssh-add
+cap production deploy
+```
 ## Configuración y CSV's
 
 ### /config/metadata.yml
